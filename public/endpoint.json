@@ -1,0 +1,52 @@
+{
+  "name": "netsuite",
+  "display": "NetSuite Endpoint",
+  "description": "Sync products, stock, customers, orders and shipments with NetSuite ERP",
+  "help": "http://guides.spreecommerce.com/integration/endpoints/netsuite",
+  "icon_url": "spree.png",
+  "services": [
+    {
+      "name": "products",
+      "path": "/products",
+      "description": "Lock an order.",
+      "requires": {
+        "parameters": [{
+          "name": "api_version",
+          "description": "NetSuite api version",
+          "data_type": "string"
+        }, {
+          "name": "wsdl_url",
+          "description": "NetSuite API url",
+          "data_type": "string"
+        }, {
+          "name": "email",
+          "description": "NetSuite user email",
+          "data_type": "string"
+        }, {
+          "name": "password",
+          "description": "NetSuite user password",
+          "data_type": "password"
+        }, {
+          "name": "account",
+          "description": "NetSuite account",
+          "data_type": "string"
+        }, {
+          "name": "role_id",
+          "description": "NetSuite role id",
+          "data_type": "string"
+        }]
+      },
+      "recommends": {
+        "messages": [
+          "product:import"
+          ],
+        "identifiers": {
+          "product_sku": "payload.product.sku"
+        },
+        "options": {
+          "retries_allowed": true
+        }
+      }
+    }
+  ]
+}
