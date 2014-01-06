@@ -7,9 +7,10 @@ class InventoryItem < NetsuiteIntegration::Base
         {
           field: 'lastModifiedDate',
           operator: 'after',
-          value: 10.days.ago.iso8601
+          value: 5.days.ago.iso8601
         }
-      ]
-    })
+      ],
+      preferences: { 'page_size' => '10' }
+    }).results
   end
 end
