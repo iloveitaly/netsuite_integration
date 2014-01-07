@@ -45,7 +45,11 @@
         }]
       },
       "recommends": {
-        "messages": ["netsuite:product:poll"]
+        "messages": ["netsuite:product:poll"],
+        "schedule": {
+          "count": 1,
+          "interval": "minutes"
+        }
       }
     }
   ]
