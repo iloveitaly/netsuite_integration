@@ -19,4 +19,13 @@ describe NetsuiteEndpoint do
       expect(last_response).to be_ok
     end
   end
+
+  context "Product returns an empty collection" do
+    before { Product.stub_chain(:new, messages: []) }
+
+    it "returns notification telling it's ok" do
+      post '/products', request.to_json, auth
+      expect(last_response).to be_ok
+    end
+  end
 end

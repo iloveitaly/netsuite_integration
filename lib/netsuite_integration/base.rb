@@ -1,6 +1,10 @@
 module NetsuiteIntegration
   class Base
+    attr_reader :config
+
     def initialize(config)
+      @config = config
+
       NetSuite.configure do
         reset!
         api_version config.fetch('netsuite.api_version')

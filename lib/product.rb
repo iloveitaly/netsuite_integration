@@ -28,4 +28,8 @@ class Product
       }
     end
   end
+
+  def last_modified_date
+    collection.last.last_modified_date
+  end
 end

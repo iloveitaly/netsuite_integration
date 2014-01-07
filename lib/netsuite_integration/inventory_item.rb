@@ -8,11 +8,17 @@ module NetsuiteIntegration
           {
             field: 'lastModifiedDate',
             operator: 'after',
-            value: 5.days.ago.iso8601
+            value: last_updated_after
           }
         ],
         preferences: { 'page_size' => '10' }
       }).results
     end
+
+    private
+      def last_updated_after
+        date = DateTime.parse config.fetch('netsuite.last_updated_after')
+        date.iso8601
+      end
   end
 end

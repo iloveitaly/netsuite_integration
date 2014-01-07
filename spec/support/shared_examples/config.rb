@@ -6,6 +6,7 @@ shared_examples "config hash" do
       'netsuite.email' => 'washington@spreecommerce.com',
       'netsuite.password' => 'test',
       'netsuite.account' => 'test',
+      'netsuite.last_updated_after' => '2013-01-08T18:48:56.001Z',
       'netsuite.role_id' => 3 }.with_indifferent_access
   end
 end
@@ -19,6 +20,7 @@ shared_context "request parameters" do
       {:name => "netsuite.email", :value => "washington@spreecommerce.com" },
       {:name => "netsuite.password", :value => "test" },
       {:name => "netsuite.account", :value => "test" },
+      {:name => "netsuite.last_updated_after", :value => "2013-01-08T18:48:56.001Z" },
       {:name => "netsuite.role_id", :value => "3" }
     ]
   end
