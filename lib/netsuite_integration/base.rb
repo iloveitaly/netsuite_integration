@@ -10,6 +10,7 @@ module NetsuiteIntegration
         password config.fetch('netsuite.password')
         account config.fetch('netsuite.account')
         role config.fetch('netsuite.role_id')
+        log_level :error
       end
     end
   end
