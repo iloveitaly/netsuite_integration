@@ -45,15 +45,7 @@
         }]
       },
       "recommends": {
-        "messages": ["netsuite:product:poll"],
-      },
-      "produces": {
-        "messages": [
-          {
-            "message": "spree:import:product",
-            "schema": "/spree.import.product.json"
-          }
-        ]
+        "messages": ["netsuite:product:poll"]
       }
     }
   ]
