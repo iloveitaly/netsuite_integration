@@ -1,20 +1,9 @@
 class Product
-  attr_reader :config, :collection, :parameters
+  attr_reader :config, :collection
 
   def initialize(config)
     @config = config
     @collection = NetsuiteIntegration::InventoryItem.new(@config).latest
-
-    @parameters = {
-      parameters: [{
-        name: 'netsuite.last_updated_after',
-        value: collection.last.last_modified_date
-      }]
-    }
-  end
-
-  def payload
-    messages.merge(parameters)
   end
 
   # item_id -> sku

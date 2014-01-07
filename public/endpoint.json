@@ -8,7 +8,7 @@
     {
       "name": "products",
       "path": "/products",
-      "description": "Lock an order.",
+      "description": "Fetch products via NetSuite",
       "requires": {
         "parameters": [{
           "name": "api_version",
@@ -34,18 +34,26 @@
           "name": "role_id",
           "description": "NetSuite role id",
           "data_type": "string"
+        }, {
+          "name": "sandbox",
+          "description": "NetSuite sandbox",
+          "data_type": "boolean"
+        }, {
+          "name": "last_updated_after",
+          "description": "Date of last item imported",
+          "data_type": "string"
         }]
       },
       "recommends": {
+        "messages": ["netsuite:product:poll"],
+      },
+      "produces": {
         "messages": [
-          "product:import"
-          ],
-        "identifiers": {
-          "product_sku": "payload.product.sku"
-        },
-        "options": {
-          "retries_allowed": true
-        }
+          {
+            "message": "spree:import:product",
+            "schema": "/spree.import.product.json"
+          }
+        ]
       }
     }
   ]

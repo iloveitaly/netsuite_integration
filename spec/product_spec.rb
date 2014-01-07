@@ -9,12 +9,6 @@ describe Product do
     end
   end
 
-  it "returns parameters with last_modified_date value" do
-    collection = subject.collection
-    parameters = subject.parameters[:parameters]
-    expect(parameters.first[:value]).to eq collection.last.last_modified_date
-  end
-
   it "maps parameteres according to current product schema" do
     mapped_product = subject.messages.first[:payload][:product]
     item = subject.collection.first
