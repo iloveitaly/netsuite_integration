@@ -4,7 +4,7 @@ module NetsuiteIntegration
       NetSuite.configure do
         reset!
         api_version config.fetch('netsuite.api_version')
-        wsdl config.fetch('netsuite.wsql_url')
+        wsdl config.fetch('netsuite.wsdl_url')
         sandbox config.fetch('netsuite.sandbox')
         email config.fetch('netsuite.email')
         password config.fetch('netsuite.password')
