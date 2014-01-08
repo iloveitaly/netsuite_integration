@@ -10,9 +10,16 @@ module NetsuiteIntegration
               field: 'lastModifiedDate',
               operator: 'after',
               value: last_updated_after
+            },
+            {
+              field: 'isInactive',
+              value: false
             }
           ],
-          preferences: { 'page_size' => '10' }
+          preferences: {
+            'page_size' => '30',
+            'bodyFieldsOnly' => false
+          }
         }).results
       end
 

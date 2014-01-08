@@ -6,7 +6,7 @@ shared_examples "config hash" do
       'netsuite.email' => 'washington@spreecommerce.com',
       'netsuite.password' => 'test',
       'netsuite.account' => 'test',
-      'netsuite.last_updated_after' => '2013-01-08T18:48:56.001Z',
+      'netsuite.last_updated_after' => '2012-01-08T18:48:56.001Z',
       'netsuite.role_id' => 3 }.with_indifferent_access
   end
 end

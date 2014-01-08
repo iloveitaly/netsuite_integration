@@ -12,7 +12,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       add_parameter 'netsuite.last_updated_after', products.last_modified_date
       add_notification "info", "NetSuite Items imported as products (#{products.last_modified_date})"
     else
-      add_notification "info", "No product updated since (#{@config.fetch('netsuite.last_updated_after')})"
+      add_notification "info", "No product updated since #{@config.fetch('netsuite.last_updated_after')}"
     end
 
     process_result 200
