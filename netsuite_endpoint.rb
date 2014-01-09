@@ -8,7 +8,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     products = NetsuiteIntegration::Product.new(@config)
 
     if products.collection.any?
-      add_messages "order:import", products.messages
+      add_messages "product:import", products.messages
       add_parameter 'netsuite.last_updated_after', products.last_modified_date
       add_notification "info", "NetSuite Items imported as products up to #{products.last_modified_date}"
     else
