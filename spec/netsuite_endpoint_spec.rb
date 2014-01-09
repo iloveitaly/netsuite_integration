@@ -21,7 +21,7 @@ describe NetsuiteEndpoint do
   end
 
   context "Product returns an empty collection" do
-    before { Product.stub_chain(:new, messages: []) }
+    before { NetsuiteIntegration::Product.stub_chain(:new, messages: []) }
 
     it "returns notification telling it's ok" do
       post '/products', request.to_json, auth

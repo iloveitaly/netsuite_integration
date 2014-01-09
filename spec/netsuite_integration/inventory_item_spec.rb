@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 module NetsuiteIntegration
-  describe InventoryItem do
+  describe Services::InventoryItem do
     include_examples "config hash"
 
-    subject { InventoryItem.new config }
+    subject { Services::InventoryItem.new config }
 
     let(:items) do
       VCR.use_cassette("inventory_item/get") do

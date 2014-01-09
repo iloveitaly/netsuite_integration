@@ -1,20 +1,22 @@
 require 'spec_helper'
 
-describe Product do
-  include_examples "config hash"
+module NetsuiteIntegration
+  describe Product do
+    include_examples "config hash"
 
-  subject do
-    VCR.use_cassette("inventory_item/get") do
-      described_class.new config
+    subject do
+      VCR.use_cassette("inventory_item/get") do
+        described_class.new config
+      end
     end
-  end
 
-  it "maps parameteres according to current product schema" do
-    mapped_product = subject.messages.first[:payload][:product]
-    item = subject.collection.first
+    it "maps parameteres according to current product schema" do
+      mapped_product = subject.messages.first[:payload][:product]
+      item = subject.collection.first
 
-    expect(mapped_product[:name]).to eq item.store_display_name
-    expect(mapped_product[:sku]).to eq item.item_id
-    expect(mapped_product[:price]).to eq item.cost
+      expect(mapped_product[:name]).to eq item.store_display_name
+      expect(mapped_product[:sku]).to eq item.item_id
+      expect(mapped_product[:price]).to eq item.cost
+    end
   end
 end
