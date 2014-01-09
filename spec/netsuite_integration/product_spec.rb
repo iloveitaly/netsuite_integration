@@ -11,7 +11,7 @@ module NetsuiteIntegration
     end
 
     it "maps parameteres according to current product schema" do
-      mapped_product = subject.messages.first[:payload][:product]
+      mapped_product = subject.messages.first[:product]
       item = subject.collection.first
 
       expect(mapped_product[:name]).to eq item.store_display_name
