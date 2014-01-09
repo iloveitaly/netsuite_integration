@@ -4,7 +4,7 @@ module NetsuiteIntegration
 
     def initialize(config)
       @config = config
-      @collection = NetsuiteIntegration::Services::InventoryItem.new(@config).latest
+      @collection = Services::InventoryItem.new(@config).latest
     end
 
     def messages
