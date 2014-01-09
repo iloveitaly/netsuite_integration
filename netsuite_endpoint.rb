@@ -18,15 +18,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     process_result 200
   end
 
-  post '/customer_persist' do
-    begin
-      customer = NetsuiteIntegration::CustomerImporter.new(@message, @config)
-      process_result *(customer.sync!)
-    rescue Exception => e
-      process_result 500, error_notification(e)
-    end
-  end
-
   private
   def error_notification(e)
     {
