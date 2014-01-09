@@ -19,15 +19,13 @@ module NetsuiteIntegration
           [200, notification(text)]
         end
       else
-        case message_name
-        when "user:new", "user:updated"
-          customer_service.create(user)
-          text = "Successfully created the user in NetSuite"
-          [200, notification(text)]
-        end
+        customer_service.create(user)
+        text = "Successfully created the user in NetSuite"
+        [200, notification(text)]
       end
     end
 
+    private 
     def notification(text)
       { 'message_id' => message_id,
         'notifications' => [
@@ -40,7 +38,6 @@ module NetsuiteIntegration
       }.with_indifferent_access
     end
 
-    private 
     def external_id
       user[:id]
     end
