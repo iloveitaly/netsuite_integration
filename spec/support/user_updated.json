@@ -1,0 +1,26 @@
+{
+  "user": {
+    "id": 1,
+    "email": "test@spreecommerce.com",
+    "created_at": "2013-12-13T20:42:25.000Z",
+    "updated_at": "2014-01-09T14:42:51.000Z"
+  },
+  "original": {
+    "id": 1,
+    "email": "test@spreecommerce.com",
+    "created_at": "2013-12-13T20:42:25.000Z",
+    "updated_at": "2014-01-09T14:42:51.000Z"
+  },
+  "previous": {
+    "id": 1,
+    "email": "test@spreecommerce.com",
+    "created_at": "2013-12-13T20:42:25.000Z",
+    "updated_at": "2014-01-03T20:02:37.000Z"
+  },
+  "diff": {
+    "updated_at": [
+      "2014-01-03T20:02:37.000Z",
+      "2014-01-09T14:42:51.000Z"
+    ]
+  }
+}
