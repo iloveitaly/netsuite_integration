@@ -13,7 +13,7 @@ module NetsuiteIntegration
     end
 
     it "ensures items are ordered by last_modified_date" do
-      (1..items.count).each do |time|
+      (1..(items.count - 1)).each do |time|
         expect(items[time].last_modified_date).to be >= items[time-1].last_modified_date
       end
     end
