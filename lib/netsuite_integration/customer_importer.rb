@@ -14,14 +14,22 @@ module NetsuiteIntegration
           raise AlreadyPersistedCustomerException,
             "Got 'user:new' message with user id: #{user[:id]} that already exists in NetSuite with id: #{customer.internal_id}"
         when "user:updated"
-          customer_service.update_attributes(customer, user)
-          text = "Successfully updated the user in NetSuite with id: #{customer.internal_id}"
-          [200, notification(text)]
+          if customer_service.update_attributes(customer, user)
+            text = "Successfully updated the user in NetSuite with id: #{customer.internal_id}"
+            [200, notification(text)]
+          else
+            raise UpdateFailCustomerException,
+              "Failed to update the user with id: #{customer.internal_id}"
+          end
         end
       else
-        customer_service.create(user)
-        text = "Successfully created the user in NetSuite"
-        [200, notification(text)]
+        if customer_service.create(user)
+          text = "Successfully created the user in NetSuite"
+          [200, notification(text)]
+        else
+          raise CreationFailCustomerException,
+            "Failed to create the user"
+        end
       end
     end
 

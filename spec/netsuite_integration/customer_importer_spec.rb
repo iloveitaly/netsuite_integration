@@ -23,20 +23,18 @@ module NetsuiteIntegration
       subject { described_class.new message, config }
 
       context 'customer is found' do
-        VCR.use_cassette("customer/customer_found") do
-          before(:each) { subject.stub(:external_id).and_return('3') }
-
-          it 'when user:new -- does not create customer' do
-            stub(:message_name => 'user:new')
+        it 'when user:new -- does not create customer' do
+          VCR.use_cassette("customer/customer_found") do
             expect {
               subject.sync!
             }.to raise_error(AlreadyPersistedCustomerException)
           end
+        end
 
-          it 'when user:updated -- updates the customer' do
+        it 'when user:updated -- updates the customer' do
+          VCR.use_cassette("customer/customer_found_and_updated") do
             subject.stub(:message_name => 'user:updated')
             res = subject.sync!
-
             res[0].should eq(200)
             res[1]['notifications'][0]['subject'].should include("Successfully updated")
           end
@@ -44,10 +42,9 @@ module NetsuiteIntegration
       end
 
       context 'customer is not found' do
-        VCR.use_cassette("customer/customer_not_found") do
-          before(:each) { subject.stub(:external_id).and_return('123') }
-
-          it 'creates customer' do
+        it 'creates customer' do
+          subject.stub(:external_id => '12345')
+          VCR.use_cassette("customer/customer_not_found_and_created") do
             res = subject.sync!
 
             res[0].should eq(200)

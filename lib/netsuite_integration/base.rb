@@ -17,4 +17,6 @@ module NetsuiteIntegration
   end
 
   class AlreadyPersistedCustomerException < Exception; end
+  class UpdateFailCustomerException < Exception; end
+  class CreationFailCustomerException < Exception; end
 end

@@ -12,16 +12,15 @@ module NetsuiteIntegration
       # entity_id -> Customer name
 
       def create(user)
-        customer                = NetSuite::Records::Customer.new
-        customer.email          = user[:email]
-        customer.external_id    = user[:id].to_i
-        customer.entity_id      = 'N/A'
-        customer.first_name     = user[:firstname] || 'N/A'
-        customer.last_name      = user[:lastname] || 'N/A'
+        customer             = NetSuite::Records::Customer.new
+        customer.email       = user['email']
+        customer.external_id = customer.entity_id = user['id'].to_i
+        customer.first_name  = user[:firstname] || 'N/A'
+        customer.last_name   = user[:lastname] || 'N/A'
 
         # Defaults
-        customer.is_person      = true
-        customer.is_inactive    = true
+        customer.is_person   = true
+        customer.is_inactive = true
 
         customer.add
       end
@@ -34,6 +33,7 @@ module NetsuiteIntegration
         # Converting string keys to symbol keys
         # Netsuite gem does not like string keys
         attrs = Hash[attrs.map{|(k,v)| [k.to_sym,v]}]
+
         customer.update attrs
       end
     end
