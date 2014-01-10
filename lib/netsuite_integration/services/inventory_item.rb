@@ -16,8 +16,10 @@ module NetsuiteIntegration
     # catch all items at once and sort by date properly or we might end up
     # losing data
     class InventoryItem < Base
+      # TODO Select only items which date is after today
+      # TODO Run script to update all created or modified after current Date
       def latest
-        search.sort_by { |c| c.last_modified_date }
+        search.sort_by { |c| c.last_modified_date.utc }
       end
 
       private
@@ -27,22 +29,19 @@ module NetsuiteIntegration
               basic: [
                 {
                   field: 'lastModifiedDate',
-                  operator: 'within',
-                  type: 'SearchDateField',
-                  value: [
-                    last_updated_after,
-                    Time.now.iso8601
-                  ]
+                  operator: 'after',
+                  value: last_updated_after
                 },
                 {
                   field: 'isInactive',
                   value: false
                 }
               ]
-            },
-            preferences: {
-              'bodyFieldsOnly' => false
             }
+            # TODO we will probably still need this to fetch matrix options
+            # preferences: {
+            #   'bodyFieldsOnly' => false
+            # }
           }).results
         end
 
