@@ -4,18 +4,40 @@ module NetsuiteIntegration
   describe Services::CustomerService do
     include_examples "config hash"
 
+    let(:user) { Factories.user_new_payload['user'] }
     subject { Services::CustomerService.new config }
 
-    # let(:items) do
-    #   VCR.use_cassette("inventory_item/get") do
-    #     subject.latest
-    #   end
-    # end
+    context '#find_by_external_id' do
+      it 'should NOT find the record' do
+        VCR.use_cassette('customer/customer_not_found_and_created') do
+          subject.find_by_external_id('12345').should be_nil
+        end
+      end
 
-    # it "ensures items are ordered by last_modified_date" do
-    #   (1..items.count).each do |time|
-    #     expect(items[time].last_modified_date).to be >= items[time-1].last_modified_date
-    #   end
-    # end
+      it 'should find the record' do
+        VCR.use_cassette('customer/customer_found') do
+          subject.find_by_external_id(user['id']).should be_kind_of(NetSuite::Records::Customer)
+        end
+      end
+    end
+
+    context '#create' do
+      it 'creates the record' do
+        VCR.use_cassette('customer/customer_found_and_created') do
+          subject.create(user).should be_kind_of(NetSuite::Records::Customer)
+        end
+      end
+    end
+
+    context '#update_attributes' do
+      it 'updates the email field' do
+        VCR.use_cassette('customer/customer_found_and_updated') do
+          customer = subject.find_by_external_id(user['id'])
+          customer.should_not be_nil
+
+          subject.update_attributes(customer, {email: 'andrei12345@spreecommerce.com'})
+        end
+      end
+    end
   end
 end

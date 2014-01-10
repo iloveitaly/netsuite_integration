@@ -22,7 +22,11 @@ module NetsuiteIntegration
         customer.is_person   = true
         customer.is_inactive = true
 
-        customer.add
+        if customer.add
+          customer
+        else
+          false
+        end
       end
 
       def update_attributes(customer, attrs)
@@ -34,7 +38,11 @@ module NetsuiteIntegration
         # Netsuite gem does not like string keys
         attrs = Hash[attrs.map{|(k,v)| [k.to_sym,v]}]
 
-        customer.update attrs
+        if customer.update attrs
+          customer
+        else
+          false
+        end
       end
     end
   end
