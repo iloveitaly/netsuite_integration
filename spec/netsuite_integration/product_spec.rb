@@ -18,5 +18,9 @@ module NetsuiteIntegration
       expect(mapped_product[:sku]).to eq item.item_id
       expect(mapped_product[:price]).to eq item.cost
     end
+
+    it "gives back last modified in utc" do
+      expect(subject.last_modified_date).to be_utc
+    end
   end
 end

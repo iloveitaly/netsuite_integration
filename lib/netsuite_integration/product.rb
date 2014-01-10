@@ -23,7 +23,7 @@ module NetsuiteIntegration
     end
 
     def last_modified_date
-      collection.last.last_modified_date
+      collection.last.last_modified_date.utc
     end
   end
 end
