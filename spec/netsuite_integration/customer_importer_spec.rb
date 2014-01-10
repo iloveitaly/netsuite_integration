@@ -1,6 +1,5 @@
-
 require 'spec_helper'
-require 'vcr'
+
 module NetsuiteIntegration
   describe CustomerImporter do
     include_examples "config hash"

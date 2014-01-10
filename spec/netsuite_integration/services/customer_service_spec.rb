@@ -5,7 +5,7 @@ module NetsuiteIntegration
     include_examples "config hash"
 
     let(:user) { Factories.user_new_payload['user'] }
-    subject { Services::CustomerService.new config }
+    subject { described_class.new config }
 
     context '#find_by_external_id' do
       it 'should NOT find the record' do
@@ -34,8 +34,10 @@ module NetsuiteIntegration
         VCR.use_cassette('customer/customer_found_and_updated') do
           customer = subject.find_by_external_id(user['id'])
           customer.should_not be_nil
+          customer.email.should eq(user['email'])
 
-          subject.update_attributes(customer, {email: 'andrei12345@spreecommerce.com'})
+          res = subject.update_attributes(customer, {email: 'andrei12345@spreecommerce.com'})
+          res.should be_kind_of(NetSuite::Records::Customer)
         end
       end
     end

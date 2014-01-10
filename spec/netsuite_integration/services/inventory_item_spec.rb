@@ -4,7 +4,7 @@ module NetsuiteIntegration
   describe Services::InventoryItem do
     include_examples "config hash"
 
-    subject { Services::InventoryItem.new config }
+    subject { described_class.new config }
 
     let(:items) do
       VCR.use_cassette("inventory_item/get") do
