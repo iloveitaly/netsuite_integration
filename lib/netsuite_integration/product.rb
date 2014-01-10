@@ -11,8 +11,8 @@ module NetsuiteIntegration
       collection.map do |item|
         {
           product: {
-            name: item.store_display_name,
-            available_on: Time.now,
+            name: item.store_display_name || item.item_id,
+            available_on: item.last_modified_date.utc,
             description: item.store_description,
             sku: item.item_id,
             price: item.cost,

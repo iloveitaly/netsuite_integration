@@ -14,7 +14,7 @@ module NetsuiteIntegration
       mapped_product = subject.messages.first[:product]
       item = subject.collection.first
 
-      expect(mapped_product[:name]).to eq item.store_display_name
+      expect(mapped_product[:name]).to eq (item.store_display_name || item.item_id)
       expect(mapped_product[:sku]).to eq item.item_id
       expect(mapped_product[:price]).to eq item.cost
     end
