@@ -15,10 +15,8 @@ module NetsuiteIntegration
             available_on: Time.now,
             description: item.store_description,
             sku: item.item_id,
-            external_ref: "",
             price: item.cost,
-            cost_price: item.cost,
-            url: ""
+            cost_price: item.cost
           }
         }
       end
