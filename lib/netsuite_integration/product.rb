@@ -16,7 +16,8 @@ module NetsuiteIntegration
             description: item.store_description,
             sku: item.item_id,
             price: item.cost,
-            cost_price: item.cost
+            cost_price: item.cost,
+            channel: "NetSuite"
           }
         }
       end
