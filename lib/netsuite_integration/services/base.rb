@@ -3,10 +3,14 @@ module NetsuiteIntegration
     class Base
       attr_reader :config
 
+      class << self
+        attr_accessor :client
+      end
+
       def initialize(config)
         @config = config
 
-        NetSuite.configure do
+        self.class.client ||= NetSuite.configure do
           reset!
           api_version config.fetch('netsuite.api_version')
           wsdl        config.fetch('netsuite.wsdl_url')

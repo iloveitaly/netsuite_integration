@@ -51,6 +51,44 @@
           "interval": "minutes"
         }
       }
+    }, {
+      "name": "orders",
+      "path": "/orders",
+      "description": "Exports orders to NetSuite",
+      "requires": {
+        "parameters": [{
+          "name": "api_version",
+          "description": "NetSuite API version",
+          "data_type": "string"
+        }, {
+          "name": "wsdl_url",
+          "description": "NetSuite API url",
+          "data_type": "string"
+        }, {
+          "name": "email",
+          "description": "NetSuite user email",
+          "data_type": "string"
+        }, {
+          "name": "password",
+          "description": "NetSuite user password",
+          "data_type": "password"
+        }, {
+          "name": "account",
+          "description": "NetSuite account",
+          "data_type": "string"
+        }, {
+          "name": "role_id",
+          "description": "NetSuite role id",
+          "data_type": "string"
+        }, {
+          "name": "sandbox",
+          "description": "NetSuite sandbox",
+          "data_type": "boolean"
+        }]
+      },
+      "recommends": {
+        "messages": ["order:new", "order:update"]
+      }
     }
   ]
 }

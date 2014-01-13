@@ -22,4 +22,10 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       process_result 500
     end
   end
+
+  post '/orders' do
+    if NetsuiteIntegration::Order.new(@config).import
+      add_notification "info", "Order created on NetSuite"
+    end
+  end
 end

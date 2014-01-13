@@ -18,6 +18,21 @@ module NetsuiteIntegration
         customer.first_name  = user[:firstname] || 'N/A'
         customer.last_name   = user[:lastname] || 'N/A'
 
+        if user[:address1].present?
+          customer.addressbook_list = {
+            addressbook: {
+              default_shipping: true,
+              addr1: user[:address1],
+              addr2: user[:address2],
+              zip: user[:zipcode],
+              city: user[:city],
+              state: user[:state],
+              country: user[:country],
+              phone: user[:phone]
+            }
+          }
+        end
+
         # Defaults
         customer.is_person   = true
         customer.is_inactive = true
