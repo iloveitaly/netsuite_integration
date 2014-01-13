@@ -16,7 +16,7 @@ module NetsuiteIntegration
     # losing data
     class InventoryItem < Base
       def latest
-        search.sort_by { |c| c.last_modified_date.utc }
+        matrix_parent_only.sort_by { |c| c.last_modified_date.utc }
       end
 
       def find_by_name(name)
@@ -52,12 +52,12 @@ module NetsuiteIntegration
                   value: false
                 }
               ]
-            },
-            # # TODO we will probably still need this to fetch matrix options
-            # preferences: {
-            #   'bodyFieldsOnly' => false
-            # }
+            }
           }).results
+        end
+
+        def matrix_parent_only
+          search.select { |item| item.matrix_type.nil? || item.matrix_type == "_parent" }
         end
 
         def last_updated_after
