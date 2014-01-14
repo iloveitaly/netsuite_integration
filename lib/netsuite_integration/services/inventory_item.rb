@@ -16,7 +16,7 @@ module NetsuiteIntegration
     # losing data
     class InventoryItem < Base
       def latest
-        matrix_parent_only.sort_by { |c| c.last_modified_date.utc }
+        ignore_future.sort_by { |c| c.last_modified_date.utc }
       end
 
       def find_by_name(name)
@@ -60,13 +60,18 @@ module NetsuiteIntegration
           }).results
         end
 
+        def ignore_future
+          matrix_parent_only.select do |item|
+            item.last_modified_date.utc <= Time.now.utc
+          end
+        end
+
         def matrix_parent_only
           search.select { |item| item.matrix_type.nil? || item.matrix_type == "_parent" }
         end
 
         def last_updated_after
-          date = Time.parse config.fetch('netsuite.last_updated_after')
-          date.iso8601
+          Time.parse(config.fetch('netsuite.last_updated_after')).iso8601
         end
     end
   end

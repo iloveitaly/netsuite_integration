@@ -5,7 +5,7 @@ module NetsuiteIntegration
     include_examples "config hash"
 
     subject do
-      VCR.use_cassette("inventory_item/get") do
+      VCR.use_cassette("inventory_item/search") do
         described_class.new config
       end
     end

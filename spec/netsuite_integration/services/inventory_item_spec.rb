@@ -7,7 +7,7 @@ module NetsuiteIntegration
     subject { described_class.new config }
 
     let(:items) do
-      VCR.use_cassette("inventory_item/get") do
+      VCR.use_cassette("inventory_item/search") do
         subject.latest
       end
     end
