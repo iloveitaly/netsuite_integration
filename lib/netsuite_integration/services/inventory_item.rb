@@ -50,6 +50,10 @@ module NetsuiteIntegration
                 {
                   field: 'isInactive',
                   value: false
+                },
+                {
+                  field: 'isOnline',
+                  value: true
                 }
               ]
             }
