@@ -19,6 +19,18 @@ module NetsuiteIntegration
         search.sort_by { |c| c.last_modified_date.utc }
       end
 
+      def find_by_name(name)
+        NetSuite::Records::InventoryItem.search({
+          criteria: {
+            basic: [{
+              field: 'displayName',
+              value: name,
+              operator: 'contains'
+            }]
+          }
+        }).results
+      end
+
       private
         def search
           NetSuite::Records::InventoryItem.search({
