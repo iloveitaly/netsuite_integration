@@ -7,12 +7,13 @@
         "placed_on": "2013-07-30T19:19:05.000Z",
         "updated_at": "2013-07-30T20:08:39.000Z",
         "status": "complete",
-        "user_id": 1,
+        "user_id": 1337,
         "totals": {
             "item": 99.95,
             "adjustment": 15,
             "tax": 5,
             "shipping": 10,
+            "discount": 3,
             "payment": 114.95,
             "order": 114.95
         },
@@ -54,8 +55,8 @@
             }
         ],
         "shipping_address": {
-            "firstname": "Brian",
-            "lastname": "Quinn",
+            "firstname": "Bruno",
+            "lastname": "Buccolo",
             "address1": "7735 Old Georgetown Rd",
             "address2": "",
             "zipcode": "20814",
@@ -65,8 +66,8 @@
             "phone": "555-123-456"
         },
         "billing_address": {
-            "firstname": "Brian",
-            "lastname": "Quinn",
+            "firstname": "Bruno",
+            "lastname": "Buccolo",
             "address1": "7735 Old Georgetown Rd",
             "address2": "",
             "zipcode": "20814",
@@ -165,7 +166,7 @@
         "total": "114.95",
         "state": "complete",
         "adjustment_total": "15.0",
-        "user_id": 1,
+        "user_id": 1337,
         "created_at": "2013-07-29T17:42:02.000Z",
         "updated_at": "2013-07-30T20:08:39.000Z",
         "completed_at": "2013-07-30T19:19:05.000Z",
@@ -179,8 +180,8 @@
         "tax_total": "5.0",
         "bill_address": {
             "id": 5,
-            "firstname": "Brian",
-            "lastname": "Quinn",
+            "firstname": "Bruno",
+            "lastname": "Buccolo",
             "address1": "7735 Old Georgetown Rd",
             "address2": "",
             "city": "Bethesda",
@@ -208,8 +209,8 @@
         },
         "ship_address": {
             "id": 6,
-            "firstname": "Brian",
-            "lastname": "Quinn",
+            "firstname": "Bruno",
+            "lastname": "Buccolo",
             "address1": "7735 Old Georgetown Rd",
             "address2": "",
             "city": "Bethesda",
@@ -534,8 +535,8 @@
                 "year": "2013",
                 "cc_type": "visa",
                 "last_digits": "1111",
-                "first_name": "Brian",
-                "last_name": "Quinn",
+                "first_name": "Bruno",
+                "last_name": "Buccolo",
                 "gateway_customer_profile_id": "BGS-414100",
                 "gateway_payment_profile_id": null
             }

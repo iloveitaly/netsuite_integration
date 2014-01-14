@@ -14,6 +14,14 @@ module NetsuiteIntegration
     def customer_service
       @customer_service ||= NetsuiteIntegration::Services::CustomerService.new(@config)
     end
+
+    def inventory_item_service
+      @inventory_item_service ||= NetsuiteIntegration::Services::InventoryItem.new(@config)
+    end
+
+    def non_inventory_item_service
+      @non_inventory_item_service ||= NetsuiteIntegration::Services::NonInventoryItemService.new(@config)
+    end
   end
 
   class AlreadyPersistedCustomerException < Exception; end

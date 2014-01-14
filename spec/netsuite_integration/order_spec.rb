@@ -8,9 +8,10 @@ module NetsuiteIntegration
       described_class.new config, Factories.order_new_payload
     end
 
-    it "has an order object" do
-      # expect(subject.import).to eq([])
-      expect(NetSuite::Actions::Add.call(subject.import).body).to eq([])
+    it "imports the order" do
+      VCR.use_cassette("order/import") do
+        expect(NetSuite::Actions::Add.call(subject.import).body).to be
+      end
     end
   end
 end

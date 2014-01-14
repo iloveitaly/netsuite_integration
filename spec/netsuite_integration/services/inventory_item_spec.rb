@@ -24,7 +24,7 @@ module NetsuiteIntegration
       context "item exists" do
         it "returns the item" do
           VCR.use_cassette("inventory_item/find_by_name") do
-            expect(subject.find_by_name('Spree Taxes').length).to eq(1)
+            expect(subject.find_by_name('Spree Taxes').internal_id).to eq("1124")
           end
         end
       end
@@ -32,7 +32,7 @@ module NetsuiteIntegration
       context "item not found" do
         it "returns empty array" do
           VCR.use_cassette("inventory_item/find_by_name_not_found") do
-            expect(subject.find_by_name('Cucamonga Oh Yeah!')).to eq([])
+            expect(subject.find_by_name('Cucamonga Oh Yeah!')).to be_false
           end
         end
       end

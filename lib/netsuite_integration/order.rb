@@ -6,7 +6,7 @@ module NetsuiteIntegration
       @config = config
       @payload = payload['order'].with_indifferent_access
 
-      @order = Services::SalesOrder.new(@config).order
+      @order = NetSuite::Records::SalesOrder.new
     end
 
     def import
@@ -15,13 +15,16 @@ module NetsuiteIntegration
 
       @order.order_status = "_pendingFulfillment"
 
-      @order
+      @order if @order.add
     end
 
     private
     def import_customer!
       if customer = customer_service.find_by_external_id(payload[:user_id])
-        # update address if missing
+        if customer.addressbook_list.addressbooks == []
+          # update address if missing
+          customer_service.update_address(customer, payload['shipping_address'])
+        end
       else
         customer_json = payload['shipping_address'].dup
         customer_json[:id] = payload[:user_id]
@@ -40,7 +43,27 @@ module NetsuiteIntegration
         soi
       end
 
+      soi = NetSuite::Records::SalesOrderItem.new
+      soi.item = NetSuite::Records::RecordRef.new(entity_id: "Spree Taxes")
+      soi
+
+      item_list.push *custom_products
+
       @order.item_list = NetSuite::Records::SalesOrderItemList.new(item: item_list)
+    end
+
+    # def import_shipping_taxes_and_discount!
+    def custom_products
+      taxes    = non_inventory_item_service.find_or_create_by_name('Spree Taxes')
+      shipping = non_inventory_item_service.find_or_create_by_name('Spree Shipping')
+      discount = non_inventory_item_service.find_or_create_by_name('Spree Discount')
+
+      [taxes, shipping, discount].map do |item|
+        soi = NetSuite::Records::SalesOrderItem.new
+        soi.item = NetSuite::Records::RecordRef.new(internal_id: item.internal_id)
+        soi.rate = 10.0
+        soi
+      end
     end
   end
 end

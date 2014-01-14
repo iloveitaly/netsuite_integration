@@ -11,27 +11,14 @@ module NetsuiteIntegration
 
       # entity_id -> Customer name
 
-      def create(user)
+      def create(payload)
         customer             = NetSuite::Records::Customer.new
-        customer.email       = user['email']
-        customer.external_id = customer.entity_id = user['id'].to_i
-        customer.first_name  = user[:firstname] || 'N/A'
-        customer.last_name   = user[:lastname] || 'N/A'
+        customer.email       = payload['email']
+        customer.external_id = customer.entity_id = payload['id'].to_i
+        customer.first_name  = payload[:firstname] || 'N/A'
+        customer.last_name   = payload[:lastname] || 'N/A'
 
-        if user[:address1].present?
-          customer.addressbook_list = {
-            addressbook: {
-              default_shipping: true,
-              addr1: user[:address1],
-              addr2: user[:address2],
-              zip: user[:zipcode],
-              city: user[:city],
-              state: user[:state],
-              country: user[:country],
-              phone: user[:phone]
-            }
-          }
-        end
+        fill_address(customer, payload)
 
         # Defaults
         customer.is_person   = true
@@ -57,6 +44,30 @@ module NetsuiteIntegration
           customer
         else
           false
+        end
+      end
+
+      def update_address(customer, payload)
+        fill_address(customer, payload)
+
+        customer.update
+      end
+
+      private
+      def fill_address(customer, payload)
+        if payload[:address1].present?
+          customer.addressbook_list = {
+            addressbook: {
+              default_shipping: true,
+              addr1: payload[:address1],
+              addr2: payload[:address2],
+              zip: payload[:zipcode],
+              city: payload[:city],
+              state: payload[:state],
+              country: payload[:country],
+              phone: payload[:phone]
+            }
+          }
         end
       end
     end

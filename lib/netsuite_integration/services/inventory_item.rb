@@ -28,7 +28,7 @@ module NetsuiteIntegration
               operator: 'contains'
             }]
           }
-        }).results
+        }).results.first
       end
 
       private
