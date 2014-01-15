@@ -4,9 +4,12 @@ module NetsuiteIntegration
 
     def initialize(config, payload)
       @config = config
-      @payload = payload['order'].with_indifferent_access
+      @payload = payload.with_indifferent_access[:order]
 
-      @order = NetSuite::Records::SalesOrder.new({ order_status: '_pendingFulfillment' })
+      @order = NetSuite::Records::SalesOrder.new({
+        order_status: '_pendingFulfillment',
+        external_id: @payload[:number]
+      })
     end
 
     def import

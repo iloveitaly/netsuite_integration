@@ -28,4 +28,22 @@ describe NetsuiteEndpoint do
       expect(last_response).to be_ok
     end
   end
+
+  describe "/orders" do
+    let(:request) do
+      {
+        message: 'order:new',
+        message_id: 123,
+        payload: Factories.order_new_payload.merge(parameters: parameters)
+      }
+    end
+
+    it "imports the order and returns an info notification" do
+      VCR.use_cassette('order/import') do
+        post '/orders', request.to_json, auth
+
+        expect(json_response['notifications'][0]['subject']).to eq('Order R84344936 imported into NetSuite')
+      end
+    end
+  end
 end

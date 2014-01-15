@@ -87,7 +87,7 @@
         }]
       },
       "recommends": {
-        "messages": ["order:new", "order:update"]
+        "messages": ["order:new"]
       }
     }
   ]

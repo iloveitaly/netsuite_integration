@@ -2,18 +2,19 @@ require 'spec_helper'
 
 module NetsuiteIntegration
   describe Order do
-    include_examples "config hash"
+    include_examples 'config hash'
 
     subject do
-      described_class.new config, Factories.order_new_payload
+      described_class.new(config, Factories.order_new_payload)
     end
 
-    it "imports the order" do
-      VCR.use_cassette("order/import") do
+    it 'imports the order' do
+      VCR.use_cassette('order/import') do
         order = subject.import
 
         expect(order).to be
-        expect(order.order_status).to eq("_pendingFulfillment")
+        expect(order.external_id).to eq('R84344936')
+        expect(order.order_status).to eq('_pendingFulfillment')
 
         # 2 products + taxes + discount
         expect(order.item_list.items.count).to eq(4)

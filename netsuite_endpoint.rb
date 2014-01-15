@@ -24,8 +24,15 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/orders' do
-    if NetsuiteIntegration::Order.new(@config).import
-      add_notification "info", "Order created on NetSuite"
+    begin
+      if order = NetsuiteIntegration::Order.new(@config, @message[:payload]).import
+        add_notification "info", "Order #{order.external_id} imported into NetSuite"
+      end
+
+      process_result 200
+    rescue Exception => e
+      add_notification "error", e.message, nil, { backtrace: e.backtrace.to_a.join("\n\t") }
+      process_result 500
     end
   end
 end
