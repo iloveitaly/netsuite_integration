@@ -6,14 +6,13 @@ module NetsuiteIntegration
       @config = config
       @payload = payload['order'].with_indifferent_access
 
-      @order = NetSuite::Records::SalesOrder.new
+      @order = NetSuite::Records::SalesOrder.new({ order_status: '_pendingFulfillment' })
     end
 
     def import
       import_customer!
       import_products!
-
-      @order.order_status = "_pendingFulfillment"
+      import_shipping!
 
       @order if @order.add
     end
@@ -37,33 +36,36 @@ module NetsuiteIntegration
 
     def import_products!
       item_list = payload[:line_items].map do |item|
-        soi = NetSuite::Records::SalesOrderItem.new
-        soi.item = NetSuite::Records::RecordRef.new(internal_id: item[:sku].to_i)
-        soi.amount = 1
-        soi
+        NetSuite::Records::SalesOrderItem.new({
+          item: { internal_id: item[:sku].to_i },
+          amount: item[:quantity]
+        })
       end
 
-      soi = NetSuite::Records::SalesOrderItem.new
-      soi.item = NetSuite::Records::RecordRef.new(entity_id: "Spree Taxes")
-      soi
-
-      item_list.push *custom_products
+      # Due to NetSuite complexity, taxes and discounts will be treated as line items.
+      ["tax", "discount"].map do |type|
+        if value = payload[:totals][type]
+          item_list.push(NetSuite::Records::SalesOrderItem.new({
+            item: { internal_id: internal_id_for(type) },
+            rate: value
+          }))
+        end
+      end
 
       @order.item_list = NetSuite::Records::SalesOrderItemList.new(item: item_list)
     end
 
-    # def import_shipping_taxes_and_discount!
-    def custom_products
-      taxes    = non_inventory_item_service.find_or_create_by_name('Spree Taxes')
-      shipping = non_inventory_item_service.find_or_create_by_name('Spree Shipping')
-      discount = non_inventory_item_service.find_or_create_by_name('Spree Discount')
+    def import_shipping!
+      @order.shipping_cost = payload[:totals][:shipping]
+      @order.ship_method = NetSuite::Records::RecordRef.new(internal_id: shipping_id)
+    end
 
-      [taxes, shipping, discount].map do |item|
-        soi = NetSuite::Records::SalesOrderItem.new
-        soi.item = NetSuite::Records::RecordRef.new(internal_id: item.internal_id)
-        soi.rate = 10.0
-        soi
-      end
+    def shipping_id
+      77 # should be resolved on a shipping mapping
+    end
+
+    def internal_id_for(type)
+      non_inventory_item_service.find_or_create_by_name("Spree #{type.capitalize}").internal_id
     end
   end
 end
