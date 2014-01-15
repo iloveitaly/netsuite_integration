@@ -40,4 +40,9 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       process_result 500
     end
   end
+
+  post '/inventory_stock' do
+    add_notification "error", "Figure out what data send back"
+    process_result 500
+  end
 end
