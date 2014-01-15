@@ -2,9 +2,11 @@ module NetsuiteIntegration
   class Order < Base
     attr_reader :config, :collection
 
-    def initialize(config, payload)
+    def initialize(config, message)
+      super(message, config)
+
       @config = config
-      @payload = payload.with_indifferent_access[:order]
+      @payload = payload['order'].with_indifferent_access
 
       @order = NetSuite::Records::SalesOrder.new({
         order_status: '_pendingFulfillment',
@@ -13,6 +15,8 @@ module NetsuiteIntegration
     end
 
     def import
+      raise AlreadyImportedException if order_already_imported?
+
       import_customer!
       import_products!
       import_shipping!
@@ -70,5 +74,13 @@ module NetsuiteIntegration
     def internal_id_for(type)
       non_inventory_item_service.find_or_create_by_name("Spree #{type.capitalize}").internal_id
     end
+
+    def order_already_imported?
+      NetSuite::Records::SalesOrder.get(external_id: payload[:number])
+    rescue NetSuite::RecordNotFound
+      false
+    end
+
+    class AlreadyImportedException < Exception; end
   end
 end

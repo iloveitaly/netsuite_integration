@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe NetsuiteEndpoint do
-  include_examples "request parameters"
+  include_examples 'request parameters'
 
   let(:request) do
     {
@@ -13,36 +13,56 @@ describe NetsuiteEndpoint do
     }
   end
 
-  it "fetches a collection of netsuite items as products" do
-    VCR.use_cassette("inventory_item/search") do
+  it 'fetches a collection of netsuite items as products' do
+    VCR.use_cassette('inventory_item/search') do
       post '/products', request.to_json, auth
       expect(last_response).to be_ok
     end
   end
 
-  context "Product returns an empty collection" do
+  context 'Product returns an empty collection' do
     before { NetsuiteIntegration::Product.stub_chain(:new, collection: []) }
 
-    it "returns notification telling it's ok" do
+    it 'returns notification telling its ok' do
       post '/products', request.to_json, auth
       expect(last_response).to be_ok
     end
   end
 
-  describe "/orders" do
-    let(:request) do
-      {
-        message: 'order:new',
-        message_id: 123,
-        payload: Factories.order_new_payload.merge(parameters: parameters)
-      }
-    end
+  describe '/orders' do
+    context 'when order is new' do
+      let(:request) do
+        {
+          message: 'order:new',
+          message_id: 123,
+          payload: Factories.order_new_payload.merge(parameters: parameters)
+        }
+      end
 
-    it "imports the order and returns an info notification" do
-      VCR.use_cassette('order/import') do
-        post '/orders', request.to_json, auth
+      it 'imports the order and returns an info notification' do
+        VCR.use_cassette('order/import') do
+          post '/orders', request.to_json, auth
+        end
 
         expect(json_response['notifications'][0]['subject']).to eq('Order R84344936 imported into NetSuite')
+      end
+    end
+
+    context 'when order has already been imported' do
+      let(:request) do
+        {
+          message: 'order:new',
+          message_id: 123,
+          payload: Factories.order_new_payload.merge(parameters: parameters)
+        }
+      end
+
+      it 'generates a notification, skips importing' do
+        VCR.use_cassette('order/already_imported') do
+          post '/orders', request.to_json, auth
+        end
+
+        expect(json_response['notifications'][0]['subject']).to eq('Order R84344936 has already been imported into NetSuite')
       end
     end
   end
