@@ -14,11 +14,11 @@ module NetsuiteIntegration
           reset!
           api_version config.fetch('netsuite.api_version')
           wsdl        config.fetch('netsuite.wsdl_url')
-          sandbox     config.fetch('netsuite.sandbox')
+          sandbox     config.fetch('netsuite.sandbox', true)
           email       config.fetch('netsuite.email')
           password    config.fetch('netsuite.password')
           account     config.fetch('netsuite.account')
-          role        config.fetch('netsuite.role_id')
+          role        config.fetch('netsuite.role_id', 3)
           log_level   :error
         end
       end
