@@ -52,4 +52,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
     process_result 200
   end
+
+  post '/shipments' do
+  end
 end

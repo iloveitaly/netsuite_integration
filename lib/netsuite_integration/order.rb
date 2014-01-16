@@ -68,7 +68,7 @@ module NetsuiteIntegration
     end
 
     def shipping_id
-      77 # should be resolved on a shipping mapping
+      77 # TODO: should be resolved on a shipping mapping
     end
 
     def internal_id_for(type)
@@ -76,9 +76,7 @@ module NetsuiteIntegration
     end
 
     def order_already_imported?
-      NetSuite::Records::SalesOrder.get(external_id: payload[:number])
-    rescue NetSuite::RecordNotFound
-      false
+      sales_order_service.find_by_external_id payload[:number]
     end
 
     class AlreadyImportedException < Exception; end

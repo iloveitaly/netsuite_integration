@@ -5,7 +5,7 @@ module NetsuiteIntegration
     def initialize(message = {}, config)
       @config = config
 
-      @payload = message[:payload]
+      @payload = message[:payload].with_indifferent_access
       @original = payload[:original]
       @message_name = message[:message]
       @message_id = message[:message_id]
@@ -33,6 +33,10 @@ module NetsuiteIntegration
 
     def non_inventory_item_service
       @non_inventory_item_service ||= NetsuiteIntegration::Services::NonInventoryItemService.new(@config)
+    end
+
+    def sales_order_service
+      @sales_order_service ||= NetsuiteIntegration::Services::SalesOrderService.new(@config)
     end
   end
 

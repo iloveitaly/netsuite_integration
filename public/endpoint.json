@@ -121,6 +121,48 @@
       "recommends": {
         "messages": ["order:new"]
       }
+    }, {
+      "name": "shipments",
+      "path": "/shipments",
+      "description": "Fulfills orders on NetSuite",
+      "requires": {
+        "parameters": [{
+          "name": "api_version",
+          "description": "NetSuite api version",
+          "data_type": "string"
+        }, {
+          "name": "wsdl_url",
+          "description": "NetSuite API url",
+          "data_type": "string"
+        }, {
+          "name": "email",
+          "description": "NetSuite user email",
+          "data_type": "string"
+        }, {
+          "name": "password",
+          "description": "NetSuite user password",
+          "data_type": "password"
+        }, {
+          "name": "account",
+          "description": "NetSuite account",
+          "data_type": "string"
+        }, {
+          "name": "role_id",
+          "description": "NetSuite role id",
+          "data_type": "string"
+        }, {
+          "name": "sandbox",
+          "description": "NetSuite sandbox",
+          "data_type": "boolean"
+        }, {
+          "name": "last_updated_after",
+          "description": "Date of last item imported",
+          "data_type": "string"
+        }]
+      },
+      "recommends": {
+        "messages": ["shipment:confirm"]
+      }
     }
   ]
 }
