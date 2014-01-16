@@ -31,6 +31,18 @@ describe NetsuiteEndpoint do
         expect(last_response).to be_ok
       end
     end
+
+    context "item not found" do
+      before { request[:payload][:sku] = "Im not there" }
+
+      it "still returns 200 but give no stock:actual message" do
+        VCR.use_cassette("inventory_item/item_not_found_by_id") do
+          post '/inventory_stock', request.to_json, auth
+          expect(last_response).to be_ok
+          expect(json_response["messages"]).to be_blank
+        end
+      end
+    end
   end
 
   it "fetches a collection of netsuite items as products" do

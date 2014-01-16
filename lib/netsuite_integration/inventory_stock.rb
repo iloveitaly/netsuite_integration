@@ -1,12 +1,15 @@
-require 'pry'
 module NetsuiteIntegration
+  class RecordNotFound < Exception; end
+
   class InventoryStock
     attr_reader :config, :sku, :item
 
     def initialize(config, message)
       @config = config
       @sku = message[:payload][:sku]
+
       @item = Services::InventoryItem.new(@config).find_by_item_id sku
+      raise RecordNotFound if @item.nil?
     end
 
     def quantity_available

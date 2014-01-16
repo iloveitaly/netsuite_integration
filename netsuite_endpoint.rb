@@ -42,9 +42,13 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/inventory_stock' do
-    stock = NetsuiteIntegration::InventoryStock.new(@config, @message)
-    add_message 'stock:actual', { sku: stock.sku, quantity: stock.quantity_available }
-    add_notification "info", "#{stock.quantity_available} units available of #{stock.sku} according to NetSuite"
+    begin
+      stock = NetsuiteIntegration::InventoryStock.new(@config, @message)
+      add_message 'stock:actual', { sku: stock.sku, quantity: stock.quantity_available }
+      add_notification "info", "#{stock.quantity_available} units available of #{stock.sku} according to NetSuite"
+    rescue NetsuiteIntegration::RecordNotFound
+      add_notification "info", "Inventory Item #{@message[:payload][:sku]} not found on NetSuite"
+    end
 
     process_result 200
   end
