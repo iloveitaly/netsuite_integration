@@ -1,10 +1,11 @@
+require 'pry'
 module NetsuiteIntegration
   class InventoryStock
     attr_reader :config, :sku, :item
 
     def initialize(config, message)
       @config = config
-      @sku = message[:sku]
+      @sku = message[:payload][:sku]
       @item = Services::InventoryItem.new(@config).find_by_item_id sku
     end
 

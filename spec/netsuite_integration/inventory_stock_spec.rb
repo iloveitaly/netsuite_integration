@@ -5,7 +5,7 @@ module NetsuiteIntegration
     include_examples "config hash"
 
     let(:message) {
-      { sku: 'Test-Sameer5' }
+      { payload: { sku: 'Test-Sameer5' } }
     }
 
     subject do

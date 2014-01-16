@@ -42,8 +42,10 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/inventory_stock' do
-    NetsuiteIntegration::InventoryStock.new(@config, @message)
-    add_notification "error", "Figure out what data send back"
-    process_result 500
+    stock = NetsuiteIntegration::InventoryStock.new(@config, @message)
+    add_message 'stock:actual', { sku: stock.sku, quantity: stock.quantity_available }
+    add_notification "info", "#{stock.quantity_available} units available of #{stock.sku} according to NetSuite"
+
+    process_result 200
   end
 end
