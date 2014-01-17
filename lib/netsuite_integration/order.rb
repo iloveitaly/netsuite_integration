@@ -1,18 +1,17 @@
 module NetsuiteIntegration
   class Order < Base
-    attr_reader :config, :collection, :user_id, :original
+    attr_reader :config, :collection, :user_id, :original, :order_payload, :sales_order
 
     def initialize(config, message)
       super(message, config)
 
       @config = config
-      @original = payload['original']
-      @user_id = original['user_id']
-      @payload = payload['order'].with_indifferent_access
+      @user_id = original[:user_id]
+      @order_payload = payload[:order]
 
-      @order = NetSuite::Records::SalesOrder.new({
+      @sales_order = NetSuite::Records::SalesOrder.new({
         order_status: '_pendingFulfillment',
-        external_id: @payload[:number]
+        external_id: order_payload[:number]
       })
     end
 
@@ -23,34 +22,35 @@ module NetsuiteIntegration
       import_products!
       import_shipping!
 
-      if @order.add
+      if sales_order.add
         if original[:payment_state] == "paid"
-          Services::CustomerDeposit.new(config).create @order, payload[:totals][:order]
+          Services::CustomerDeposit.new(config).create sales_order, order_payload[:totals][:order]
         end
-        @order
+
+        sales_order
       end
     end
 
     private
     def import_customer!
-      payload['shipping_address']['country'] = "_unitedStates"
+      order_payload[:shipping_address][:country] = "_unitedStates"
 
       if customer = customer_service.find_by_external_id(user_id)
         if customer.addressbook_list.addressbooks == []
           # update address if missing
-          customer_service.update_address(customer, payload['shipping_address'])
+          customer_service.update_address(customer, order_payload[:shipping_address])
         end
       else
-        customer_json = payload['shipping_address'].dup
+        customer_json = order_payload[:shipping_address].dup
         customer_json[:id] = user_id
         customer = customer_service.create(customer_json)
       end
 
-      @order.entity = NetSuite::Records::RecordRef.new(external_id: customer.external_id)
+      sales_order.entity = NetSuite::Records::RecordRef.new(external_id: customer.external_id)
     end
 
     def import_products!
-      item_list = payload[:line_items].map do |item|
+      item_list = order_payload[:line_items].map do |item|
         NetSuite::Records::SalesOrderItem.new({
           item: { internal_id: item[:sku].to_i },
           amount: item[:quantity]
@@ -59,7 +59,7 @@ module NetsuiteIntegration
 
       # Due to NetSuite complexity, taxes and discounts will be treated as line items.
       ["tax", "discount"].map do |type|
-        if value = payload[:totals][type]
+        if value = order_payload[:totals][type]
           item_list.push(NetSuite::Records::SalesOrderItem.new({
             item: { internal_id: internal_id_for(type) },
             rate: value
@@ -67,12 +67,12 @@ module NetsuiteIntegration
         end
       end
 
-      @order.item_list = NetSuite::Records::SalesOrderItemList.new(item: item_list)
+      sales_order.item_list = NetSuite::Records::SalesOrderItemList.new(item: item_list)
     end
 
     def import_shipping!
-      @order.shipping_cost = payload[:totals][:shipping]
-      @order.ship_method = NetSuite::Records::RecordRef.new(internal_id: shipping_id)
+      sales_order.shipping_cost = order_payload[:totals][:shipping]
+      sales_order.ship_method = NetSuite::Records::RecordRef.new(internal_id: shipping_id)
     end
 
     def shipping_id
@@ -84,7 +84,7 @@ module NetsuiteIntegration
     end
 
     def order_already_imported?
-      sales_order_service.find_by_external_id payload[:number]
+      sales_order_service.find_by_external_id order_payload[:number]
     end
 
     class AlreadyImportedException < Exception; end

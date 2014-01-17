@@ -1,6 +1,6 @@
 module NetsuiteIntegration
   class Base
-    attr_accessor :payload, :message_name, :message_id, :config#, :original
+    attr_accessor :payload, :message_name, :message_id, :config, :original
 
     def initialize(message = {}, config)
       @config = config
