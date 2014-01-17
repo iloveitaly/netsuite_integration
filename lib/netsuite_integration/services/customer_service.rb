@@ -65,7 +65,7 @@ module NetsuiteIntegration
               city: payload[:city],
               state: payload[:state],
               country: payload[:country],
-              phone: payload[:phone]
+              phone: payload[:phone].gsub(/([^0-9]*)/, "")
             }
           }
         end

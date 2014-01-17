@@ -9,22 +9,9 @@ module NetsuiteIntegration
     end
 
     context 'when successful' do
-      it 'returns the fullfillment object' do
-        VCR.use_cassette("shipment/create_fulfillment") do
-          fulfillment = subject.create_item_fulfillment!
-
-          expect(fulfillment.created_from.internal_id).to eq("7281")
-          expect(fulfillment.transaction_ship_address.ship_addr1).to eq("7735 Old Georgetown Rd")
-        end
-      end
-    end
-
-    context 'when unsuccessful' do
-      it 'returns the fullfillment object' do
-        VCR.use_cassette("shipment/create_fulfillment_error") do
-          fulfillment = subject.create_item_fulfillment!
-
-          expect(fulfillment).to be_nil
+      it 'returns true' do
+        VCR.use_cassette("shipment/import") do
+          subject.import.should eq(true)
         end
       end
     end

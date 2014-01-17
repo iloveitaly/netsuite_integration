@@ -3,7 +3,17 @@ module NetsuiteIntegration
     attr_reader :config, :collection
 
     def import
-      create_item_fulfillment!
+      create_item_fulfillment! && create_invoice!
+    end
+
+    def create_invoice!
+      invoice = NetSuite::Records::Invoice.new({
+        created_from: {
+          internal_id: order_id
+        }
+      })
+
+      invoice.add
     end
 
     def create_item_fulfillment!
@@ -18,11 +28,11 @@ module NetsuiteIntegration
           ship_city:     address[:city],
           ship_state:    address[:state],
           ship_country:  address[:country],
-          ship_phone:    address[:phone]
+          ship_phone:    address[:phone].gsub(/([^0-9]*)/, "")
         }
       })
 
-      fulfillment if fulfillment.add
+      fulfillment.add
     end
 
     private
