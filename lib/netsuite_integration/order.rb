@@ -1,13 +1,13 @@
-require 'pry'
 module NetsuiteIntegration
   class Order < Base
-    attr_reader :config, :collection, :user_id
+    attr_reader :config, :collection, :user_id, :original
 
     def initialize(config, message)
       super(message, config)
 
       @config = config
-      @user_id = payload['original']['user_id']
+      @original = payload['original']
+      @user_id = original['user_id']
       @payload = payload['order'].with_indifferent_access
 
       @order = NetSuite::Records::SalesOrder.new({
@@ -23,7 +23,12 @@ module NetsuiteIntegration
       import_products!
       import_shipping!
 
-      @order if @order.add
+      if @order.add
+        if original[:payment_state] == "paid"
+          Services::CustomerDeposit.new(config).create @order, payload[:totals][:order]
+        end
+        @order
+      end
     end
 
     private

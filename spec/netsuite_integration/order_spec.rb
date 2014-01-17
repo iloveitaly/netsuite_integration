@@ -19,9 +19,11 @@ module NetsuiteIntegration
     end
 
     context 'when order is new' do
+      let(:order_number) { 'R123321' }
+
       subject do
         payload = Factories.order_new_payload
-        payload['order']['number'] = 'R123'
+        payload['order']['number'] = order_number
 
         described_class.new(config, {
           payload: payload
@@ -33,7 +35,7 @@ module NetsuiteIntegration
           order = subject.import
 
           expect(order).to be
-          expect(order.external_id).to eq('R123')
+          expect(order.external_id).to eq(order_number)
           expect(order.order_status).to eq('_pendingFulfillment')
 
           # 2 products + taxes + discount
