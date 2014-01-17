@@ -11,15 +11,15 @@
     "updated_at": null,
     "shipped_at": "2013-09-26T10:21:52Z",
     "shipping_address": {
-      "firstname": "John",
-      "lastname": "Do",
-      "address1": "Street 134",
-      "address2": "",
-      "zipcode": "1234AB",
-      "city": "Somewhere",
-      "state": "Friesland",
-      "country": "NL",
-      "phone": "06123456753"
+        "firstname": "Bruno",
+        "lastname": "Buccolo",
+        "address1": "7735 Old Georgetown Rd",
+        "address2": "",
+        "zipcode": "20814",
+        "city": "Bethesda",
+        "state": "MD",
+        "country": "_unitedStates",
+        "phone": "1234567890"
     },
     "items": [
       {

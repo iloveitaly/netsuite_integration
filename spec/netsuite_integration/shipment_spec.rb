@@ -8,8 +8,25 @@ module NetsuiteIntegration
       described_class.new({ payload: Factories.shipment_confirm_payload }, config)
     end
 
-    it 'does things' do
-      expect(subject.test).to eq([])
+    context 'when successful' do
+      it 'returns the fullfillment object' do
+        VCR.use_cassette("shipment/create_fulfillment") do
+          fulfillment = subject.create_item_fulfillment!
+
+          expect(fulfillment.created_from.internal_id).to eq("7281")
+          expect(fulfillment.transaction_ship_address.ship_addr1).to eq("7735 Old Georgetown Rd")
+        end
+      end
+    end
+
+    context 'when unsuccessful' do
+      it 'returns the fullfillment object' do
+        VCR.use_cassette("shipment/create_fulfillment_error") do
+          fulfillment = subject.create_item_fulfillment!
+
+          expect(fulfillment).to be_nil
+        end
+      end
     end
   end
 end
