@@ -53,6 +53,11 @@ module NetsuiteIntegration
                   value: ['_inventoryItem']
                 },
                 {
+                  field: 'cost',
+                  operator: 'greaterThan',
+                  value: 0
+                },
+                {
                   field: 'isInactive',
                   value: false
                 }
