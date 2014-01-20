@@ -51,7 +51,8 @@ module NetsuiteIntegration
       item_list = order_payload[:line_items].map do |item|
         NetSuite::Records::SalesOrderItem.new({
           item: { internal_id: item[:sku].to_i },
-          amount: item[:quantity]
+          quantity: item[:quantity],
+          amount: item[:quantity] * item[:price]
         })
       end
 
