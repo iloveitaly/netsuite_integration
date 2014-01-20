@@ -28,7 +28,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       order = NetsuiteIntegration::Order.new(@config, @message)
 
       if order.import
-        add_notification "info", "Order #{order.sales_order.external_id} imported into NetSuite"
+        add_notification "info", "Order #{order.sales_order.external_id} imported into NetSuite (internal id #{order.sales_order.internal_id})"
         process_result 200
       else
         add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite"
