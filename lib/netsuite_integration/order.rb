@@ -33,8 +33,6 @@ module NetsuiteIntegration
 
     private
     def import_customer!
-      order_payload[:shipping_address][:country] = "_unitedStates"
-
       if customer = customer_service.find_by_external_id(user_id)
         if customer.addressbook_list.addressbooks == []
           # update address if missing

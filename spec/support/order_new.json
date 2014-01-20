@@ -61,7 +61,7 @@
             "zipcode": "20814",
             "city": "Bethesda",
             "state": "MD",
-            "country": "_unitedStates",
+            "country": "US",
             "phone": "1234567890"
         },
         "billing_address": {

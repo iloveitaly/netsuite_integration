@@ -27,7 +27,7 @@ module NetsuiteIntegration
           ship_zip:      address[:zipcode],
           ship_city:     address[:city],
           ship_state:    address[:state],
-          ship_country:  address[:country],
+          ship_country:  Services::CountryService.by_iso_country(address[:country]),
           ship_phone:    address[:phone].gsub(/([^0-9]*)/, "")
         }
       })

@@ -8,6 +8,7 @@ require 'netsuite_integration/services/customer_service'
 require 'netsuite_integration/services/non_inventory_item_service'
 require 'netsuite_integration/services/sales_order_service'
 require 'netsuite_integration/services/customer_deposit'
+require 'netsuite_integration/services/country_service'
 
 require 'netsuite_integration/base'
 require 'netsuite_integration/customer_importer'
