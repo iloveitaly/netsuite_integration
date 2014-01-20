@@ -19,7 +19,7 @@ describe NetsuiteEndpoint do
         message: 'stock:query',
         message_id: 123,
         payload: {
-          sku: "Test-Sameer5",
+          sku: "1100",
           parameters: parameters
         }
       }

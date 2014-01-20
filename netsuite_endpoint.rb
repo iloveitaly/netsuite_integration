@@ -50,7 +50,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       stock = NetsuiteIntegration::InventoryStock.new(@config, @message)
       add_message 'stock:actual', { sku: stock.sku, quantity: stock.quantity_available }
       add_notification "info", "#{stock.quantity_available} units available of #{stock.sku} according to NetSuite"
-    rescue NetsuiteIntegration::RecordNotFound
+    rescue NetSuite::RecordNotFound
       add_notification "info", "Inventory Item #{@message[:payload][:sku]} not found on NetSuite"
     end
 

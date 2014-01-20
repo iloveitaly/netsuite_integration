@@ -19,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 16 Jan 2014 02:43:44 GMT
+      - Mon, 20 Jan 2014 18:33:04 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - "-1254475426:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80"
+      - 1556561283:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -1675,7 +1675,7 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Thu, 16 Jan 2014 02:43:45 GMT
+  recorded_at: Mon, 20 Jan 2014 18:33:03 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
@@ -1683,25 +1683,16 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"
-        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"
-        xmlns:platformCommon=\"urn:common_2013_2.platform.webservices.netsuite.com\"
-        xmlns:listRel=\"urn:relationships_2013_2.lists.webservices.netsuite.com\"
-        xmlns:tranSales=\"urn:sales_2013_2.transactions.webservices.netsuite.com\"
-        xmlns:actSched=\"urn:scheduling_2013_2.activities.webservices.netsuite.com\"
-        xmlns:setupCustom=\"urn:customization_2013_2.setup.webservices.netsuite.com\"
-        xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\" xmlns:tranCust=\"urn:customers_2013_2.transactions.webservices.netsuite.com\"
-        xmlns:listSupport=\"urn:support_2013_2.lists.webservices.netsuite.com\" xmlns:tranGeneral=\"urn:general_2013_2.transactions.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
-        type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport><platformMsgs:SearchPreferences><bodyFieldsOnly>false</bodyFieldsOnly></platformMsgs:SearchPreferences></env:Header><env:Body><platformMsgs:search><platformMsgs:searchRecord
-        xsi:type=\"listAcct:ItemSearch\"><listAcct:basic><platformCommon:itemId operator=\"is\"><platformCore:searchValue>Im
-        not there</platformCore:searchValue></platformCommon:itemId><platformCommon:type
-        operator=\"anyOf\"><platformCore:searchValue>_inventoryItem</platformCore:searchValue></platformCommon:type></listAcct:basic></platformMsgs:searchRecord></platformMsgs:search></env:Body></env:Envelope>"
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
+        type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:get><platformMsgs:baseRef
+        xsi:type=\"platformCore:RecordRef\" internalId=\"Im not there\" type=\"inventoryItem\"></platformMsgs:baseRef></platformMsgs:get></env:Body></env:Envelope>"
     headers:
       Soapaction:
-      - "\"search\""
+      - "\"get\""
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '1888'
+      - '869'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1714,13 +1705,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 16 Jan 2014 02:43:46 GMT
+      - Mon, 20 Jan 2014 18:33:04 GMT
       Server:
       - Apache
       Ns-Rtimer-Composite:
-      - "-792856857:706172746E6572732D6A61766131303030382E626F732E6E65746C65646765722E636F6D:80"
+      - "-1590229213:706172746E6572732D6A61766131303030372E626F732E6E65746C65646765722E636F6D:80"
       Set-Cookie:
-      - JSESSIONID=ZKSfSX8ZtzLRzvDntYwn9Qp20PK11gTLT9YSGnCzvYxHjHSVCzGRpmvn60JcqG7nGjSBYdJs4gZLKYtykRcw07C62rSPM67crQVQd63Ql8bVpQ2ZpGnXbTbKTWrrY0Qk!1615859062;
+      - JSESSIONID=2qsTSdycww9W4RgMfyvzQvvpN879Nrr2L6Km9T1n3NCv5hrXNw66K8FknQTrJF0mx82KbYRQyhMjHl7pSx0m21DJyw3FyJhQqycm7Gk3WSKnmjJCppcQvvmLP6ktFvdS!620078821;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -1737,10 +1728,11 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_011520141729176861683734911_adef80</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><searchResponse
-        xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformCore:searchResult
-        xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:status
-        isSuccess=\"true\"/><platformCore:totalRecords>0</platformCore:totalRecords><platformCore:totalPages>0</platformCore:totalPages><platformCore:searchId>WEBSERVICES_test_011520141729176861683734911_adef80</platformCore:searchId><platformCore:recordList/></platformCore:searchResult></searchResponse></soapenv:Body></soapenv:Envelope>"
+        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_0120201413266188551387018767_2489d</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><getResponse
+        xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><readResponse><platformCore:status
+        isSuccess=\"false\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:statusDetail
+        type=\"ERROR\"><platformCore:code>UNKNOWN_RCRD_TYPE</platformCore:code><platformCore:message>Unknown
+        record type</platformCore:message></platformCore:statusDetail></platformCore:status></readResponse></getResponse></soapenv:Body></soapenv:Envelope>"
     http_version: 
-  recorded_at: Thu, 16 Jan 2014 02:43:48 GMT
+  recorded_at: Mon, 20 Jan 2014 18:33:04 GMT
 recorded_with: VCR 2.8.0

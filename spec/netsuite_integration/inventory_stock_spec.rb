@@ -5,7 +5,7 @@ module NetsuiteIntegration
     include_examples "config hash"
 
     let(:message) {
-      { payload: { sku: 'Test-Sameer5' } }
+      { payload: { sku: '1100' } }
     }
 
     subject do
@@ -15,8 +15,7 @@ module NetsuiteIntegration
     end
 
     it "gives a item available quantity through its locations" do
-      # print subject.item.locations_list.inspect
-      expect(subject.quantity_available).to eq 105
+      expect(subject.quantity_available).to eq 400
     end
   end
 end

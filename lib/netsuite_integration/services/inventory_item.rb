@@ -31,33 +31,12 @@ module NetsuiteIntegration
         }).results.first
       end
 
-      # Looks like quantityAvailable and locationsList is not a InventoryItem
-      # body field so set bodyFieldsOnly to fase otherwise the api doesn't return
-      # the data we need
-      def find_by_item_id(item_id)
-        NetSuite::Records::InventoryItem.search(
-          criteria: {
-            basic: [
-              {
-                field: 'itemId',
-                operator: 'is',
-                value: item_id
-              },
-              {
-                field: 'type',
-                operator: 'anyOf',
-                type: 'SearchEnumMultiSelectField',
-                value: ['_inventoryItem']
-              }
-            ]
-          },
-          preferences: {
-            'bodyFieldsOnly' => false
-          }
-        ).results.first
+      def find_by_item_id(internal_id)
+        NetSuite::Records::InventoryItem.get(internal_id)
       end
 
       private
+        # We might need to set bodyFieldsOnly false to grab more data from items
         def search
           NetSuite::Records::InventoryItem.search({
             criteria: {

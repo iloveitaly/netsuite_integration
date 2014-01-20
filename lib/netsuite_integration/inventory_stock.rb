@@ -9,7 +9,6 @@ module NetsuiteIntegration
       @sku = message[:payload][:sku]
 
       @item = Services::InventoryItem.new(@config).find_by_item_id sku
-      raise RecordNotFound if @item.nil?
     end
 
     def quantity_available
