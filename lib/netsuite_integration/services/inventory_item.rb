@@ -67,13 +67,20 @@ module NetsuiteIntegration
         end
 
         def ignore_future
-          matrix_parent_only.select do |item|
+          ignore_matrix.select do |item|
             item.last_modified_date.utc <= Time.now.utc
           end
         end
 
-        def matrix_parent_only
-          search.select { |item| item.matrix_type.nil? || item.matrix_type == "_parent" }
+        # While we dont support matrix items. Dont know yet how to bring item options
+        # via api and parent products cant be imported as items because we can't create
+        # sales orders with those items. See this error for example:
+        # https://gist.github.com/huoxito/0a6571c47c9baecf548a#file-error-xml-L5
+        #
+        # Ignore it after the search because it seems to be less expensive.
+        # Searching with bodyFieldsOnly takes too long
+        def ignore_matrix
+          search.reject { |item| ["_parent", "_child"].include? item.matrix_type }
         end
 
         def last_updated_after

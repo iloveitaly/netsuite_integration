@@ -20,6 +20,11 @@ module NetsuiteIntegration
       end
     end
 
+    it "ignores matrix child and parent items for now" do
+      expect(items.map(&:matrix_type)).not_to include("_parent")
+      expect(items.map(&:matrix_type)).not_to include("_child")
+    end
+
     describe "#find_by_name" do
       context "item exists" do
         it "returns the item" do

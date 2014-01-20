@@ -19,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 18:41:00 GMT
+      - Mon, 20 Jan 2014 20:43:28 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - "-110767847:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80"
+      - "-704539108:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80"
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -1675,7 +1675,7 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 18:41:00 GMT
+  recorded_at: Mon, 20 Jan 2014 20:43:27 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
@@ -1715,15 +1715,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 18:41:01 GMT
+      - Mon, 20 Jan 2014 20:43:28 GMT
       Server:
       - Apache
       Content-Length:
-      - '45590'
+      - '45592'
       Ns-Rtimer-Composite:
-      - "-258492381:706172746E6572732D6A61766131303030372E626F732E6E65746C65646765722E636F6D:80"
+      - 330054162:706172746E6572732D6A61766131303030372E626F732E6E65746C65646765722E636F6D:80
       Set-Cookie:
-      - JSESSIONID=2qsTSdycww9W4RgMfyvzQvvpN879Nrr2L6Km9T1n3NCv5hrXNw66K8FknQTrJF0mx82KbYRQyhMjHl7pSx0m21DJyw3FyJhQqycm7Gk3WSKnmjJCppcQvvmLP6ktFvdS!620078821;
+      - JSESSIONID=XLDqSdDRvpXLMGWcCf9QwXlz2hYfjhnml3hk42cqn0yy4gcyL6x7l8TnHySKL81F7XPXJbKZ2Lb6SDLJLTjC11nl1p4yYGmwRPp3bnLQhnQhS5HMlL9QMZ264xKyGRLj!620078821;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -1738,10 +1738,10 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_012020141326142179887831225_96690f</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><searchResponse
+        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_012020141318794838681911289_21946d</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><searchResponse
         xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformCore:searchResult
         xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:status
-        isSuccess=\"true\"/><platformCore:totalRecords>251</platformCore:totalRecords><platformCore:pageSize>1000</platformCore:pageSize><platformCore:totalPages>1</platformCore:totalPages><platformCore:pageIndex>1</platformCore:pageIndex><platformCore:searchId>WEBSERVICES_test_012020141326142179887831225_96690f</platformCore:searchId><platformCore:recordList><platformCore:record
+        isSuccess=\"true\"/><platformCore:totalRecords>251</platformCore:totalRecords><platformCore:pageSize>1000</platformCore:pageSize><platformCore:totalPages>1</platformCore:totalPages><platformCore:pageIndex>1</platformCore:pageIndex><platformCore:searchId>WEBSERVICES_test_012020141318794838681911289_21946d</platformCore:searchId><platformCore:recordList><platformCore:record
         internalId=\"38\" xsi:type=\"listAcct:InventoryItem\" xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\"><listAcct:createdDate>2014-01-12T20:37:21.000-08:00</listAcct:createdDate><listAcct:lastModifiedDate>2014-01-13T06:22:14.000-08:00</listAcct:lastModifiedDate><listAcct:purchaseDescription>ManuScript
         1000 Laser Printer - 1200 dpi b&amp;w</listAcct:purchaseDescription><listAcct:copyDescription>false</listAcct:copyDescription><listAcct:cogsAccount
         internalId=\"121\"><platformCore:name>Cost of Goods Sold</platformCore:name></listAcct:cogsAccount><listAcct:salesDescription>ManuScript
@@ -1894,7 +1894,7 @@ http_interactions:
         internalId=\"194\" scriptId=\"custitem16\" xsi:type=\"platformCore:BooleanCustomFieldRef\"><platformCore:value>false</platformCore:value></platformCore:customField><platformCore:customField
         internalId=\"57\" scriptId=\"custitem_popup\" xsi:type=\"platformCore:SelectCustomFieldRef\"><platformCore:value
         internalId=\"1400\"/></platformCore:customField></listAcct:customFieldList></platformCore:record><platformCore:record
-        internalId=\"129\" xsi:type=\"listAcct:InventoryItem\" xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\"><listAcct:createdDate>2014-04-12T07:56:15.000-07:00</listAcct:createdDate><listAcct:lastModifiedDate>2014-01-13T06:21:11.000-08:00</listAcct:lastModifiedDate><listAcct:purchaseDescription>2-Drawer
+        internalId=\"129\" xsi:type=\"listAcct:InventoryItem\" xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\"><listAcct:createdDate>2014-04-12T07:56:15.000-07:00</listAcct:createdDate><listAcct:lastModifiedDate>2014-01-20T11:09:36.000-08:00</listAcct:lastModifiedDate><listAcct:purchaseDescription>2-Drawer
         Lateral File Cabinet Steel - White</listAcct:purchaseDescription><listAcct:copyDescription>false</listAcct:copyDescription><listAcct:cogsAccount
         internalId=\"121\"><platformCore:name>Cost of Goods Sold</platformCore:name></listAcct:cogsAccount><listAcct:salesDescription>2-Drawer
         Lateral File Cabinet Steel - White</listAcct:salesDescription><listAcct:incomeAccount
@@ -10126,5 +10126,5 @@ http_interactions:
         internalId=\"61\" scriptId=\"custitem_review_total_number\" xsi:type=\"platformCore:LongCustomFieldRef\"><platformCore:value>0</platformCore:value></platformCore:customField><platformCore:customField
         internalId=\"62\" scriptId=\"custitem_review_total_score\" xsi:type=\"platformCore:LongCustomFieldRef\"><platformCore:value>0</platformCore:value></platformCore:customField></listAcct:customFieldList></platformCore:record></platformCore:recordList></platformCore:searchResult></searchResponse></soapenv:Body></soapenv:Envelope>"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 18:41:11 GMT
+  recorded_at: Mon, 20 Jan 2014 20:43:32 GMT
 recorded_with: VCR 2.8.0
