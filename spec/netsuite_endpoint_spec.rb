@@ -64,15 +64,18 @@ describe NetsuiteEndpoint do
   describe '/orders' do
     context 'when order is new' do
       let(:request) do
+        payload = Factories.order_new_payload
+        payload['order']['number'] = "RERGERG4454354354"
+
         {
           message: 'order:new',
           message_id: 123,
-          payload: Factories.order_new_payload.merge(parameters: parameters)
+          payload: payload.merge(parameters: parameters)
         }
       end
 
       it 'imports the order and returns an info notification' do
-        VCR.use_cassette('order/import') do
+        VCR.use_cassette('order/import_service') do
           post '/orders', request.to_json, auth
         end
 
