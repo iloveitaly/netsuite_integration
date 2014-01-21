@@ -16,7 +16,6 @@ module NetsuiteIntegration
 
       expect(mapped_product[:name]).to eq (item.store_display_name || item.item_id)
       expect(mapped_product[:sku]).to eq item.internal_id
-      expect(mapped_product[:price]).to eq item.cost
     end
 
     it "gives back last modified in utc" do

@@ -36,7 +36,7 @@ module NetsuiteIntegration
       end
 
       private
-        # We might need to set bodyFieldsOnly false to grab more data from items
+        # We need to set bodyFieldsOnly false to grab the pricing matrix
         def search
           NetSuite::Records::InventoryItem.search({
             criteria: {
@@ -53,15 +53,14 @@ module NetsuiteIntegration
                   value: ['_inventoryItem']
                 },
                 {
-                  field: 'cost',
-                  operator: 'greaterThan',
-                  value: 0
-                },
-                {
                   field: 'isInactive',
                   value: false
                 }
               ]
+            },
+            preferences: {
+              pageSize: 100,
+              bodyFieldsOnly: false
             }
           }).results
         end

@@ -1,6 +1,6 @@
 module NetsuiteIntegration
   class Order < Base
-    attr_reader :config, :collection, :user_id, :original, :order_payload, :sales_order
+    attr_reader :config, :collection, :user_id, :order_payload, :sales_order
 
     def initialize(config, message)
       super(message, config)
