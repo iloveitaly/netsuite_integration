@@ -85,16 +85,16 @@ describe NetsuiteEndpoint do
         {
           message: 'order:new',
           message_id: 123,
-          payload: Factories.order_new_payload.merge(parameters: parameters)
+          payload: Factories.order_updated_payload.merge(parameters: parameters)
         }
       end
 
-      it 'generates a notification, skips importing' do
-        VCR.use_cassette('order/already_imported') do
+      it 'creates customer deposit if order just got paid' do
+        VCR.use_cassette('order/customer_deposit_on_updated_message') do
           post '/orders', request.to_json, auth
         end
 
-        expect(json_response['notifications'][0]['subject']).to match('has already been imported into NetSuite')
+        expect(json_response['notifications'][0]['subject']).to match('Customer Deposit created for NetSuite Sales Order')
       end
     end
   end

@@ -10,11 +10,19 @@ module NetsuiteIntegration
       })
     end
 
-    context 'when order was already imported' do
-      it 'raises an exception' do
-        VCR.use_cassette('order/already_imported') do
-          expect { subject.import }.to raise_error(Order::AlreadyImportedException)
+    context 'order was already imported' do
+      context "and paid" do
+        it "does nothing" do
+          expect(subject.got_paid?).to be_false
         end
+      end
+
+      context "and then got paid" do
+        subject do
+          described_class.new(config, { payload: Factories.order_updated_payload })
+        end
+
+        specify { expect(subject.got_paid?).to be }
       end
     end
 

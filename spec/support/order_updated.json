@@ -1,0 +1,664 @@
+{
+  "order": {
+    "number": "R813433786",
+    "channel": "spree",
+    "email": "luis@mail.com",
+    "currency": "USD",
+    "placed_on": "2014-01-21T18:25:11.007Z",
+    "updated_at": "2014-01-21T18:56:20.995Z",
+    "status": "complete",
+    "totals": {
+      "item": 367.85,
+      "adjustment": 10.0,
+      "tax": 0.0,
+      "shipping": 10.0,
+      "payment": 377.85,
+      "order": 377.85
+    },
+    "line_items": [
+      {
+        "name": "Case - HP Compaq nx7000",
+        "sku": "80",
+        "external_ref": "",
+        "quantity": 3,
+        "price": 49.95,
+        "variant_id": 28,
+        "options": {
+        }
+      },
+      {
+        "name": "400 watt power supply",
+        "sku": "387",
+        "external_ref": "",
+        "quantity": 2,
+        "price": 109.0,
+        "variant_id": 27,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 10.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "2200",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "2200",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 3,
+        "status": "completed",
+        "amount": 377.85,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H70047175733",
+        "cost": 10.0,
+        "status": "ready",
+        "stock_location": null,
+        "shipping_method": "UPS Two Day (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "400 watt power supply",
+            "sku": "387",
+            "external_ref": "",
+            "quantity": 2,
+            "price": 109.0,
+            "variant_id": 27,
+            "options": {
+            }
+          },
+          {
+            "name": "Case - HP Compaq nx7000",
+            "sku": "80",
+            "external_ref": "",
+            "quantity": 3,
+            "price": 49.95,
+            "variant_id": 28,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "original": {
+    "id": 4,
+    "number": "R813433786",
+    "item_total": "367.85",
+    "total": "377.85",
+    "ship_total": "10.0",
+    "state": "complete",
+    "adjustment_total": "10.0",
+    "user_id": 3,
+    "created_at": "2014-01-21T18:24:35.524Z",
+    "updated_at": "2014-01-21T18:56:20.995Z",
+    "completed_at": "2014-01-21T18:25:11.007Z",
+    "payment_total": "377.85",
+    "shipment_state": "ready",
+    "payment_state": "paid",
+    "email": "luis@mail.com",
+    "special_instructions": null,
+    "channel": "spree",
+    "tax_total": "0.0",
+    "currency": "USD",
+    "bill_address": {
+      "id": 3,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "2200",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "ship_address": {
+      "id": 4,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "2200",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "line_items": [
+      {
+        "id": 5,
+        "quantity": 3,
+        "price": "49.95",
+        "variant_id": 28,
+        "created_at": "2014-01-21T18:24:35.558Z",
+        "updated_at": "2014-01-21T18:24:35.558Z",
+        "single_display_amount": "$49.95",
+        "display_amount": "$149.85",
+        "total": "149.85",
+        "variant": {
+          "id": 28,
+          "name": "Case - HP Compaq nx7000",
+          "sku": "80",
+          "price": "49.95",
+          "weight": null,
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": "29.95",
+          "permalink": "case-hp-compaq-nx7000",
+          "product_created_at": "2014-01-21T18:17:26.651Z",
+          "product_updated_at": "2014-01-21T18:48:00.766Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 18,
+          "images": [
+
+          ]
+        }
+      },
+      {
+        "id": 6,
+        "quantity": 2,
+        "price": "109.0",
+        "variant_id": 27,
+        "created_at": "2014-01-21T18:24:42.714Z",
+        "updated_at": "2014-01-21T18:24:42.714Z",
+        "single_display_amount": "$109.00",
+        "display_amount": "$218.00",
+        "total": "218.0",
+        "variant": {
+          "id": 27,
+          "name": "400 watt power supply",
+          "sku": "387",
+          "price": "109.0",
+          "weight": null,
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": "71.0",
+          "permalink": "400-watt-power-supply",
+          "product_created_at": "2014-01-21T18:17:26.466Z",
+          "product_updated_at": "2014-01-21T18:48:00.744Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 17,
+          "images": [
+
+          ]
+        }
+      }
+    ],
+    "payments": [
+      {
+        "id": 3,
+        "amount": "377.85",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      }
+    ],
+    "shipments": [
+      {
+        "id": 3,
+        "tracking": null,
+        "number": "H70047175733",
+        "cost": "10.0",
+        "shipped_at": null,
+        "state": "ready",
+        "order_id": "R813433786",
+        "stock_location_name": "default",
+        "shipping_rates": [
+          {
+            "id": 7,
+            "cost": "5.0",
+            "selected": false,
+            "shipment_id": 3,
+            "shipping_method_id": 1
+          },
+          {
+            "id": 8,
+            "cost": "10.0",
+            "selected": true,
+            "shipment_id": 3,
+            "shipping_method_id": 2
+          },
+          {
+            "id": 9,
+            "cost": "15.0",
+            "selected": false,
+            "shipment_id": 3,
+            "shipping_method_id": 3
+          }
+        ],
+        "shipping_method": {
+          "name": "UPS Two Day (USD)",
+          "tracking_url": null
+        },
+        "inventory_units": [
+          {
+            "id": 7,
+            "variant_id": 27,
+            "state": "on_hand"
+          },
+          {
+            "id": 6,
+            "variant_id": 27,
+            "state": "on_hand"
+          },
+          {
+            "id": 5,
+            "variant_id": 28,
+            "state": "on_hand"
+          },
+          {
+            "id": 4,
+            "variant_id": 28,
+            "state": "on_hand"
+          },
+          {
+            "id": 3,
+            "variant_id": 28,
+            "state": "on_hand"
+          }
+        ]
+      }
+    ],
+    "adjustments": [
+      {
+        "id": 9,
+        "amount": "10.0",
+        "label": "Shipping",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::ShippingMethod",
+        "adjustable_type": "Spree::Order"
+      }
+    ],
+    "credit_cards": [
+      {
+        "id": 2,
+        "month": "06",
+        "year": "2016",
+        "cc_type": "visa",
+        "last_digits": "1111",
+        "first_name": "Luis",
+        "last_name": "Braga",
+        "gateway_customer_profile_id": "BGS-252435",
+        "gateway_payment_profile_id": null
+      }
+    ]
+  },
+  "previous": {
+    "number": "R813433786",
+    "channel": "spree",
+    "email": "luis@mail.com",
+    "currency": "USD",
+    "placed_on": "2014-01-21T18:25:11.007Z",
+    "updated_at": "2014-01-21T18:25:11.098Z",
+    "status": "complete",
+    "totals": {
+      "item": 367.85,
+      "adjustment": 10.0,
+      "tax": 0.0,
+      "shipping": 10.0,
+      "payment": 0.0,
+      "order": 377.85
+    },
+    "line_items": [
+      {
+        "name": "Case - HP Compaq nx7000",
+        "sku": "80",
+        "external_ref": "",
+        "quantity": 3,
+        "price": 49.95,
+        "variant_id": 28,
+        "options": {
+        }
+      },
+      {
+        "name": "400 watt power supply",
+        "sku": "387",
+        "external_ref": "",
+        "quantity": 2,
+        "price": 109.0,
+        "variant_id": 27,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 10.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "2200",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "2200",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 3,
+        "status": "pending",
+        "amount": 377.85,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H70047175733",
+        "cost": 10.0,
+        "status": "pending",
+        "stock_location": null,
+        "shipping_method": "UPS Two Day (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "400 watt power supply",
+            "sku": "387",
+            "external_ref": "",
+            "quantity": 2,
+            "price": 109.0,
+            "variant_id": 27,
+            "options": {
+            }
+          },
+          {
+            "name": "Case - HP Compaq nx7000",
+            "sku": "80",
+            "external_ref": "",
+            "quantity": 3,
+            "price": 49.95,
+            "variant_id": 28,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "diff": {
+    "updated_at": [
+      "2014-01-21T18:25:11.098Z",
+      "2014-01-21T18:56:20.995Z"
+    ],
+    "payment_total": [
+      "0.0",
+      "377.85"
+    ],
+    "shipment_state": [
+      "pending",
+      "ready"
+    ],
+    "payment_state": [
+      "balance_due",
+      "paid"
+    ],
+    "payments": [
+      [
+        {
+          "id": 3,
+          "amount": "377.85",
+          "state": "pending",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "amount": "377.85",
+          "state": "completed",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        }
+      ]
+    ],
+    "shipments": [
+      [
+        {
+          "id": 3,
+          "tracking": null,
+          "number": "H70047175733",
+          "cost": "10.0",
+          "shipped_at": null,
+          "state": "pending",
+          "order_id": "R813433786",
+          "stock_location_name": "default",
+          "shipping_rates": [
+            {
+              "id": 7,
+              "cost": "5.0",
+              "selected": false,
+              "shipment_id": 3,
+              "shipping_method_id": 1
+            },
+            {
+              "id": 8,
+              "cost": "10.0",
+              "selected": true,
+              "shipment_id": 3,
+              "shipping_method_id": 2
+            },
+            {
+              "id": 9,
+              "cost": "15.0",
+              "selected": false,
+              "shipment_id": 3,
+              "shipping_method_id": 3
+            }
+          ],
+          "shipping_method": {
+            "name": "UPS Two Day (USD)",
+            "tracking_url": null
+          },
+          "inventory_units": [
+            {
+              "id": 7,
+              "variant_id": 27,
+              "state": "on_hand"
+            },
+            {
+              "id": 6,
+              "variant_id": 27,
+              "state": "on_hand"
+            },
+            {
+              "id": 5,
+              "variant_id": 28,
+              "state": "on_hand"
+            },
+            {
+              "id": 4,
+              "variant_id": 28,
+              "state": "on_hand"
+            },
+            {
+              "id": 3,
+              "variant_id": 28,
+              "state": "on_hand"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "id": 3,
+          "tracking": null,
+          "number": "H70047175733",
+          "cost": "10.0",
+          "shipped_at": null,
+          "state": "ready",
+          "order_id": "R813433786",
+          "stock_location_name": "default",
+          "shipping_rates": [
+            {
+              "id": 7,
+              "cost": "5.0",
+              "selected": false,
+              "shipment_id": 3,
+              "shipping_method_id": 1
+            },
+            {
+              "id": 8,
+              "cost": "10.0",
+              "selected": true,
+              "shipment_id": 3,
+              "shipping_method_id": 2
+            },
+            {
+              "id": 9,
+              "cost": "15.0",
+              "selected": false,
+              "shipment_id": 3,
+              "shipping_method_id": 3
+            }
+          ],
+          "shipping_method": {
+            "name": "UPS Two Day (USD)",
+            "tracking_url": null
+          },
+          "inventory_units": [
+            {
+              "id": 7,
+              "variant_id": 27,
+              "state": "on_hand"
+            },
+            {
+              "id": 6,
+              "variant_id": 27,
+              "state": "on_hand"
+            },
+            {
+              "id": 5,
+              "variant_id": 28,
+              "state": "on_hand"
+            },
+            {
+              "id": 4,
+              "variant_id": 28,
+              "state": "on_hand"
+            },
+            {
+              "id": 3,
+              "variant_id": 28,
+              "state": "on_hand"
+            }
+          ]
+        }
+      ]
+    ]
+  }
+}

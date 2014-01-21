@@ -27,20 +27,27 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     begin
       order = NetsuiteIntegration::Order.new(@config, @message)
 
-      if order.import
-        add_notification "info", "Order #{order.sales_order.external_id} imported into NetSuite (internal id #{order.sales_order.internal_id})"
-        process_result 200
+      unless order.imported?
+        if order.import
+          add_notification "info", "Order #{order.sales_order.external_id} imported into NetSuite (internal id #{order.sales_order.internal_id})"
+          process_result 200
+        else
+          add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite"
+          process_result 500
+        end
       else
-        add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite"
-        process_result 500
+        if order.got_paid?
+          if order.create_customer_deposit
+            add_notification "info", "Customer Deposit created for NetSuite Sales Order #{order.sales_order.external_id}"
+            process_result 200
+          else
+            add_notification "error", "Failed to create a Customer Deposit for NetSuite Sales Order #{order.sales_order.external_id}"
+            process_result 500
+          end
+        end
       end
-    rescue NetsuiteIntegration::Order::AlreadyImportedException
-      add_notification "info", "Order #{@message[:payload][:order][:number]} has already been imported into NetSuite"
-
-      process_result 200
     rescue Exception => e
       add_notification "error", e.message, nil, { backtrace: e.backtrace.to_a.join("\n\t") }
-
       process_result 500
     end
   end
