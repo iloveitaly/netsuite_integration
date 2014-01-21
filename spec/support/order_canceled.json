@@ -1,0 +1,367 @@
+{
+  "order": {
+    "number": "R987654321",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-01-16T19:31:27.000Z",
+    "updated_at": "2014-01-17T19:40:26.000Z",
+    "status": "canceled",
+    "totals": {
+      "item": 22.99,
+      "adjustment": 7.3,
+      "tax": 2.3,
+      "shipping": 5.0,
+      "payment": 0.0,
+      "order": 30.29
+    },
+    "line_items": [
+      {
+        "name": "Ruby on Rails Bag",
+        "sku": "ROR-00012",
+        "external_ref": "",
+        "quantity": 1,
+        "price": 22.99,
+        "variant_id": 2,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "North America 5.0%",
+        "value": 1.15
+      },
+      {
+        "name": "Shipping",
+        "value": 5.0
+      },
+      {
+        "name": "Tax",
+        "value": 1.15
+      },
+      {
+        "name": "Shipping",
+        "value": 0.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Leone",
+      "lastname": "Olson",
+      "address1": "444 Lauren Lake",
+      "address2": "Apt. 966",
+      "zipcode": "16804",
+      "city": "East Thelmamouth",
+      "state": "New York",
+      "country": "US",
+      "phone": "1-874-267-3877 x37307"
+    },
+    "billing_address": {
+      "firstname": "Nadia",
+      "lastname": "Weissnat",
+      "address1": "977 Ricardo Squares",
+      "address2": "Apt. 415",
+      "zipcode": "16804",
+      "city": "West Maya",
+      "state": "New York",
+      "country": "US",
+      "phone": "(632)199-5057 x7553"
+    },
+    "payments": [
+      {
+        "number": 2,
+        "status": "pending",
+        "amount": 30.29,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H03600237688",
+        "cost": 5.0,
+        "status": "canceled",
+        "stock_location": null,
+        "shipping_method": "UPS Ground (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "Ruby on Rails Bag",
+            "sku": "ROR-00012",
+            "external_ref": "",
+            "quantity": 1,
+            "price": 22.99,
+            "variant_id": 2,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "original": {
+    "id": 2,
+    "number": "R987654321",
+    "item_total": "22.99",
+    "total": "30.29",
+    "ship_total": "5.0",
+    "state": "canceled",
+    "adjustment_total": "7.3",
+    "user_id": null,
+    "created_at": "2014-01-17T19:31:26.000Z",
+    "updated_at": "2014-01-17T19:40:26.000Z",
+    "completed_at": "2014-01-16T19:31:27.000Z",
+    "payment_total": "0.0",
+    "shipment_state": "canceled",
+    "payment_state": "balance_due",
+    "email": "spree@example.com",
+    "special_instructions": null,
+    "token": "b1578c494cc3ad72",
+    "channel": "spree",
+    "currency": "USD",
+    "tax_total": "2.3",
+    "bill_address": {
+      "id": 2,
+      "firstname": "Nadia",
+      "lastname": "Weissnat",
+      "full_name": "Nadia Weissnat",
+      "address1": "977 Ricardo Squares",
+      "address2": "Apt. 415",
+      "city": "West Maya",
+      "zipcode": "16804",
+      "phone": "(632)199-5057 x7553",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 48,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 48,
+        "name": "New York",
+        "abbr": "NY",
+        "country_id": 49
+      }
+    },
+    "ship_address": {
+      "id": 1,
+      "firstname": "Leone",
+      "lastname": "Olson",
+      "full_name": "Leone Olson",
+      "address1": "444 Lauren Lake",
+      "address2": "Apt. 966",
+      "city": "East Thelmamouth",
+      "zipcode": "16804",
+      "phone": "1-874-267-3877 x37307",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 48,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 48,
+        "name": "New York",
+        "abbr": "NY",
+        "country_id": 49
+      }
+    },
+    "line_items": [
+      {
+        "id": 2,
+        "quantity": 1,
+        "price": "22.99",
+        "variant_id": 2,
+        "created_at": "2014-01-17T19:31:26.000Z",
+        "updated_at": "2014-01-17T19:31:26.000Z",
+        "variant": {
+          "id": 2,
+          "name": "Ruby on Rails Bag",
+          "sku": "ROR-00012",
+          "price": "22.99",
+          "weight": null,
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": "21.0",
+          "permalink": "ruby-on-rails-bag",
+          "product_created_at": "2014-01-17T19:30:55.000Z",
+          "product_updated_at": "2014-01-17T19:31:12.000Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+              {
+                "id": 3,
+                "parent_id": 1,
+                "position": 1,
+                "name": "Bags",
+                "permalink": "categories/bags",
+                "taxonomy_id": 1,
+                "description": null,
+                "created_at": "2014-01-17T19:30:56.000Z",
+                "updated_at": "2014-01-17T19:30:56.000Z"
+              },
+              {
+                "id": 11,
+                "parent_id": 2,
+                "position": 0,
+                "name": "Rails",
+                "permalink": "brand/rails",
+                "taxonomy_id": 2,
+                "description": null,
+                "created_at": "2014-01-17T19:30:56.000Z",
+                "updated_at": "2014-01-17T19:30:56.000Z"
+              }
+            ]
+          },
+          "product_id": 2,
+          "images": [
+            {
+              "id": 23,
+              "position": 1,
+              "attachment_content_type": "image/jpeg",
+              "attachment_file_name": "ror_bag.jpeg",
+              "type": "Spree::Image",
+              "attachment_updated_at": "2014-01-17T19:31:11.000Z",
+              "attachment_width": 360,
+              "attachment_height": 360,
+              "alt": null,
+              "viewable_type": "Spree::Variant",
+              "viewable_id": 2,
+              "attachment_url": "/spree/products/23/product/ror_bag.jpeg?1389987071"
+            }
+          ]
+        }
+      }
+    ],
+    "payments": [
+      {
+        "id": 2,
+        "amount": "30.29",
+        "state": "pending",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      }
+    ],
+    "shipments": [
+      {
+        "id": 2,
+        "tracking": null,
+        "number": "H03600237688",
+        "cost": "5.0",
+        "shipped_at": null,
+        "state": "canceled",
+        "order_id": "R987654321",
+        "stock_location_name": "default",
+        "shipping_rates": [
+          {
+            "id": 7,
+            "cost": "5.0",
+            "selected": true,
+            "shipment_id": 2,
+            "shipping_method_id": 1
+          },
+          {
+            "id": 8,
+            "cost": "10.0",
+            "selected": false,
+            "shipment_id": 2,
+            "shipping_method_id": 2
+          },
+          {
+            "id": 9,
+            "cost": "15.0",
+            "selected": false,
+            "shipment_id": 2,
+            "shipping_method_id": 3
+          }
+        ],
+        "shipping_method": {
+          "name": "UPS Ground (USD)",
+          "tracking_url": null
+        },
+        "inventory_units": [
+          {
+            "id": 2,
+            "variant_id": 2,
+            "state": "on_hand"
+          }
+        ]
+      }
+    ],
+    "adjustments": [
+      {
+        "id": 2,
+        "amount": "1.15",
+        "label": "North America 5.0%",
+        "mandatory": false,
+        "eligible": true,
+        "originator_type": "Spree::TaxRate",
+        "adjustable_type": "Spree::Order"
+      },
+      {
+        "id": 4,
+        "amount": "5.0",
+        "label": "Shipping",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::ShippingMethod",
+        "adjustable_type": "Spree::Order"
+      },
+      {
+        "id": 6,
+        "amount": "1.15",
+        "label": "Tax",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::TaxRate",
+        "adjustable_type": "Spree::Order"
+      },
+      {
+        "id": 8,
+        "amount": "0.0",
+        "label": "Shipping",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::ShippingMethod",
+        "adjustable_type": "Spree::Order"
+      }
+    ],
+    "credit_cards": [
+      {
+        "id": 1,
+        "month": "12",
+        "year": "2014",
+        "cc_type": "visa",
+        "last_digits": "1111",
+        "first_name": "Sean",
+        "last_name": "Schofield",
+        "gateway_customer_profile_id": "BGS-1234",
+        "gateway_payment_profile_id": null
+      }
+    ]
+  }
+}
