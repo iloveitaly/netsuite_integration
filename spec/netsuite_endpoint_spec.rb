@@ -99,6 +99,25 @@ describe NetsuiteEndpoint do
 
         expect(json_response['notifications'][0]['subject']).to match('Customer Deposit created for NetSuite Sales Order')
       end
+
+      context "was already paid" do
+        let(:request) do
+          {
+            message: 'order:updated',
+            message_id: 123,
+            payload: Factories.order_new_payload.merge(parameters: parameters)
+          }
+        end
+
+        it "just returns 200" do
+          VCR.use_cassette('order/already_imported') do
+            post '/orders', request.to_json, auth
+          end
+
+          expect(last_response.status).to eq 200
+          expect(last_response.headers["Content-Type"]).to match "application/json"
+        end
+      end
     end
   end
 end

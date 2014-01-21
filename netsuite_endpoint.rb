@@ -44,6 +44,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
             add_notification "error", "Failed to create a Customer Deposit for NetSuite Sales Order #{order.sales_order.external_id}"
             process_result 500
           end
+        else
+          process_result 200
         end
       end
     rescue Exception => e
