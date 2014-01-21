@@ -19,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 21:59:06 GMT
+      - Tue, 21 Jan 2014 13:40:54 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - 777125543:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80
+      - 1221362419:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -1675,7 +1675,7 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 21:59:05 GMT
+  recorded_at: Tue, 21 Jan 2014 13:40:54 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
@@ -1683,16 +1683,17 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"
-        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>casa123</platformCore:password><platformCore:account>TSTDRV1141558</platformCore:account><platformCore:role
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
         type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:get><platformMsgs:baseRef
-        xsi:type=\"platformCore:RecordRef\" externalId=\"R43523543523f\" type=\"salesOrder\"></platformMsgs:baseRef></platformMsgs:get></env:Body></env:Envelope>"
+        xsi:type=\"platformCore:RecordRef\" externalId=\"432536546543656546456546\"
+        type=\"salesOrder\"></platformMsgs:baseRef></platformMsgs:get></env:Body></env:Envelope>"
     headers:
       Soapaction:
       - "\"get\""
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '867'
+      - '878'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1705,13 +1706,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 21:59:07 GMT
+      - Tue, 21 Jan 2014 13:40:54 GMT
       Server:
       - Apache
       Ns-Rtimer-Composite:
-      - "-1589212102:706172746E6572732D6A61766131303030372E626F732E6E65746C65646765722E636F6D:80"
+      - "-2001529988:706172746E6572732D6A61766131303030352E626F732E6E65746C65646765722E636F6D:80"
       Set-Cookie:
-      - JSESSIONID=lmVjSdSWjW7jX70dd3v21VpLlzHRfwlyQN02Qjg1Dn5h5ybtdbtn9bcYX2N56y7GgXFhHCw7vYvd4W2wGpQdYch19VGMSqQLn3qPhW6xRyQspSXK84WvR1hkPDjL45qc!620078821;
+      - JSESSIONID=ZhrLSpySQ9DNSNkTppzqTYhXCvv8tQvYL3G8KyfmR18y9ss3n4MTtPL0G6jk2Cq29JpQy22X9TvGb8p3YvfF2HlpSqlXKCTz9SjpD2mZLSYs711FXygjwqx6v7dP19yv!-1161988991;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -1728,13 +1729,13 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_012020141314256771480880075_e5d1af</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><getResponse
+        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_0121201412577490671513280897_73867</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><getResponse
         xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><readResponse><platformCore:status
         isSuccess=\"false\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:statusDetail
         type=\"ERROR\"><platformCore:code>INVALID_KEY_OR_REF</platformCore:code><platformCore:message>The
         specified key is invalid.</platformCore:message></platformCore:statusDetail></platformCore:status></readResponse></getResponse></soapenv:Body></soapenv:Envelope>"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 21:59:06 GMT
+  recorded_at: Tue, 21 Jan 2014 13:40:55 GMT
 - request:
     method: get
     uri: https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl
@@ -1754,13 +1755,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 21:59:07 GMT
+      - Tue, 21 Jan 2014 13:40:55 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - 1556649725:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80
+      - "-703977102:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80"
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -3410,7 +3411,7 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 21:59:06 GMT
+  recorded_at: Tue, 21 Jan 2014 13:40:55 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
@@ -3418,7 +3419,7 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"
-        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>casa123</platformCore:password><platformCore:account>TSTDRV1141558</platformCore:account><platformCore:role
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
         type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:get><platformMsgs:baseRef
         xsi:type=\"platformCore:RecordRef\" externalId=\"1\" type=\"customer\"></platformMsgs:baseRef></platformMsgs:get></env:Body></env:Envelope>"
     headers:
@@ -3440,15 +3441,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 21:59:08 GMT
+      - Tue, 21 Jan 2014 13:40:56 GMT
       Server:
       - Apache
       Content-Length:
-      - '1357'
+      - '1356'
       Ns-Rtimer-Composite:
-      - 1668023387:706172746E6572732D6A61766131303030372E626F732E6E65746C65646765722E636F6D:80
+      - "-675719025:706172746E6572732D6A61766131303030352E626F732E6E65746C65646765722E636F6D:80"
       Set-Cookie:
-      - JSESSIONID=lmVjSdSWjW7jX70dd3v21VpLlzHRfwlyQN02Qjg1Dn5h5ybtdbtn9bcYX2N56y7GgXFhHCw7vYvd4W2wGpQdYch19VGMSqQLn3qPhW6xRyQspSXK84WvR1hkPDjL45qc!620078821;
+      - JSESSIONID=ZhrLSpySQ9DNSNkTppzqTYhXCvv8tQvYL3G8KyfmR18y9ss3n4MTtPL0G6jk2Cq29JpQy22X9TvGb8p3YvfF2HlpSqlXKCTz9SjpD2mZLSYs711FXygjwqx6v7dP19yv!-1161988991;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -3463,7 +3464,7 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_012020141314255378361182053_ee8147</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><getResponse
+        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_012120141257747672341597200_46cbc5</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><getResponse
         xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><readResponse><platformCore:status
         isSuccess=\"true\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/><record
         internalId=\"2507\" externalId=\"1\" xsi:type=\"listRel:Customer\" xmlns:listRel=\"urn:relationships_2013_2.lists.webservices.netsuite.com\"><listRel:customForm
@@ -3472,25 +3473,25 @@ http_interactions:
         internalId=\"13\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>CUSTOMER-Closed
         Won</platformCore:name></listRel:entityStatus><listRel:isInactive>true</listRel:isInactive><listRel:language>_usEnglish</listRel:language><listRel:dateCreated>2014-01-13T08:23:48.000-08:00</listRel:dateCreated><listRel:emailPreference>_default</listRel:emailPreference><listRel:terms
         internalId=\"2\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Net
-        30</platformCore:name></listRel:terms><listRel:creditHoldOverride>_auto</listRel:creditHoldOverride><listRel:balance>0.0</listRel:balance><listRel:overdueBalance>0.0</listRel:overdueBalance><listRel:unbilledOrders>669.74</listRel:unbilledOrders><listRel:consolUnbilledOrders>669.74</listRel:consolUnbilledOrders><listRel:consolOverdueBalance>0.0</listRel:consolOverdueBalance><listRel:consolDepositBalance>0.0</listRel:consolDepositBalance><listRel:consolBalance>0.0</listRel:consolBalance><listRel:currency
+        30</platformCore:name></listRel:terms><listRel:creditHoldOverride>_auto</listRel:creditHoldOverride><listRel:balance>0.0</listRel:balance><listRel:overdueBalance>0.0</listRel:overdueBalance><listRel:unbilledOrders>2338.45</listRel:unbilledOrders><listRel:consolUnbilledOrders>2338.45</listRel:consolUnbilledOrders><listRel:consolOverdueBalance>0.0</listRel:consolOverdueBalance><listRel:consolDepositBalance>0.0</listRel:consolDepositBalance><listRel:consolBalance>0.0</listRel:consolBalance><listRel:currency
         internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>USA</platformCore:name></listRel:currency><listRel:depositBalance>0.0</listRel:depositBalance><listRel:shipComplete>false</listRel:shipComplete><listRel:taxable>true</listRel:taxable><listRel:thirdPartyCountry>_unitedStates</listRel:thirdPartyCountry><listRel:giveAccess>false</listRel:giveAccess><listRel:accessRole
         internalId=\"14\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Customer
         Center</platformCore:name></listRel:accessRole><listRel:sendEmail>false</listRel:sendEmail><listRel:receivablesAccount
         internalId=\"-10\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Use
-        System Preference</platformCore:name></listRel:receivablesAccount><listRel:webLead>No</listRel:webLead><listRel:lastModifiedDate>2014-01-20T13:19:23.000-08:00</listRel:lastModifiedDate><listRel:stage>_customer</listRel:stage><listRel:emailTransactions>false</listRel:emailTransactions><listRel:printTransactions>false</listRel:printTransactions><listRel:faxTransactions>false</listRel:faxTransactions><listRel:isBudgetApproved>false</listRel:isBudgetApproved><listRel:globalSubscriptionStatus>_softOptIn</listRel:globalSubscriptionStatus><listRel:subscriptionsList><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
+        System Preference</platformCore:name></listRel:receivablesAccount><listRel:webLead>No</listRel:webLead><listRel:lastModifiedDate>2014-01-21T05:28:28.000-08:00</listRel:lastModifiedDate><listRel:stage>_customer</listRel:stage><listRel:emailTransactions>false</listRel:emailTransactions><listRel:printTransactions>false</listRel:printTransactions><listRel:faxTransactions>false</listRel:faxTransactions><listRel:isBudgetApproved>false</listRel:isBudgetApproved><listRel:globalSubscriptionStatus>_softOptIn</listRel:globalSubscriptionStatus><listRel:subscriptionsList><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
         internalId=\"2\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Billing
-        Communication</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-20T13:19:23.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Marketing</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-20T13:19:23.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
-        internalId=\"4\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Newsletters</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-20T13:19:23.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
+        Communication</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-21T05:28:28.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
+        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Marketing</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-21T05:28:28.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
+        internalId=\"4\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Newsletters</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-21T05:28:28.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
         internalId=\"5\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Product
-        Updates</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-20T13:19:23.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
-        internalId=\"3\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Surveys</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-20T13:19:23.000-08:00</listRel:lastModifiedDate></listRel:subscriptions></listRel:subscriptionsList><listRel:currencyList><listRel:currency><listRel:currency
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>USA</platformCore:name></listRel:currency><listRel:balance>0.0</listRel:balance><listRel:consolBalance>0.0</listRel:consolBalance><listRel:depositBalance>0.0</listRel:depositBalance><listRel:consolDepositBalance>0.0</listRel:consolDepositBalance><listRel:overdueBalance>0.0</listRel:overdueBalance><listRel:consolOverdueBalance>0.0</listRel:consolOverdueBalance><listRel:unbilledOrders>669.74</listRel:unbilledOrders><listRel:consolUnbilledOrders>669.74</listRel:consolUnbilledOrders><listRel:overrideCurrencyFormat>false</listRel:overrideCurrencyFormat><listRel:displaySymbol>$</listRel:displaySymbol><listRel:symbolPlacement>_beforeNumber</listRel:symbolPlacement></listRel:currency></listRel:currencyList><listRel:customFieldList
+        Updates</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-21T05:28:28.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
+        internalId=\"3\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Surveys</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-21T05:28:28.000-08:00</listRel:lastModifiedDate></listRel:subscriptions></listRel:subscriptionsList><listRel:currencyList><listRel:currency><listRel:currency
+        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>USA</platformCore:name></listRel:currency><listRel:balance>0.0</listRel:balance><listRel:consolBalance>0.0</listRel:consolBalance><listRel:depositBalance>0.0</listRel:depositBalance><listRel:consolDepositBalance>0.0</listRel:consolDepositBalance><listRel:overdueBalance>0.0</listRel:overdueBalance><listRel:consolOverdueBalance>0.0</listRel:consolOverdueBalance><listRel:unbilledOrders>2338.45</listRel:unbilledOrders><listRel:consolUnbilledOrders>2338.45</listRel:consolUnbilledOrders><listRel:overrideCurrencyFormat>false</listRel:overrideCurrencyFormat><listRel:displaySymbol>$</listRel:displaySymbol><listRel:symbolPlacement>_beforeNumber</listRel:symbolPlacement></listRel:currency></listRel:currencyList><listRel:customFieldList
         xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:customField
         internalId=\"201\" scriptId=\"custentity_fmt_customer_credit_on_hold\" xsi:type=\"platformCore:BooleanCustomFieldRef\"><platformCore:value>false</platformCore:value></platformCore:customField><platformCore:customField
         internalId=\"183\" scriptId=\"custentity_fmt_cust_credit_on_hold\" xsi:type=\"platformCore:BooleanCustomFieldRef\"><platformCore:value>false</platformCore:value></platformCore:customField></listRel:customFieldList></record></readResponse></getResponse></soapenv:Body></soapenv:Envelope>"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 21:59:07 GMT
+  recorded_at: Tue, 21 Jan 2014 13:40:57 GMT
 - request:
     method: get
     uri: https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl
@@ -3510,13 +3511,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 21:59:09 GMT
+      - Tue, 21 Jan 2014 13:40:57 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - 777125741:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80
+      - 1221362420:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -5166,7 +5167,7 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 21:59:08 GMT
+  recorded_at: Tue, 21 Jan 2014 13:40:57 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
@@ -5181,7 +5182,7 @@ http_interactions:
         xmlns:actSched=\"urn:scheduling_2013_2.activities.webservices.netsuite.com\"
         xmlns:setupCustom=\"urn:customization_2013_2.setup.webservices.netsuite.com\"
         xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\" xmlns:tranCust=\"urn:customers_2013_2.transactions.webservices.netsuite.com\"
-        xmlns:listSupport=\"urn:support_2013_2.lists.webservices.netsuite.com\" xmlns:tranGeneral=\"urn:general_2013_2.transactions.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>casa123</platformCore:password><platformCore:account>TSTDRV1141558</platformCore:account><platformCore:role
+        xmlns:listSupport=\"urn:support_2013_2.lists.webservices.netsuite.com\" xmlns:tranGeneral=\"urn:general_2013_2.transactions.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
         type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:update><platformMsgs:record
         xsi:type=\"listRel:Customer\" platformMsgs:internalId=\"2507\" platformMsgs:externalId=\"1\"></platformMsgs:record></platformMsgs:update></env:Body></env:Envelope>"
     headers:
@@ -5203,13 +5204,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 21:59:10 GMT
+      - Tue, 21 Jan 2014 13:40:58 GMT
       Server:
       - Apache
       Ns-Rtimer-Composite:
-      - 1559768739:706172746E6572732D6A61766131303030372E626F732E6E65746C65646765722E636F6D:80
+      - 805913725:706172746E6572732D6A61766131303030352E626F732E6E65746C65646765722E636F6D:80
       Set-Cookie:
-      - JSESSIONID=lmVjSdSWjW7jX70dd3v21VpLlzHRfwlyQN02Qjg1Dn5h5ybtdbtn9bcYX2N56y7GgXFhHCw7vYvd4W2wGpQdYch19VGMSqQLn3qPhW6xRyQspSXK84WvR1hkPDjL45qc!620078821;
+      - JSESSIONID=ZhrLSpySQ9DNSNkTppzqTYhXCvv8tQvYL3G8KyfmR18y9ss3n4MTtPL0G6jk2Cq29JpQy22X9TvGb8p3YvfF2HlpSqlXKCTz9SjpD2mZLSYs711FXygjwqx6v7dP19yv!-1161988991;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -5226,13 +5227,13 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_0120201413142534951627368473_32f95</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><updateResponse
+        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_0121201412577455541475793342_85217</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><updateResponse
         xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><writeResponse><platformCore:status
         isSuccess=\"true\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/><baseRef
         internalId=\"2507\" externalId=\"1\" type=\"customer\" xsi:type=\"platformCore:RecordRef\"
         xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/></writeResponse></updateResponse></soapenv:Body></soapenv:Envelope>"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 21:59:09 GMT
+  recorded_at: Tue, 21 Jan 2014 13:40:59 GMT
 - request:
     method: get
     uri: https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl
@@ -5252,13 +5253,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 21:59:11 GMT
+      - Tue, 21 Jan 2014 13:40:59 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - 1556649726:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80
+      - "-1700032981:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80"
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -6908,7 +6909,7 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 21:59:10 GMT
+  recorded_at: Tue, 21 Jan 2014 13:41:00 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
@@ -6923,7 +6924,7 @@ http_interactions:
         xmlns:actSched=\"urn:scheduling_2013_2.activities.webservices.netsuite.com\"
         xmlns:setupCustom=\"urn:customization_2013_2.setup.webservices.netsuite.com\"
         xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\" xmlns:tranCust=\"urn:customers_2013_2.transactions.webservices.netsuite.com\"
-        xmlns:listSupport=\"urn:support_2013_2.lists.webservices.netsuite.com\" xmlns:tranGeneral=\"urn:general_2013_2.transactions.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>casa123</platformCore:password><platformCore:account>TSTDRV1141558</platformCore:account><platformCore:role
+        xmlns:listSupport=\"urn:support_2013_2.lists.webservices.netsuite.com\" xmlns:tranGeneral=\"urn:general_2013_2.transactions.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
         type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport><platformMsgs:SearchPreferences></platformMsgs:SearchPreferences></env:Header><env:Body><platformMsgs:search><platformMsgs:searchRecord
         xsi:type=\"listAcct:ItemSearch\"><listAcct:basic><platformCommon:displayName
         operator=\"contains\"><platformCore:searchValue>Spree Tax</platformCore:searchValue></platformCommon:displayName></listAcct:basic></platformMsgs:searchRecord></platformMsgs:search></env:Body></env:Envelope>"
@@ -6946,15 +6947,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 21:59:12 GMT
+      - Tue, 21 Jan 2014 13:41:00 GMT
       Server:
       - Apache
       Content-Length:
-      - '1063'
+      - '1062'
       Ns-Rtimer-Composite:
-      - "-1589211547:706172746E6572732D6A61766131303030372E626F732E6E65746C65646765722E636F6D:80"
+      - 259649583:706172746E6572732D6A61766131303030352E626F732E6E65746C65646765722E636F6D:80
       Set-Cookie:
-      - JSESSIONID=lmVjSdSWjW7jX70dd3v21VpLlzHRfwlyQN02Qjg1Dn5h5ybtdbtn9bcYX2N56y7GgXFhHCw7vYvd4W2wGpQdYch19VGMSqQLn3qPhW6xRyQspSXK84WvR1hkPDjL45qc!620078821;
+      - JSESSIONID=ZhrLSpySQ9DNSNkTppzqTYhXCvv8tQvYL3G8KyfmR18y9ss3n4MTtPL0G6jk2Cq29JpQy22X9TvGb8p3YvfF2HlpSqlXKCTz9SjpD2mZLSYs711FXygjwqx6v7dP19yv!-1161988991;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -6969,10 +6970,10 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_012020141314251488536691836_2e571b</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><searchResponse
+        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_012120141257743191564458535_f3aea8</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><searchResponse
         xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformCore:searchResult
         xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:status
-        isSuccess=\"true\"/><platformCore:totalRecords>1</platformCore:totalRecords><platformCore:pageSize>1000</platformCore:pageSize><platformCore:totalPages>1</platformCore:totalPages><platformCore:pageIndex>1</platformCore:pageIndex><platformCore:searchId>WEBSERVICES_TSTDRV1141558_012020141314251488536691836_2e571b</platformCore:searchId><platformCore:recordList><platformCore:record
+        isSuccess=\"true\"/><platformCore:totalRecords>1</platformCore:totalRecords><platformCore:pageSize>1000</platformCore:pageSize><platformCore:totalPages>1</platformCore:totalPages><platformCore:pageIndex>1</platformCore:pageIndex><platformCore:searchId>WEBSERVICES_test_012120141257743191564458535_f3aea8</platformCore:searchId><platformCore:recordList><platformCore:record
         internalId=\"1124\" xsi:type=\"listAcct:NonInventorySaleItem\" xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\"><listAcct:createdDate>2014-01-14T04:33:43.000-08:00</listAcct:createdDate><listAcct:lastModifiedDate>2014-01-14T04:33:43.000-08:00</listAcct:lastModifiedDate><listAcct:incomeAccount
         internalId=\"55\"><platformCore:name>4000 Sales</platformCore:name></listAcct:incomeAccount><listAcct:isTaxable>false</listAcct:isTaxable><listAcct:costEstimateType>_itemDefinedCost</listAcct:costEstimateType><listAcct:enforceMinQtyInternally>true</listAcct:enforceMinQtyInternally><listAcct:shipIndividually>false</listAcct:shipIndividually><listAcct:isFulfillable>true</listAcct:isFulfillable><listAcct:costCategory
         internalId=\"3\"><platformCore:name>Default Cost Category</platformCore:name></listAcct:costCategory><listAcct:useMarginalRates>false</listAcct:useMarginalRates><listAcct:overallQuantityPricingType>_byLineQuantity</listAcct:overallQuantityPricingType><listAcct:excludeFromSitemap>false</listAcct:excludeFromSitemap><listAcct:sitemapPriority>_auto</listAcct:sitemapPriority><listAcct:isDonationItem>false</listAcct:isDonationItem><listAcct:showDefaultDonationAmount>false</listAcct:showDefaultDonationAmount><listAcct:dontShowPrice>false</listAcct:dontShowPrice><listAcct:onSpecial>false</listAcct:onSpecial><listAcct:outOfStockBehavior>_default</listAcct:outOfStockBehavior><listAcct:itemId>Spree
@@ -6981,7 +6982,7 @@ http_interactions:
         internalId=\"61\" scriptId=\"custitem_review_total_number\" xsi:type=\"platformCore:LongCustomFieldRef\"><platformCore:value>0</platformCore:value></platformCore:customField><platformCore:customField
         internalId=\"62\" scriptId=\"custitem_review_total_score\" xsi:type=\"platformCore:LongCustomFieldRef\"><platformCore:value>0</platformCore:value></platformCore:customField></listAcct:customFieldList></platformCore:record></platformCore:recordList></platformCore:searchResult></searchResponse></soapenv:Body></soapenv:Envelope>"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 21:59:11 GMT
+  recorded_at: Tue, 21 Jan 2014 13:41:00 GMT
 - request:
     method: get
     uri: https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl
@@ -7001,13 +7002,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 21:59:13 GMT
+      - Tue, 21 Jan 2014 13:41:01 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - "-1256662401:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80"
+      - 1221362421:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -8657,7 +8658,7 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 21:59:12 GMT
+  recorded_at: Tue, 21 Jan 2014 13:41:01 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
@@ -8672,21 +8673,21 @@ http_interactions:
         xmlns:actSched=\"urn:scheduling_2013_2.activities.webservices.netsuite.com\"
         xmlns:setupCustom=\"urn:customization_2013_2.setup.webservices.netsuite.com\"
         xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\" xmlns:tranCust=\"urn:customers_2013_2.transactions.webservices.netsuite.com\"
-        xmlns:listSupport=\"urn:support_2013_2.lists.webservices.netsuite.com\" xmlns:tranGeneral=\"urn:general_2013_2.transactions.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>casa123</platformCore:password><platformCore:account>TSTDRV1141558</platformCore:account><platformCore:role
+        xmlns:listSupport=\"urn:support_2013_2.lists.webservices.netsuite.com\" xmlns:tranGeneral=\"urn:general_2013_2.transactions.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
         type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:add><platformMsgs:record
-        xsi:type=\"tranSales:SalesOrder\" platformMsgs:externalId=\"R43523543523f\"><tranSales:orderStatus>_pendingFulfillment</tranSales:orderStatus><tranSales:entity
+        xsi:type=\"tranSales:SalesOrder\" platformMsgs:externalId=\"432536546543656546456546\"><tranSales:orderStatus>_pendingFulfillment</tranSales:orderStatus><tranSales:entity
         externalId=\"1\"></tranSales:entity><tranSales:itemList><tranSales:item><tranSales:item
-        internalId=\"385\"></tranSales:item><tranSales:quantity>2</tranSales:quantity><tranSales:amount>288.0</tranSales:amount></tranSales:item><tranSales:item><tranSales:item
-        internalId=\"130\"></tranSales:item><tranSales:quantity>3</tranSales:quantity><tranSales:amount>116.94</tranSales:amount></tranSales:item><tranSales:item><tranSales:item
+        internalId=\"385\"></tranSales:item><tranSales:quantity>2</tranSales:quantity><tranSales:amount>288.0</tranSales:amount><tranSales:taxRate1>0</tranSales:taxRate1></tranSales:item><tranSales:item><tranSales:item
+        internalId=\"130\"></tranSales:item><tranSales:quantity>3</tranSales:quantity><tranSales:amount>116.94</tranSales:amount><tranSales:taxRate1>0</tranSales:taxRate1></tranSales:item><tranSales:item><tranSales:item
         internalId=\"1124\"></tranSales:item><tranSales:rate>0.0</tranSales:rate></tranSales:item></tranSales:itemList><tranSales:shippingCost>5.0</tranSales:shippingCost><tranSales:shipMethod
-        internalId=\"77\"></tranSales:shipMethod></platformMsgs:record></platformMsgs:add></env:Body></env:Envelope>"
+        internalId=\"77\"></tranSales:shipMethod><tranSales:tranDate>2014-01-20T20:56:19.380Z</tranSales:tranDate></platformMsgs:record></platformMsgs:add></env:Body></env:Envelope>"
     headers:
       Soapaction:
       - "\"add\""
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '2249'
+      - '2409'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -8699,15 +8700,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 21:59:13 GMT
+      - Tue, 21 Jan 2014 13:41:02 GMT
       Server:
       - Apache
       Content-Length:
-      - '535'
+      - '538'
       Ns-Rtimer-Composite:
-      - 1662132757:706172746E6572732D6A61766131303030372E626F732E6E65746C65646765722E636F6D:80
+      - 805914448:706172746E6572732D6A61766131303030352E626F732E6E65746C65646765722E636F6D:80
       Set-Cookie:
-      - JSESSIONID=lmVjSdSWjW7jX70dd3v21VpLlzHRfwlyQN02Qjg1Dn5h5ybtdbtn9bcYX2N56y7GgXFhHCw7vYvd4W2wGpQdYch19VGMSqQLn3qPhW6xRyQspSXK84WvR1hkPDjL45qc!620078821;
+      - JSESSIONID=ZhrLSpySQ9DNSNkTppzqTYhXCvv8tQvYL3G8KyfmR18y9ss3n4MTtPL0G6jk2Cq29JpQy22X9TvGb8p3YvfF2HlpSqlXKCTz9SjpD2mZLSYs711FXygjwqx6v7dP19yv!-1161988991;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -8722,7 +8723,7 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_0120201413142499411245853645_13b2d</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><addResponse
+        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_0121201412577415971918331918_7f90e</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><addResponse
         xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><writeResponse><platformCore:status
         isSuccess=\"true\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:statusDetail
         type=\"WARN\"><platformCore:code>WARNING</platformCore:code><platformCore:message>The
@@ -8731,8 +8732,8 @@ http_interactions:
         type=\"WARN\"><platformCore:code>WARNING</platformCore:code><platformCore:message>The
         line total amount is not equal to the item price times the quantity.  Is this
         correct?</platformCore:message></platformCore:statusDetail></platformCore:status><baseRef
-        internalId=\"8588\" externalId=\"R43523543523f\" type=\"salesOrder\" xsi:type=\"platformCore:RecordRef\"
-        xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/></writeResponse></addResponse></soapenv:Body></soapenv:Envelope>"
+        internalId=\"8691\" externalId=\"432536546543656546456546\" type=\"salesOrder\"
+        xsi:type=\"platformCore:RecordRef\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/></writeResponse></addResponse></soapenv:Body></soapenv:Envelope>"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 21:59:14 GMT
+  recorded_at: Tue, 21 Jan 2014 13:41:04 GMT
 recorded_with: VCR 2.8.0

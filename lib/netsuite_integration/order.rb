@@ -22,6 +22,8 @@ module NetsuiteIntegration
       import_products!
       import_shipping!
 
+      sales_order.tran_date = order_payload[:placed_on]
+
       if sales_order.add
         if original[:payment_state] == "paid"
           Services::CustomerDeposit.new(config).create sales_order, order_payload[:totals][:order]
@@ -48,11 +50,14 @@ module NetsuiteIntegration
     end
 
     def import_products!
+      # Force tax rate to 0. NetSuite might create taxes rates automatically which
+      # will cause the sales order total to differ from the order in the Spree store
       item_list = order_payload[:line_items].map do |item|
         NetSuite::Records::SalesOrderItem.new({
           item: { internal_id: item[:sku].to_i },
           quantity: item[:quantity],
-          amount: item[:quantity] * item[:price]
+          amount: item[:quantity] * item[:price],
+          tax_rate1: 0
         })
       end
 

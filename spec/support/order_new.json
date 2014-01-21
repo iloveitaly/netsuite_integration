@@ -1,544 +1,361 @@
 {
-    "order": {
-        "number": "R84344936",
-        "channel": "spree",
-        "email": "spree@example.com",
-        "currency": "USD",
-        "placed_on": "2013-07-30T19:19:05.000Z",
-        "updated_at": "2013-07-30T20:08:39.000Z",
-        "status": "complete",
-        "totals": {
-            "item": 99.95,
-            "adjustment": 15,
-            "tax": 5,
-            "shipping": 10,
-            "discount": 3,
-            "payment": 114.95,
-            "order": 114.95
-        },
-        "line_items": [
-            {
-                "name": "Spree Baseball Jersey",
-                "sku": "1066",
-                "external_ref": "",
-                "quantity": 2,
-                "price": 19.99,
-                "variant_id": 8,
-                "options": {}
-            },
-            {
-                "name": "Ruby on Rails Baseball Jersey",
-                "sku": "1067",
-                "external_ref": "",
-                "quantity": 3,
-                "price": 19.99,
-                "variant_id": 20,
-                "options": {
-                    "tshirt-color": "Red",
-                    "tshirt-size": "Medium"
-                }
-            }
-        ],
-        "adjustments": [
-            {
-                "name": "Shipping",
-                "value": 5
-            },
-            {
-                "name": "Shipping",
-                "value": 5
-            },
-            {
-                "name": "North America 5.0%",
-                "value": 5
-            }
-        ],
-        "shipping_address": {
-            "firstname": "Bruno",
-            "lastname": "Buccolo",
-            "address1": "7735 Old Georgetown Rd",
-            "address2": "",
-            "zipcode": "20814",
-            "city": "Bethesda",
-            "state": "MD",
-            "country": "US",
-            "phone": "1234567890"
-        },
-        "billing_address": {
-            "firstname": "Bruno",
-            "lastname": "Buccolo",
-            "address1": "7735 Old Georgetown Rd",
-            "address2": "",
-            "zipcode": "20814",
-            "city": "Bethesda",
-            "state": "Maryland",
-            "country": "US",
-            "phone": "555-123-456"
-        },
-        "payments": [
-            {
-                "number": 6,
-                "status": "completed",
-                "amount": 5,
-                "payment_method": "Check"
-            },
-            {
-                "number": 5,
-                "status": "completed",
-                "amount": 109.95,
-                "payment_method": "Credit Card"
-            }
-        ],
-        "shipments": [
-            {
-                "number": "H70195514",
-                "cost": 5,
-                "status": "shipped",
-                "stock_location": null,
-                "shipping_method": "UPS Ground (USD)",
-                "tracking": null,
-                "updated_at": null,
-                "shipped_at": "2013-07-30T20:08:38.000Z",
-                "items": [
-                    {
-                        "name": "Spree Baseball Jersey",
-                        "sku": "1066",
-                        "external_ref": "",
-                        "quantity": 1,
-                        "price": 19.99,
-                        "variant_id": 8,
-                        "options": {}
-                    },
-                    {
-                        "name": "Ruby on Rails Baseball Jersey",
-                        "sku": "1067",
-                        "external_ref": "",
-                        "quantity": 1,
-                        "price": 19.99,
-                        "variant_id": 20,
-                        "options": {
-                            "tshirt-color": "Red",
-                            "tshirt-size": "Medium"
-                        }
-                    }
-                ]
-            },
-            {
-                "number": "H641312454",
-                "cost": 5,
-                "status": "ready",
-                "stock_location": null,
-                "shipping_method": "UPS Ground (USD)",
-                "tracking": "4532535354353452",
-                "updated_at": null,
-                "shipped_at": null,
-                "items": [
-                    {
-                        "name": "Ruby on Rails Baseball Jersey",
-                        "sku": "1066",
-                        "external_ref": "",
-                        "quantity": 2,
-                        "price": 19.99,
-                        "variant_id": 20,
-                        "options": {
-                            "tshirt-color": "Red",
-                            "tshirt-size": "Medium"
-                        }
-                    },
-                    {
-                        "name": "Spree Baseball Jersey",
-                        "sku": "1067",
-                        "external_ref": "",
-                        "quantity": 1,
-                        "price": 19.99,
-                        "variant_id": 8,
-                        "options": {}
-                    }
-                ]
-            }
-        ]
+  "order": {
+    "number": "R114285751",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-01-20T20:56:19.380Z",
+    "updated_at": "2014-01-20T20:56:19.474Z",
+    "status": "complete",
+    "totals": {
+      "item": 404.94,
+      "adjustment": 5.0,
+      "tax": 0.0,
+      "shipping": 5.0,
+      "payment": 0.0,
+      "order": 409.94
     },
-    "original": {
-        "id": 5,
-        "number": "R84344936",
-        "item_total": "99.95",
-        "total": "114.95",
-        "state": "complete",
-        "adjustment_total": "15.0",
-        "user_id": 1337,
-        "created_at": "2013-07-29T17:42:02.000Z",
-        "updated_at": "2013-07-30T20:08:39.000Z",
-        "completed_at": "2013-07-30T19:19:05.000Z",
-        "payment_total": "114.95",
-        "shipment_state": "partial",
-        "payment_state": "paid",
-        "email": "spree@example.com",
-        "special_instructions": null,
-        "currency": "USD",
-        "ship_total": "10.0",
-        "tax_total": "5.0",
-        "bill_address": {
-            "id": 5,
-            "firstname": "Bruno",
-            "lastname": "Buccolo",
-            "address1": "7735 Old Georgetown Rd",
-            "address2": "",
-            "city": "Bethesda",
-            "zipcode": "20814",
-            "phone": "555-123-456",
-            "company": null,
-            "alternative_phone": null,
-            "country_id": 49,
-            "state_id": 26,
-            "state_name": null,
-            "country": {
-                "id": 49,
-                "iso_name": "UNITED STATES",
-                "iso": "US",
-                "iso3": "USA",
-                "name": "United States",
-                "numcode": 840
-            },
-            "state": {
-                "id": 26,
-                "name": "Maryland",
-                "abbr": "MD",
-                "country_id": 49
+    "line_items": [
+      {
+        "name": "AMD Athlon 64 2800+ 1.8GHz Processor",
+        "sku": "385",
+        "external_ref": "",
+        "quantity": 2,
+        "price": 144.0,
+        "variant_id": 361,
+        "options": {
+        }
+      },
+      {
+        "name": "2-Drawer Mobile File Cart Steel - White",
+        "sku": "130",
+        "external_ref": "",
+        "quantity": 3,
+        "price": 38.98,
+        "variant_id": 453,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 5.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "2200",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "2200",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 12,
+        "status": "pending",
+        "amount": 409.94,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H13817647482",
+        "cost": 5.0,
+        "status": "pending",
+        "stock_location": null,
+        "shipping_method": "UPS",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "2-Drawer Mobile File Cart Steel - White",
+            "sku": "130",
+            "external_ref": "",
+            "quantity": 3,
+            "price": 38.98,
+            "variant_id": 453,
+            "options": {
             }
-        },
-        "ship_address": {
-            "id": 6,
-            "firstname": "Bruno",
-            "lastname": "Buccolo",
-            "address1": "7735 Old Georgetown Rd",
-            "address2": "",
-            "city": "Bethesda",
-            "zipcode": "20814",
-            "phone": "555-123-456",
-            "company": null,
-            "alternative_phone": null,
-            "country_id": 49,
-            "state_id": 26,
-            "state_name": null,
-            "country": {
-                "id": 49,
-                "iso_name": "UNITED STATES",
-                "iso": "US",
-                "iso3": "USA",
-                "name": "United States",
-                "numcode": 840
-            },
-            "state": {
-                "id": 26,
-                "name": "Maryland",
-                "abbr": "MD",
-                "country_id": 49
+          },
+          {
+            "name": "AMD Athlon 64 2800+ 1.8GHz Processor",
+            "sku": "385",
+            "external_ref": "",
+            "quantity": 2,
+            "price": 144.0,
+            "variant_id": 361,
+            "options": {
             }
-        },
-        "line_items": [
-            {
-                "id": 5,
-                "quantity": 2,
-                "price": "19.99",
-                "variant_id": 8,
-                "variant": {
-                    "id": 8,
-                    "name": "Spree Baseball Jersey",
-                    "product_id": 8,
-                    "sku": "1067",
-                    "price": "19.99",
-                    "weight": null,
-                    "height": null,
-                    "width": null,
-                    "depth": null,
-                    "is_master": true,
-                    "cost_price": "17.0",
-                    "permalink": "spree-baseball-jersey",
-                    "options_text": "",
-                    "option_values": [],
-                    "images": [
-                        {
-                            "id": 41,
-                            "position": 1,
-                            "attachment_content_type": "image/jpeg",
-                            "attachment_file_name": "spree_jersey.jpeg",
-                            "type": "Spree::Image",
-                            "attachment_updated_at": "2013-07-24T17:01:27Z",
-                            "attachment_width": 480,
-                            "attachment_height": 480,
-                            "alt": null,
-                            "viewable_type": "Spree::Variant",
-                            "viewable_id": 8,
-                            "attachment_url": "/spree/products/41/product/spree_jersey.jpeg?1374685287"
-                        },
-                        {
-                            "id": 42,
-                            "position": 2,
-                            "attachment_content_type": "image/jpeg",
-                            "attachment_file_name": "spree_jersey_back.jpeg",
-                            "type": "Spree::Image",
-                            "attachment_updated_at": "2013-07-24T17:01:28Z",
-                            "attachment_width": 480,
-                            "attachment_height": 480,
-                            "alt": null,
-                            "viewable_type": "Spree::Variant",
-                            "viewable_id": 8,
-                            "attachment_url": "/spree/products/42/product/spree_jersey_back.jpeg?1374685288"
-                        }
-                    ]
-                }
-            },
-            {
-                "id": 7,
-                "quantity": 3,
-                "price": "19.99",
-                "variant_id": 20,
-                "variant": {
-                    "id": 20,
-                    "name": "Ruby on Rails Baseball Jersey",
-                    "product_id": 3,
-                    "sku": "1068",
-                    "price": "19.99",
-                    "weight": null,
-                    "height": null,
-                    "width": null,
-                    "depth": null,
-                    "is_master": false,
-                    "cost_price": "17.0",
-                    "permalink": "ruby-on-rails-baseball-jersey",
-                    "options_text": "Size: M, Color: Red",
-                    "option_values": [
-                        {
-                            "id": 33,
-                            "name": "Red",
-                            "presentation": "Red",
-                            "option_type_name": "tshirt-color",
-                            "option_type_id": 2
-                        },
-                        {
-                            "id": 16,
-                            "name": "Medium",
-                            "presentation": "M",
-                            "option_type_name": "tshirt-size",
-                            "option_type_id": 1
-                        }
-                    ],
-                    "images": [
-                        {
-                            "id": 7,
-                            "position": 1,
-                            "attachment_content_type": "image/png",
-                            "attachment_file_name": "ror_baseball_jersey_red.png",
-                            "type": "Spree::Image",
-                            "attachment_updated_at": "2013-07-24T17:00:58Z",
-                            "attachment_width": 240,
-                            "attachment_height": 240,
-                            "alt": null,
-                            "viewable_type": "Spree::Variant",
-                            "viewable_id": 20,
-                            "attachment_url": "/spree/products/7/product/ror_baseball_jersey_red.png?1374685258"
-                        },
-                        {
-                            "id": 8,
-                            "position": 2,
-                            "attachment_content_type": "image/png",
-                            "attachment_file_name": "ror_baseball_jersey_back_red.png",
-                            "type": "Spree::Image",
-                            "attachment_updated_at": "2013-07-24T17:00:59Z",
-                            "attachment_width": 240,
-                            "attachment_height": 240,
-                            "alt": null,
-                            "viewable_type": "Spree::Variant",
-                            "viewable_id": 20,
-                            "attachment_url": "/spree/products/8/product/ror_baseball_jersey_back_red.png?1374685259"
-                        }
-                    ]
-                }
-            }
-        ],
-        "payments": [
-            {
-                "id": 6,
-                "amount": "5.0",
-                "state": "completed",
-                "payment_method_id": 5,
-                "payment_method": {
-                    "id": 5,
-                    "name": "Check",
-                    "environment": "development"
-                }
-            },
-            {
-                "id": 5,
-                "amount": "109.95",
-                "state": "completed",
-                "payment_method_id": 1,
-                "payment_method": {
-                    "id": 1,
-                    "name": "Credit Card",
-                    "environment": "development"
-                }
-            }
-        ],
-        "shipments": [
-            {
-                "id": 6,
-                "tracking": null,
-                "number": "H70195514",
-                "cost": "5.0",
-                "shipped_at": "2013-07-30T20:08:38.000Z",
-                "state": "shipped",
-                "order_id": "R827587314",
-                "stock_location_name": "default",
-                "shipping_rates": [
-                    {
-                        "id": 74,
-                        "cost": "10.0",
-                        "selected": false,
-                        "shipment_id": 6,
-                        "shipping_method_id": 2
-                    },
-                    {
-                        "id": 75,
-                        "cost": "15.0",
-                        "selected": false,
-                        "shipment_id": 6,
-                        "shipping_method_id": 3
-                    },
-                    {
-                        "id": 73,
-                        "cost": "5.0",
-                        "selected": true,
-                        "shipment_id": 6,
-                        "shipping_method_id": 1
-                    }
-                ],
-                "shipping_method": {
-                    "name": "UPS Ground (USD)"
-                },
-                "inventory_units": [
-                    {
-                        "id": 16,
-                        "state": "shipped",
-                        "variant_id": 8,
-                        "order_id": null,
-                        "shipment_id": 6,
-                        "return_authorization_id": null
-                    },
-                    {
-                        "id": 15,
-                        "state": "shipped",
-                        "variant_id": 20,
-                        "order_id": null,
-                        "shipment_id": 6,
-                        "return_authorization_id": null
-                    }
-                ]
-            },
-            {
-                "id": 5,
-                "tracking": "4532535354353452",
-                "number": "H641312454",
-                "cost": "5.0",
-                "shipped_at": null,
-                "state": "ready",
-                "order_id": "R827587314",
-                "stock_location_name": "default",
-                "shipping_rates": [
-                    {
-                        "id": 80,
-                        "cost": "10.0",
-                        "selected": false,
-                        "shipment_id": 5,
-                        "shipping_method_id": 2
-                    },
-                    {
-                        "id": 81,
-                        "cost": "15.0",
-                        "selected": false,
-                        "shipment_id": 5,
-                        "shipping_method_id": 3
-                    },
-                    {
-                        "id": 79,
-                        "cost": "5.0",
-                        "selected": true,
-                        "shipment_id": 5,
-                        "shipping_method_id": 1
-                    }
-                ],
-                "shipping_method": {
-                    "name": "UPS Ground (USD)"
-                },
-                "inventory_units": [
-                    {
-                        "id": 13,
-                        "state": "on_hand",
-                        "variant_id": 20,
-                        "order_id": 5,
-                        "shipment_id": 5,
-                        "return_authorization_id": null
-                    },
-                    {
-                        "id": 12,
-                        "state": "on_hand",
-                        "variant_id": 20,
-                        "order_id": 5,
-                        "shipment_id": 5,
-                        "return_authorization_id": null
-                    },
-                    {
-                        "id": 10,
-                        "state": "on_hand",
-                        "variant_id": 8,
-                        "order_id": 5,
-                        "shipment_id": 5,
-                        "return_authorization_id": null
-                    }
-                ]
-            }
-        ],
-        "adjustments": [
-            {
-                "id": 16,
-                "amount": "5.0",
-                "label": "Shipping",
-                "mandatory": true,
-                "eligible": true,
-                "originator_type": "Spree::ShippingMethod",
-                "adjustable_type": "Spree::Order"
-            },
-            {
-                "id": 20,
-                "amount": "5.0",
-                "label": "Shipping",
-                "mandatory": true,
-                "eligible": true,
-                "originator_type": "Spree::ShippingMethod",
-                "adjustable_type": "Spree::Order"
-            },
-            {
-                "id": 22,
-                "amount": "5.0",
-                "label": "North America 5.0%",
-                "mandatory": false,
-                "eligible": true,
-                "originator_type": "Spree::TaxRate",
-                "adjustable_type": "Spree::Order"
-            }
-        ],
-        "credit_cards": [
-            {
-                "id": 2,
-                "month": "7",
-                "year": "2013",
-                "cc_type": "visa",
-                "last_digits": "1111",
-                "first_name": "Bruno",
-                "last_name": "Buccolo",
-                "gateway_customer_profile_id": "BGS-414100",
-                "gateway_payment_profile_id": null
-            }
+          }
         ]
-    }
+      }
+    ]
+  },
+  "original": {
+    "id": 12,
+    "number": "R114285751",
+    "item_total": "404.94",
+    "total": "409.94",
+    "ship_total": "5.0",
+    "state": "complete",
+    "adjustment_total": "5.0",
+    "user_id": 1,
+    "created_at": "2014-01-20T20:55:25.875Z",
+    "updated_at": "2014-01-20T20:56:19.474Z",
+    "completed_at": "2014-01-20T20:56:19.380Z",
+    "payment_total": "0.0",
+    "shipment_state": "pending",
+    "payment_state": "balance_due",
+    "email": "spree@example.com",
+    "special_instructions": null,
+    "channel": "spree",
+    "tax_total": "0.0",
+    "currency": "USD",
+    "bill_address": {
+      "id": 27,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "2200",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "ship_address": {
+      "id": 28,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "2200",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "line_items": [
+      {
+        "id": 15,
+        "quantity": 2,
+        "price": "144.0",
+        "variant_id": 361,
+        "created_at": "2014-01-20T20:55:25.915Z",
+        "updated_at": "2014-01-20T20:55:25.915Z",
+        "single_display_amount": "$144.00",
+        "display_amount": "$288.00",
+        "total": "288.0",
+        "variant": {
+          "id": 361,
+          "name": "AMD Athlon 64 2800+ 1.8GHz Processor",
+          "sku": "385",
+          "price": "144.0",
+          "weight": null,
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": "144.0",
+          "permalink": "amd-athlon-64-2800-plus-1-dot-8ghz-processor",
+          "product_created_at": "2014-01-20T20:52:38.536Z",
+          "product_updated_at": "2014-01-20T20:56:19.454Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 361,
+          "images": [
+
+          ]
+        }
+      },
+      {
+        "id": 16,
+        "quantity": 3,
+        "price": "38.98",
+        "variant_id": 453,
+        "created_at": "2014-01-20T20:56:08.562Z",
+        "updated_at": "2014-01-20T20:56:08.562Z",
+        "single_display_amount": "$38.98",
+        "display_amount": "$116.94",
+        "total": "116.94",
+        "variant": {
+          "id": 453,
+          "name": "2-Drawer Mobile File Cart Steel - White",
+          "sku": "130",
+          "price": "38.98",
+          "weight": null,
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": "38.98",
+          "permalink": "2-drawer-mobile-file-cart-steel-white",
+          "product_created_at": "2014-01-20T20:52:48.891Z",
+          "product_updated_at": "2014-01-20T20:56:19.428Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 453,
+          "images": [
+
+          ]
+        }
+      }
+    ],
+    "payments": [
+      {
+        "id": 12,
+        "amount": "409.94",
+        "state": "pending",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      }
+    ],
+    "shipments": [
+      {
+        "id": 13,
+        "tracking": null,
+        "number": "H13817647482",
+        "cost": "5.0",
+        "shipped_at": null,
+        "state": "pending",
+        "order_id": "R114285751",
+        "stock_location_name": "Default",
+        "shipping_rates": [
+          {
+            "id": 12,
+            "cost": "5.0",
+            "selected": true,
+            "shipment_id": 13,
+            "shipping_method_id": 1
+          }
+        ],
+        "shipping_method": {
+          "name": "UPS",
+          "tracking_url": ""
+        },
+        "inventory_units": [
+          {
+            "id": 32,
+            "variant_id": 453,
+            "state": "on_hand"
+          },
+          {
+            "id": 31,
+            "variant_id": 453,
+            "state": "on_hand"
+          },
+          {
+            "id": 30,
+            "variant_id": 453,
+            "state": "on_hand"
+          },
+          {
+            "id": 29,
+            "variant_id": 361,
+            "state": "on_hand"
+          },
+          {
+            "id": 28,
+            "variant_id": 361,
+            "state": "on_hand"
+          }
+        ]
+      }
+    ],
+    "adjustments": [
+      {
+        "id": 12,
+        "amount": "5.0",
+        "label": "Shipping",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::ShippingMethod",
+        "adjustable_type": "Spree::Order"
+      }
+    ],
+    "credit_cards": [
+      {
+        "id": 12,
+        "month": "06",
+        "year": "2016",
+        "cc_type": "visa",
+        "last_digits": "1111",
+        "first_name": "Luis",
+        "last_name": "Braga",
+        "gateway_customer_profile_id": "BGS-051154",
+        "gateway_payment_profile_id": null
+      }
+    ]
+  }
 }
