@@ -76,7 +76,7 @@ describe NetsuiteEndpoint do
           post '/orders', request.to_json, auth
         end
 
-        expect(json_response['notifications'][0]['subject']).to match('Order R84344936 imported into NetSuite')
+        expect(json_response['notifications'][0]['subject']).to match('imported into NetSuite')
       end
     end
 
@@ -94,7 +94,7 @@ describe NetsuiteEndpoint do
           post '/orders', request.to_json, auth
         end
 
-        expect(json_response['notifications'][0]['subject']).to eq('Order R84344936 has already been imported into NetSuite')
+        expect(json_response['notifications'][0]['subject']).to match('has already been imported into NetSuite')
       end
     end
   end
