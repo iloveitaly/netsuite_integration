@@ -116,7 +116,7 @@
         }]
       },
       "recommends": {
-        "messages": ["order:new"]
+        "messages": ["order:new", "order:updated"]
       }
     },
     {
