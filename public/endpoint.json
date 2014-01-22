@@ -3,7 +3,7 @@
   "display": "NetSuite Endpoint",
   "description": "Sync products, stock, customers, orders and shipments with NetSuite ERP",
   "help": "http://guides.spreecommerce.com/integration/endpoints/netsuite",
-  "icon_url": "spree.png",
+  "icon_url": "netsuite.png",
   "services": [
     {
       "name": "products",
