@@ -1,14 +1,15 @@
+config_hash = {
+  'netsuite.api_version' => '2013_2',
+  'netsuite.wsdl_url' => 'https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl',
+  'netsuite.sandbox' => true,
+  'netsuite.email' => 'washington@spreecommerce.com',
+  'netsuite.password' => 'test',
+  'netsuite.account' => 'test',
+  'netsuite.last_updated_after' => '2012-01-08T18:48:56.001Z',
+  'netsuite.role_id' => 3 }.with_indifferent_access
+
 shared_examples "config hash" do
-  let(:config) do
-    { 'netsuite.api_version' => '2013_2',
-      'netsuite.wsdl_url' => 'https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl',
-      'netsuite.sandbox' => true,
-      'netsuite.email' => 'washington@spreecommerce.com',
-      'netsuite.password' => 'test',
-      'netsuite.account' => 'test',
-      'netsuite.last_updated_after' => '2012-01-08T18:48:56.001Z',
-      'netsuite.role_id' => 3 }.with_indifferent_access
-  end
+  let(:config) { config_hash }
 end
 
 shared_context "request parameters" do
@@ -23,5 +24,21 @@ shared_context "request parameters" do
       {:name => "netsuite.last_updated_after", :value => "2013-01-08T18:48:56.001Z" },
       {:name => "netsuite.role_id", :value => "3" }
     ]
+  end
+end
+
+shared_context "connect to netsuite" do
+  before(:all) do
+    NetSuite.configure do
+      reset!
+      api_version config_hash.fetch('netsuite.api_version')
+      wsdl        config_hash.fetch('netsuite.wsdl_url')
+      sandbox     config_hash.fetch('netsuite.sandbox')
+      email       config_hash.fetch('netsuite.email')
+      password    config_hash.fetch('netsuite.password')
+      account     config_hash.fetch('netsuite.account')
+      role        config_hash.fetch('netsuite.role_id')
+      log_level   :debug
+    end
   end
 end
