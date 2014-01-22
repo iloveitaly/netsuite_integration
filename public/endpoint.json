@@ -11,14 +11,6 @@
       "description": "Fetch products via NetSuite",
       "requires": {
         "parameters": [{
-          "name": "api_version",
-          "description": "NetSuite api version",
-          "data_type": "string"
-        }, {
-          "name": "wsdl_url",
-          "description": "NetSuite API url",
-          "data_type": "string"
-        }, {
           "name": "email",
           "description": "NetSuite user email",
           "data_type": "string"
@@ -55,14 +47,6 @@
       "description": "",
       "requires": {
         "parameters": [{
-          "name": "api_version",
-          "description": "NetSuite api version",
-          "data_type": "string"
-        }, {
-          "name": "wsdl_url",
-          "description": "NetSuite API url",
-          "data_type": "string"
-        }, {
           "name": "email",
           "description": "NetSuite user email",
           "data_type": "string"
@@ -86,14 +70,6 @@
       "description": "Exports orders to NetSuite",
       "requires": {
         "parameters": [{
-          "name": "api_version",
-          "description": "NetSuite API version",
-          "data_type": "string"
-        }, {
-          "name": "wsdl_url",
-          "description": "NetSuite API url",
-          "data_type": "string"
-        }, {
           "name": "email",
           "description": "NetSuite user email",
           "data_type": "string"
@@ -125,14 +101,6 @@
       "description": "Exports orders cancellations to NetSuite",
       "requires": {
         "parameters": [{
-          "name": "api_version",
-          "description": "NetSuite API version",
-          "data_type": "string"
-        }, {
-          "name": "wsdl_url",
-          "description": "NetSuite API url",
-          "data_type": "string"
-        }, {
           "name": "email",
           "description": "NetSuite user email",
           "data_type": "string"
@@ -163,14 +131,6 @@
       "description": "Fulfills orders on NetSuite",
       "requires": {
         "parameters": [{
-          "name": "api_version",
-          "description": "NetSuite api version",
-          "data_type": "string"
-        }, {
-          "name": "wsdl_url",
-          "description": "NetSuite API url",
-          "data_type": "string"
-        }, {
           "name": "email",
           "description": "NetSuite user email",
           "data_type": "string"
@@ -185,14 +145,6 @@
         }, {
           "name": "role_id",
           "description": "NetSuite role id",
-          "data_type": "string"
-        }, {
-          "name": "sandbox",
-          "description": "NetSuite sandbox",
-          "data_type": "boolean"
-        }, {
-          "name": "last_updated_after",
-          "description": "Date of last item imported",
           "data_type": "string"
         }]
       },
