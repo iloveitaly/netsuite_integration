@@ -64,15 +64,18 @@ describe NetsuiteEndpoint do
   describe '/orders' do
     context 'when order is new' do
       let(:request) do
+        payload = Factories.order_new_payload
+        payload['order']['number'] = "RERGERG4454354354"
+
         {
           message: 'order:new',
           message_id: 123,
-          payload: Factories.order_new_payload.merge(parameters: parameters)
+          payload: payload.merge(parameters: parameters)
         }
       end
 
       it 'imports the order and returns an info notification' do
-        VCR.use_cassette('order/import') do
+        VCR.use_cassette('order/import_service') do
           post '/orders', request.to_json, auth
         end
 
@@ -85,16 +88,35 @@ describe NetsuiteEndpoint do
         {
           message: 'order:new',
           message_id: 123,
-          payload: Factories.order_new_payload.merge(parameters: parameters)
+          payload: Factories.order_updated_payload.merge(parameters: parameters)
         }
       end
 
-      it 'generates a notification, skips importing' do
-        VCR.use_cassette('order/already_imported') do
+      it 'creates customer deposit if order just got paid' do
+        VCR.use_cassette('order/customer_deposit_on_updated_message') do
           post '/orders', request.to_json, auth
         end
 
-        expect(json_response['notifications'][0]['subject']).to match('has already been imported into NetSuite')
+        expect(json_response['notifications'][0]['subject']).to match('Customer Deposit created for NetSuite Sales Order')
+      end
+
+      context "was already paid" do
+        let(:request) do
+          {
+            message: 'order:updated',
+            message_id: 123,
+            payload: Factories.order_new_payload.merge(parameters: parameters)
+          }
+        end
+
+        it "just returns 200" do
+          VCR.use_cassette('order/already_imported') do
+            post '/orders', request.to_json, auth
+          end
+
+          expect(last_response.status).to eq 200
+          expect(last_response.headers["Content-Type"]).to match "application/json"
+        end
       end
     end
   end

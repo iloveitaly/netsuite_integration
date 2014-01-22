@@ -15,9 +15,11 @@ module NetsuiteIntegration
       })
     end
 
-    def import
-      raise AlreadyImportedException if order_already_imported?
+    def imported?
+      @imported_order ||= sales_order_service.find_by_external_id order_payload[:number]
+    end
 
+    def import
       import_customer!
       import_products!
       import_shipping!
@@ -26,10 +28,21 @@ module NetsuiteIntegration
 
       if sales_order.add
         if original[:payment_state] == "paid"
-          Services::CustomerDeposit.new(config).create sales_order, order_payload[:totals][:order]
+          create_customer_deposit
         end
 
         sales_order
+      end
+    end
+
+    def create_customer_deposit
+      order = @imported_order || sales_order
+      Services::CustomerDeposit.new(config).create order, order_payload[:totals][:order]
+    end
+
+    def got_paid?
+      if payload[:diff]
+        payload[:diff][:payment_state] == ["balance_due", "paid"]
       end
     end
 
@@ -86,11 +99,5 @@ module NetsuiteIntegration
     def internal_id_for(type)
       non_inventory_item_service.find_or_create_by_name("Spree #{type.capitalize}").internal_id
     end
-
-    def order_already_imported?
-      sales_order_service.find_by_external_id order_payload[:number]
-    end
-
-    class AlreadyImportedException < Exception; end
   end
 end
