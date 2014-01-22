@@ -15,7 +15,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       email        config.fetch('netsuite.email')
       password     config.fetch('netsuite.password')
       account      config.fetch('netsuite.account')
-      role         config.fetch('netsuite.role_id')
+      role         config.fetch('netsuite.role_id', 3)
       read_timeout 100000000
       log          "#{`pwd`.chomp}/netsuite.log"
       log_level    :info
