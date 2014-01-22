@@ -6,6 +6,12 @@ module NetsuiteIntegration
       rescue NetSuite::RecordNotFound
         nil
       end
+
+      def close!(sales_order)
+        # TODO: Mark all sales order items as _closed
+        # sales_order.item_list.items
+        # https://system.netsuite.com/help/helpcenter/en_US/SchemaBrowser/transactions/v2013_2_0/sales.html#tranSales:SalesOrderItemList
+      end
     end
   end
 end

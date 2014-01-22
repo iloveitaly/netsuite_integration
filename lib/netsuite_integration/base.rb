@@ -15,6 +15,10 @@ module NetsuiteIntegration
       @customer_service ||= NetsuiteIntegration::Services::CustomerService.new(@config)
     end
 
+    def customer_refund_service
+      @customer_refund_service ||= NetsuiteIntegration::Services::CustomerRefund.new(@config)
+    end
+
     def inventory_item_service
       @inventory_item_service ||= NetsuiteIntegration::Services::InventoryItem.new(@config)
     end
