@@ -1,9 +1,11 @@
 module NetsuiteIntegration
   class Shipment < Base
-    attr_reader :config, :collection
+    attr_reader :config, :collection, :order
 
     def import
-      create_item_fulfillment! && create_invoice!
+      raise "Can't create an item fulfillment for #{order.external_id}" unless create_item_fulfillment!
+      raise "Can't create an invoice for #{order.external_id}" unless create_invoice!
+      order
     end
 
     def create_invoice!
@@ -22,13 +24,14 @@ module NetsuiteIntegration
           internal_id: order_id
         },
         transaction_ship_address: {
-          ship_addr1:    address[:address1],
-          ship_addr2:    address[:address2],
-          ship_zip:      address[:zipcode],
-          ship_city:     address[:city],
-          ship_state:    address[:state],
-          ship_country:  Services::CountryService.by_iso_country(address[:country]),
-          ship_phone:    address[:phone].gsub(/([^0-9]*)/, "")
+          ship_addressee: "#{address[:firstname]} #{address[:lastname]}",
+          ship_addr1:     address[:address1],
+          ship_addr2:     address[:address2],
+          ship_zip:       address[:zipcode],
+          ship_city:      address[:city],
+          ship_state:     address[:state],
+          ship_country:   Services::CountryService.by_iso_country(address[:country]),
+          ship_phone:     address[:phone].gsub(/([^0-9]*)/, "")
         }
       })
 
@@ -37,7 +40,8 @@ module NetsuiteIntegration
 
     private
     def  order_id
-      sales_order_service.find_by_external_id(payload[:shipment][:order_number]).internal_id
+      @order ||= sales_order_service.find_by_external_id(payload[:shipment][:order_number])
+      @order.internal_id
     end
 
     def address
