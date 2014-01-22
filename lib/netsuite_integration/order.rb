@@ -93,7 +93,7 @@ module NetsuiteIntegration
     end
 
     def shipping_id
-      77 # TODO: should be resolved on a shipping mapping
+      @config['netsuite.shipping_methods_mapping'][0].fetch(@payload[:order][:shipments][0][:shipping_method]).to_i
     end
 
     def internal_id_for(type)

@@ -89,6 +89,10 @@
           "name": "sandbox",
           "description": "NetSuite sandbox",
           "data_type": "boolean"
+        }, {
+          "name": "shipping_methods_mapping",
+          "description": "Mapping from Spree Shipping method names to NetSuite Ship Item ids",
+          "data_type": "list"
         }]
       },
       "recommends": {

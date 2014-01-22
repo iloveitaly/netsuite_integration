@@ -6,7 +6,14 @@ config_hash = {
   'netsuite.password' => 'test',
   'netsuite.account' => 'test',
   'netsuite.last_updated_after' => '2012-01-08T18:48:56.001Z',
-  'netsuite.role_id' => 3 }.with_indifferent_access
+  'netsuite.role_id' => 3,
+  'netsuite.shipping_methods_mapping' => [{
+    "UPS Ground (USD)"=>"92",
+    "UPS Two Day (USD)"=>"91",
+    "UPS One Day (USD)"=>"77",
+    "UPS"=>"77"
+  }]
+}.with_indifferent_access
 
 shared_examples "config hash" do
   let(:config) { config_hash }
@@ -22,7 +29,9 @@ shared_context "request parameters" do
       {:name => "netsuite.password", :value => "test" },
       {:name => "netsuite.account", :value => "test" },
       {:name => "netsuite.last_updated_after", :value => "2013-01-08T18:48:56.001Z" },
-      {:name => "netsuite.role_id", :value => "3" }
+      {:name => "netsuite.role_id", :value => "3" },
+      {:name => "netsuite.shipping_methods_mapping", :value => [{ "UPS" => "77", "UPS Ground (USD)"=>"92", "UPS Two Day (USD)"=>"91", "UPS One Day (USD)"=>"77" }]
+      }
     ]
   end
 end
