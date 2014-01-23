@@ -63,7 +63,7 @@ module NetsuiteIntegration
               addr2: payload[:address2],
               zip: payload[:zipcode],
               city: payload[:city],
-              state: payload[:state],
+              state: StateService.by_state_name(payload[:state]),
               country: CountryService.by_iso_country(payload[:country]),
               phone: payload[:phone].gsub(/([^0-9]*)/, "")
             }
