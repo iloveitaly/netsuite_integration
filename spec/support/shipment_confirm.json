@@ -1,7 +1,7 @@
 {
   "shipment": {
     "number": "H11357178202",
-    "order_number": "R84344936",
+    "order_number": "R375526411",
     "email": "spree@example.com",
     "cost": 1.95,
     "status": "shipped",
@@ -24,7 +24,7 @@
     "items": [
       {
         "name": "Ruby on Rails Tote",
-        "sku": "ROR-00011",
+        "sku": "387",
         "external_ref": "",
         "quantity": 1,
         "price": 15.99,

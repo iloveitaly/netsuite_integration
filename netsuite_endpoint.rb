@@ -102,5 +102,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/shipments' do
+    order = NetsuiteIntegration::Shipment.new(@message, @config).import
+    add_notification "info", "Order #{order.external_id} fulfilled in NetSuite (internal id #{order.internal_id})"
+    process_result 200
   end
 end
