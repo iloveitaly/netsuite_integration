@@ -10,6 +10,7 @@ module NetsuiteIntegration
 
     def create_invoice!
       invoice = NetSuite::Records::Invoice.new({
+        tax_total: 0,
         created_from: {
           internal_id: order_id
         }
@@ -29,7 +30,7 @@ module NetsuiteIntegration
           ship_addr2:     address[:address2],
           ship_zip:       address[:zipcode],
           ship_city:      address[:city],
-          ship_state:     address[:state],
+          ship_state:     Services::StateService.by_state_name(address[:state]),
           ship_country:   Services::CountryService.by_iso_country(address[:country]),
           ship_phone:     address[:phone].gsub(/([^0-9]*)/, "")
         }
