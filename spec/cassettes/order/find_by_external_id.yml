@@ -19,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 23 Jan 2014 20:04:05 GMT
+      - Thu, 23 Jan 2014 21:17:47 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - -2034212106:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80
+      - 1114539182:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -1675,7 +1675,7 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Thu, 23 Jan 2014 20:04:07 GMT
+  recorded_at: Thu, 23 Jan 2014 21:17:48 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
@@ -1683,23 +1683,16 @@ http_interactions:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:platformMsgs="urn:messages_2013_2.platform.webservices.netsuite.com"
-        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"
-        xmlns:platformCommon="urn:common_2013_2.platform.webservices.netsuite.com"
-        xmlns:listRel="urn:relationships_2013_2.lists.webservices.netsuite.com" xmlns:tranSales="urn:sales_2013_2.transactions.webservices.netsuite.com"
-        xmlns:actSched="urn:scheduling_2013_2.activities.webservices.netsuite.com"
-        xmlns:setupCustom="urn:customization_2013_2.setup.webservices.netsuite.com"
-        xmlns:listAcct="urn:accounting_2013_2.lists.webservices.netsuite.com" xmlns:tranCust="urn:customers_2013_2.transactions.webservices.netsuite.com"
-        xmlns:listSupport="urn:support_2013_2.lists.webservices.netsuite.com" xmlns:tranGeneral="urn:general_2013_2.transactions.webservices.netsuite.com"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
-        type="role" internalId="3"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:add><platformMsgs:record
-        xsi:type="tranCust:CustomerDeposit" platformMsgs:externalId="cd_R123456789"><tranCust:salesOrder
-        internalId="7279"></tranCust:salesOrder><tranCust:payment>20</tranCust:payment></platformMsgs:record></platformMsgs:add></env:Body></env:Envelope>
+        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
+        type="role" internalId="3"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:get><platformMsgs:baseRef
+        xsi:type="platformCore:RecordRef" externalId="R123456789" type="salesOrder"></platformMsgs:baseRef></platformMsgs:get></env:Body></env:Envelope>
     headers:
       Soapaction:
-      - '"add"'
+      - '"get"'
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '1623'
+      - '861'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1712,13 +1705,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 23 Jan 2014 20:04:05 GMT
+      - Thu, 23 Jan 2014 21:17:47 GMT
       Server:
       - Apache
+      Content-Length:
+      - '2247'
       Ns-Rtimer-Composite:
-      - -93453745:706172746E6572732D6A61766131303030332E626F732E6E65746C65646765722E636F6D:80
+      - -93152583:706172746E6572732D6A61766131303030332E626F732E6E65746C65646765722E636F6D:80
       Set-Cookie:
-      - JSESSIONID=JHY9Sh0WWT830CGh3rgcvQvh4LGy0z5C3Qwyv8npzWvZrxVLTmL4TP0nY10GVMvPhDJjD1MRNPhJBsz3WrgcpdjsZDQmpC25rgz9qVgdwLpprd2TXv2DQn6D2088rzTH!-603832068;
+      - JSESSIONID=YMGcShGHnDNhTrZXyThyPWlVhQTmz7cRYvJWygwfBDJzJpBlQDt6KvhLDW25khvmKSK0ghPVyYhV3nkBvnV01L2JHxQSTZTyM1h1HT0HZp1d49JpR371SSvp0KKLJ0zc!-603832068;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -1727,19 +1722,18 @@ http_interactions:
       - CP="CAO PSAa OUR BUS PUR"
       Vary:
       - User-Agent
-      Transfer-Encoding:
-      - chunked
       Content-Type:
       - text/xml; charset=utf-8
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs="urn:messages_2013_2.platform.webservices.netsuite.com"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_012320141061958231890322417_774a9e</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><addResponse
-        xmlns="urn:messages_2013_2.platform.webservices.netsuite.com"><writeResponse><platformCore:status
-        isSuccess="true" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><baseRef
-        internalId="10498" externalId="cd_R123456789" type="customerDeposit" xsi:type="platformCore:RecordRef"
-        xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/></writeResponse></addResponse></soapenv:Body></soapenv:Envelope>
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Header><platformMsgs:documentInfo xmlns:platformMsgs="urn:messages_2013_2.platform.webservices.netsuite.com"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_0123201410575361671518960131_ddb4e</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><getResponse xmlns="urn:messages_2013_2.platform.webservices.netsuite.com"><readResponse><platformCore:status isSuccess="true" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><record internalId="7279" externalId="R123456789" xsi:type="tranSales:SalesOrder" xmlns:tranSales="urn:sales_2013_2.transactions.webservices.netsuite.com"><tranSales:createdDate>2014-01-15T10:00:55.000-08:00</tranSales:createdDate><tranSales:customForm internalId="174" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Primary Sales Order Form</platformCore:name></tranSales:customForm><tranSales:entity internalId="2807" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>1337</platformCore:name></tranSales:entity><tranSales:currency internalId="1" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>USA</platformCore:name></tranSales:currency><tranSales:tranDate>2014-01-15T00:00:00.000-08:00</tranSales:tranDate><tranSales:tranId>648</tranSales:tranId><tranSales:source>Web Services</tranSales:source><tranSales:salesRep internalId="-5" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>A Wolfe</platformCore:name></tranSales:salesRep><tranSales:totalCostEstimate>0.0</tranSales:totalCostEstimate><tranSales:estGrossProfit>10.0</tranSales:estGrossProfit><tranSales:estGrossProfitPercent>100.0</tranSales:estGrossProfitPercent><tranSales:exchangeRate>1.0</tranSales:exchangeRate><tranSales:currencyName>USA</tranSales:currencyName><tranSales:toBePrinted>false</tranSales:toBePrinted><tranSales:toBeEmailed>false</tranSales:toBeEmailed><tranSales:toBeFaxed>false</tranSales:toBeFaxed><tranSales:transactionBillAddress xmlns:platformCommon="urn:common_2013_2.platform.webservices.netsuite.com"><platformCommon:billAddressee>Bruno Buccolo</platformCommon:billAddressee><platformCommon:billPhone>555-123-456</platformCommon:billPhone><platformCommon:billAddr1>7735 Old Georgetown Rd</platformCommon:billAddr1><platformCommon:billCity>Bethesda</platformCommon:billCity><platformCommon:billState>MD</platformCommon:billState><platformCommon:billZip>20814</platformCommon:billZip><platformCommon:billCountry>_unitedStates</platformCommon:billCountry></tranSales:transactionBillAddress><tranSales:billAddressList internalId="245202" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>7735 Old Georgetown Rd</platformCore:name></tranSales:billAddressList><tranSales:billAddress>Bruno Buccolo
+        7735 Old Georgetown Rd
+        Bethesda MD 20814
+        United States</tranSales:billAddress><tranSales:transactionShipAddress xmlns:platformCommon="urn:common_2013_2.platform.webservices.netsuite.com"><platformCommon:shipAddressee>Bruno Buccolo</platformCommon:shipAddressee><platformCommon:shipPhone>555-123-456</platformCommon:shipPhone><platformCommon:shipAddr1>7735 Old Georgetown Rd</platformCommon:shipAddr1><platformCommon:shipCity>Bethesda</platformCommon:shipCity><platformCommon:shipState>MD</platformCommon:shipState><platformCommon:shipZip>20814</platformCommon:shipZip><platformCommon:shipCountry>_unitedStates</platformCommon:shipCountry><platformCommon:shipIsResidential>false</platformCommon:shipIsResidential></tranSales:transactionShipAddress><tranSales:shipAddressList internalId="245202" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>7735 Old Georgetown Rd</platformCore:name></tranSales:shipAddressList><tranSales:shipAddress>Bruno Buccolo
+        7735 Old Georgetown Rd
+        Bethesda MD 20814
+        United States</tranSales:shipAddress><tranSales:shipDate>2014-01-17T00:00:00.000-08:00</tranSales:shipDate><tranSales:shipMethod internalId="77" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>UPS Next Day Air</platformCore:name></tranSales:shipMethod><tranSales:shippingCost>10.0</tranSales:shippingCost><tranSales:isMultiShipTo>false</tranSales:isMultiShipTo><tranSales:shippingTaxCode internalId="-8" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>-Not Taxable-</platformCore:name></tranSales:shippingTaxCode><tranSales:handlingCost>0.0</tranSales:handlingCost><tranSales:shipComplete>false</tranSales:shipComplete><tranSales:saveOnAuthDecline>true</tranSales:saveOnAuthDecline><tranSales:ccApproved>false</tranSales:ccApproved><tranSales:getAuth>false</tranSales:getAuth><tranSales:altSalesTotal>0.0</tranSales:altSalesTotal><tranSales:subTotal>10.0</tranSales:subTotal><tranSales:discountTotal>0.0</tranSales:discountTotal><tranSales:taxTotal>0.0</tranSales:taxTotal><tranSales:altShippingCost>10.0</tranSales:altShippingCost><tranSales:total>20.0</tranSales:total><tranSales:balance>23.0</tranSales:balance><tranSales:paypalProcess>false</tranSales:paypalProcess><tranSales:subsidiary internalId="1" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Parent Company</platformCore:name></tranSales:subsidiary><tranSales:lastModifiedDate>2014-01-22T20:00:55.000-08:00</tranSales:lastModifiedDate><tranSales:location internalId="2" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>San Francisco</platformCore:name></tranSales:location><tranSales:status>Pending Fulfillment</tranSales:status><tranSales:terms internalId="2" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Net 30</platformCore:name></tranSales:terms><tranSales:giftCertApplied>0.0</tranSales:giftCertApplied><tranSales:itemList><tranSales:item><tranSales:item internalId="1066" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>APPAREL : Americana Jackett : Americana Jacket-GR-M</platformCore:name></tranSales:item><tranSales:quantityAvailable>0.0</tranSales:quantityAvailable><tranSales:quantity>1.0</tranSales:quantity><tranSales:units internalId="1" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Ea</platformCore:name></tranSales:units><tranSales:description>Our Americana Jacket is a gorgeous nod to Jackson&#x2019;s own mountain-sexy women. Pair it with layers or wear it solo, our herringbone lining feels buttery-soft next to your skin. It&#x2019;s your little secret. Stylish ruching in just the right places and exaggerated collar lend an air of sophistication to your day, and your night. 2 handwarmer and 4 cargo pockets. Oversized zipper windflap. MK Women&#x2019;s chain stitch embroidery. Designed for women, by women. Contemporary fit, feminine flair. Imported. Garment washed.</tranSales:description><tranSales:price internalId="-1" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><tranSales:amount>1.0</tranSales:amount><tranSales:line>1</tranSales:line><tranSales:taxCode internalId="-8" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>-Not Taxable-</platformCore:name></tranSales:taxCode><tranSales:shipGroup>1</tranSales:shipGroup><tranSales:itemIsFulfilled>false</tranSales:itemIsFulfilled></tranSales:item><tranSales:item><tranSales:item internalId="1067" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>APPAREL : Americana Jackett : Americana Jacket-GR-L</platformCore:name></tranSales:item><tranSales:quantityAvailable>0.0</tranSales:quantityAvailable><tranSales:quantity>1.0</tranSales:quantity><tranSales:units internalId="1" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Ea</platformCore:name></tranSales:units><tranSales:description>Our Americana Jacket is a gorgeous nod to Jackson&#x2019;s own mountain-sexy women. Pair it with layers or wear it solo, our herringbone lining feels buttery-soft next to your skin. It&#x2019;s your little secret. Stylish ruching in just the right places and exaggerated collar lend an air of sophistication to your day, and your night. 2 handwarmer and 4 cargo pockets. Oversized zipper windflap. MK Women&#x2019;s chain stitch embroidery. Designed for women, by women. Contemporary fit, feminine flair. Imported. Garment washed.</tranSales:description><tranSales:price internalId="-1" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><tranSales:amount>1.0</tranSales:amount><tranSales:line>2</tranSales:line><tranSales:taxCode internalId="-8" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>-Not Taxable-</platformCore:name></tranSales:taxCode><tranSales:shipGroup>1</tranSales:shipGroup><tranSales:itemIsFulfilled>false</tranSales:itemIsFulfilled></tranSales:item><tranSales:item><tranSales:item internalId="1124" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Spree Taxes</platformCore:name></tranSales:item><tranSales:quantity>1.0</tranSales:quantity><tranSales:price internalId="-1" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><tranSales:rate>5.00</tranSales:rate><tranSales:amount>5.0</tranSales:amount><tranSales:line>3</tranSales:line><tranSales:taxCode internalId="-8" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>-Not Taxable-</platformCore:name></tranSales:taxCode><tranSales:shipGroup>1</tranSales:shipGroup><tranSales:itemIsFulfilled>false</tranSales:itemIsFulfilled></tranSales:item><tranSales:item><tranSales:item internalId="1225" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Spree Discount</platformCore:name></tranSales:item><tranSales:quantity>1.0</tranSales:quantity><tranSales:price internalId="-1" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><tranSales:rate>3.00</tranSales:rate><tranSales:amount>3.0</tranSales:amount><tranSales:line>4</tranSales:line><tranSales:taxCode internalId="-8" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>-Not Taxable-</platformCore:name></tranSales:taxCode><tranSales:shipGroup>1</tranSales:shipGroup><tranSales:itemIsFulfilled>false</tranSales:itemIsFulfilled></tranSales:item></tranSales:itemList><tranSales:shipGroupList><tranSales:shipGroup><tranSales:id>1</tranSales:id><tranSales:isFulfilled>false</tranSales:isFulfilled><tranSales:weight>12.0</tranSales:weight><tranSales:sourceAddressRef internalId="DEFAULT" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><tranSales:destinationAddressRef internalId="245202" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><tranSales:destinationAddress>7735 Old Georgetown Rd Bethesda MD 20814 United States</tranSales:destinationAddress><tranSales:shippingMethodRef internalId="77" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><tranSales:shippingMethod>UPS Next Day Air</tranSales:shippingMethod><tranSales:handlingRate>0.0</tranSales:handlingRate><tranSales:shippingRate>10.0</tranSales:shippingRate></tranSales:shipGroup></tranSales:shipGroupList><tranSales:customFieldList xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:customField internalId="181" scriptId="custbody_fmt_finance_declined" xsi:type="platformCore:BooleanCustomFieldRef"><platformCore:value>false</platformCore:value></platformCore:customField><platformCore:customField internalId="180" scriptId="custbody_fmt_req_financial_app" xsi:type="platformCore:BooleanCustomFieldRef"><platformCore:value>false</platformCore:value></platformCore:customField><platformCore:customField internalId="179" scriptId="custbody_fmt_finance_app" xsi:type="platformCore:BooleanCustomFieldRef"><platformCore:value>false</platformCore:value></platformCore:customField></tranSales:customFieldList></record></readResponse></getResponse></soapenv:Body></soapenv:Envelope>
     http_version: 
-  recorded_at: Thu, 23 Jan 2014 20:04:08 GMT
+  recorded_at: Thu, 23 Jan 2014 21:17:49 GMT
 recorded_with: VCR 2.8.0

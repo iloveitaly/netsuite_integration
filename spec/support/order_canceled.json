@@ -1,6 +1,6 @@
 {
   "order": {
-    "number": "R987654321",
+    "number": "R123456789",
     "channel": "spree",
     "email": "spree@example.com",
     "currency": "USD",
@@ -102,7 +102,7 @@
   },
   "original": {
     "id": 2,
-    "number": "R987654321",
+    "number": "R123456789",
     "item_total": "22.99",
     "total": "30.29",
     "ship_total": "5.0",
@@ -274,7 +274,7 @@
         "cost": "5.0",
         "shipped_at": null,
         "state": "canceled",
-        "order_id": "R987654321",
+        "order_id": "R123456789",
         "stock_location_name": "default",
         "shipping_rates": [
           {

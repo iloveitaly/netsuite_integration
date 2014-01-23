@@ -17,7 +17,7 @@ module NetsuiteIntegration
     end
 
     def process!
-      if customer_refund_service.create user_id, payment_method_id, customer_deposit.internal_id
+      if customer_refund_service.create user_id, payment_method_id, customer_deposit.internal_id, order_payload[:number]
         sales_order_service.close! sales_order
       end
     end

@@ -2,7 +2,7 @@ module NetsuiteIntegration
   module Services
     class CustomerRefund < Base
 
-      def create(customer_id, payment_method_id, customer_deposit_id)
+      def create(customer_id, payment_method_id, customer_deposit_id, order_number)
         refund                = NetSuite::Records::CustomerRefund.new
         # Defaults to the full amount of the customer deposit record
         # refund.total = 100
@@ -12,7 +12,7 @@ module NetsuiteIntegration
         # It defaults to the first entry in the UI list... I think
         # TODO Implement a config field for the 'account'
         # refund.account      = NetSuite::Records::RecordRef.new(internal_id: account_id)
-
+        refund.external_id    = "#{prefix}#{order_number}"
         # doc -> customer_deposit_id
         customer_deposit_hash = {apply: true, doc: customer_deposit_id}
         list = NetSuite::Records::CustomerRefundDepositList.new(replace_all: 'false', customer_refund_deposit: [customer_deposit_hash])
@@ -20,6 +20,12 @@ module NetsuiteIntegration
         refund.deposit_list   = list
 
         refund.add
+      end
+
+      private
+      # Customer refund prefix
+      def prefix
+        'cr_'
       end
     end
   end

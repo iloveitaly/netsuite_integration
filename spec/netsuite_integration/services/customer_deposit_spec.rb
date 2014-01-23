@@ -4,6 +4,7 @@ module NetsuiteIntegration
   module Services
     describe CustomerDeposit do
       include_examples "config hash"
+      include_context "connect to netsuite"
 
       subject { described_class.new config }
 
@@ -20,7 +21,7 @@ module NetsuiteIntegration
       it "finds customer deposit given order id" do
         VCR.use_cassette("customer_deposit/find_by_external_id") do
           item = subject.find_by_external_id(order_number)
-          expect(item.internal_id).to eq "9496"
+          expect(item.internal_id).to eq "10498"
         end
       end      
     end

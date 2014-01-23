@@ -19,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 23 Jan 2014 20:04:05 GMT
+      - Thu, 23 Jan 2014 20:19:11 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - -2034212106:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80
+      - -1590556879:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -1675,7 +1675,7 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Thu, 23 Jan 2014 20:04:07 GMT
+  recorded_at: Thu, 23 Jan 2014 20:19:14 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
@@ -1691,15 +1691,15 @@ http_interactions:
         xmlns:listAcct="urn:accounting_2013_2.lists.webservices.netsuite.com" xmlns:tranCust="urn:customers_2013_2.transactions.webservices.netsuite.com"
         xmlns:listSupport="urn:support_2013_2.lists.webservices.netsuite.com" xmlns:tranGeneral="urn:general_2013_2.transactions.webservices.netsuite.com"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
         type="role" internalId="3"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:add><platformMsgs:record
-        xsi:type="tranCust:CustomerDeposit" platformMsgs:externalId="cd_R123456789"><tranCust:salesOrder
-        internalId="7279"></tranCust:salesOrder><tranCust:payment>20</tranCust:payment></platformMsgs:record></platformMsgs:add></env:Body></env:Envelope>
+        xsi:type="tranCust:CustomerRefund" platformMsgs:externalId="cr_R123456789"><tranCust:customer
+        internalId="75"></tranCust:customer><tranCust:paymentMethod internalId="1"></tranCust:paymentMethod><tranCust:depositList><tranCust:replaceAll>false</tranCust:replaceAll><tranCust:customerRefundDeposit><tranCust:apply>true</tranCust:apply><tranCust:doc>8079</tranCust:doc></tranCust:customerRefundDeposit></tranCust:depositList></platformMsgs:record></platformMsgs:add></env:Body></env:Envelope>
     headers:
       Soapaction:
       - '"add"'
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '1623'
+      - '1869'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1712,11 +1712,11 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 23 Jan 2014 20:04:05 GMT
+      - Thu, 23 Jan 2014 20:19:11 GMT
       Server:
       - Apache
       Ns-Rtimer-Composite:
-      - -93453745:706172746E6572732D6A61766131303030332E626F732E6E65746C65646765722E636F6D:80
+      - -93405489:706172746E6572732D6A61766131303030332E626F732E6E65746C65646765722E636F6D:80
       Set-Cookie:
       - JSESSIONID=JHY9Sh0WWT830CGh3rgcvQvh4LGy0z5C3Qwyv8npzWvZrxVLTmL4TP0nY10GVMvPhDJjD1MRNPhJBsz3WrgcpdjsZDQmpC25rgz9qVgdwLpprd2TXv2DQn6D2088rzTH!-603832068;
         path=/
@@ -1735,11 +1735,11 @@ http_interactions:
       encoding: UTF-8
       string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
         xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs="urn:messages_2013_2.platform.webservices.netsuite.com"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_012320141061958231890322417_774a9e</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><addResponse
+        xmlns:platformMsgs="urn:messages_2013_2.platform.webservices.netsuite.com"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_0123201410610522241611720763_ac69c</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><addResponse
         xmlns="urn:messages_2013_2.platform.webservices.netsuite.com"><writeResponse><platformCore:status
         isSuccess="true" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><baseRef
-        internalId="10498" externalId="cd_R123456789" type="customerDeposit" xsi:type="platformCore:RecordRef"
+        internalId="10499" externalId="cr_R123456789" type="customerRefund" xsi:type="platformCore:RecordRef"
         xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/></writeResponse></addResponse></soapenv:Body></soapenv:Envelope>
     http_version: 
-  recorded_at: Thu, 23 Jan 2014 20:04:08 GMT
+  recorded_at: Thu, 23 Jan 2014 20:19:15 GMT
 recorded_with: VCR 2.8.0

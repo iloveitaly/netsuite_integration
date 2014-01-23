@@ -72,6 +72,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
+  # TODO combine with /orders
   post '/cancel_order' do
     begin
       refund = NetsuiteIntegration::Refund.new(@config, @message)
