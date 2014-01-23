@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/RevolutionPrep/netsuite.git
-  revision: 3fd5386693ef0e71fd29bf9c0a00bd1911f498f4
+  remote: git://github.com/brunobuccolo/netsuite.git
+  revision: 1fc1692566e25a5554bd255764161f990e869297
+  branch: spree
   specs:
     netsuite (0.2.0)
       savon (~> 2.3.0)
