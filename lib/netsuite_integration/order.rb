@@ -37,7 +37,7 @@ module NetsuiteIntegration
 
     def create_customer_deposit
       order = @imported_order || sales_order
-      Services::CustomerDeposit.new(config).create order, order_payload[:totals][:order]
+      Services::CustomerDeposit.new(config).create order, order_payload[:totals][:order], order_payload[:number]
     end
 
     def got_paid?
