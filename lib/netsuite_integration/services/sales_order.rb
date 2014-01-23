@@ -1,6 +1,6 @@
 module NetsuiteIntegration
   module Services
-    class SalesOrderService < Base
+    class SalesOrder < Base
       def find_by_external_id(external_id)
         NetSuite::Records::SalesOrder.get external_id: external_id
       rescue NetSuite::RecordNotFound
@@ -15,4 +15,3 @@ module NetsuiteIntegration
     end
   end
 end
-

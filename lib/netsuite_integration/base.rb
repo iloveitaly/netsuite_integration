@@ -32,7 +32,7 @@ module NetsuiteIntegration
     end
 
     def sales_order_service
-      @sales_order_service ||= NetsuiteIntegration::Services::SalesOrderService.new(@config)
+      @sales_order_service ||= NetsuiteIntegration::Services::SalesOrder.new(@config)
     end
   end
 
