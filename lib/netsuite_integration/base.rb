@@ -4,7 +4,7 @@ module NetsuiteIntegration
 
     def initialize(message = {}, config)
       @config = config
-
+      
       @payload = message[:payload].with_indifferent_access
       @original = payload[:original]
       @message_name = message[:message]
@@ -17,6 +17,10 @@ module NetsuiteIntegration
 
     def customer_refund_service
       @customer_refund_service ||= NetsuiteIntegration::Services::CustomerRefund.new(@config)
+    end
+
+    def customer_deposit_service
+      @customer_deposit_service ||= NetsuiteIntegration::Services::CustomerDeposit.new(@config)
     end
 
     def inventory_item_service
@@ -35,4 +39,6 @@ module NetsuiteIntegration
   class AlreadyPersistedCustomerException < Exception; end
   class UpdateFailCustomerException < Exception; end
   class CreationFailCustomerException < Exception; end
+  class RecordNotFoundCustomerDeposit < Exception; end
+  class RecordNotFoundSalesOrder < Exception; end
 end

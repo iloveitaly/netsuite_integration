@@ -72,6 +72,23 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
+  post '/cancel_order' do
+    begin
+      refund = NetsuiteIntegration::Refund.new(@config, @message)
+
+      if refund.process!
+        add_notification "info", "Customer Refund created for NetSuite Sales Order #{@message[:payload][:order][:number]}"
+        process_result 200
+      else
+        add_notification "error", "Failed to create a Customer Refund for NetSuite Sales Order #{@message[:payload][:order][:number]}"
+        process_result 500
+      end
+    rescue Exception => e
+      add_notification "error", e.message, nil, { backtrace: e.backtrace.to_a.join("\n\t") }
+      process_result 500
+    end
+  end
+
   post '/inventory_stock' do
     begin
       stock = NetsuiteIntegration::InventoryStock.new(@config, @message)

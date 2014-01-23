@@ -2,26 +2,24 @@ module NetsuiteIntegration
   module Services
     class CustomerRefund < Base
 
-      def create(customer_id)
+      def create(customer_id, payment_method_id, customer_deposit_id)
         refund                = NetSuite::Records::CustomerRefund.new
+        # Defaults to the full amount of the customer deposit record
         # refund.total = 100
-        # Defaults to the full amount of the associated customer deposit record
-        refund.customer       = NetSuite::Records::RecordRef.new(internal_id: '1277') # Client: johnson & johnson
-        refund.payment_method = NetSuite::Records::RecordRef.new(internal_id: '1') # Cash
-        refund.account        = NetSuite::Records::RecordRef.new(internal_id: '182') # CC Receivables
+        refund.customer       = NetSuite::Records::RecordRef.new(internal_id: customer_id) # '1397' -> Smith Supplies
+        refund.payment_method = NetSuite::Records::RecordRef.new(internal_id: payment_method_id) # '1' -> Cash        
+        # 'account' is an optional field
+        # It defaults to the first entry in the UI list... I think
+        # TODO Implement a config field for the 'account'
+        # refund.account      = NetSuite::Records::RecordRef.new(internal_id: account_id)
 
-        # doc: ID of the associated customer deposit record
-        # ref_num: Ref No. of the associated customer deposit record
-        customer_deposit_hash = {apply: 'true', doc: '5966', ref_num: '5'}
+        # doc -> customer_deposit_id
+        customer_deposit_hash = {apply: true, doc: customer_deposit_id}
         list = NetSuite::Records::CustomerRefundDepositList.new(replace_all: 'false', customer_refund_deposit: [customer_deposit_hash])
 
         refund.deposit_list   = list
 
-        if refund.add
-          refund
-        else
-          nil
-        end
+        refund.add
       end
     end
   end
