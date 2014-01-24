@@ -13,6 +13,8 @@ module NetsuiteIntegration
       return unless order_pending_billing?
 
       invoice = NetSuite::Records::Invoice.new({
+        tax_rate: 0,
+        is_taxable: false,
         created_from: {
           internal_id: order_id
         }
@@ -41,7 +43,7 @@ module NetsuiteIntegration
         }
       })
 
-      fulfillment.add
+      @fulfilled = fulfillment.add
       verify_errors(fulfillment)
     end
 
