@@ -119,5 +119,44 @@ describe NetsuiteEndpoint do
         end
       end
     end
+
+    context 'when order is canceled' do
+      include_examples "config hash"
+      include_context "connect to netsuite" 
+
+      let(:customer_deposit) {
+        VCR.use_cassette("customer_deposit/find_by_external_id") do
+          NetsuiteIntegration::Services::CustomerDeposit.new(config).find_by_external_id('R123456789')
+        end
+      }
+
+      let(:sales_order) {
+        VCR.use_cassette("order/find_by_external_id") do
+          NetsuiteIntegration::Services::CustomerDeposit.new(config).find_by_external_id('R123456789')
+        end
+      }    
+
+      let(:request) do
+        payload = Factories.order_canceled_payload
+
+        {
+          message: 'order:canceled',
+          message_id: 123,
+          payload: payload.merge(parameters: parameters)
+        }
+      end
+
+      it 'issues customer refund and closes the order' do
+        NetsuiteIntegration::Refund.any_instance.stub_chain(:customer_deposit_service, :find_by_external_id).and_return(customer_deposit)        
+        NetsuiteIntegration::Refund.any_instance.stub_chain(:sales_order_service, :find_by_external_id).and_return(sales_order)
+        NetsuiteIntegration::Refund.any_instance.stub_chain(:sales_order_service, :close!).and_return(true)
+
+        VCR.use_cassette('customer_refund/create') do
+          post '/orders', request.to_json, auth
+        end
+
+        expect(json_response['notifications'][0]['subject']).to match('Customer Refund created and NetSuite Sales Order')
+      end          
+    end
   end
 end

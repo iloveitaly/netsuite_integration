@@ -43,28 +43,11 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
   post '/orders' do
     begin
-      order = NetsuiteIntegration::Order.new(@config, @message)
-
-      unless order.imported?
-        if order.import
-          add_notification "info", "Order #{order.sales_order.external_id} imported into NetSuite (internal id #{order.sales_order.internal_id})"
-          process_result 200
-        else
-          add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite"
-          process_result 500
-        end
-      else
-        if order.got_paid?
-          if order.create_customer_deposit
-            add_notification "info", "Customer Deposit created for NetSuite Sales Order #{order.sales_order.external_id}"
-            process_result 200
-          else
-            add_notification "error", "Failed to create a Customer Deposit for NetSuite Sales Order #{order.sales_order.external_id}"
-            process_result 500
-          end
-        else
-          process_result 200
-        end
+      case @message['message']
+      when 'order:new', 'order:updated'
+        create_or_update_order
+      when 'order:canceled', 'order:cancelled'
+        cancel_order
       end
     rescue Exception => e
       add_notification "error", e.message, nil, { backtrace: e.backtrace.to_a.join("\n\t") }
@@ -72,20 +55,40 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
-  # TODO combine with /orders
-  post '/cancel_order' do
-    begin
-      refund = NetsuiteIntegration::Refund.new(@config, @message)
+  def create_or_update_order
+    order = NetsuiteIntegration::Order.new(@config, @message)
 
-      if refund.process!
-        add_notification "info", "Customer Refund created for NetSuite Sales Order #{@message[:payload][:order][:number]}"
+    unless order.imported?
+      if order.import
+        add_notification "info", "Order #{order.sales_order.external_id} imported into NetSuite (internal id #{order.sales_order.internal_id})"
         process_result 200
       else
-        add_notification "error", "Failed to create a Customer Refund for NetSuite Sales Order #{@message[:payload][:order][:number]}"
+        add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite"
         process_result 500
       end
-    rescue Exception => e
-      add_notification "error", e.message, nil, { backtrace: e.backtrace.to_a.join("\n\t") }
+    else
+      if order.got_paid?
+        if order.create_customer_deposit
+          add_notification "info", "Customer Deposit created for NetSuite Sales Order #{order.sales_order.external_id}"
+          process_result 200
+        else
+          add_notification "error", "Failed to create a Customer Deposit for NetSuite Sales Order #{order.sales_order.external_id}"
+          process_result 500
+        end
+      else
+        process_result 200
+      end
+    end
+  end
+
+  def cancel_order
+    refund = NetsuiteIntegration::Refund.new(@config, @message)
+
+    if refund.process!
+      add_notification "info", "Customer Refund created and NetSuite Sales Order #{@message[:payload][:order][:number]} was closed"
+      process_result 200
+    else
+      add_notification "error", "Failed to create a Customer Refund and close the NetSuite Sales Order #{@message[:payload][:order][:number]}"
       process_result 500
     end
   end
