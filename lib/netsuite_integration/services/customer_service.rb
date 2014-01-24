@@ -10,7 +10,6 @@ module NetsuiteIntegration
       end
 
       # entity_id -> Customer name
-
       def create(payload)
         customer             = NetSuite::Records::Customer.new
         customer.email       = payload['email']
@@ -22,7 +21,8 @@ module NetsuiteIntegration
 
         # Defaults
         customer.is_person   = true
-        customer.is_inactive = true
+        # I don't think we need to make the customer inactive
+        # customer.is_inactive = true
 
         if customer.add
           customer

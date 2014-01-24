@@ -134,7 +134,13 @@ describe NetsuiteEndpoint do
         VCR.use_cassette("order/find_by_external_id") do
           NetsuiteIntegration::Services::CustomerDeposit.new(config).find_by_external_id('R123456789')
         end
-      }    
+      }
+
+      let(:customer) {
+        VCR.use_cassette("customer/customer_found") do
+          NetsuiteIntegration::Services::CustomerDeposit.new(config).find_by_external_id('2117')
+        end
+      }       
 
       let(:request) do
         payload = Factories.order_canceled_payload
@@ -149,6 +155,7 @@ describe NetsuiteEndpoint do
       it 'issues customer refund and closes the order' do
         NetsuiteIntegration::Refund.any_instance.stub_chain(:customer_deposit_service, :find_by_external_id).and_return(customer_deposit)        
         NetsuiteIntegration::Refund.any_instance.stub_chain(:sales_order_service, :find_by_external_id).and_return(sales_order)
+        NetsuiteIntegration::Refund.any_instance.stub_chain(:customer_service, :find_by_external_id).and_return(customer)
         NetsuiteIntegration::Refund.any_instance.stub_chain(:sales_order_service, :close!).and_return(true)
 
         VCR.use_cassette('customer_refund/create') do

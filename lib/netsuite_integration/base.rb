@@ -36,9 +36,18 @@ module NetsuiteIntegration
     end
   end
 
+  # Customer Errors
   class AlreadyPersistedCustomerException < Exception; end
   class UpdateFailCustomerException < Exception; end
   class CreationFailCustomerException < Exception; end
+  class RecordNotFoundCustomerException < Exception; end
+
+  # Customer Deposit Errors
   class RecordNotFoundCustomerDeposit < Exception; end
+
+  # Sales Order Errors
   class RecordNotFoundSalesOrder < Exception; end
+
+  # Customer Refund Errors
+  class CreationFailCustomerRefundException < Exception; end
 end

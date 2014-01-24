@@ -8,6 +8,7 @@ module NetsuiteIntegration
       end
 
       def close!(sales_order)
+        true
         # TODO: Mark all sales order items as _closed
         # sales_order.item_list.items
         # https://system.netsuite.com/help/helpcenter/en_US/SchemaBrowser/transactions/v2013_2_0/sales.html#tranSales:SalesOrderItemList

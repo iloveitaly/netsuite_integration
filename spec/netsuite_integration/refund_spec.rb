@@ -16,6 +16,12 @@ module NetsuiteIntegration
       VCR.use_cassette("order/find_by_external_id") do
         Services::CustomerDeposit.new(config).find_by_external_id('R123456789')
       end
+    }
+
+    let(:customer) {
+      VCR.use_cassette("customer/customer_found") do
+        Services::CustomerDeposit.new(config).find_by_external_id('2117')
+      end
     }    
 
     let(:message) {
@@ -31,6 +37,7 @@ module NetsuiteIntegration
       before(:each) do
         described_class.any_instance.stub_chain(:customer_deposit_service, :find_by_external_id).and_return(customer_deposit)        
         described_class.any_instance.stub_chain(:sales_order_service, :find_by_external_id).and_return(sales_order)
+        described_class.any_instance.stub_chain(:customer_service, :find_by_external_id).and_return(customer)
       end
 
       context '#initialize' do
@@ -40,6 +47,7 @@ module NetsuiteIntegration
           subject.order_payload['number'].should eq(message['payload']['order']['number'])
           subject.customer_deposit.should eq(customer_deposit)
           subject.sales_order.should eq(sales_order)
+          subject.customer.should eq(customer)
         end
       end
 

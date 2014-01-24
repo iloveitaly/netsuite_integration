@@ -19,7 +19,7 @@ module NetsuiteIntegration
 
         refund.deposit_list   = list
 
-        refund.add
+        refund.add or raise CreationFailCustomerRefundException, "#{refund.errors.first.code}: #{refund.errors.first.message}"
       end
 
       private
