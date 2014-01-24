@@ -13,7 +13,10 @@ module NetsuiteIntegration
         # Warning: external_id must be unique across all NetSuite data objects
         # TODO Revisit searching for customer deposits for a specific sales order
         deposit.external_id = "#{prefix}#{order_number}" 
+
+        # deposit.customer = NetSuite::Records::RecordRef.new(internal_id: sales_order.entity.internal_id)
         deposit.sales_order = NetSuite::Records::RecordRef.new(internal_id: sales_order.internal_id)
+        deposit.account = NetSuite::Records::RecordRef.new(internal_id: 119)
         deposit.payment = total
 
         deposit.add

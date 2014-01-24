@@ -10,7 +10,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
   response:
@@ -19,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 23 Jan 2014 20:04:05 GMT
+      - Fri, 24 Jan 2014 21:30:39 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - -2034212106:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80
+      - "-2035951550:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80"
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -1675,35 +1675,36 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Thu, 23 Jan 2014 20:04:07 GMT
+  recorded_at: Fri, 24 Jan 2014 21:30:39 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:platformMsgs="urn:messages_2013_2.platform.webservices.netsuite.com"
-        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"
-        xmlns:platformCommon="urn:common_2013_2.platform.webservices.netsuite.com"
-        xmlns:listRel="urn:relationships_2013_2.lists.webservices.netsuite.com" xmlns:tranSales="urn:sales_2013_2.transactions.webservices.netsuite.com"
-        xmlns:actSched="urn:scheduling_2013_2.activities.webservices.netsuite.com"
-        xmlns:setupCustom="urn:customization_2013_2.setup.webservices.netsuite.com"
-        xmlns:listAcct="urn:accounting_2013_2.lists.webservices.netsuite.com" xmlns:tranCust="urn:customers_2013_2.transactions.webservices.netsuite.com"
-        xmlns:listSupport="urn:support_2013_2.lists.webservices.netsuite.com" xmlns:tranGeneral="urn:general_2013_2.transactions.webservices.netsuite.com"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
-        type="role" internalId="3"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:add><platformMsgs:record
-        xsi:type="tranCust:CustomerDeposit" platformMsgs:externalId="cd_R123456789"><tranCust:salesOrder
-        internalId="7279"></tranCust:salesOrder><tranCust:payment>20</tranCust:payment></platformMsgs:record></platformMsgs:add></env:Body></env:Envelope>
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"
+        xmlns:platformCommon=\"urn:common_2013_2.platform.webservices.netsuite.com\"
+        xmlns:listRel=\"urn:relationships_2013_2.lists.webservices.netsuite.com\"
+        xmlns:tranSales=\"urn:sales_2013_2.transactions.webservices.netsuite.com\"
+        xmlns:actSched=\"urn:scheduling_2013_2.activities.webservices.netsuite.com\"
+        xmlns:setupCustom=\"urn:customization_2013_2.setup.webservices.netsuite.com\"
+        xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\" xmlns:tranCust=\"urn:customers_2013_2.transactions.webservices.netsuite.com\"
+        xmlns:listSupport=\"urn:support_2013_2.lists.webservices.netsuite.com\" xmlns:tranGeneral=\"urn:general_2013_2.transactions.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>casa123</platformCore:password><platformCore:account>TSTDRV1141558</platformCore:account><platformCore:role
+        type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:add><platformMsgs:record
+        xsi:type=\"tranCust:CustomerDeposit\" platformMsgs:externalId=\"cd_R123456789\"><tranCust:salesOrder
+        internalId=\"11203\"></tranCust:salesOrder><tranCust:account internalId=\"119\"></tranCust:account><tranCust:payment>20</tranCust:payment></platformMsgs:record></platformMsgs:add></env:Body></env:Envelope>"
     headers:
       Soapaction:
-      - '"add"'
+      - "\"add\""
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '1623'
+      - '1681'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
   response:
@@ -1712,13 +1713,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 23 Jan 2014 20:04:05 GMT
+      - Fri, 24 Jan 2014 21:30:40 GMT
       Server:
       - Apache
       Ns-Rtimer-Composite:
-      - -93453745:706172746E6572732D6A61766131303030332E626F732E6E65746C65646765722E636F6D:80
+      - "-2032964768:706172746E6572732D6A61766131303030342E626F732E6E65746C65646765722E636F6D:80"
       Set-Cookie:
-      - JSESSIONID=JHY9Sh0WWT830CGh3rgcvQvh4LGy0z5C3Qwyv8npzWvZrxVLTmL4TP0nY10GVMvPhDJjD1MRNPhJBsz3WrgcpdjsZDQmpC25rgz9qVgdwLpprd2TXv2DQn6D2088rzTH!-603832068;
+      - JSESSIONID=ryTVSvhVyJdZGdTF111SL1GnBmbG1lQzHFylP99zPybWs34BD7T2ps5kJHT1y09DSxy1VhJs8yyYK8yChygYFkDyW46C6nTmjyJRjXJGnxQNQHpLQQn1KWmvWh2qLyPP!1981496266;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -1733,13 +1734,13 @@ http_interactions:
       - text/xml; charset=utf-8
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs="urn:messages_2013_2.platform.webservices.netsuite.com"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_012320141061958231890322417_774a9e</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><addResponse
-        xmlns="urn:messages_2013_2.platform.webservices.netsuite.com"><writeResponse><platformCore:status
-        isSuccess="true" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><baseRef
-        internalId="10498" externalId="cd_R123456789" type="customerDeposit" xsi:type="platformCore:RecordRef"
-        xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/></writeResponse></addResponse></soapenv:Body></soapenv:Envelope>
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header><platformMsgs:documentInfo
+        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_01242014970363794570597600_460551e</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><addResponse
+        xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><writeResponse><platformCore:status
+        isSuccess=\"false\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:statusDetail
+        type=\"ERROR\"><platformCore:code>INVALID_KEY_OR_REF</platformCore:code><platformCore:message>Invalid
+        account reference key 119 for customer 2507.</platformCore:message></platformCore:statusDetail></platformCore:status></writeResponse></addResponse></soapenv:Body></soapenv:Envelope>"
     http_version: 
-  recorded_at: Thu, 23 Jan 2014 20:04:08 GMT
+  recorded_at: Fri, 24 Jan 2014 21:30:40 GMT
 recorded_with: VCR 2.8.0

@@ -8,7 +8,10 @@ module NetsuiteIntegration
 
       subject { described_class.new config }
 
-      let(:sales_order) { double("SalesOrder", internal_id: 7279) }
+      let(:sales_order) do
+        double("SalesOrder", internal_id: 11203, :entity => stub(internal_id: 2507))
+      end
+
       let(:total) { 20 }
       let(:order_number) { 'R123456789' }
 
