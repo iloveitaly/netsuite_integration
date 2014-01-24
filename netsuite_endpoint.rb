@@ -35,7 +35,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       end
 
       process_result 200
-    rescue Exception => e
+    rescue StandardError => e
       add_notification "error", e.message, nil, { backtrace: e.backtrace.to_a.join("\n\t") }
       process_result 500
     end
@@ -49,7 +49,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       when 'order:canceled', 'order:cancelled'
         cancel_order
       end
-    rescue Exception => e
+    rescue StandardError => e
       add_notification "error", e.message, nil, { backtrace: e.backtrace.to_a.join("\n\t") }
       process_result 500
     end
@@ -84,7 +84,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
   def cancel_order
     refund = NetsuiteIntegration::Refund.new(@config, @message)
-
+    
     if refund.process!
       add_notification "info", "Customer Refund created and NetSuite Sales Order #{@message[:payload][:order][:number]} was closed"
       process_result 200
@@ -111,7 +111,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       order = NetsuiteIntegration::Shipment.new(@message, @config).import
       add_notification "info", "Order #{order.external_id} fulfilled in NetSuite (internal id #{order.internal_id})"
       process_result 200
-    rescue Exception => e
+    rescue StandardError => e
       add_notification "error", e.message, e.backtrace.to_a.join("\n")
       process_result 500
     end

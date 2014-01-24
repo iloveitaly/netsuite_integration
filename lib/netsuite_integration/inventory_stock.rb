@@ -1,5 +1,5 @@
 module NetsuiteIntegration
-  class RecordNotFound < Exception; end
+  class RecordNotFound < StandardError; end
 
   class InventoryStock
     attr_reader :config, :sku, :item

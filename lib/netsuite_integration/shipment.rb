@@ -72,7 +72,7 @@ module NetsuiteIntegration
       if errors = (object.errors || []).select {|e| e.type == "ERROR"}
         text = errors.inject("") {|buf, cur| buf += cur.message}
 
-        raise Exception.new(text) if text.length > 0
+        raise StandardError.new(text) if text.length > 0
       end
     end
   end
