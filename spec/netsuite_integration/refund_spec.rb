@@ -27,23 +27,32 @@ module NetsuiteIntegration
       }.with_indifferent_access
     }
 
-    context '#initialize' do
+    context 'stubbed out' do
       before(:each) do
         described_class.any_instance.stub_chain(:customer_deposit_service, :find_by_external_id).and_return(customer_deposit)        
         described_class.any_instance.stub_chain(:sales_order_service, :find_by_external_id).and_return(sales_order)
       end
 
-      it 'should initialize correctly' do
-        subject = described_class.new(config, message)
-        subject.user_id.should eq(message['payload']['original']['user_id'])
-        subject.order_payload['number'].should eq(message['payload']['order']['number'])
-        subject.customer_deposit.should eq(customer_deposit)
-        subject.sales_order.should eq(sales_order)
+      context '#initialize' do
+        it 'should initialize correctly' do
+          subject = described_class.new(config, message)
+          subject.user_id.should eq(message['payload']['original']['user_id'])
+          subject.order_payload['number'].should eq(message['payload']['order']['number'])
+          subject.customer_deposit.should eq(customer_deposit)
+          subject.sales_order.should eq(sales_order)
+        end
       end
-    end
 
-    context '#process!' do
-      it 'should create customer refund and close sales order'
+      context '#process!' do
+        it 'should create customer refund and close sales order' do
+          subject = described_class.new(config, message)
+          subject.sales_order_service.stub(:close! => true)
+
+          VCR.use_cassette("customer_refund/create") do
+            expect(subject.process!).to be_true
+          end
+        end
+      end
     end
   end
 end
