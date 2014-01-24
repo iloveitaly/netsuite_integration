@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module NetsuiteIntegration
   module Services
-    describe SalesOrderService do
+    describe SalesOrder do
       include_examples "config hash"
       include_context "connect to netsuite"
 
