@@ -14,7 +14,7 @@ module NetsuiteIntegration
             name: item.store_display_name || item.item_id,
             available_on: item.last_modified_date.utc,
             description: item.store_description,
-            sku: item.internal_id,
+            sku: item.upc_code,
             price: get_item_base_price(item.pricing_matrix.prices),
             cost_price: item.cost,
             channel: "NetSuite"
