@@ -10,8 +10,7 @@ module NetsuiteIntegration
         refund.payment_method = NetSuite::Records::RecordRef.new(internal_id: payment_method_id) # '1' -> Cash        
         # 'account' is an optional field
         # It defaults to the first entry in the UI list... I think
-        # TODO Implement a config field for the 'account'
-        # refund.account      = NetSuite::Records::RecordRef.new(internal_id: account_id)
+        refund.account        = NetSuite::Records::RecordRef.new(internal_id: config.fetch('netsuite.account_for_sales_id'))
         refund.external_id    = "#{prefix}#{order_number}"
         # doc -> customer_deposit_id
         customer_deposit_hash = {apply: true, doc: customer_deposit_id}
