@@ -3,6 +3,7 @@ require 'spec_helper'
 module NetsuiteIntegration
   describe Order do
     include_examples 'config hash'
+    include_examples 'connect to netsuite'
 
     subject do
       described_class.new(config, {
@@ -27,7 +28,7 @@ module NetsuiteIntegration
     end
 
     context 'when order is new' do
-      let(:order_number) { 'R4534ERTFD234' }
+      let(:order_number) { 'R4534ERTFD34' }
 
       subject do
         payload = Factories.order_new_payload
@@ -44,8 +45,8 @@ module NetsuiteIntegration
           expect(order.external_id).to eq(order_number)
           expect(order.order_status).to eq('_pendingFulfillment')
 
-          # 2 products + shipping
-          expect(order.item_list.items.count).to eq(3)
+          # 2 products
+          expect(order.item_list.items.count).to eq(2)
 
           # products
           expect(order.item_list.items[0].amount).to eq(288.0)
