@@ -143,7 +143,7 @@ describe NetsuiteEndpoint do
 
       let(:sales_order) {
         VCR.use_cassette("order/find_by_external_id") do
-          NetsuiteIntegration::Services::CustomerDeposit.new(config).find_by_external_id('R123456789')
+          NetsuiteIntegration::Services::SalesOrder.new(config).find_by_external_id('R123456789')
         end
       }
 
@@ -160,20 +160,42 @@ describe NetsuiteEndpoint do
           message: 'order:canceled',
           message_id: 123,
           payload: payload.merge(parameters: parameters)
-        }
+        }.with_indifferent_access
       end
 
-      it 'issues customer refund and closes the order' do
-        NetsuiteIntegration::Refund.any_instance.stub_chain(:customer_deposit_service, :find_by_external_id).and_return(customer_deposit)
-        NetsuiteIntegration::Refund.any_instance.stub_chain(:sales_order_service, :find_by_external_id).and_return(sales_order)
-        NetsuiteIntegration::Refund.any_instance.stub_chain(:customer_service, :find_by_external_id).and_return(customer)
-        NetsuiteIntegration::Refund.any_instance.stub_chain(:sales_order_service, :close!).and_return(true)
+      before(:each) do
+        NetsuiteIntegration::Services::SalesOrder.any_instance.stub(:find_by_external_id => sales_order)
+      end
 
-        VCR.use_cassette('customer_refund/create') do
+      context 'when CustomerDeposit record DOES NOT exist' do
+        it 'closes the order' do
           post '/orders', request.to_json, auth
+          expect(last_response).to be_ok
+          expect(json_response['notifications'][0]['level']).to match('info')
+          expect(json_response['notifications'][0]['subject']).to match('NetSuite Sales Order R123456789 was closed')          
+        end
+      end
+
+      context 'when CustomerDeposit record exists' do
+        before(:each) do
+          request['payload']['original']['payment_state'] = 'paid'
+          setup_stubs
         end
 
-        expect(json_response['notifications'][0]['subject']).to match('Customer Refund created and NetSuite Sales Order')
+        it 'issues customer refund and closes the order' do
+          VCR.use_cassette('customer_refund/create') do
+            post '/orders', request.to_json, auth
+          end
+          expect(last_response).to be_ok
+          expect(json_response['notifications'][0]['level']).to match('info')
+          expect(json_response['notifications'][0]['subject']).to match('Customer Refund created and NetSuite Sales Order')
+        end
+
+        def setup_stubs
+          NetsuiteIntegration::Refund.any_instance.stub_chain(:customer_deposit_service, :find_by_external_id).and_return(customer_deposit)
+          NetsuiteIntegration::Refund.any_instance.stub_chain(:customer_service, :find_by_external_id).and_return(customer)
+          NetsuiteIntegration::Refund.any_instance.stub_chain(:sales_order_service, :close!).and_return(true)
+        end
       end
     end
   end

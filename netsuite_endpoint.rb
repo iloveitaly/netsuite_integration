@@ -55,6 +55,32 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
+  post '/inventory_stock' do
+    begin
+      stock = NetsuiteIntegration::InventoryStock.new(@config, @message)
+      add_message 'stock:actual', { sku: stock.sku, quantity: stock.quantity_available }
+      add_notification "info", "#{stock.quantity_available} units available of #{stock.sku} according to NetSuite"
+    rescue NetSuite::RecordNotFound
+      add_notification "info", "Inventory Item #{@message[:payload][:sku]} not found on NetSuite"
+    rescue => e
+      add_notification "error", e.message, e.backtrace.to_a.join("\n")
+    end
+
+    process_result 200
+  end
+
+  post '/shipments' do
+    begin
+      order = NetsuiteIntegration::Shipment.new(@message, @config).import
+      add_notification "info", "Order #{order.external_id} fulfilled in NetSuite (internal id #{order.internal_id})"
+      process_result 200
+    rescue StandardError => e
+      add_notification "error", e.message, e.backtrace.to_a.join("\n")
+      process_result 500
+    end
+  end
+
+  private
   def create_or_update_order
     order = NetsuiteIntegration::Order.new(@config, @message)
 
@@ -83,39 +109,32 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   def cancel_order
-    refund = NetsuiteIntegration::Refund.new(@config, @message)
-    
-    if refund.process!
-      add_notification "info", "Customer Refund created and NetSuite Sales Order #{@message[:payload][:order][:number]} was closed"
+    order = sales_order_service.find_by_external_id(@message[:payload][:order][:number]) or 
+      raise RecordNotFoundSalesOrder, "NetSuite Sales Order not found for order #{order_payload[:number]}"
+    if balance_due? # No CustomerDeposit record
+      sales_order_service.close!(order)
+
+      add_notification "info", "NetSuite Sales Order #{@message[:payload][:order][:number]} was closed"
       process_result 200
-    else
-      add_notification "error", "Failed to create a Customer Refund and close the NetSuite Sales Order #{@message[:payload][:order][:number]}"
-      process_result 500
+    else # CustomerDeposit record exists
+      refund = NetsuiteIntegration::Refund.new(@config, @message, order)
+      if refund.process!
+        add_notification "info", "Customer Refund created and NetSuite Sales Order #{@message[:payload][:order][:number]} was closed"
+        process_result 200
+      else
+        add_notification "error", "Failed to create a Customer Refund and close the NetSuite Sales Order #{@message[:payload][:order][:number]}"
+        process_result 500
+      end      
     end
   end
 
-  post '/inventory_stock' do
-    begin
-      stock = NetsuiteIntegration::InventoryStock.new(@config, @message)
-      add_message 'stock:actual', { sku: stock.sku, quantity: stock.quantity_available }
-      add_notification "info", "#{stock.quantity_available} units available of #{stock.sku} according to NetSuite"
-    rescue NetSuite::RecordNotFound
-      add_notification "info", "Inventory Item #{@message[:payload][:sku]} not found on NetSuite"
-    rescue => e
-      add_notification "error", e.message, e.backtrace.to_a.join("\n")
-    end
-
-    process_result 200
+  # 'balance_due' means that there is no customer deposit
+  # associated with the order in the NetSuite system
+  def balance_due?
+    @message[:payload][:original][:payment_state] == 'balance_due'
   end
 
-  post '/shipments' do
-    begin
-      order = NetsuiteIntegration::Shipment.new(@message, @config).import
-      add_notification "info", "Order #{order.external_id} fulfilled in NetSuite (internal id #{order.internal_id})"
-      process_result 200
-    rescue StandardError => e
-      add_notification "error", e.message, e.backtrace.to_a.join("\n")
-      process_result 500
-    end
+  def sales_order_service
+    @sales_order_service ||= NetsuiteIntegration::Services::SalesOrder.new(@config)
   end
 end
