@@ -22,6 +22,7 @@ module NetsuiteIntegration
     def import
       import_customer!
       import_products!
+      import_billing!
       import_shipping!
 
       sales_order.tran_date = order_payload[:placed_on]
@@ -89,9 +90,35 @@ module NetsuiteIntegration
       sales_order.item_list = NetSuite::Records::SalesOrderItemList.new(item: item_list)
     end
 
+    def import_billing!
+      payload = @payload[:order][:billing_address]
+      sales_order.transaction_bill_address = NetSuite::Records::BillAddress.new({
+        bill_addressee: "#{payload[:firstname]} #{payload[:lastname]}",
+        bill_addr1: payload[:address1],
+        bill_addr2: payload[:address2],
+        bill_zip: payload[:zipcode],
+        bill_city: payload[:city],
+        bill_state: Services::StateService.by_state_name(payload[:state]),
+        bill_country: Services::CountryService.by_iso_country(payload[:country]),
+        bill_phone: payload[:phone].gsub(/([^0-9]*)/, "")
+      })
+    end
+
     def import_shipping!
       sales_order.shipping_cost = order_payload[:totals][:shipping]
       sales_order.ship_method = NetSuite::Records::RecordRef.new(internal_id: shipping_id)
+
+      payload = @payload[:order][:shipping_address]
+      sales_order.transaction_ship_address = NetSuite::Records::ShipAddress.new({
+        ship_addressee: "#{payload[:firstname]} #{payload[:lastname]}",
+        ship_addr1: payload[:address1],
+        ship_addr2: payload[:address2],
+        ship_zip: payload[:zipcode],
+        ship_city: payload[:city],
+        ship_state: Services::StateService.by_state_name(payload[:state]),
+        ship_country: Services::CountryService.by_iso_country(payload[:country]),
+        ship_phone: payload[:phone].gsub(/([^0-9]*)/, "")
+      })
     end
 
     def shipping_id

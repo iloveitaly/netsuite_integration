@@ -28,7 +28,7 @@ module NetsuiteIntegration
     end
 
     context 'when order is new' do
-      let(:order_number) { 'R4534ERTFD34' }
+      let(:order_number) { 'R4534ERTFCS' }
 
       subject do
         payload = Factories.order_new_payload
@@ -52,8 +52,12 @@ module NetsuiteIntegration
           expect(order.item_list.items[0].amount).to eq(288.0)
           expect(order.item_list.items[1].amount).to eq(116.94)
 
-          # shipping should be set
+          # shipping costs, address
           expect(order.shipping_cost).to eq(5)
+          expect(order.transaction_ship_address.ship_addressee).to eq('Luis Shipping Braga')
+
+          # billing address
+          expect(order.transaction_bill_address.bill_addressee).to eq('Luis Billing Braga')
         end
       end
     end
