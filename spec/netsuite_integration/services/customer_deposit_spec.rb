@@ -12,8 +12,9 @@ module NetsuiteIntegration
         double("SalesOrder", internal_id: 11203, :entity => stub(internal_id: 2507))
       end
 
-      let(:total) { 20 }
-      let(:order_number) { 'R123456789' }
+      let(:total) { 94.99 }
+
+      let(:order_number) { 'R435245452435' }
 
       it "creates customer deposit give sales order id" do
         VCR.use_cassette("customer_deposit/add") do

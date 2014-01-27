@@ -90,6 +90,10 @@
           "description": "NetSuite sandbox",
           "data_type": "boolean"
         }, {
+          "name": "account_for_sales_id",
+          "description": "Account for credit card sales",
+          "data_type": "string"
+        }, {
           "name": "shipping_methods_mapping",
           "description": "Mapping from Spree Shipping method names to NetSuite Ship Item ids",
           "data_type": "list"

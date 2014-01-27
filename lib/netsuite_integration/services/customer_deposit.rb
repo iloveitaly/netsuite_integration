@@ -16,7 +16,8 @@ module NetsuiteIntegration
 
         # deposit.customer = NetSuite::Records::RecordRef.new(internal_id: sales_order.entity.internal_id)
         deposit.sales_order = NetSuite::Records::RecordRef.new(internal_id: sales_order.internal_id)
-        deposit.account = NetSuite::Records::RecordRef.new(internal_id: 119)
+        # TODO check for reference error between customer and account
+        deposit.account = NetSuite::Records::RecordRef.new(internal_id: config.fetch('netsuite.account_for_sales_id'))
         deposit.payment = total
 
         deposit.add

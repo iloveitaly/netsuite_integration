@@ -7,6 +7,7 @@ config_hash = {
   'netsuite.account' => 'test',
   'netsuite.last_updated_after' => '2012-01-08T18:48:56.001Z',
   'netsuite.role_id' => 3,
+  'netsuite.account_for_sales_id' => 2,
   'netsuite.shipping_methods_mapping' => [{
     "UPS Ground (USD)"=>"92",
     "UPS Two Day (USD)"=>"91",
@@ -30,6 +31,7 @@ shared_context "request parameters" do
       {:name => "netsuite.account", :value => "test" },
       {:name => "netsuite.last_updated_after", :value => "2013-01-08T18:48:56.001Z" },
       {:name => "netsuite.role_id", :value => "3" },
+      {:name => "netsuite.account_for_sales_id", :value => "2"},
       {:name => "netsuite.shipping_methods_mapping", :value => [{ "UPS" => "77", "UPS Ground (USD)"=>"92", "UPS Two Day (USD)"=>"91", "UPS One Day (USD)"=>"77" }]
       }
     ]
