@@ -11,11 +11,10 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       reset!
       api_version  '2013_2'
       wsdl         'https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl'
-      sandbox      config.fetch('netsuite.sandbox', false)
+      sandbox      false
       email        config.fetch('netsuite.email')
       password     config.fetch('netsuite.password')
       account      config.fetch('netsuite.account')
-      role         config.fetch('netsuite.role_id', 3)
       read_timeout 100000000
       log          "#{`pwd`.chomp}/netsuite.log"
       log_level    :info

@@ -23,14 +23,6 @@
           "description": "NetSuite account",
           "data_type": "string"
         }, {
-          "name": "role_id",
-          "description": "NetSuite role id",
-          "data_type": "string"
-        }, {
-          "name": "sandbox",
-          "description": "NetSuite sandbox",
-          "data_type": "boolean"
-        }, {
           "name": "last_updated_after",
           "description": "Date of last item imported",
           "data_type": "string"
@@ -82,14 +74,6 @@
           "description": "NetSuite account",
           "data_type": "string"
         }, {
-          "name": "role_id",
-          "description": "NetSuite role id",
-          "data_type": "string"
-        }, {
-          "name": "sandbox",
-          "description": "NetSuite sandbox",
-          "data_type": "boolean"
-        }, {
           "name": "account_for_sales_id",
           "description": "Account for credit card sales",
           "data_type": "string"
@@ -119,10 +103,6 @@
         }, {
           "name": "account",
           "description": "NetSuite account",
-          "data_type": "string"
-        }, {
-          "name": "role_id",
-          "description": "NetSuite role id",
           "data_type": "string"
         }]
       },
