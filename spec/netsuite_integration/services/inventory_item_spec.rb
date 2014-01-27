@@ -48,10 +48,10 @@ module NetsuiteIntegration
       end
     end
 
-    it "finds inventory item given item id" do
-      VCR.use_cassette("inventory_item/find_by_item_id") do
-        item = subject.find_by_item_id 1100
-        expect(item.internal_id).to eq "1100"
+    it "finds inventory item given upc code" do
+      VCR.use_cassette("inventory_item/find_by_upc_code") do
+        item = subject.find_by_upc_code "L0011234"
+        expect(item.upc_code).to eq "L0011234"
       end
     end
   end

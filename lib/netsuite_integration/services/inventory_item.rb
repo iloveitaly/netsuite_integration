@@ -31,8 +31,19 @@ module NetsuiteIntegration
         }).results.first
       end
 
-      def find_by_item_id(internal_id)
-        NetSuite::Records::InventoryItem.get(internal_id)
+      def find_by_upc_code(sku)
+        NetSuite::Records::InventoryItem.search({
+          criteria: {
+            basic: [{
+              field: 'upcCode',
+              value: sku,
+              operator: 'is'
+            }]
+          },
+          preferences: {
+            bodyFieldsOnly: false
+          }
+        }).results.first
       end
 
       private

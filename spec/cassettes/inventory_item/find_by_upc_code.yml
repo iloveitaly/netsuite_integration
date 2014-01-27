@@ -19,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 18:18:03 GMT
+      - Mon, 27 Jan 2014 18:42:02 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - "-1256775624:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80"
+      - "-258754026:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80"
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -1675,7 +1675,7 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 18:18:02 GMT
+  recorded_at: Mon, 27 Jan 2014 18:42:03 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
@@ -1683,16 +1683,23 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"
-        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
-        type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:get><platformMsgs:baseRef
-        xsi:type=\"platformCore:RecordRef\" internalId=\"1100\" type=\"inventoryItem\"></platformMsgs:baseRef></platformMsgs:get></env:Body></env:Envelope>"
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"
+        xmlns:platformCommon=\"urn:common_2013_2.platform.webservices.netsuite.com\"
+        xmlns:listRel=\"urn:relationships_2013_2.lists.webservices.netsuite.com\"
+        xmlns:tranSales=\"urn:sales_2013_2.transactions.webservices.netsuite.com\"
+        xmlns:actSched=\"urn:scheduling_2013_2.activities.webservices.netsuite.com\"
+        xmlns:setupCustom=\"urn:customization_2013_2.setup.webservices.netsuite.com\"
+        xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\" xmlns:tranCust=\"urn:customers_2013_2.transactions.webservices.netsuite.com\"
+        xmlns:listSupport=\"urn:support_2013_2.lists.webservices.netsuite.com\" xmlns:tranGeneral=\"urn:general_2013_2.transactions.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
+        type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport><platformMsgs:SearchPreferences><bodyFieldsOnly>false</bodyFieldsOnly></platformMsgs:SearchPreferences></env:Header><env:Body><platformMsgs:search><platformMsgs:searchRecord
+        xsi:type=\"listAcct:ItemSearch\"><listAcct:basic><platformCommon:upcCode operator=\"is\"><platformCore:searchValue>L0011234</platformCore:searchValue></platformCommon:upcCode></listAcct:basic></platformMsgs:searchRecord></platformMsgs:search></env:Body></env:Envelope>"
     headers:
       Soapaction:
-      - "\"get\""
+      - "\"search\""
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '861'
+      - '1759'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -1705,15 +1712,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 20 Jan 2014 18:18:04 GMT
+      - Mon, 27 Jan 2014 18:42:04 GMT
       Server:
       - Apache
       Content-Length:
-      - '2873'
+      - '2347'
       Ns-Rtimer-Composite:
-      - "-108679083:706172746E6572732D6A61766131303030372E626F732E6E65746C65646765722E636F6D:80"
+      - "-687951574:706172746E6572732D6A61766131303030332E626F732E6E65746C65646765722E636F6D:80"
       Set-Cookie:
-      - JSESSIONID=2qsTSdycww9W4RgMfyvzQvvpN879Nrr2L6Km9T1n3NCv5hrXNw66K8FknQTrJF0mx82KbYRQyhMjHl7pSx0m21DJyw3FyJhQqycm7Gk3WSKnmjJCppcQvvmLP6ktFvdS!620078821;
+      - JSESSIONID=XJgpSmgb8QWypJQSy5W8TQbzLG2VPYj0GXcYcphFCSKpHmn2bcYFvGGGvgKTwDSDZ1FPW0gsnyTQBwjw0HcGCNKfLrT50GTGLK2GlPmzvwQ6GRzvdGgJGQqv2S1dNBsm!1523138199;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -1728,100 +1735,52 @@ http_interactions:
       encoding: UTF-8
       string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
         xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_012020141327519465119150708_a66cde</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><getResponse
-        xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><readResponse><platformCore:status
-        isSuccess=\"true\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/><record
-        internalId=\"1100\" xsi:type=\"listAcct:InventoryItem\" xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\"><listAcct:createdDate>2014-01-11T16:00:37.000-08:00</listAcct:createdDate><listAcct:lastModifiedDate>2014-01-20T07:31:15.000-08:00</listAcct:lastModifiedDate><listAcct:purchaseDescription>If
-        you are looking for a fun, easy to float ski with freestyle feel and ground
-        breaking edge hold, then you are in the right place. The versatile Line Skis
-        Sir Francis Bacon Skis feature the aforementioned characteristics and the
-        work of renowned artist Eric Pollard. With a refined construction and geometry,
-        the Sir Francis Bacon has an even better float than before and feels smooth
-        and solid everywhere on the mountain, proving once again that Bacon goes well
-        on everything.</listAcct:purchaseDescription><listAcct:copyDescription>false</listAcct:copyDescription><listAcct:cogsAccount
-        internalId=\"121\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Cost
-        of Goods Sold</platformCore:name></listAcct:cogsAccount><listAcct:salesDescription>If
-        you are looking for a fun, easy to float ski with freestyle feel and ground
-        breaking edge hold, then you are in the right place. The versatile Line Skis
-        Sir Francis Bacon Skis feature the aforementioned characteristics and the
-        work of renowned artist Eric Pollard. With a refined construction and geometry,
-        the Sir Francis Bacon has an even better float than before and feels smooth
-        and solid everywhere on the mountain, proving once again that Bacon goes well
-        on everything.</listAcct:salesDescription><listAcct:incomeAccount internalId=\"55\"
-        xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>4000
-        Sales</platformCore:name></listAcct:incomeAccount><listAcct:dropshipExpenseAccount
-        internalId=\"170\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>5010
-        Drop Ship COGS</platformCore:name></listAcct:dropshipExpenseAccount><listAcct:isTaxable>false</listAcct:isTaxable><listAcct:assetAccount
-        internalId=\"120\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Inventory
-        Asset</platformCore:name></listAcct:assetAccount><listAcct:matchBillToReceipt>false</listAcct:matchBillToReceipt><listAcct:billQtyVarianceAcct
-        internalId=\"150\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>5095
-        Bill Quantity Variance</platformCore:name></listAcct:billQtyVarianceAcct><listAcct:billPriceVarianceAcct
-        internalId=\"151\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>5096
-        Bill Price Variance</platformCore:name></listAcct:billPriceVarianceAcct><listAcct:billExchRateVarianceAcct
-        internalId=\"152\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>5097
-        Bill Exchange Rate Variance</platformCore:name></listAcct:billExchRateVarianceAcct><listAcct:gainLossAccount
-        internalId=\"153\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>5091
-        Inventory Transfer Price Gain / Loss</platformCore:name></listAcct:gainLossAccount><listAcct:shippingCostUnits>per
-        Ea</listAcct:shippingCostUnits><listAcct:handlingCostUnits>per Ea</listAcct:handlingCostUnits><listAcct:weightUnits>per
-        Ea</listAcct:weightUnits><listAcct:costingMethodDisplay>Average</listAcct:costingMethodDisplay><listAcct:unitsType
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Each</platformCore:name></listAcct:unitsType><listAcct:stockUnit
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Each</platformCore:name></listAcct:stockUnit><listAcct:purchaseUnit
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Each</platformCore:name></listAcct:purchaseUnit><listAcct:saleUnit
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Each</platformCore:name></listAcct:saleUnit><listAcct:trackLandedCost>true</listAcct:trackLandedCost><listAcct:isDropShipItem>false</listAcct:isDropShipItem><listAcct:isSpecialOrderItem>false</listAcct:isSpecialOrderItem><listAcct:stockDescription>New</listAcct:stockDescription><listAcct:manufacturer>EVO</listAcct:manufacturer><listAcct:mpn>57940</listAcct:mpn><listAcct:countryOfManufacture>_unitedStates</listAcct:countryOfManufacture><listAcct:roundUpAsComponent>false</listAcct:roundUpAsComponent><listAcct:defaultItemShipMethod
-        internalId=\"92\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>UPS
-        Ground</platformCore:name></listAcct:defaultItemShipMethod><listAcct:itemCarrier>_ups</listAcct:itemCarrier><listAcct:itemShipMethodList
-        xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:recordRef
-        internalId=\"92\"><platformCore:name>UPS Ground</platformCore:name></platformCore:recordRef></listAcct:itemShipMethodList><listAcct:enforceMinQtyInternally>true</listAcct:enforceMinQtyInternally><listAcct:minimumQuantityUnits>Ea</listAcct:minimumQuantityUnits><listAcct:shipPackage
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Big
-        Box</platformCore:name></listAcct:shipPackage><listAcct:shipIndividually>false</listAcct:shipIndividually><listAcct:costCategory
-        internalId=\"3\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Default
-        Cost Category</platformCore:name></listAcct:costCategory><listAcct:useMarginalRates>false</listAcct:useMarginalRates><listAcct:costEstimateType>_averageCost</listAcct:costEstimateType><listAcct:costEstimate>400.0</listAcct:costEstimate><listAcct:transferPrice>400.0</listAcct:transferPrice><listAcct:overallQuantityPricingType>_byLineQuantity</listAcct:overallQuantityPricingType><listAcct:costEstimateUnits>per
-        Ea</listAcct:costEstimateUnits><listAcct:preferredLocation internalId=\"2\"
-        xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>San
-        Francisco</platformCore:name></listAcct:preferredLocation><listAcct:cost>400.0</listAcct:cost><listAcct:costUnits>per
-        Ea</listAcct:costUnits><listAcct:totalValue>240000.0</listAcct:totalValue><listAcct:averageCost>400.67</listAcct:averageCost><listAcct:useBins>false</listAcct:useBins><listAcct:quantityReorderUnits>Quantity
-        On Hand, Reorder Point, Quantity On Order, and Quantity Committed are in Ea</listAcct:quantityReorderUnits><listAcct:autoLeadTime>true</listAcct:autoLeadTime><listAcct:lastPurchasePrice>400.0</listAcct:lastPurchasePrice><listAcct:autoPreferredStockLevel>true</listAcct:autoPreferredStockLevel><listAcct:safetyStockLevelDays>200</listAcct:safetyStockLevelDays><listAcct:seasonalDemand>true</listAcct:seasonalDemand><listAcct:demandModifier>10.0</listAcct:demandModifier><listAcct:autoReorderPoint>true</listAcct:autoReorderPoint><listAcct:excludeFromSitemap>false</listAcct:excludeFromSitemap><listAcct:sitemapPriority>_auto</listAcct:sitemapPriority><listAcct:isDonationItem>false</listAcct:isDonationItem><listAcct:showDefaultDonationAmount>false</listAcct:showDefaultDonationAmount><listAcct:dontShowPrice>false</listAcct:dontShowPrice><listAcct:outOfStockBehavior>_default</listAcct:outOfStockBehavior><listAcct:customForm
-        internalId=\"33\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Primary
-        Inventory Part Form</platformCore:name></listAcct:customForm><listAcct:itemId>Sir
-        Francis Bacon</listAcct:itemId><listAcct:upcCode>57940</listAcct:upcCode><listAcct:displayName>Line
-        Skis Sir Francis Bacon Ski</listAcct:displayName><listAcct:parent internalId=\"1099\"
-        xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>SPORTING
-        GOODS : SKI</platformCore:name></listAcct:parent><listAcct:isOnline>true</listAcct:isOnline><listAcct:offerSupport>true</listAcct:offerSupport><listAcct:isInactive>false</listAcct:isInactive><listAcct:availableToPartners>false</listAcct:availableToPartners><listAcct:class
-        internalId=\"2\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Retail
-        Store Business</platformCore:name></listAcct:class><listAcct:currency>USA</listAcct:currency><listAcct:pricingMatrix><listAcct:pricing><listAcct:currency
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>USA</platformCore:name></listAcct:currency><listAcct:priceLevel
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Base
-        Price</platformCore:name></listAcct:priceLevel><listAcct:priceList><listAcct:price><listAcct:value>498.75</listAcct:value><listAcct:quantity>0.0</listAcct:quantity></listAcct:price></listAcct:priceList></listAcct:pricing><listAcct:pricing><listAcct:currency
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>USA</platformCore:name></listAcct:currency><listAcct:priceLevel
-        internalId=\"6\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Online
-        Wholesale Price</platformCore:name></listAcct:priceLevel><listAcct:discount>-15.0</listAcct:discount><listAcct:priceList><listAcct:price><listAcct:value>423.94</listAcct:value><listAcct:quantity>0.0</listAcct:quantity></listAcct:price></listAcct:priceList></listAcct:pricing><listAcct:pricing><listAcct:currency
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>USA</platformCore:name></listAcct:currency><listAcct:priceLevel
-        internalId=\"3\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Retail
-        Price</platformCore:name></listAcct:priceLevel><listAcct:discount>-5.0</listAcct:discount><listAcct:priceList><listAcct:price><listAcct:value>473.81</listAcct:value><listAcct:quantity>0.0</listAcct:quantity></listAcct:price></listAcct:priceList></listAcct:pricing><listAcct:pricing><listAcct:currency
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>USA</platformCore:name></listAcct:currency><listAcct:priceLevel
-        internalId=\"2\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Wholesale
-        Price</platformCore:name></listAcct:priceLevel><listAcct:discount>-10.0</listAcct:discount><listAcct:priceList><listAcct:price><listAcct:value>448.88</listAcct:value><listAcct:quantity>0.0</listAcct:quantity></listAcct:price></listAcct:priceList></listAcct:pricing><listAcct:pricing><listAcct:currency
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>USA</platformCore:name></listAcct:currency><listAcct:priceLevel
-        internalId=\"5\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Online
-        Price</platformCore:name></listAcct:priceLevel><listAcct:discount>0.0</listAcct:discount><listAcct:priceList><listAcct:price><listAcct:value>498.75</listAcct:value><listAcct:quantity>0.0</listAcct:quantity></listAcct:price></listAcct:priceList></listAcct:pricing></listAcct:pricingMatrix><listAcct:supplyReplenishmentMethod
-        internalId=\"REORDER_POINT\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Reorder
-        Point</platformCore:name></listAcct:supplyReplenishmentMethod><listAcct:itemVendorList><listAcct:itemVendor><listAcct:vendor
-        internalId=\"1693\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Evo</platformCore:name></listAcct:vendor><listAcct:vendorCode>EV</listAcct:vendorCode><listAcct:purchasePrice>400.0</listAcct:purchasePrice><listAcct:preferredVendor>true</listAcct:preferredVendor></listAcct:itemVendor></listAcct:itemVendorList><listAcct:translationsList><listAcct:translation><listAcct:locale>_frenchFrance</listAcct:locale><listAcct:language>French
-        (France)</listAcct:language></listAcct:translation></listAcct:translationsList><listAcct:locationsList><listAcct:locations><listAcct:location>1</listAcct:location><listAcct:quantityOnHand>200.0</listAcct:quantityOnHand><listAcct:onHandValueMli>80000.0</listAcct:onHandValueMli><listAcct:averageCostMli>400.0</listAcct:averageCostMli><listAcct:lastPurchasePriceMli>400.0</listAcct:lastPurchasePriceMli><listAcct:quantityAvailable>200.0</listAcct:quantityAvailable><listAcct:locationId
-        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/></listAcct:locations><listAcct:locations><listAcct:location>3</listAcct:location><listAcct:locationId
-        internalId=\"3\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/></listAcct:locations><listAcct:locations><listAcct:location>6</listAcct:location><listAcct:locationId
-        internalId=\"6\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/></listAcct:locations><listAcct:locations><listAcct:location>5</listAcct:location><listAcct:quantityOnHand>200.0</listAcct:quantityOnHand><listAcct:onHandValueMli>80000.0</listAcct:onHandValueMli><listAcct:averageCostMli>400.0</listAcct:averageCostMli><listAcct:lastPurchasePriceMli>400.0</listAcct:lastPurchasePriceMli><listAcct:quantityAvailable>200.0</listAcct:quantityAvailable><listAcct:locationId
-        internalId=\"5\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/></listAcct:locations><listAcct:locations><listAcct:location>2</listAcct:location><listAcct:quantityOnHand>-1.0</listAcct:quantityOnHand><listAcct:onHandValueMli>0.0</listAcct:onHandValueMli><listAcct:averageCostMli>0.0</listAcct:averageCostMli><listAcct:quantityCommitted>0.0</listAcct:quantityCommitted><listAcct:quantityAvailable>0.0</listAcct:quantityAvailable><listAcct:quantityBackOrdered>2.0</listAcct:quantityBackOrdered><listAcct:locationId
-        internalId=\"2\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/></listAcct:locations><listAcct:locations><listAcct:location>4</listAcct:location><listAcct:quantityOnHand>200.0</listAcct:quantityOnHand><listAcct:onHandValueMli>80000.0</listAcct:onHandValueMli><listAcct:averageCostMli>400.0</listAcct:averageCostMli><listAcct:lastPurchasePriceMli>400.0</listAcct:lastPurchasePriceMli><listAcct:locationId
-        internalId=\"4\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/></listAcct:locations></listAcct:locationsList><listAcct:customFieldList
-        xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:customField
-        internalId=\"101\" scriptId=\"custitem_msrp\" xsi:type=\"platformCore:DoubleCustomFieldRef\"><platformCore:value>498.75</platformCore:value></platformCore:customField><platformCore:customField
-        internalId=\"43\" scriptId=\"custitem1\" xsi:type=\"platformCore:SelectCustomFieldRef\"><platformCore:value
-        internalId=\"5\" typeId=\"3\"><platformCore:name>Available</platformCore:name></platformCore:value></platformCore:customField><platformCore:customField
-        internalId=\"194\" scriptId=\"custitem16\" xsi:type=\"platformCore:BooleanCustomFieldRef\"><platformCore:value>false</platformCore:value></platformCore:customField><platformCore:customField
+        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_012720147212789631186688782_b3b6f9</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><searchResponse
+        xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformCore:searchResult
+        xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:status
+        isSuccess=\"true\"/><platformCore:totalRecords>1</platformCore:totalRecords><platformCore:pageSize>1000</platformCore:pageSize><platformCore:totalPages>1</platformCore:totalPages><platformCore:pageIndex>1</platformCore:pageIndex><platformCore:searchId>WEBSERVICES_test_012720147212789631186688782_b3b6f9</platformCore:searchId><platformCore:recordList><platformCore:record
+        internalId=\"677\" xsi:type=\"listAcct:LotNumberedInventoryItem\" xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\"><listAcct:createdDate>2014-01-15T08:28:29.000-08:00</listAcct:createdDate><listAcct:lastModifiedDate>2014-01-23T00:58:01.000-08:00</listAcct:lastModifiedDate><listAcct:itemId>Lot
+        Tracked Medical Supplies 1</listAcct:itemId><listAcct:upcCode>L0011234</listAcct:upcCode><listAcct:isOnline>false</listAcct:isOnline><listAcct:offerSupport>true</listAcct:offerSupport><listAcct:isInactive>false</listAcct:isInactive><listAcct:availableToPartners>true</listAcct:availableToPartners><listAcct:purchaseDescription>Lot
+        Enabled Item 1 Purchase Description</listAcct:purchaseDescription><listAcct:copyDescription>false</listAcct:copyDescription><listAcct:cogsAccount
+        internalId=\"121\"><platformCore:name>Cost of Goods Sold</platformCore:name></listAcct:cogsAccount><listAcct:salesDescription>Lot
+        Enabled Item 1 Sales Description</listAcct:salesDescription><listAcct:incomeAccount
+        internalId=\"55\"><platformCore:name>4000 Sales</platformCore:name></listAcct:incomeAccount><listAcct:isTaxable>false</listAcct:isTaxable><listAcct:assetAccount
+        internalId=\"120\"><platformCore:name>Inventory Asset</platformCore:name></listAcct:assetAccount><listAcct:matchBillToReceipt>false</listAcct:matchBillToReceipt><listAcct:billQtyVarianceAcct
+        internalId=\"150\"><platformCore:name>5095 Bill Quantity Variance</platformCore:name></listAcct:billQtyVarianceAcct><listAcct:billPriceVarianceAcct
+        internalId=\"151\"><platformCore:name>5096 Bill Price Variance</platformCore:name></listAcct:billPriceVarianceAcct><listAcct:billExchRateVarianceAcct
+        internalId=\"152\"><platformCore:name>5097 Bill Exchange Rate Variance</platformCore:name></listAcct:billExchRateVarianceAcct><listAcct:weight>0.5</listAcct:weight><listAcct:costingMethodDisplay>Lot
+        Numbered</listAcct:costingMethodDisplay><listAcct:trackLandedCost>false</listAcct:trackLandedCost><listAcct:isDropShipItem>false</listAcct:isDropShipItem><listAcct:isSpecialOrderItem>false</listAcct:isSpecialOrderItem><listAcct:manufacturer>Med
+        Health</listAcct:manufacturer><listAcct:countryOfManufacture>_unitedStates</listAcct:countryOfManufacture><listAcct:roundUpAsComponent>false</listAcct:roundUpAsComponent><listAcct:enforceMinQtyInternally>true</listAcct:enforceMinQtyInternally><listAcct:shipIndividually>false</listAcct:shipIndividually><listAcct:costCategory
+        internalId=\"3\"><platformCore:name>Default Cost Category</platformCore:name></listAcct:costCategory><listAcct:useMarginalRates>false</listAcct:useMarginalRates><listAcct:costEstimateType>_averageCost</listAcct:costEstimateType><listAcct:costEstimate>15.0</listAcct:costEstimate><listAcct:transferPrice>17.0</listAcct:transferPrice><listAcct:overallQuantityPricingType>_byLineQuantity</listAcct:overallQuantityPricingType><listAcct:cost>15.0</listAcct:cost><listAcct:totalValue>7695.0</listAcct:totalValue><listAcct:useBins>false</listAcct:useBins><listAcct:averageCost>15.0</listAcct:averageCost><listAcct:autoLeadTime>true</listAcct:autoLeadTime><listAcct:lastPurchasePrice>15.0</listAcct:lastPurchasePrice><listAcct:autoReorderPoint>true</listAcct:autoReorderPoint><listAcct:autoPreferredStockLevel>true</listAcct:autoPreferredStockLevel><listAcct:seasonalDemand>false</listAcct:seasonalDemand><listAcct:weightUnit>_lb</listAcct:weightUnit><listAcct:excludeFromSitemap>false</listAcct:excludeFromSitemap><listAcct:sitemapPriority>_auto</listAcct:sitemapPriority><listAcct:isDonationItem>false</listAcct:isDonationItem><listAcct:showDefaultDonationAmount>false</listAcct:showDefaultDonationAmount><listAcct:supplyReplenishmentMethod
+        internalId=\"REORDER_POINT\"><platformCore:name>Reorder Point</platformCore:name></listAcct:supplyReplenishmentMethod><listAcct:dontShowPrice>false</listAcct:dontShowPrice><listAcct:outOfStockBehavior>_default</listAcct:outOfStockBehavior><listAcct:itemVendorList><listAcct:itemVendor><listAcct:vendor
+        internalId=\"960\"><platformCore:name>Bayer Health Care</platformCore:name></listAcct:vendor><listAcct:purchasePrice>15.0</listAcct:purchasePrice><listAcct:preferredVendor>true</listAcct:preferredVendor></listAcct:itemVendor></listAcct:itemVendorList><listAcct:pricingMatrix><listAcct:pricing><listAcct:currency
+        internalId=\"1\"><platformCore:name>USA</platformCore:name></listAcct:currency><listAcct:priceLevel
+        internalId=\"1\"><platformCore:name>Base Price</platformCore:name></listAcct:priceLevel><listAcct:priceList><listAcct:price><listAcct:value>30.0</listAcct:value><listAcct:quantity>0.0</listAcct:quantity></listAcct:price></listAcct:priceList></listAcct:pricing><listAcct:pricing><listAcct:currency
+        internalId=\"1\"><platformCore:name>USA</platformCore:name></listAcct:currency><listAcct:priceLevel
+        internalId=\"6\"><platformCore:name>Online Wholesale Price</platformCore:name></listAcct:priceLevel><listAcct:discount>-15.0</listAcct:discount><listAcct:priceList><listAcct:price><listAcct:value>25.5</listAcct:value><listAcct:quantity>0.0</listAcct:quantity></listAcct:price></listAcct:priceList></listAcct:pricing><listAcct:pricing><listAcct:currency
+        internalId=\"1\"><platformCore:name>USA</platformCore:name></listAcct:currency><listAcct:priceLevel
+        internalId=\"3\"><platformCore:name>Retail Price</platformCore:name></listAcct:priceLevel><listAcct:discount>-5.0</listAcct:discount><listAcct:priceList><listAcct:price><listAcct:value>28.5</listAcct:value><listAcct:quantity>0.0</listAcct:quantity></listAcct:price></listAcct:priceList></listAcct:pricing><listAcct:pricing><listAcct:currency
+        internalId=\"1\"><platformCore:name>USA</platformCore:name></listAcct:currency><listAcct:priceLevel
+        internalId=\"2\"><platformCore:name>Wholesale Price</platformCore:name></listAcct:priceLevel><listAcct:discount>-10.0</listAcct:discount><listAcct:priceList><listAcct:price><listAcct:value>27.0</listAcct:value><listAcct:quantity>0.0</listAcct:quantity></listAcct:price></listAcct:priceList></listAcct:pricing><listAcct:pricing><listAcct:currency
+        internalId=\"1\"><platformCore:name>USA</platformCore:name></listAcct:currency><listAcct:priceLevel
+        internalId=\"5\"><platformCore:name>Online Price</platformCore:name></listAcct:priceLevel><listAcct:discount>0.0</listAcct:discount><listAcct:priceList><listAcct:price><listAcct:value>30.0</listAcct:value><listAcct:quantity>0.0</listAcct:quantity></listAcct:price></listAcct:priceList></listAcct:pricing></listAcct:pricingMatrix><listAcct:locationsList><listAcct:locations><listAcct:location>Boston</listAcct:location><listAcct:quantityOnHand>195.0</listAcct:quantityOnHand><listAcct:onHandValueMli>2925.0</listAcct:onHandValueMli><listAcct:averageCostMli>15.0</listAcct:averageCostMli><listAcct:lastPurchasePriceMli>15.0</listAcct:lastPurchasePriceMli><listAcct:reorderPoint>150.0</listAcct:reorderPoint><listAcct:preferredStockLevel>250.0</listAcct:preferredStockLevel><listAcct:leadTime>19</listAcct:leadTime><listAcct:lastInvtCountDate>2013-12-31T00:00:00.000-08:00</listAcct:lastInvtCountDate><listAcct:nextInvtCountDate>2014-01-20T00:00:00.000-08:00</listAcct:nextInvtCountDate><listAcct:invtCountInterval>20</listAcct:invtCountInterval><listAcct:invtClassification>_b</listAcct:invtClassification><listAcct:quantityOnOrder>0.0</listAcct:quantityOnOrder><listAcct:quantityCommitted>0.0</listAcct:quantityCommitted><listAcct:quantityAvailable>195.0</listAcct:quantityAvailable><listAcct:locationId
+        internalId=\"1\"/><listAcct:location_display>Boston</listAcct:location_display></listAcct:locations><listAcct:locations><listAcct:location>Boston
+        : Boston Damaged Goods</listAcct:location><listAcct:quantityOnOrder>0.0</listAcct:quantityOnOrder><listAcct:locationId
+        internalId=\"3\"/><listAcct:location_display>Boston : Boston Damaged Goods</listAcct:location_display></listAcct:locations><listAcct:locations><listAcct:location>Hawaii</listAcct:location><listAcct:locationId
+        internalId=\"6\"/><listAcct:location_display>Hawaii</listAcct:location_display></listAcct:locations><listAcct:locations><listAcct:location>Los
+        Angeles</listAcct:location><listAcct:quantityOnHand>100.0</listAcct:quantityOnHand><listAcct:onHandValueMli>1500.0</listAcct:onHandValueMli><listAcct:averageCostMli>15.0</listAcct:averageCostMli><listAcct:lastPurchasePriceMli>15.0</listAcct:lastPurchasePriceMli><listAcct:reorderPoint>75.0</listAcct:reorderPoint><listAcct:preferredStockLevel>100.0</listAcct:preferredStockLevel><listAcct:leadTime>7</listAcct:leadTime><listAcct:quantityOnOrder>0.0</listAcct:quantityOnOrder><listAcct:quantityCommitted>0.0</listAcct:quantityCommitted><listAcct:quantityAvailable>100.0</listAcct:quantityAvailable><listAcct:locationId
+        internalId=\"5\"/><listAcct:location_display>Los Angeles</listAcct:location_display></listAcct:locations><listAcct:locations><listAcct:location>San
+        Francisco</listAcct:location><listAcct:quantityOnHand>218.0</listAcct:quantityOnHand><listAcct:onHandValueMli>3270.0</listAcct:onHandValueMli><listAcct:averageCostMli>15.0</listAcct:averageCostMli><listAcct:lastPurchasePriceMli>15.0</listAcct:lastPurchasePriceMli><listAcct:reorderPoint>175.0</listAcct:reorderPoint><listAcct:preferredStockLevel>275.0</listAcct:preferredStockLevel><listAcct:leadTime>8</listAcct:leadTime><listAcct:nextInvtCountDate>2013-12-15T00:00:00.000-08:00</listAcct:nextInvtCountDate><listAcct:invtCountInterval>20</listAcct:invtCountInterval><listAcct:invtClassification>_b</listAcct:invtClassification><listAcct:quantityOnOrder>0.0</listAcct:quantityOnOrder><listAcct:quantityCommitted>0.0</listAcct:quantityCommitted><listAcct:quantityAvailable>218.0</listAcct:quantityAvailable><listAcct:locationId
+        internalId=\"2\"/><listAcct:location_display>San Francisco</listAcct:location_display></listAcct:locations><listAcct:locations><listAcct:location>San
+        Francisco : San Francisco Damaged Goods</listAcct:location><listAcct:quantityOnOrder>0.0</listAcct:quantityOnOrder><listAcct:locationId
+        internalId=\"4\"/><listAcct:location_display>San Francisco : San Francisco
+        Damaged Goods</listAcct:location_display></listAcct:locations></listAcct:locationsList><listAcct:translationsList><listAcct:translation><listAcct:locale>_frenchFrance</listAcct:locale><listAcct:language>French
+        (France)</listAcct:language></listAcct:translation></listAcct:translationsList><listAcct:customFieldList><platformCore:customField
+        internalId=\"194\" scriptId=\"custitem16\" xsi:type=\"platformCore:BooleanCustomFieldRef\"><platformCore:value>true</platformCore:value></platformCore:customField><platformCore:customField
         internalId=\"57\" scriptId=\"custitem_popup\" xsi:type=\"platformCore:SelectCustomFieldRef\"><platformCore:value
-        internalId=\"6558\"><platformCore:name>IMG_EVO_SKI.jpg</platformCore:name></platformCore:value></platformCore:customField><platformCore:customField
-        internalId=\"3937\" scriptId=\"custitem_pctcapforreplenish\" xsi:type=\"platformCore:DoubleCustomFieldRef\"><platformCore:value>10.0</platformCore:value></platformCore:customField></listAcct:customFieldList></record></readResponse></getResponse></soapenv:Body></soapenv:Envelope>"
+        internalId=\"6527\"/></platformCore:customField><platformCore:customField
+        internalId=\"61\" scriptId=\"custitem_review_total_number\" xsi:type=\"platformCore:LongCustomFieldRef\"><platformCore:value>0</platformCore:value></platformCore:customField><platformCore:customField
+        internalId=\"62\" scriptId=\"custitem_review_total_score\" xsi:type=\"platformCore:LongCustomFieldRef\"><platformCore:value>0</platformCore:value></platformCore:customField></listAcct:customFieldList></platformCore:record></platformCore:recordList></platformCore:searchResult></searchResponse></soapenv:Body></soapenv:Envelope>"
     http_version: 
-  recorded_at: Mon, 20 Jan 2014 18:18:05 GMT
+  recorded_at: Mon, 27 Jan 2014 18:42:05 GMT
 recorded_with: VCR 2.8.0
