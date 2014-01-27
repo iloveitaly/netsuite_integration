@@ -11,7 +11,11 @@ config_hash = {
     "UPS Two Day (USD)"=>"91",
     "UPS One Day (USD)"=>"77",
     "UPS"=>"77"
-  }]
+  }],
+  'netsuite.payment_methods_mapping' => [{
+    "Credit Card" => "5",
+    "Cash" => "1"
+  }]  
 }.with_indifferent_access
 
 shared_examples "config hash" do
@@ -28,8 +32,8 @@ shared_context "request parameters" do
       {:name => "netsuite.account", :value => "test" },
       {:name => "netsuite.last_updated_after", :value => "2013-01-08T18:48:56.001Z" },
       {:name => "netsuite.account_for_sales_id", :value => "2"},
-      {:name => "netsuite.shipping_methods_mapping", :value => [{ "UPS" => "77", "UPS Ground (USD)"=>"92", "UPS Two Day (USD)"=>"91", "UPS One Day (USD)"=>"77" }]
-      }
+      {:name => "netsuite.shipping_methods_mapping", :value => [{ "UPS" => "77", "UPS Ground (USD)"=>"92", "UPS Two Day (USD)"=>"91", "UPS One Day (USD)"=>"77" }]},
+      {:name => "netsuite.payment_methods_mapping", :value => [{ "Credit Card" => "5", "Cash" => "1" }]}
     ]
   end
 end
