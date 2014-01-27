@@ -3,6 +3,7 @@ require 'spec_helper'
 module NetsuiteIntegration
   describe Services::InventoryItem do
     include_examples "config hash"
+    include_examples "connect to netsuite"
 
     subject { described_class.new config }
 
@@ -18,6 +19,10 @@ module NetsuiteIntegration
       (1..(items.count - 1)).each do |time|
         expect(items[time].last_modified_date).to be >= items[time-1].last_modified_date
       end
+    end
+
+    it "ensures all items have a upc code value" do
+      items.each { |item| expect(item.upc_code).not_to be_blank }
     end
 
     it "ignores matrix child and parent items for now" do
