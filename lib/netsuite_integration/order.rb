@@ -95,7 +95,10 @@ module NetsuiteIntegration
     end
 
     def shipping_id
-      @config['netsuite.shipping_methods_mapping'][0].fetch(@payload[:order][:shipments][0][:shipping_method]).to_i
+      method = @payload[:order][:shipments][0][:shipping_method]
+      @config['netsuite.shipping_methods_mapping'][0].fetch(method).to_i
+    rescue
+      raise "Shipping method #{method} not found in #{@config['netsuite.shipping_methods_mapping'].inspect}"
     end
 
     def internal_id_for(type)
