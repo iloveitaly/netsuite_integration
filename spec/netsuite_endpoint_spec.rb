@@ -76,7 +76,7 @@ describe NetsuiteEndpoint do
     context 'when order is new' do
       let(:request) do
         payload = Factories.order_new_payload
-        payload['order']['number'] = "RERGERG4454354354"
+          payload['order']['number'] = "REEFGEWG4342525353"
 
         {
           message: 'order:new',
@@ -88,6 +88,7 @@ describe NetsuiteEndpoint do
       it 'imports the order and returns an info notification' do
         VCR.use_cassette('order/import_service') do
           post '/orders', request.to_json, auth
+          expect(last_response).to be_ok
         end
 
         expect(json_response['notifications'][0]['subject']).to match('imported into NetSuite')

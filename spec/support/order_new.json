@@ -1,38 +1,48 @@
 {
   "order": {
-    "number": "R114285751",
+    "number": "R805285255",
     "channel": "spree",
     "email": "spree@example.com",
     "currency": "USD",
-    "placed_on": "2014-01-20T20:56:19.380Z",
-    "updated_at": "2014-01-20T20:56:19.474Z",
+    "placed_on": "2014-01-27T19:43:19.665Z",
+    "updated_at": "2014-01-27T19:43:19.774Z",
     "status": "complete",
     "totals": {
-      "item": 404.94,
+      "item": 130.0,
       "adjustment": 5.0,
       "tax": 0.0,
       "shipping": 5.0,
-      "payment": 0.0,
-      "order": 409.94
+      "payment": 135.0,
+      "order": 135.0
     },
     "line_items": [
       {
-        "name": "AMD Athlon 64 2800+ 1.8GHz Processor",
-        "sku": "385",
+        "name": "Transfer Pricing Item",
+        "sku": "300001",
         "external_ref": "",
-        "quantity": 2,
-        "price": 144.0,
-        "variant_id": 361,
+        "quantity": 1,
+        "price": 35.0,
+        "variant_id": 357,
         "options": {
         }
       },
       {
-        "name": "2-Drawer Mobile File Cart Steel - White",
-        "sku": "130",
+        "name": "Lot Tracked Medical Supplies 1",
+        "sku": "L0011234",
         "external_ref": "",
-        "quantity": 3,
-        "price": 38.98,
-        "variant_id": 453,
+        "quantity": 1,
+        "price": 30.0,
+        "variant_id": 368,
+        "options": {
+        }
+      },
+      {
+        "name": "Lot Tracked Medical Supplies 2",
+        "sku": "L0021234",
+        "external_ref": "",
+        "quantity": 1,
+        "price": 65.0,
+        "variant_id": 371,
         "options": {
         }
       }
@@ -67,40 +77,50 @@
     },
     "payments": [
       {
-        "number": 12,
-        "status": "pending",
-        "amount": 409.94,
+        "number": 19,
+        "status": "completed",
+        "amount": 135.0,
         "payment_method": "Credit Card"
       }
     ],
     "shipments": [
       {
-        "number": "H13817647482",
+        "number": "H34141763748",
         "cost": 5.0,
-        "status": "pending",
+        "status": "ready",
         "stock_location": null,
-        "shipping_method": "UPS",
+        "shipping_method": "UPS Ground (USD)",
         "tracking": null,
         "updated_at": null,
         "shipped_at": null,
         "items": [
           {
-            "name": "2-Drawer Mobile File Cart Steel - White",
-            "sku": "130",
+            "name": "Transfer Pricing Item",
+            "sku": "300001",
             "external_ref": "",
-            "quantity": 3,
-            "price": 38.98,
-            "variant_id": 453,
+            "quantity": 1,
+            "price": 35.0,
+            "variant_id": 357,
             "options": {
             }
           },
           {
-            "name": "AMD Athlon 64 2800+ 1.8GHz Processor",
-            "sku": "385",
+            "name": "Lot Tracked Medical Supplies 1",
+            "sku": "L0011234",
             "external_ref": "",
-            "quantity": 2,
-            "price": 144.0,
-            "variant_id": 361,
+            "quantity": 1,
+            "price": 30.0,
+            "variant_id": 368,
+            "options": {
+            }
+          },
+          {
+            "name": "Lot Tracked Medical Supplies 2",
+            "sku": "L0021234",
+            "external_ref": "",
+            "quantity": 1,
+            "price": 65.0,
+            "variant_id": 371,
             "options": {
             }
           }
@@ -109,27 +129,27 @@
     ]
   },
   "original": {
-    "id": 12,
-    "number": "R114285751",
-    "item_total": "404.94",
-    "total": "409.94",
+    "id": 22,
+    "number": "R805285255",
+    "item_total": "130.0",
+    "total": "135.0",
     "ship_total": "5.0",
     "state": "complete",
     "adjustment_total": "5.0",
     "user_id": 1,
-    "created_at": "2014-01-20T20:55:25.875Z",
-    "updated_at": "2014-01-20T20:56:19.474Z",
-    "completed_at": "2014-01-20T20:56:19.380Z",
-    "payment_total": "0.0",
-    "shipment_state": "pending",
-    "payment_state": "balance_due",
+    "created_at": "2014-01-27T19:41:08.016Z",
+    "updated_at": "2014-01-27T19:43:19.774Z",
+    "completed_at": "2014-01-27T19:43:19.665Z",
+    "payment_total": "135.0",
+    "shipment_state": "ready",
+    "payment_state": "paid",
     "email": "spree@example.com",
     "special_instructions": null,
     "channel": "spree",
     "tax_total": "0.0",
     "currency": "USD",
     "bill_address": {
-      "id": 27,
+      "id": 39,
       "firstname": "Luis",
       "lastname": "Braga",
       "full_name": "Luis Braga",
@@ -159,7 +179,7 @@
       }
     },
     "ship_address": {
-      "id": 28,
+      "id": 40,
       "firstname": "Luis",
       "lastname": "Braga",
       "full_name": "Luis Braga",
@@ -190,29 +210,29 @@
     },
     "line_items": [
       {
-        "id": 15,
-        "quantity": 2,
-        "price": "144.0",
-        "variant_id": 361,
-        "created_at": "2014-01-20T20:55:25.915Z",
-        "updated_at": "2014-01-20T20:55:25.915Z",
-        "single_display_amount": "$144.00",
-        "display_amount": "$288.00",
-        "total": "288.0",
+        "id": 27,
+        "quantity": 1,
+        "price": "35.0",
+        "variant_id": 357,
+        "created_at": "2014-01-27T19:42:48.834Z",
+        "updated_at": "2014-01-27T19:42:48.834Z",
+        "single_display_amount": "$35.00",
+        "display_amount": "$35.00",
+        "total": "35.0",
         "variant": {
-          "id": 361,
-          "name": "AMD Athlon 64 2800+ 1.8GHz Processor",
-          "sku": "385",
-          "price": "144.0",
+          "id": 357,
+          "name": "Transfer Pricing Item",
+          "sku": "300001",
+          "price": "35.0",
           "weight": null,
           "height": null,
           "width": null,
           "depth": null,
           "is_master": true,
-          "cost_price": "144.0",
-          "permalink": "amd-athlon-64-2800-plus-1-dot-8ghz-processor",
-          "product_created_at": "2014-01-20T20:52:38.536Z",
-          "product_updated_at": "2014-01-20T20:56:19.454Z",
+          "cost_price": "10.0",
+          "permalink": "transfer-pricing-item",
+          "product_created_at": "2014-01-27T18:28:18.801Z",
+          "product_updated_at": "2014-01-27T19:43:19.706Z",
           "options_text": "",
           "option_values": [
 
@@ -222,36 +242,36 @@
 
             ]
           },
-          "product_id": 361,
+          "product_id": 342,
           "images": [
 
           ]
         }
       },
       {
-        "id": 16,
-        "quantity": 3,
-        "price": "38.98",
-        "variant_id": 453,
-        "created_at": "2014-01-20T20:56:08.562Z",
-        "updated_at": "2014-01-20T20:56:08.562Z",
-        "single_display_amount": "$38.98",
-        "display_amount": "$116.94",
-        "total": "116.94",
+        "id": 28,
+        "quantity": 1,
+        "price": "30.0",
+        "variant_id": 368,
+        "created_at": "2014-01-27T19:42:57.172Z",
+        "updated_at": "2014-01-27T19:42:57.172Z",
+        "single_display_amount": "$30.00",
+        "display_amount": "$30.00",
+        "total": "30.0",
         "variant": {
-          "id": 453,
-          "name": "2-Drawer Mobile File Cart Steel - White",
-          "sku": "130",
-          "price": "38.98",
+          "id": 368,
+          "name": "Lot Tracked Medical Supplies 1",
+          "sku": "L0011234",
+          "price": "30.0",
           "weight": null,
           "height": null,
           "width": null,
           "depth": null,
           "is_master": true,
-          "cost_price": "38.98",
-          "permalink": "2-drawer-mobile-file-cart-steel-white",
-          "product_created_at": "2014-01-20T20:52:48.891Z",
-          "product_updated_at": "2014-01-20T20:56:19.428Z",
+          "cost_price": "15.0",
+          "permalink": "lot-tracked-medical-supplies-1",
+          "product_created_at": "2014-01-27T18:28:20.361Z",
+          "product_updated_at": "2014-01-27T19:43:19.732Z",
           "options_text": "",
           "option_values": [
 
@@ -261,7 +281,46 @@
 
             ]
           },
-          "product_id": 453,
+          "product_id": 353,
+          "images": [
+
+          ]
+        }
+      },
+      {
+        "id": 29,
+        "quantity": 1,
+        "price": "65.0",
+        "variant_id": 371,
+        "created_at": "2014-01-27T19:43:04.131Z",
+        "updated_at": "2014-01-27T19:43:04.131Z",
+        "single_display_amount": "$65.00",
+        "display_amount": "$65.00",
+        "total": "65.0",
+        "variant": {
+          "id": 371,
+          "name": "Lot Tracked Medical Supplies 2",
+          "sku": "L0021234",
+          "price": "65.0",
+          "weight": null,
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": "35.0",
+          "permalink": "lot-tracked-medical-supplies-2",
+          "product_created_at": "2014-01-27T18:28:20.873Z",
+          "product_updated_at": "2014-01-27T19:43:19.757Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 356,
           "images": [
 
           ]
@@ -270,9 +329,9 @@
     ],
     "payments": [
       {
-        "id": 12,
-        "amount": "409.94",
-        "state": "pending",
+        "id": 19,
+        "amount": "135.0",
+        "state": "completed",
         "payment_method_id": 1,
         "payment_method": {
           "id": 1,
@@ -283,51 +342,55 @@
     ],
     "shipments": [
       {
-        "id": 13,
+        "id": 19,
         "tracking": null,
-        "number": "H13817647482",
+        "number": "H34141763748",
         "cost": "5.0",
         "shipped_at": null,
-        "state": "pending",
-        "order_id": "R114285751",
-        "stock_location_name": "Default",
+        "state": "ready",
+        "order_id": "R805285255",
+        "stock_location_name": "default",
         "shipping_rates": [
           {
-            "id": 12,
+            "id": 56,
+            "cost": "10.0",
+            "selected": false,
+            "shipment_id": 19,
+            "shipping_method_id": 2
+          },
+          {
+            "id": 57,
+            "cost": "15.0",
+            "selected": false,
+            "shipment_id": 19,
+            "shipping_method_id": 3
+          },
+          {
+            "id": 55,
             "cost": "5.0",
             "selected": true,
-            "shipment_id": 13,
+            "shipment_id": 19,
             "shipping_method_id": 1
           }
         ],
         "shipping_method": {
-          "name": "UPS",
-          "tracking_url": ""
+          "name": "UPS Ground (USD)",
+          "tracking_url": null
         },
         "inventory_units": [
           {
-            "id": 32,
-            "variant_id": 453,
+            "id": 71,
+            "variant_id": 357,
             "state": "on_hand"
           },
           {
-            "id": 31,
-            "variant_id": 453,
+            "id": 72,
+            "variant_id": 368,
             "state": "on_hand"
           },
           {
-            "id": 30,
-            "variant_id": 453,
-            "state": "on_hand"
-          },
-          {
-            "id": 29,
-            "variant_id": 361,
-            "state": "on_hand"
-          },
-          {
-            "id": 28,
-            "variant_id": 361,
+            "id": 73,
+            "variant_id": 371,
             "state": "on_hand"
           }
         ]
@@ -335,7 +398,7 @@
     ],
     "adjustments": [
       {
-        "id": 12,
+        "id": 25,
         "amount": "5.0",
         "label": "Shipping",
         "mandatory": true,
@@ -346,14 +409,14 @@
     ],
     "credit_cards": [
       {
-        "id": 12,
-        "month": "06",
+        "id": 18,
+        "month": "6",
         "year": "2016",
         "cc_type": "visa",
         "last_digits": "1111",
         "first_name": "Luis",
         "last_name": "Braga",
-        "gateway_customer_profile_id": "BGS-051154",
+        "gateway_customer_profile_id": "BGS-331514",
         "gateway_payment_profile_id": null
       }
     ]
