@@ -99,7 +99,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
           process_result 500
         end
       else
-        add_notification "info", "Customer Deposit already exists for NetSuite Sales Order #{order.sales_order.external_id}"
         process_result 200
       end
     end
