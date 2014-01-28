@@ -69,10 +69,12 @@ module NetsuiteIntegration
     end
 
     def verify_errors(object)
-      if errors = (object.errors || []).select {|e| e.type == "ERROR"}
+      unless (errors = (object.errors || []).select {|e| e.type == "ERROR"}).blank?
         text = errors.inject("") {|buf, cur| buf += cur.message}
 
         raise StandardError.new(text) if text.length > 0
+      else
+        object
       end
     end
   end
