@@ -36,7 +36,7 @@ describe NetsuiteEndpoint do
       before { request[:payload][:sku] = "Im not there" }
 
       it "still returns 200 but give no stock:actual message" do
-        VCR.use_cassette("inventory_item/item_not_found_by_id") do
+        VCR.use_cassette("inventory_item/item_not_found") do
           post '/inventory_stock', request.to_json, auth
           expect(last_response).to be_ok
           expect(json_response["messages"]).to be_blank
@@ -49,6 +49,7 @@ describe NetsuiteEndpoint do
         NetsuiteIntegration::InventoryStock.should_receive(:new).and_raise 'Weird error'
 
         post '/inventory_stock', request.to_json, auth
+        expect(last_response.status).to eq 500
 
         expect(json_response['notifications'][0]['level']).to eq("error")
         expect(json_response['notifications'][0]['subject']).to eq("Weird error")
