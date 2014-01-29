@@ -3,6 +3,7 @@ require 'spec_helper'
 module NetsuiteIntegration
   describe Product do
     include_examples "config hash"
+    include_examples "connect to netsuite"
 
     subject do
       VCR.use_cassette("inventory_item/search") do
@@ -20,6 +21,19 @@ module NetsuiteIntegration
 
     it "gives back last modified in utc" do
       expect(subject.last_modified_date).to be_utc
+    end
+
+    context "pricing matrix doesn't have a price_list" do
+      before { config["netsuite.last_updated_after"] = "2014-01-28T20:56:11+00:00" }
+
+      it "doesn't break at all" do
+        VCR.use_cassette("inventory_item/missing_price_list") do
+          s = described_class.new config
+          expect {
+            s.messages
+          }.not_to raise_error
+        end
+      end
     end
   end
 end

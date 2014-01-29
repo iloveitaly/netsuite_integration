@@ -52,7 +52,7 @@ module NetsuiteIntegration
       #         {:value=>"79.0", :quantity=>"100.0"}]}}>
       #
       def get_item_base_price(prices)
-        if prices.first
+        if prices.first && prices.first.attributes[:price_list]
           case price = prices.first.attributes[:price_list][:price]
           when Array
             price.first[:value]
