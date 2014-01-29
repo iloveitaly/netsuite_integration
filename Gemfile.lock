@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/brunobuccolo/netsuite.git
-  revision: 129036237f57c085ba981083f4d99a4b496e71e0
+  revision: bcf82be3aefd62ce7c09c4bd9e4c39068cdaab44
   branch: spree
   specs:
     netsuite (0.2.0)
