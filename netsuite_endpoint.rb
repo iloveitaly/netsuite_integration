@@ -17,7 +17,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       account      config.fetch('netsuite.account')
       read_timeout 100000000
       log          "#{`pwd`.chomp}/netsuite.log"
-      log_level    :info
+      log_level    :debug
     end
   end
 
