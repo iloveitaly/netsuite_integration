@@ -1,6 +1,6 @@
 APP_ROOT = "/data/netsuite"
 
-worker_processes 1 # NetSuite does not accept concurrency :(
+worker_processes 3
 working_directory APP_ROOT + "/current"
 
 timeout 180
