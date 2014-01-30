@@ -13,10 +13,10 @@ module NetsuiteIntegration
           product: {
             name: item.store_display_name || item.item_id,
             available_on: item.last_modified_date.utc,
-            description: item.store_description,
+            description: item.sales_description,
             sku: item.upc_code,
             price: get_item_base_price(item.pricing_matrix.prices),
-            cost_price: item.cost,
+            cost_price: item.cost_estimate,
             channel: "NetSuite"
           }
         }
