@@ -7,7 +7,7 @@ gem 'tilt-jbuilder', require: 'sinatra/jbuilder'
 gem 'endpoint_base', github: 'spree/endpoint_base'
 gem 'capistrano'
 
-gem 'netsuite', github: 'brunobuccolo/netsuite', branch: 'spree'
+gem 'netsuite', github: 'RevolutionPrep/netsuite', branch: 'master'
 
 group :development do
   gem "rake"
