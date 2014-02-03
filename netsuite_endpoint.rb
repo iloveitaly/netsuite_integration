@@ -18,7 +18,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
         log_level    :info
       end
 
-      sleep 1 # NetSuite does not allow concurrency, need to be safe
+      sleep 3 # NetSuite does not allow concurrency, need to be safe
     end
   end
 
