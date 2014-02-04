@@ -32,6 +32,7 @@ module NetsuiteIntegration
           create_customer_deposit
         end
 
+        sales_order.tran_id = sales_order_service.find_by_external_id(order_payload[:number]).tran_id
         sales_order
       end
     end

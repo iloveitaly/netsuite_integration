@@ -28,7 +28,7 @@ module NetsuiteIntegration
     end
 
     context 'when order is new' do
-      let(:order_number) { 'RDSFAFD5643EGGFDF' }
+      let(:order_number) { 'RREGR4354EGWREERGRG' }
 
       subject do
         payload = Factories.order_new_payload

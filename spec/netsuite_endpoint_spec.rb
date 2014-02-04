@@ -77,7 +77,7 @@ describe NetsuiteEndpoint do
     context 'when order is new' do
       let(:request) do
         payload = Factories.order_new_payload
-        payload['order']['number'] = "R43534GGW435GEREWG"
+        payload['order']['number'] = "R43534GGW435G435FRE"
 
         {
           message: 'order:new',
@@ -92,7 +92,7 @@ describe NetsuiteEndpoint do
           expect(last_response).to be_ok
         end
 
-        expect(json_response['notifications'][0]['subject']).to match('imported into NetSuite')
+        expect(json_response['notifications'][0]['subject']).to match('sent to NetSuite')
       end
     end
 
