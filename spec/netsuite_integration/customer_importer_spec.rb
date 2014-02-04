@@ -13,12 +13,12 @@ module NetsuiteIntegration
       }.with_indifferent_access
     }
 
-    it 'should initialize correctly' do
+    pending 'should initialize correctly' do
       instance = described_class.new message, config
       instance.user.should eq(message['payload']['user'])
     end
 
-    context '#sync!' do
+    pending '#sync!' do
       subject { described_class.new message, config }
 
       context 'customer is found' do

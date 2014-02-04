@@ -77,7 +77,7 @@ describe NetsuiteEndpoint do
     context 'when order is new' do
       let(:request) do
         payload = Factories.order_new_payload
-          payload['order']['number'] = "REEFGEWG4342525353"
+        payload['order']['number'] = "R43534GGW435GEREWG"
 
         {
           message: 'order:new',
