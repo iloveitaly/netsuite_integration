@@ -37,7 +37,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       if products.collection.any?
         add_messages "product:import", products.messages
         add_parameter 'netsuite.last_updated_after', products.last_modified_date
-        add_notification "info", "#{products.collection.count} items imported from NetSuite"
+        add_notification "info", "#{products.collection.count} items found in NetSuite"
       end
 
       process_result 200
