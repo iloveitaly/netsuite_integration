@@ -5,7 +5,7 @@ require File.expand_path(File.dirname(__FILE__) + '/lib/netsuite_integration')
 
 class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   before do
-    puts "  Start NetSuite API Request at #{Time.now}"
+    puts "  Start NetSuite API Request at #{Time.now} for #{@message['message']}"
     sleep 3 # NetSuite does not allow concurrency, need to be safe
 
     if config = @config
@@ -17,14 +17,14 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
         email        config.fetch('netsuite.email')
         password     config.fetch('netsuite.password')
         account      config.fetch('netsuite.account')
-        read_timeout 100000000
+        read_timeout 175
         log_level    :info
       end
     end
   end
 
   after do
-    puts "  End NetSuite API Request at #{Time.now}"
+    puts "  End NetSuite API Request at #{Time.now} for #{@message['message']}"
   end
 
   post '/products' do
