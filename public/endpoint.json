@@ -6,7 +6,7 @@
   "icon_url": "netsuite.png",
   "services": [
     {
-      "name": "products",
+      "name": "products_import",
       "path": "/products",
       "description": "Fetch products via NetSuite",
       "requires": {
@@ -34,9 +34,9 @@
       }
     },
     {
-      "name": "inventory_stock",
+      "name": "monitor_stock",
       "path": "/inventory_stock",
-      "description": "",
+      "description": "Poll inventory stock in NetSuite to update it on the store",
       "requires": {
         "parameters": [{
           "name": "email",
@@ -57,7 +57,7 @@
       }
     },
     {
-      "name": "orders",
+      "name": "orders_export",
       "path": "/orders",
       "description": "Exports orders to NetSuite",
       "requires": {
@@ -92,7 +92,7 @@
       }
     },
     {
-      "name": "shipments",
+      "name": "shipments_export",
       "path": "/shipments",
       "description": "Fulfills orders on NetSuite",
       "requires": {
