@@ -6,8 +6,6 @@ require File.expand_path(File.dirname(__FILE__) + '/lib/netsuite_integration')
 class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   before do
     puts "  Start NetSuite API Request at #{Time.now} for #{@message['message']}"
-    sleep 3 # NetSuite does not allow concurrency, need to be safe
-
     if config = @config
       @netsuite_client ||= NetSuite.configure do
         reset!
