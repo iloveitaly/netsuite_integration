@@ -49,15 +49,13 @@ module NetsuiteIntegration
 
     private
     def import_customer!
-      if customer = customer_service.find_by_external_id(user_id)
+      if customer = customer_service.find_by_external_id(order_payload[:email])
         if customer.addressbook_list.addressbooks == []
           # update address if missing
           customer_service.update_address(customer, order_payload[:shipping_address])
         end
       else
-        customer_json = order_payload[:shipping_address].dup
-        customer_json[:id] = user_id
-        customer = customer_service.create(customer_json)
+        customer = customer_service.create(order_payload.dup)
       end
 
       sales_order.entity = NetSuite::Records::RecordRef.new(external_id: customer.external_id)

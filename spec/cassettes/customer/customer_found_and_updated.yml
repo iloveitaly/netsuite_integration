@@ -10,7 +10,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
   response:
@@ -19,13 +19,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 09 Jan 2014 19:52:02 GMT
+      - Tue, 04 Feb 2014 18:57:05 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - -2083872208:706172746E6572732D6A61766131303030352E626F732E6E65746C65646765722E636F6D:80
+      - 1113728279:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -1675,28 +1675,28 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Thu, 09 Jan 2014 19:52:07 GMT
+  recorded_at: Tue, 04 Feb 2014 18:57:09 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:platformMsgs="urn:messages_2013_2.platform.webservices.netsuite.com"
-        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
-        type="role" internalId="3"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:get><platformMsgs:baseRef
-        xsi:type="platformCore:RecordRef" externalId="3" type="customer"></platformMsgs:baseRef></platformMsgs:get></env:Body></env:Envelope>
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
+        type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:get><platformMsgs:baseRef
+        xsi:type=\"platformCore:RecordRef\" externalId=\"was@spreecommerce.com\" type=\"customer\"></platformMsgs:baseRef></platformMsgs:get></env:Body></env:Envelope>"
     headers:
       Soapaction:
-      - '"get"'
+      - "\"get\""
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '850'
+      - '873'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
   response:
@@ -1705,15 +1705,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 09 Jan 2014 19:52:02 GMT
+      - Tue, 04 Feb 2014 18:57:06 GMT
       Server:
       - Apache
       Content-Length:
-      - '1354'
+      - '1407'
       Ns-Rtimer-Composite:
-      - -1123685066:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80
+      - 1679221954:706172746E6572732D6A61766131303030382E626F732E6E65746C65646765722E636F6D:80
       Set-Cookie:
-      - JSESSIONID=37VFSThLTT6K7f1ZvTvVrnK6tRW2PphsCPWCRlJs6tzPfRwZ9QQ8nvsv76922f58Q2G8wp04mT6Rf33WDp2h7CQ1hp3cyVPpv0F6vLVGgw0Vlq0y3VKsv659vs6TfV9R!1702290144;
+      - JSESSIONID=pqShSxqLw2DP0KFvQNrHj2nMJ0sQmnRqwh35CP9mlm81TgkG7vnzdLLFQGlpnXTQLpRTG7vXQ8yTBP40mFfGsQZvjypj5hlhGs6TQLNxyr03R3KSJXVzNfQsLb0ybJHv!1648015771;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -1726,36 +1726,40 @@ http_interactions:
       - text/xml; charset=utf-8
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs="urn:messages_2013_2.platform.webservices.netsuite.com"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_010920142022686014936464782_c326c7</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><getResponse
-        xmlns="urn:messages_2013_2.platform.webservices.netsuite.com"><readResponse><platformCore:status
-        isSuccess="true" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><record
-        internalId="2117" externalId="3" xsi:type="listRel:Customer" xmlns:listRel="urn:relationships_2013_2.lists.webservices.netsuite.com"><listRel:customForm
-        internalId="213" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Customer
-        Form</platformCore:name></listRel:customForm><listRel:entityId>N/A</listRel:entityId><listRel:isPerson>true</listRel:isPerson><listRel:firstName>N/A</listRel:firstName><listRel:lastName>N/A</listRel:lastName><listRel:entityStatus
-        internalId="13" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>CUSTOMER-Closed
-        Won</platformCore:name></listRel:entityStatus><listRel:email>andrei@spreecommerce.com</listRel:email><listRel:isInactive>true</listRel:isInactive><listRel:language>_usEnglish</listRel:language><listRel:dateCreated>2014-01-09T11:31:43.000-08:00</listRel:dateCreated><listRel:emailPreference>_default</listRel:emailPreference><listRel:terms
-        internalId="2" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Net
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header><platformMsgs:documentInfo
+        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_0204201429177321735358342_bb1d90fa</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><getResponse
+        xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><readResponse><platformCore:status
+        isSuccess=\"true\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/><record
+        internalId=\"4112\" externalId=\"was@spreecommerce.com\" xsi:type=\"listRel:Customer\"
+        xmlns:listRel=\"urn:relationships_2013_2.lists.webservices.netsuite.com\"><listRel:customForm
+        internalId=\"213\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Customer
+        Form</platformCore:name></listRel:customForm><listRel:entityId>was@spreecommerce.com</listRel:entityId><listRel:isPerson>true</listRel:isPerson><listRel:firstName>N/A</listRel:firstName><listRel:lastName>N/A</listRel:lastName><listRel:entityStatus
+        internalId=\"13\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>CUSTOMER-Closed
+        Won</platformCore:name></listRel:entityStatus><listRel:email>was@spreecommerce.com</listRel:email><listRel:isInactive>false</listRel:isInactive><listRel:language>_usEnglish</listRel:language><listRel:dateCreated>2014-02-04T10:56:04.000-08:00</listRel:dateCreated><listRel:emailPreference>_default</listRel:emailPreference><listRel:terms
+        internalId=\"2\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Net
         30</platformCore:name></listRel:terms><listRel:creditHoldOverride>_auto</listRel:creditHoldOverride><listRel:balance>0.0</listRel:balance><listRel:overdueBalance>0.0</listRel:overdueBalance><listRel:unbilledOrders>0.0</listRel:unbilledOrders><listRel:consolUnbilledOrders>0.0</listRel:consolUnbilledOrders><listRel:consolOverdueBalance>0.0</listRel:consolOverdueBalance><listRel:consolDepositBalance>0.0</listRel:consolDepositBalance><listRel:consolBalance>0.0</listRel:consolBalance><listRel:currency
-        internalId="1" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>USA</platformCore:name></listRel:currency><listRel:depositBalance>0.0</listRel:depositBalance><listRel:shipComplete>false</listRel:shipComplete><listRel:taxable>true</listRel:taxable><listRel:thirdPartyCountry>_unitedStates</listRel:thirdPartyCountry><listRel:giveAccess>false</listRel:giveAccess><listRel:accessRole
-        internalId="14" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Customer
+        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>USA</platformCore:name></listRel:currency><listRel:depositBalance>0.0</listRel:depositBalance><listRel:shipComplete>false</listRel:shipComplete><listRel:taxable>true</listRel:taxable><listRel:thirdPartyCountry>_unitedStates</listRel:thirdPartyCountry><listRel:giveAccess>false</listRel:giveAccess><listRel:accessRole
+        internalId=\"14\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Customer
         Center</platformCore:name></listRel:accessRole><listRel:sendEmail>false</listRel:sendEmail><listRel:receivablesAccount
-        internalId="-10" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Use
-        System Preference</platformCore:name></listRel:receivablesAccount><listRel:webLead>No</listRel:webLead><listRel:lastModifiedDate>2014-01-09T11:31:43.000-08:00</listRel:lastModifiedDate><listRel:stage>_customer</listRel:stage><listRel:emailTransactions>false</listRel:emailTransactions><listRel:printTransactions>false</listRel:printTransactions><listRel:faxTransactions>false</listRel:faxTransactions><listRel:isBudgetApproved>false</listRel:isBudgetApproved><listRel:globalSubscriptionStatus>_softOptIn</listRel:globalSubscriptionStatus><listRel:subscriptionsList><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
-        internalId="2" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Billing
-        Communication</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-09T11:31:43.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
-        internalId="1" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Marketing</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-09T11:31:43.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
-        internalId="4" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Newsletters</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-09T11:31:43.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
-        internalId="5" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Product
-        Updates</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-09T11:31:43.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
-        internalId="3" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>Surveys</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-01-09T11:31:43.000-08:00</listRel:lastModifiedDate></listRel:subscriptions></listRel:subscriptionsList><listRel:currencyList><listRel:currency><listRel:currency
-        internalId="1" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:name>USA</platformCore:name></listRel:currency><listRel:balance>0.0</listRel:balance><listRel:consolBalance>0.0</listRel:consolBalance><listRel:depositBalance>0.0</listRel:depositBalance><listRel:consolDepositBalance>0.0</listRel:consolDepositBalance><listRel:overdueBalance>0.0</listRel:overdueBalance><listRel:consolOverdueBalance>0.0</listRel:consolOverdueBalance><listRel:unbilledOrders>0.0</listRel:unbilledOrders><listRel:consolUnbilledOrders>0.0</listRel:consolUnbilledOrders><listRel:overrideCurrencyFormat>false</listRel:overrideCurrencyFormat><listRel:displaySymbol>$</listRel:displaySymbol><listRel:symbolPlacement>_beforeNumber</listRel:symbolPlacement></listRel:currency></listRel:currencyList><listRel:customFieldList
-        xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"><platformCore:customField
-        internalId="201" scriptId="custentity_fmt_customer_credit_on_hold" xsi:type="platformCore:BooleanCustomFieldRef"><platformCore:value>false</platformCore:value></platformCore:customField><platformCore:customField
-        internalId="183" scriptId="custentity_fmt_cust_credit_on_hold" xsi:type="platformCore:BooleanCustomFieldRef"><platformCore:value>false</platformCore:value></platformCore:customField></listRel:customFieldList></record></readResponse></getResponse></soapenv:Body></soapenv:Envelope>
+        internalId=\"-10\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Use
+        System Preference</platformCore:name></listRel:receivablesAccount><listRel:webLead>No</listRel:webLead><listRel:lastModifiedDate>2014-02-04T10:56:04.000-08:00</listRel:lastModifiedDate><listRel:stage>_customer</listRel:stage><listRel:emailTransactions>false</listRel:emailTransactions><listRel:printTransactions>false</listRel:printTransactions><listRel:faxTransactions>false</listRel:faxTransactions><listRel:isBudgetApproved>false</listRel:isBudgetApproved><listRel:globalSubscriptionStatus>_softOptIn</listRel:globalSubscriptionStatus><listRel:subscriptionsList><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
+        internalId=\"2\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Billing
+        Communication</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-02-04T10:56:04.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
+        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Marketing</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-02-04T10:56:04.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
+        internalId=\"4\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Newsletters</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-02-04T10:56:04.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
+        internalId=\"5\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Product
+        Updates</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-02-04T10:56:04.000-08:00</listRel:lastModifiedDate></listRel:subscriptions><listRel:subscriptions><listRel:subscribed>true</listRel:subscribed><listRel:subscription
+        internalId=\"3\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Surveys</platformCore:name></listRel:subscription><listRel:lastModifiedDate>2014-02-04T10:56:04.000-08:00</listRel:lastModifiedDate></listRel:subscriptions></listRel:subscriptionsList><listRel:contactRolesList><listRel:contactRoles><listRel:giveAccess>false</listRel:giveAccess><listRel:contact
+        internalId=\"4112\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>was@spreecommerce.com</platformCore:name></listRel:contact><listRel:email>was@spreecommerce.com</listRel:email><listRel:role
+        internalId=\"14\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>Customer
+        Center</platformCore:name></listRel:role><listRel:sendEmail>false</listRel:sendEmail></listRel:contactRoles></listRel:contactRolesList><listRel:currencyList><listRel:currency><listRel:currency
+        internalId=\"1\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:name>USA</platformCore:name></listRel:currency><listRel:balance>0.0</listRel:balance><listRel:consolBalance>0.0</listRel:consolBalance><listRel:depositBalance>0.0</listRel:depositBalance><listRel:consolDepositBalance>0.0</listRel:consolDepositBalance><listRel:overdueBalance>0.0</listRel:overdueBalance><listRel:consolOverdueBalance>0.0</listRel:consolOverdueBalance><listRel:unbilledOrders>0.0</listRel:unbilledOrders><listRel:consolUnbilledOrders>0.0</listRel:consolUnbilledOrders><listRel:overrideCurrencyFormat>false</listRel:overrideCurrencyFormat><listRel:displaySymbol>$</listRel:displaySymbol><listRel:symbolPlacement>_beforeNumber</listRel:symbolPlacement></listRel:currency></listRel:currencyList><listRel:customFieldList
+        xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"><platformCore:customField
+        internalId=\"201\" scriptId=\"custentity_fmt_customer_credit_on_hold\" xsi:type=\"platformCore:BooleanCustomFieldRef\"><platformCore:value>false</platformCore:value></platformCore:customField><platformCore:customField
+        internalId=\"183\" scriptId=\"custentity_fmt_cust_credit_on_hold\" xsi:type=\"platformCore:BooleanCustomFieldRef\"><platformCore:value>false</platformCore:value></platformCore:customField></listRel:customFieldList></record></readResponse></getResponse></soapenv:Body></soapenv:Envelope>"
     http_version: 
-  recorded_at: Thu, 09 Jan 2014 19:52:07 GMT
+  recorded_at: Tue, 04 Feb 2014 18:57:10 GMT
 - request:
     method: get
     uri: https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl
@@ -1766,7 +1770,7 @@ http_interactions:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
   response:
@@ -1775,13 +1779,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 09 Jan 2014 19:52:02 GMT
+      - Tue, 04 Feb 2014 18:57:07 GMT
       Server:
       - Apache
       Content-Length:
       - '5783'
       Ns-Rtimer-Composite:
-      - -2013235878:706172746E6572732D6A61766131303030332E626F732E6E65746C65646765722E636F6D:80
+      - 2001469535:706172746E6572732D6A61766131303030322E626F732E6E65746C65646765722E636F6D:80
       X-Powered-By:
       - Servlet/2.5 JSP/2.1
       P3p:
@@ -3431,34 +3435,35 @@ http_interactions:
         location=\"https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2\"/>\n
         \       </port>\n    </service>\n</definitions>\n"
     http_version: 
-  recorded_at: Thu, 09 Jan 2014 19:52:07 GMT
+  recorded_at: Tue, 04 Feb 2014 18:57:11 GMT
 - request:
     method: post
     uri: https://webservices.na1.netsuite.com/services/NetSuitePort_2013_2
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8"?><env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:platformMsgs="urn:messages_2013_2.platform.webservices.netsuite.com"
-        xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"
-        xmlns:platformCommon="urn:common_2013_2.platform.webservices.netsuite.com"
-        xmlns:listRel="urn:relationships_2013_2.lists.webservices.netsuite.com" xmlns:tranSales="urn:sales_2013_2.transactions.webservices.netsuite.com"
-        xmlns:actSched="urn:scheduling_2013_2.activities.webservices.netsuite.com"
-        xmlns:setupCustom="urn:customization_2013_2.setup.webservices.netsuite.com"
-        xmlns:listAcct="urn:accounting_2013_2.lists.webservices.netsuite.com" xmlns:tranCust="urn:customers_2013_2.transactions.webservices.netsuite.com"
-        xmlns:listSupport="urn:support_2013_2.lists.webservices.netsuite.com" xmlns:tranGeneral="urn:general_2013_2.transactions.webservices.netsuite.com"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
-        type="role" internalId="3"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:update><platformMsgs:record
-        xsi:type="listRel:Customer" platformMsgs:internalId="2117" platformMsgs:externalId="3"><listRel:email>andrei@spreecommerce.com</listRel:email></platformMsgs:record></platformMsgs:update></env:Body></env:Envelope>
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"
+        xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"
+        xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"
+        xmlns:platformCommon=\"urn:common_2013_2.platform.webservices.netsuite.com\"
+        xmlns:listRel=\"urn:relationships_2013_2.lists.webservices.netsuite.com\"
+        xmlns:tranSales=\"urn:sales_2013_2.transactions.webservices.netsuite.com\"
+        xmlns:actSched=\"urn:scheduling_2013_2.activities.webservices.netsuite.com\"
+        xmlns:setupCustom=\"urn:customization_2013_2.setup.webservices.netsuite.com\"
+        xmlns:listAcct=\"urn:accounting_2013_2.lists.webservices.netsuite.com\" xmlns:tranCust=\"urn:customers_2013_2.transactions.webservices.netsuite.com\"
+        xmlns:listSupport=\"urn:support_2013_2.lists.webservices.netsuite.com\" xmlns:tranGeneral=\"urn:general_2013_2.transactions.webservices.netsuite.com\"><env:Header><platformMsgs:passport><platformCore:email>washington@spreecommerce.com</platformCore:email><platformCore:password>test</platformCore:password><platformCore:account>test</platformCore:account><platformCore:role
+        type=\"role\" internalId=\"3\"></platformCore:role></platformMsgs:passport></env:Header><env:Body><platformMsgs:update><platformMsgs:record
+        xsi:type=\"listRel:Customer\" platformMsgs:internalId=\"4112\" platformMsgs:externalId=\"was@spreecommerce.com\"><listRel:email>wasss@spreecommerce.com</listRel:email></platformMsgs:record></platformMsgs:update></env:Body></env:Envelope>"
     headers:
       Soapaction:
-      - '"update"'
+      - "\"update\""
       Content-Type:
       - text/xml;charset=UTF-8
       Content-Length:
-      - '1595'
+      - '1617'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - '*/*'
+      - "*/*"
       User-Agent:
       - Ruby
   response:
@@ -3467,13 +3472,13 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 09 Jan 2014 19:52:03 GMT
+      - Tue, 04 Feb 2014 18:57:08 GMT
       Server:
       - Apache
       Ns-Rtimer-Composite:
-      - -1117793875:706172746E6572732D6A61766131303030312E626F732E6E65746C65646765722E636F6D:80
+      - 2111340324:706172746E6572732D6A61766131303030382E626F732E6E65746C65646765722E636F6D:80
       Set-Cookie:
-      - JSESSIONID=37VFSThLTT6K7f1ZvTvVrnK6tRW2PphsCPWCRlJs6tzPfRwZ9QQ8nvsv76922f58Q2G8wp04mT6Rf33WDp2h7CQ1hp3cyVPpv0F6vLVGgw0Vlq0y3VKsv659vs6TfV9R!1702290144;
+      - JSESSIONID=pqShSxqLw2DP0KFvQNrHj2nMJ0sQmnRqwh35CP9mlm81TgkG7vnzdLLFQGlpnXTQLpRTG7vXQ8yTBP40mFfGsQZvjypj5hlhGs6TQLNxyr03R3KSJXVzNfQsLb0ybJHv!1648015771;
         path=/
       - NS_VER=2013.2.0; path=/
       X-Powered-By:
@@ -3488,13 +3493,13 @@ http_interactions:
       - text/xml; charset=utf-8
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="UTF-8"?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-        xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><soapenv:Header><platformMsgs:documentInfo
-        xmlns:platformMsgs="urn:messages_2013_2.platform.webservices.netsuite.com"><platformMsgs:nsId>WEBSERVICES_TSTDRV1141558_0109201420226864952130656836_c2cdf</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><updateResponse
-        xmlns="urn:messages_2013_2.platform.webservices.netsuite.com"><writeResponse><platformCore:status
-        isSuccess="true" xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/><baseRef
-        internalId="2117" externalId="3" type="customer" xsi:type="platformCore:RecordRef"
-        xmlns:platformCore="urn:core_2013_2.platform.webservices.netsuite.com"/></writeResponse></updateResponse></soapenv:Body></soapenv:Envelope>
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
+        xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Header><platformMsgs:documentInfo
+        xmlns:platformMsgs=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><platformMsgs:nsId>WEBSERVICES_test_02042014291756501219901693_65e71f3</platformMsgs:nsId></platformMsgs:documentInfo></soapenv:Header><soapenv:Body><updateResponse
+        xmlns=\"urn:messages_2013_2.platform.webservices.netsuite.com\"><writeResponse><platformCore:status
+        isSuccess=\"true\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/><baseRef
+        internalId=\"4112\" externalId=\"was@spreecommerce.com\" type=\"customer\"
+        xsi:type=\"platformCore:RecordRef\" xmlns:platformCore=\"urn:core_2013_2.platform.webservices.netsuite.com\"/></writeResponse></updateResponse></soapenv:Body></soapenv:Envelope>"
     http_version: 
-  recorded_at: Thu, 09 Jan 2014 19:52:08 GMT
+  recorded_at: Tue, 04 Feb 2014 18:57:12 GMT
 recorded_with: VCR 2.8.0

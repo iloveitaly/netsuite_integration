@@ -48,7 +48,7 @@ shared_context "connect to netsuite" do
       email       config_hash.fetch('netsuite.email')
       password    config_hash.fetch('netsuite.password')
       account     config_hash.fetch('netsuite.account')
-      log_level   :debug
+      log_level   :info
     end
   end
 end

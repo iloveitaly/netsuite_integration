@@ -2,8 +2,8 @@ module NetsuiteIntegration
   module Services
     class CustomerService < Base
 
-      def find_by_external_id(id)
-        NetSuite::Records::Customer.get({:external_id => id})
+      def find_by_external_id(email)
+        NetSuite::Records::Customer.get({:external_id => email})
       # Silence the error
       # We don't care that the record was not found
       rescue NetSuite::RecordNotFound
@@ -12,12 +12,17 @@ module NetsuiteIntegration
       # entity_id -> Customer name
       def create(payload)
         customer             = NetSuite::Records::Customer.new
-        customer.email       = payload['email']
-        customer.external_id = customer.entity_id = payload['id'].to_i
-        customer.first_name  = payload[:firstname] || 'N/A'
-        customer.last_name   = payload[:lastname] || 'N/A'
+        customer.email       = payload[:email]
+        customer.external_id = customer.entity_id = payload[:email]
 
-        fill_address(customer, payload)
+        if payload[:shipping_address]
+          customer.first_name  = payload[:shipping_address][:firstname] || 'N/A'
+          customer.last_name   = payload[:shipping_address][:lastname] || 'N/A'
+          fill_address(customer, payload[:shipping_address])
+        else
+          customer.first_name  = 'N/A'
+          customer.last_name   = 'N/A'
+        end
 
         # Defaults
         customer.is_person   = true

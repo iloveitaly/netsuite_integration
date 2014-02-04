@@ -4,7 +4,7 @@ require 'netsuite'
 
 require 'netsuite_integration/services/base'
 require 'netsuite_integration/services/inventory_item'
-require 'netsuite_integration/services/customer_service'
+require 'netsuite_integration/services/customer'
 require 'netsuite_integration/services/non_inventory_item_service'
 require 'netsuite_integration/services/sales_order'
 require 'netsuite_integration/services/customer_deposit'
