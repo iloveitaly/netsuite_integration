@@ -5,7 +5,10 @@ require File.expand_path(File.dirname(__FILE__) + '/lib/netsuite_integration')
 
 class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   before do
-    puts "  Start NetSuite API Request at #{Time.now} for #{@message['message']}"
+    if @message
+      puts "  Start NetSuite API Request at #{Time.now} for #{@message['message']}"
+    end
+
     if config = @config
       @netsuite_client ||= NetSuite.configure do
         reset!
@@ -22,7 +25,9 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   after do
-    puts "  End NetSuite API Request at #{Time.now} for #{@message['message']}"
+    if @message
+      puts "  End NetSuite API Request at #{Time.now} for #{@message['message']}"
+    end
   end
 
   post '/products' do
