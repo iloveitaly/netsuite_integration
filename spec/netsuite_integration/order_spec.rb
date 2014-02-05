@@ -61,6 +61,19 @@ module NetsuiteIntegration
           expect(order.transaction_bill_address.bill_addressee).to eq('Luis Billing Braga')
         end
       end
+
+      it "set items decimal values properly" do
+        VCR.use_cassette('order/import_check_decimals') do
+          payload = Factories.order_new_payload
+          payload['order']['number'] = "RGGADSFSFSFSFDS"
+          payload['order']['totals']['tax'] = 3.25
+          order = described_class.new(config, { payload: payload })
+
+          expect(order.import).to be
+          # we really only care about item decimals here
+          expect(order.sales_order.item_list.items[3].rate).to eq(3.25)
+        end
+      end
     end
 
     context 'when missing shipping methods' do

@@ -76,7 +76,7 @@ module NetsuiteIntegration
 
       # Due to NetSuite complexity, taxes and discounts will be treated as line items.
       ["tax", "discount"].map do |type|
-        value = order_payload[:totals][type].to_i
+        value = order_payload[:totals][type] || 0
 
         if value > 0
           item_list.push(NetSuite::Records::SalesOrderItem.new({
