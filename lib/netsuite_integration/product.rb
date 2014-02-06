@@ -8,19 +8,7 @@ module NetsuiteIntegration
     end
 
     def messages
-      collection.map do |item|
-        {
-          product: {
-            name: item.store_display_name || item.item_id,
-            available_on: item.last_modified_date.utc,
-            description: item.sales_description,
-            sku: item.upc_code,
-            price: get_item_base_price(item.pricing_matrix.prices),
-            cost_price: item.cost_estimate,
-            channel: "NetSuite"
-          }
-        }
-      end
+      @messages ||= standalone_products + matrix_items
     end
 
     def last_modified_date
@@ -32,7 +20,7 @@ module NetsuiteIntegration
     end
 
     def matrix_parents
-      collection.select { |item| item.matrix_type == "_parent" }
+      @matrix_parents ||= collection.select { |item| item.matrix_type == "_parent" }
     end
 
     def standalone_products
@@ -70,8 +58,8 @@ module NetsuiteIntegration
     # Need to find the parent for each matrix child
     # Once parent is found need to match child matrix_option_list type and
     # value with those present on parent
-    def build_matrix
-      matrix_parents.each do |item|
+    def matrix_items
+      @matrix_items ||= matrix_parents.map do |item|
         {
           product: {
             name: item.store_display_name || item.item_id,
@@ -81,36 +69,48 @@ module NetsuiteIntegration
             price: get_item_base_price(item.pricing_matrix.prices),
             cost_price: item.cost_estimate,
             channel: "NetSuite",
-            variants: matrix_children_mapping_for(item)
+            variants: map_matrix_children(item)
           }
         }
       end
     end
 
-    def matrix_children_mapping_for(parent)
+    def map_matrix_children(parent)
       children = matrix_children.select { |item| item.parent.internal_id == parent.internal_id }
 
       children.map do |child|
         price = get_item_base_price(child.pricing_matrix.prices) || get_item_base_price(parent.pricing_matrix.prices)
         options = child.matrix_option_list.options.map do |option|
-          { get_option_name(option.option_type_id) => get_option_value(option.value_id, parent) }
+          { get_option_name(option.type_id) => get_option_value(option, parent) }
         end
 
-        {
-          price: price,
-          sku: child.upc_code,
-          options: options
-        }
+        { price: price, sku: child.upc_code, options: options }
       end
     end
 
-    def get_option_value(id, parent)
-      # TODO fetch product again (fuck) so we can get the option value names 
-      # then map the option value id here with the ones found on the product
-      id
-    end
-
     private
+      # Need to call +get+ on InventoryItem again so we can grab the option type
+      # and value names. The search action doesn't return them
+      #
+      # Then map the option ids here with the ones found on the product
+      def get_option_value(option, parent)
+        parents_list[parent.internal_id] ||= NetSuite::Records::InventoryItem.get parent.internal_id
+        full_parent = parents_list[parent.internal_id]
+
+        # Let's assume all custom fields for this type are product options
+        custom = full_parent.custom_field_list.custom_fields_by_type "MultiSelectCustomFieldRef"
+
+        custom.map do |field|
+          field.value.select do |option_value|
+            option_value[:"@type_id"] == option.type_id && option_value[:"@internal_id"] == option.value_id
+          end
+        end.flatten.first[:name]
+      end
+
+      def parents_list
+        @parents_list ||= {}
+      end
+
       def get_option_name(id)
         option_names[id] ||= NetSuite::Records::CustomRecordType.get(id).record_name
       end

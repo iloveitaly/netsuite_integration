@@ -58,7 +58,7 @@ describe NetsuiteEndpoint do
   end
 
   it "fetches a collection of netsuite items as products" do
-    VCR.use_cassette("inventory_item/search") do
+    VCR.use_cassette("inventory_item/search_on_matrix") do
       post '/products', request.to_json, auth
       expect(last_response).to be_ok
     end

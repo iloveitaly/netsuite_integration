@@ -12,9 +12,8 @@ module NetsuiteIntegration
     end
 
     it "builds product variants from matrix items" do
-      VCR.use_cassette("product/matrix_mapping") do
-        parent = subject.matrix_parents.first
-        children = subject.matrix_children_mapping_for parent
+      VCR.use_cassette("product/building_matrix") do
+        expect(subject.matrix_items.count).to eq subject.matrix_parents.count
       end
     end
 
