@@ -17,6 +17,34 @@ module NetsuiteIntegration
       end
     end
 
+    it "check" do
+      VCR.use_cassette("product/huhuuhuh") do
+        s = described_class.new config
+        s.messages
+        # expect(s.matrix_items.count).to eq s.matrix_parents.count
+      end
+    end
+
+    context "collection with one child but no parents" do
+      before do
+        config['netsuite.last_updated_after'] = '2014-02-06T19:58:56.001Z'
+      end
+
+      it "finds parent and still build matrix properly" do
+        VCR.use_cassette("product/one_child_on_response") do
+          subject = described_class.new config
+          expect(subject.messages.count).to eq 1
+          expect(subject.matrix_parents).to_not be_empty
+        end
+      end
+    end
+
+    it "builds messages with both standalone and matrix items" do
+      VCR.use_cassette("product/building_matrix") do
+        expect(subject.messages).to eq (subject.standalone_products + subject.matrix_items)
+      end
+    end
+
     it "maps parameteres according to current product schema" do
       mapped_product = subject.messages.first[:product]
       item = subject.collection.first

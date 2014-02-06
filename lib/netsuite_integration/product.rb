@@ -19,8 +19,18 @@ module NetsuiteIntegration
       @matrix_children ||= collection.select { |item| item.matrix_type == "_child" }
     end
 
+    # TODO what if we still get matrix parents on the collection but not one of
+    # child's parent is missing. Make sure every child in collection has its
+    # parent present here
     def matrix_parents
-      @matrix_parents ||= collection.select { |item| item.matrix_type == "_parent" }
+      return @matrix_parents if @matrix_parents
+
+      parents = collection.select { |item| item.matrix_type == "_parent" }
+      @matrix_parents = if parents.empty? && !matrix_children.empty?
+                          matrix_children.map { |child| get_parent_from_list child.parent.internal_id }
+                        else
+                          parents
+                        end
     end
 
     def standalone_products
@@ -94,8 +104,7 @@ module NetsuiteIntegration
       #
       # Then map the option ids here with the ones found on the product
       def get_option_value(option, parent)
-        parents_list[parent.internal_id] ||= NetSuite::Records::InventoryItem.get parent.internal_id
-        full_parent = parents_list[parent.internal_id]
+        full_parent = get_parent_from_list parent.internal_id
 
         # Let's assume all custom fields for this type are product options
         custom = full_parent.custom_field_list.custom_fields_by_type "MultiSelectCustomFieldRef"
@@ -109,6 +118,10 @@ module NetsuiteIntegration
 
       def parents_list
         @parents_list ||= {}
+      end
+
+      def get_parent_from_list(parent_id)
+        parents_list[parent_id] ||= NetSuite::Records::InventoryItem.get parent_id
       end
 
       def get_option_name(id)
