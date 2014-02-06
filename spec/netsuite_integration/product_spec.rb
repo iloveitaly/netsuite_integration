@@ -11,6 +11,13 @@ module NetsuiteIntegration
       end
     end
 
+    it "builds product variants from matrix items" do
+      VCR.use_cassette("product/matrix_mapping") do
+        parent = subject.matrix_parents.first
+        children = subject.matrix_children_mapping_for parent
+      end
+    end
+
     it "maps parameteres according to current product schema" do
       mapped_product = subject.messages.first[:product]
       item = subject.collection.first

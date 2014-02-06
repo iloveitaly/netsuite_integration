@@ -27,7 +27,102 @@ module NetsuiteIntegration
       collection.last.last_modified_date.utc
     end
 
+    def matrix_children
+      @matrix_children ||= collection.select { |item| item.matrix_type == "_child" }
+    end
+
+    def matrix_parents
+      collection.select { |item| item.matrix_type == "_parent" }
+    end
+
+    def standalone_products
+      ignore_matrix.map do |item|
+        {
+          product: {
+            name: item.store_display_name || item.item_id,
+            available_on: item.last_modified_date.utc,
+            description: item.sales_description,
+            sku: item.upc_code,
+            price: get_item_base_price(item.pricing_matrix.prices),
+            cost_price: item.cost_estimate,
+            channel: "NetSuite"
+          }
+        }
+      end
+    end
+
+    # Payload expected by spree_endpoint
+    #
+    #   product: {
+    #     ...
+    #     variants: [
+    #       {
+    #        price: 19.99,
+    #        sku: "hey_you",
+    #        options: [
+    #          { "size" => "small" },
+    #          { "color" => "black" }
+    #        ]
+    #       }
+    #     ]
+    #   }
+    #
+    # Need to find the parent for each matrix child
+    # Once parent is found need to match child matrix_option_list type and
+    # value with those present on parent
+    def build_matrix
+      matrix_parents.each do |item|
+        {
+          product: {
+            name: item.store_display_name || item.item_id,
+            available_on: item.last_modified_date.utc,
+            description: item.sales_description,
+            sku: item.upc_code,
+            price: get_item_base_price(item.pricing_matrix.prices),
+            cost_price: item.cost_estimate,
+            channel: "NetSuite",
+            variants: matrix_children_mapping_for(item)
+          }
+        }
+      end
+    end
+
+    def matrix_children_mapping_for(parent)
+      children = matrix_children.select { |item| item.parent.internal_id == parent.internal_id }
+
+      children.map do |child|
+        price = get_item_base_price(child.pricing_matrix.prices) || get_item_base_price(parent.pricing_matrix.prices)
+        options = child.matrix_option_list.options.map do |option|
+          { get_option_name(option.option_type_id) => get_option_value(option.value_id, parent) }
+        end
+
+        {
+          price: price,
+          sku: child.upc_code,
+          options: options
+        }
+      end
+    end
+
+    def get_option_value(id, parent)
+      # TODO fetch product again (fuck) so we can get the option value names 
+      # then map the option value id here with the ones found on the product
+      id
+    end
+
     private
+      def get_option_name(id)
+        option_names[id] ||= NetSuite::Records::CustomRecordType.get(id).record_name
+      end
+
+      def option_names
+        @option_names ||= {}
+      end
+
+      def ignore_matrix
+        collection.reject { |item| ["_parent", "_child"].include? item.matrix_type }
+      end
+
       # Crazy NetSuite pricing matrix structure
       #   
       #   #<NetSuite::Records::RecordRef:0x007fdb3f1399e0 @internal_id=nil, @external_id=nil, @type=nil,
