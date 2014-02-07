@@ -53,7 +53,8 @@
         }]
       },
       "recommends": {
-        "messages": ["stock:query"]
+        "messages": ["stock:query"],
+        "options": { "retries_allowed": false }
       }
     },
     {
