@@ -1,9 +1,9 @@
 GIT
-  remote: git://github.com/RevolutionPrep/netsuite.git
-  revision: f408366e23331b630d49ad025296399dd7540ba3
-  branch: master
+  remote: git://github.com/huoxito/netsuite.git
+  revision: eabf3d03747eac94ad2c20689c9fa076ec4fd8d9
+  branch: matrix-option-list
   specs:
-    netsuite (0.2.0)
+    netsuite (0.2.1)
       savon (~> 2.3.0)
 
 GIT
@@ -25,9 +25,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
-    akami (1.2.0)
+    akami (1.2.1)
       gyoku (>= 0.4.0)
-      nokogiri (>= 1.4.0)
+      nokogiri
     atomic (1.1.14)
     builder (3.2.2)
     capistrano (3.1.0)
