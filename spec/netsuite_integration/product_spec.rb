@@ -17,14 +17,6 @@ module NetsuiteIntegration
       end
     end
 
-    it "check" do
-      VCR.use_cassette("product/huhuuhuh") do
-        s = described_class.new config
-        s.messages
-        # expect(s.matrix_items.count).to eq s.matrix_parents.count
-      end
-    end
-
     context "collection with one child but no parents" do
       before do
         config['netsuite.last_updated_after'] = '2014-02-06T19:58:56.001Z'
@@ -39,6 +31,16 @@ module NetsuiteIntegration
       end
     end
 
+    context "option value name doesn't match the one in NetSuite UI" do
+      it "is just so confusing" do
+        config['netsuite.last_updated_after'] = '2014-02-06T20:58:56.001Z'
+        VCR.use_cassette("product/there_we_go_again") do
+          subject = described_class.new config
+          subject.messages
+        end
+      end
+    end
+
     it "builds messages with both standalone and matrix items" do
       VCR.use_cassette("product/building_matrix") do
         expect(subject.messages).to eq (subject.standalone_products + subject.matrix_items)
@@ -46,11 +48,13 @@ module NetsuiteIntegration
     end
 
     it "maps parameteres according to current product schema" do
-      mapped_product = subject.messages.first[:product]
-      item = subject.collection.first
+      VCR.use_cassette("product/building_matrix") do
+        mapped_product = subject.messages.first[:product]
+        item = subject.collection.first
 
-      expect(mapped_product[:name]).to eq (item.store_display_name || item.item_id)
-      expect(mapped_product[:sku]).to eq item.upc_code
+        expect(mapped_product[:name]).to eq (item.store_display_name || item.item_id)
+        expect(mapped_product[:sku]).to eq item.upc_code
+      end
     end
 
     it "gives back last modified in utc" do
