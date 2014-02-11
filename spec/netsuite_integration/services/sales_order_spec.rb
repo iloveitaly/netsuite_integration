@@ -16,6 +16,13 @@ module NetsuiteIntegration
           expect(sales_order.internal_id).to eq "7279"
         end
       end
+
+      it "closes order just fine" do
+        VCR.use_cassette("order/close") do
+          sales_order = subject.find_by_external_id("R780015316")
+          expect(subject.close! sales_order).to be
+        end
+      end
     end
   end
 end

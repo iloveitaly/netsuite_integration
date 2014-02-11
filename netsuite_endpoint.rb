@@ -117,12 +117,13 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   def cancel_order
     order = sales_order_service.find_by_external_id(@message[:payload][:order][:number]) or 
       raise RecordNotFoundSalesOrder, "NetSuite Sales Order not found for order #{order_payload[:number]}"
-    if balance_due? # No CustomerDeposit record
-      sales_order_service.close!(order)
 
+    if customer_record_exists?
+      sales_order_service.close!(order)
       add_notification "info", "NetSuite Sales Order #{@message[:payload][:order][:number]} was closed"
+
       process_result 200
-    else # CustomerDeposit record exists
+    else
       refund = NetsuiteIntegration::Refund.new(@config, @message, order)
       if refund.process!
         add_notification "info", "Customer Refund created and NetSuite Sales Order #{@message[:payload][:order][:number]} was closed"
@@ -134,9 +135,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
-  # 'balance_due' means that there is no customer deposit
-  # associated with the order in the NetSuite system
-  def balance_due?
+  def customer_record_exists?
     @message[:payload][:original][:payment_state] == 'balance_due'
   end
 

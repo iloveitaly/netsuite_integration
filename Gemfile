@@ -7,7 +7,7 @@ gem 'tilt-jbuilder', require: 'sinatra/jbuilder'
 gem 'endpoint_base', github: 'spree/endpoint_base'
 gem 'capistrano'
 
-gem 'netsuite', github: 'huoxito/netsuite', branch: 'matrix-option-list'
+gem 'netsuite', github: 'huoxito/netsuite', branch: 'sales-order-close'
 
 group :development do
   gem "rake"

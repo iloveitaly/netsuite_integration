@@ -8,10 +8,13 @@ module NetsuiteIntegration
       end
 
       def close!(sales_order)
-        true
-        # TODO: Mark all sales order items as _closed
-        # sales_order.item_list.items
-        # https://system.netsuite.com/help/helpcenter/en_US/SchemaBrowser/transactions/v2013_2_0/sales.html#tranSales:SalesOrderItemList
+        attributes = sales_order.attributes
+        attributes[:item_list].items.each do |item|
+          item.is_closed = true
+          item.attributes = item.attributes.slice(:line, :is_closed)
+        end
+
+        sales_order.update({ item_list: attributes[:item_list] })
       end
     end
   end

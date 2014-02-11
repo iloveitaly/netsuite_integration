@@ -165,21 +165,22 @@ describe NetsuiteEndpoint do
         }.with_indifferent_access
       end
 
-      before(:each) do
-        NetsuiteIntegration::Services::SalesOrder.any_instance.stub(:find_by_external_id => sales_order)
-      end
-
       context 'when CustomerDeposit record DOES NOT exist' do
+        before { request[:payload][:order][:number] = "R780015316" }
+
         it 'closes the order' do
-          post '/orders', request.to_json, auth
-          expect(last_response).to be_ok
-          expect(json_response['notifications'][0]['level']).to match('info')
-          expect(json_response['notifications'][0]['subject']).to match('NetSuite Sales Order R123456789 was closed')          
+          VCR.use_cassette("order/close") do
+            post '/orders', request.to_json, auth
+            expect(last_response).to be_ok
+            expect(json_response['notifications'][0]['level']).to match('info')
+            expect(json_response['notifications'][0]['subject']).to match('was closed')          
+          end
         end
       end
 
       context 'when CustomerDeposit record exists' do
         before(:each) do
+          NetsuiteIntegration::Services::SalesOrder.any_instance.stub(:find_by_external_id => sales_order)
           request['payload']['original']['payment_state'] = 'paid'
           setup_stubs
         end

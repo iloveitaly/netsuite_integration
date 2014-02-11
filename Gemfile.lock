@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/huoxito/netsuite.git
-  revision: eabf3d03747eac94ad2c20689c9fa076ec4fd8d9
-  branch: matrix-option-list
+  revision: 2ed467115c464ee3a3a666fa1503762978a1c1cd
+  branch: sales-order-close
   specs:
-    netsuite (0.2.1)
+    netsuite (0.2.2)
       savon (~> 2.3.0)
 
 GIT
