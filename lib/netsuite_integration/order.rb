@@ -11,6 +11,8 @@ module NetsuiteIntegration
 
       @sales_order = NetSuite::Records::SalesOrder.new({
         order_status: '_pendingFulfillment',
+        # this is Basic Sales Order Form
+        custom_form: NetSuite::Records::RecordRef.new(internal_id: 164),
         external_id: order_payload[:number]
       })
     end
