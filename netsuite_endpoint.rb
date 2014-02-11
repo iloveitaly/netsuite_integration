@@ -96,7 +96,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
         add_notification "info", "Order #{order.sales_order.external_id} sent to NetSuite # #{order.sales_order.tran_id}"
         process_result 200
       else
-        add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite"
+        add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite", order.errors
         process_result 500
       end
     else

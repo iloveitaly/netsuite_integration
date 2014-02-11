@@ -50,6 +50,10 @@ module NetsuiteIntegration
       end
     end
 
+    def errors
+      self.sales_order.errors.map(&:message).join(", ")
+    end
+
     private
     def import_customer!
       if customer = customer_service.find_by_external_id(order_payload[:email])

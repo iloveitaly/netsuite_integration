@@ -113,6 +113,22 @@ describe NetsuiteEndpoint do
         expect(json_response['notifications'][0]['subject']).to match('Customer Deposit created for NetSuite Sales Order')
       end
 
+      context "order has invalid items" do
+        before do
+          request[:payload] = Factories.order_invalid_payload.merge(parameters: parameters)
+        end
+
+        it "displays netsuite record error messages" do
+          VCR.use_cassette('order/invalid_item') do
+            post '/orders', request.to_json, auth
+            expect(last_response.status).to eq 500
+
+            notification = json_response['notifications'][0]
+            expect(notification['description']).to match('Please choose a child matrix item')
+          end
+        end
+      end
+
       context "was already paid" do
         let(:request) do
           {

@@ -1,0 +1,323 @@
+{
+  "order": {
+    "number": "R038007278",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-02-11T21:14:25.505Z",
+    "updated_at": "2014-02-11T21:14:25.528Z",
+    "status": "complete",
+    "totals": {
+      "item": 90.0,
+      "adjustment": 5.0,
+      "tax": 0.0,
+      "shipping": 5.0,
+      "payment": 95.0,
+      "order": 95.0
+    },
+    "line_items": [
+      {
+        "name": "Lodge Jacket",
+        "sku": "MK-LDG-JCKT",
+        "external_ref": "",
+        "quantity": 3,
+        "price": 30.0,
+        "variant_id": 34,
+        "options": {
+          "Product Color": "Black",
+          "Product Sizes": "Large"
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 5.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 5,
+        "status": "completed",
+        "amount": 95.0,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H37547337252",
+        "cost": 5.0,
+        "status": "ready",
+        "stock_location": null,
+        "shipping_method": "UPS Ground (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "Lodge Jacket",
+            "sku": "MK-LDG-JCKT",
+            "external_ref": "",
+            "quantity": 3,
+            "price": 30.0,
+            "variant_id": 34,
+            "options": {
+              "Product Color": "Black",
+              "Product Sizes": "Large"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "original": {
+    "id": 5,
+    "number": "R038007278",
+    "item_total": "90.0",
+    "total": "95.0",
+    "ship_total": "5.0",
+    "state": "complete",
+    "adjustment_total": "5.0",
+    "user_id": 1,
+    "created_at": "2014-02-11T19:59:58.236Z",
+    "updated_at": "2014-02-11T21:14:25.528Z",
+    "completed_at": "2014-02-11T21:14:25.505Z",
+    "payment_total": "95.0",
+    "shipment_state": "ready",
+    "payment_state": "paid",
+    "email": "spree@example.com",
+    "special_instructions": null,
+    "token": "4cfb29a85152e9f9",
+    "channel": "spree",
+    "currency": "USD",
+    "tax_total": 0,
+    "bill_address": {
+      "id": 7,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "ship_address": {
+      "id": 8,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "line_items": [
+      {
+        "id": 5,
+        "quantity": 3,
+        "price": "30.0",
+        "variant_id": 34,
+        "created_at": "2014-02-11T21:14:08.368Z",
+        "updated_at": "2014-02-11T21:14:12.710Z",
+        "variant": {
+          "id": 34,
+          "name": "Lodge Jacket",
+          "sku": "MK-LDG-JCKT",
+          "price": "30.0",
+          "weight": null,
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": false,
+          "cost_price": null,
+          "permalink": "lodge-jacket",
+          "product_created_at": "2014-02-11T18:40:19.406Z",
+          "product_updated_at": "2014-02-11T18:40:19.764Z",
+          "options_text": "Product Color: Black, Product Sizes: Large",
+          "option_values": [
+            {
+              "id": 8,
+              "name": "Black",
+              "presentation": "Black",
+              "option_type_name": "Product Color",
+              "option_type_id": 3,
+              "option_type_presentation": "Product Color"
+            },
+            {
+              "id": 11,
+              "name": "Large",
+              "presentation": "Large",
+              "option_type_name": "Product Sizes",
+              "option_type_id": 4,
+              "option_type_presentation": "Product Sizes"
+            }
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 21,
+          "images": [
+
+          ]
+        }
+      }
+    ],
+    "payments": [
+      {
+        "id": 5,
+        "amount": "95.0",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      }
+    ],
+    "shipments": [
+      {
+        "id": 5,
+        "tracking": null,
+        "number": "H37547337252",
+        "cost": "5.0",
+        "shipped_at": null,
+        "state": "ready",
+        "order_id": "R038007278",
+        "stock_location_name": "default",
+        "shipping_rates": [
+          {
+            "id": 13,
+            "cost": "5.0",
+            "selected": true,
+            "shipment_id": 5,
+            "shipping_method_id": 1
+          },
+          {
+            "id": 14,
+            "cost": "10.0",
+            "selected": false,
+            "shipment_id": 5,
+            "shipping_method_id": 2
+          },
+          {
+            "id": 15,
+            "cost": "15.0",
+            "selected": false,
+            "shipment_id": 5,
+            "shipping_method_id": 3
+          }
+        ],
+        "shipping_method": {
+          "name": "UPS Ground (USD)",
+          "tracking_url": null
+        },
+        "inventory_units": [
+          {
+            "id": 10,
+            "variant_id": 34,
+            "state": "on_hand"
+          },
+          {
+            "id": 9,
+            "variant_id": 34,
+            "state": "on_hand"
+          },
+          {
+            "id": 8,
+            "variant_id": 34,
+            "state": "on_hand"
+          }
+        ]
+      }
+    ],
+    "adjustments": [
+      {
+        "id": 11,
+        "amount": "5.0",
+        "label": "Shipping",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::ShippingMethod",
+        "adjustable_type": "Spree::Order"
+      }
+    ],
+    "credit_cards": [
+      {
+        "id": 4,
+        "month": "2",
+        "year": "2014",
+        "cc_type": "visa",
+        "last_digits": "1111",
+        "first_name": "Luis",
+        "last_name": "Braga",
+        "gateway_customer_profile_id": "BGS-501312",
+        "gateway_payment_profile_id": null
+      }
+    ]
+  }
+}
