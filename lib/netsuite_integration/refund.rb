@@ -13,7 +13,7 @@ module NetsuiteIntegration
       @sales_order      = order
       @customer_deposit = customer_deposit_service.find_by_external_id(order_payload[:number]) or
         raise RecordNotFoundCustomerDeposit, "NetSuite Customer Deposit not found for order #{order_payload[:number]}"
-      @customer = customer_service.find_by_external_id(user_id) or
+      @customer = customer_service.find_by_external_id(order_payload[:email]) or
         raise RecordNotFoundCustomerException, "NetSuite Customer not found for Spree user_id #{user_id}"
     end
 
