@@ -109,11 +109,13 @@ module NetsuiteIntegration
         # Let's assume all custom fields for this type are product options
         custom = full_parent.custom_field_list.custom_fields_by_type "MultiSelectCustomFieldRef"
 
-        custom.map do |field|
+        values = custom.map do |field|
           field.value.select do |option_value|
             option_value[:"@type_id"] == option.type_id && option_value[:"@internal_id"] == option.value_id
           end
-        end.flatten.first[:name]
+        end.flatten
+
+        values.first[:name] if values.first
       end
 
       def parents_list

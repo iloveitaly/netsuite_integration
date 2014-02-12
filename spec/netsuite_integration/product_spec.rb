@@ -22,7 +22,7 @@ module NetsuiteIntegration
         config['netsuite.last_updated_after'] = '2014-02-06T19:58:56.001Z'
       end
 
-      it "finds parent and still build matrix properly" do
+      pending "finds parent and still build matrix properly" do
         VCR.use_cassette("product/one_child_on_response") do
           subject = described_class.new config
           expect(subject.messages.count).to eq 1
@@ -32,7 +32,7 @@ module NetsuiteIntegration
     end
 
     context "option value name doesn't match the one in NetSuite UI" do
-      it "is just so confusing" do
+      pending "is just so confusing" do
         config['netsuite.last_updated_after'] = '2014-02-06T20:58:56.001Z'
         VCR.use_cassette("product/there_we_go_again") do
           subject = described_class.new config

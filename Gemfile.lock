@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/huoxito/netsuite.git
-  revision: 2ed467115c464ee3a3a666fa1503762978a1c1cd
+  revision: 42486883edcc77de2da712857180aa3f5e7f96fe
   branch: sales-order-close
   specs:
     netsuite (0.2.2)
