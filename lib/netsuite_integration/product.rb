@@ -85,6 +85,15 @@ module NetsuiteIntegration
       end
     end
 
+    # Dont send option values with null value
+    #
+    # [1] pry(#<NetsuiteIntegration::Product>)> options
+    #   # not a valid options structure
+    #   => [{"Product Color"=>"Lily White"}, {"Product Sizes"=>nil}, {"Size - CM"=>nil}]
+    #
+    # [2] pry(#<NetsuiteIntegration::Product>)> options.select { |o| o.values.all? }
+    #   => [{"Product Color"=>"Lily White"}]
+    #
     def map_matrix_children(parent)
       children = matrix_children.select { |item| item.parent.internal_id == parent.internal_id }
 
@@ -94,7 +103,9 @@ module NetsuiteIntegration
           { get_option_name(option.type_id) => get_option_value(option, parent) }
         end
 
-        { price: price, sku: child.upc_code, options: options }
+        validated_options = options.select { |o| o.values.all? }
+
+        { price: price, sku: child.upc_code, options: validated_options }
       end
     end
 
