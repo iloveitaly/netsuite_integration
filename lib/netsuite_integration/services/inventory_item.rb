@@ -34,11 +34,19 @@ module NetsuiteIntegration
       def find_by_upc_code(sku)
         NetSuite::Records::InventoryItem.search({
           criteria: {
-            basic: [{
-              field: 'upcCode',
-              value: sku,
-              operator: 'is'
-            }]
+            basic: [
+              {
+                field: 'upcCode',
+                value: sku,
+                operator: 'is'
+              },
+              {
+                field: 'type',
+                operator: 'anyOf',
+                type: 'SearchEnumMultiSelectField',
+                value: ['_inventoryItem']
+              },
+            ]
           },
           preferences: {
             bodyFieldsOnly: false
