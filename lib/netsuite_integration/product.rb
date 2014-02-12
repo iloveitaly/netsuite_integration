@@ -103,6 +103,25 @@ module NetsuiteIntegration
       # and value names. The search action doesn't return them
       #
       # Then map the option ids here with the ones found on the product
+      #
+      # Matrix options come as a somewhat confusing data structure. Note the
+      # +value+ key of the CustomField might be either an array or a hash
+      #
+      #   => [#<NetSuite::Records::CustomField:0x007f8a919803a0
+      #     @attributes=
+      #      {:value=>
+      #        [{:name=>"Turf", :@internal_id=>"1", :@type_id=>"529"},
+      #         {:name=>"Cantelope", :@internal_id=>"2", :@type_id=>"529"}],
+      #       :@script_id=>"custitem18"},
+      #     @internal_id="4627",
+      #     @type="platformCore:MultiSelectCustomFieldRef">,
+      #     #<NetSuite::Records::CustomField:0x007f8a919802d8
+      #     @attributes=
+      #      {:value=>{:name=>"Large", :@internal_id=>"3", :@type_id=>"530"},
+      #       :@script_id=>"custitem19"},
+      #     @internal_id="4629",
+      #     @type="platformCore:MultiSelectCustomFieldRef">,
+      #
       def get_option_value(option, parent)
         full_parent = get_parent_from_list parent.internal_id
 
@@ -110,8 +129,14 @@ module NetsuiteIntegration
         custom = full_parent.custom_field_list.custom_fields_by_type "MultiSelectCustomFieldRef"
 
         values = custom.map do |field|
-          field.value.select do |option_value|
-            option_value[:"@type_id"] == option.type_id && option_value[:"@internal_id"] == option.value_id
+          if field.value.is_a? Array
+            field.value.select do |option_value|
+              option_value[:"@type_id"] == option.type_id && option_value[:"@internal_id"] == option.value_id
+            end
+          elsif field.value.is_a? Hash
+            if field.value[:"@type_id"] == option.type_id && field.value[:"@internal_id"] == option.value_id
+              field.value
+            end
           end
         end.flatten
 

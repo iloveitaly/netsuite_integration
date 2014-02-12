@@ -73,5 +73,18 @@ module NetsuiteIntegration
         end
       end
     end
+
+    context "matrix custom field options value key holds both Array and a Hash" do
+      it "deals with it" do
+        config['netsuite.last_updated_after'] = '2014-02-12T02:19:38+00:00'
+
+        VCR.use_cassette("inventory_item/check_this_out") do
+          expect {
+            subject = described_class.new config
+            subject.messages
+          }.not_to raise_error
+        end
+      end
+    end
   end
 end
