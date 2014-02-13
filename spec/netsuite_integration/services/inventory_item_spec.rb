@@ -21,10 +21,6 @@ module NetsuiteIntegration
       end
     end
 
-    it "ensures all items have a upc code value" do
-      items.each { |item| expect(item.upc_code).not_to be_blank }
-    end
-
     describe "#find_by_name" do
       context "item exists" do
         it "returns the item" do
@@ -44,9 +40,9 @@ module NetsuiteIntegration
     end
 
     it "finds inventory item given upc code" do
-      VCR.use_cassette("inventory_item/find_by_upc_code") do
-        item = subject.find_by_upc_code "L0011234"
-        expect(item.upc_code).to eq "L0011234"
+      VCR.use_cassette("inventory_item/find_by_sku") do
+        item = subject.find_by_item_id "Lot Tracked Medical Supplies 1"
+        expect(item.item_id).to eq "Lot Tracked Medical Supplies 1"
       end
     end
   end

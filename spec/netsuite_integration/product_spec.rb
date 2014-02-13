@@ -53,7 +53,7 @@ module NetsuiteIntegration
         item = subject.collection.first
 
         expect(mapped_product[:name]).to eq (item.store_display_name || item.item_id)
-        expect(mapped_product[:sku]).to eq item.upc_code
+        expect(mapped_product[:sku]).to eq item.item_id
       end
     end
 

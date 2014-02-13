@@ -40,7 +40,7 @@ module NetsuiteIntegration
             name: item.store_display_name || item.item_id,
             available_on: item.last_modified_date.utc,
             description: item.sales_description,
-            sku: item.upc_code,
+            sku: item.item_id,
             price: get_item_base_price(item.pricing_matrix.prices),
             cost_price: item.cost_estimate,
             channel: "NetSuite"
@@ -75,7 +75,7 @@ module NetsuiteIntegration
             name: item.store_display_name || item.item_id,
             available_on: item.last_modified_date.utc,
             description: item.sales_description,
-            sku: item.upc_code,
+            sku: item.item_id,
             price: get_item_base_price(item.pricing_matrix.prices),
             cost_price: item.cost_estimate,
             channel: "NetSuite",
@@ -105,7 +105,7 @@ module NetsuiteIntegration
 
         validated_options = options.select { |o| o.values.all? }
 
-        { price: price, sku: child.upc_code, options: validated_options }
+        { price: price, sku: child.item_id, options: validated_options }
       end
     end
 

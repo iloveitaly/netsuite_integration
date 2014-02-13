@@ -31,13 +31,13 @@ module NetsuiteIntegration
         }).results.first
       end
 
-      def find_by_upc_code(sku)
+      def find_by_item_id(item_id)
         NetSuite::Records::InventoryItem.search({
           criteria: {
             basic: [
               {
-                field: 'upcCode',
-                value: sku,
+                field: 'itemId',
+                value: item_id,
                 operator: 'is'
               },
               {

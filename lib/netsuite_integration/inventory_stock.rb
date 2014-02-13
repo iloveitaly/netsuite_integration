@@ -8,7 +8,7 @@ module NetsuiteIntegration
       @config = config
       @sku = message[:payload][:sku]
 
-      unless @item = Services::InventoryItem.new(@config).find_by_upc_code(sku)
+      unless @item = Services::InventoryItem.new(@config).find_by_item_id(sku)
         raise NetSuite::RecordNotFound
       end
     end

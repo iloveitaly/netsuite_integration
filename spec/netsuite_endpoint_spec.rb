@@ -26,7 +26,7 @@ describe NetsuiteEndpoint do
     end
 
     it "gets quantity available of an item" do
-      VCR.use_cassette("inventory_item/find_by_upc_code") do
+      VCR.use_cassette("inventory_item/find_by_sku") do
         post '/inventory_stock', request.to_json, auth
         expect(last_response).to be_ok
       end

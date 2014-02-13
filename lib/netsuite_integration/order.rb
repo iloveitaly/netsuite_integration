@@ -73,7 +73,7 @@ module NetsuiteIntegration
       # will cause the sales order total to differ from the order in the Spree store
       item_list = order_payload[:line_items].map do |item|
         NetSuite::Records::SalesOrderItem.new({
-          item: { internal_id: inventory_item_service.find_by_upc_code(item[:sku]).internal_id },
+          item: { internal_id: inventory_item_service.find_by_item_id(item[:sku]).internal_id },
           quantity: item[:quantity],
           amount: item[:quantity] * item[:price],
           tax_rate1: 0

@@ -10,7 +10,7 @@ module NetsuiteIntegration
     }
 
     subject do
-      VCR.use_cassette("inventory_item/find_by_upc_code") do
+      VCR.use_cassette("inventory_item/find_by_sku") do
         described_class.new(config, message)
       end
     end
