@@ -87,5 +87,18 @@ module NetsuiteIntegration
         end
       end
     end
+
+    it "matches matrix options properly" do
+      config['netsuite.last_updated_after'] = '2014-02-13T02:37:38+00:00'
+      Services::InventoryItem.any_instance.stub(time_now: "2014-02-13 04:07:08 -0000")
+
+      VCR.use_cassette("product/matrix_option_study_case") do
+        subject = described_class.new config
+        options = subject.matrix_items.first[:product][:variants].first[:options].count
+        matrix_options_list = subject.matrix_children.first.matrix_option_list.options.count
+
+        expect(options).to eq matrix_options_list
+      end
+    end
   end
 end

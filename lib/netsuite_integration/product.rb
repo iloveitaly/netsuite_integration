@@ -149,7 +149,7 @@ module NetsuiteIntegration
               field.value
             end
           end
-        end.flatten
+        end.flatten.compact
 
         values.first[:name] if values.first
       end
