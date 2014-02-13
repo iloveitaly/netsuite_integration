@@ -68,7 +68,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       add_notification "info", "#{stock.quantity_available} units available of #{stock.sku} according to NetSuite"
       process_result 200
     rescue NetSuite::RecordNotFound
-      add_notification "info", "Inventory Item #{@message[:payload][:sku]} not found on NetSuite"
       process_result 200
     rescue => e
       add_notification "error", e.message, e.backtrace.to_a.join("\n")
