@@ -30,6 +30,7 @@
       },
       "recommends": {
         "messages": ["netsuite:product:poll"],
+        "options": { "retries_allowed": false },
         "schedule": { "count": 30, "interval": "minutes" }
       }
     },
@@ -97,7 +98,8 @@
         }]
       },
       "recommends": {
-        "messages": ["order:new", "order:updated", "order:canceled"]
+        "messages": ["order:new", "order:updated", "order:canceled"],
+        "options": { "retries_allowed": false }
       }
     },
     {
@@ -120,7 +122,8 @@
         }]
       },
       "recommends": {
-        "messages": ["shipment:confirm"]
+        "messages": ["shipment:confirm"],
+        "options": { "retries_allowed": false }
       }
     }
   ]
