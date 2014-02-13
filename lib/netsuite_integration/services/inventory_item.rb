@@ -90,8 +90,14 @@ module NetsuiteIntegration
 
         def ignore_future
           search.select do |item|
-            item.last_modified_date.utc <= Time.now.utc
+            item.last_modified_date.utc <= time_now
           end
+        end
+
+        # Help us mock this when running the specs. Otherwise we might get VCR
+        # as different request might be done depending on this timestamp
+        def time_now
+          Time.now.utc
         end
 
         def last_updated_after

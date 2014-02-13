@@ -77,6 +77,7 @@ module NetsuiteIntegration
     context "matrix custom field options value key holds both Array and a Hash" do
       it "deals with it" do
         config['netsuite.last_updated_after'] = '2014-02-12T02:19:38+00:00'
+        Services::InventoryItem.any_instance.stub(time_now: "2014-02-12 00:48:43 -0000")
 
         VCR.use_cassette("inventory_item/check_this_out") do
           expect {
