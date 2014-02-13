@@ -66,10 +66,6 @@ module NetsuiteIntegration
                   value: last_updated_after
                 },
                 {
-                  field: 'upcCode',
-                  operator: 'notEmpty'
-                },
-                {
                   field: 'type',
                   operator: 'anyOf',
                   type: 'SearchEnumMultiSelectField',
