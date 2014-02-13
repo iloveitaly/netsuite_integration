@@ -1,7 +1,7 @@
 GIT
   remote: git://github.com/huoxito/netsuite.git
-  revision: 42486883edcc77de2da712857180aa3f5e7f96fe
-  branch: sales-order-close
+  revision: 4a3eeab18d0ee08b0ffdec4535d68e01c2c64fb6
+  branch: patches
   specs:
     netsuite (0.2.2)
       savon (~> 2.3.0)
