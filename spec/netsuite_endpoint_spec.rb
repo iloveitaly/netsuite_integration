@@ -58,7 +58,7 @@ describe NetsuiteEndpoint do
   end
 
   it "fetches a collection of netsuite items as products" do
-    NetsuiteIntegration::Services::InventoryItem.any_instance.stub(time_now: "2014-02-12 00:48:43 -0000")
+    NetsuiteIntegration::Services::InventoryItem.any_instance.stub(time_now: Time.parse("2014-02-12 00:48:43 -0000"))
 
     VCR.use_cassette("inventory_item/search_on_matrix") do
       post '/products', request.to_json, auth

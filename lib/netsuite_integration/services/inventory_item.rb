@@ -62,8 +62,12 @@ module NetsuiteIntegration
               basic: [
                 {
                   field: 'lastModifiedDate',
-                  operator: 'after',
-                  value: last_updated_after
+                  type: 'SearchDateField',
+                  operator: 'within',
+                  value: [
+                    last_updated_after,
+                    time_now.iso8601
+                  ]
                 },
                 {
                   field: 'type',

@@ -12,7 +12,7 @@ module NetsuiteIntegration
     end
 
     def last_modified_date
-      collection.last.last_modified_date.utc
+      collection.last.last_modified_date.utc + 1.second
     end
 
     def matrix_children
