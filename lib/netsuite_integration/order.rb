@@ -72,8 +72,13 @@ module NetsuiteIntegration
       # Force tax rate to 0. NetSuite might create taxes rates automatically which
       # will cause the sales order total to differ from the order in the Spree store
       item_list = order_payload[:line_items].map do |item|
+
+        unless inventory_item = inventory_item_service.find_by_item_id(item[:sku])
+          raise NetSuite::RecordNotFound, "Inventory Item \"#{item[:sku]}\" not found in NetSuite"
+        end
+
         NetSuite::Records::SalesOrderItem.new({
-          item: { internal_id: inventory_item_service.find_by_item_id(item[:sku]).internal_id },
+          item: { internal_id: inventory_item.internal_id },
           quantity: item[:quantity],
           amount: item[:quantity] * item[:price],
           tax_rate1: 0

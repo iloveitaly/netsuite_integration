@@ -55,6 +55,9 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       when 'order:canceled', 'order:cancelled'
         cancel_order
       end
+    rescue NetSuite::RecordNotFound => e
+      add_notification "error", e.message
+      process_result 500
     rescue StandardError => e
       add_notification "error", e.message, nil, { backtrace: e.backtrace.to_a.join("\n\t") }
       process_result 500

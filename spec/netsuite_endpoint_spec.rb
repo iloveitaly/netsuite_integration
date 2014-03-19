@@ -129,6 +129,21 @@ describe NetsuiteEndpoint do
             expect(notification['description']).to match('Please choose a child matrix item')
           end
         end
+
+        it "displays friendly messages when item is not found in netsuite" do
+          payload = Factories.order_new_payload.with_indifferent_access
+          payload[:order][:number] = "R24252RGRERGER"
+          payload[:order][:line_items].first[:sku] = "Dude I'm so not there at all"
+          request[:payload] = payload.merge(parameters: parameters)
+
+          VCR.use_cassette('order/item_not_found') do
+            post '/orders', request.to_json, auth
+            expect(last_response.status).to eq 500
+
+            notification = json_response['notifications'][0]
+            expect(notification['description']).to match("Dude I'm so not there at all\" not found in NetSuite")
+          end
+        end
       end
 
       context "was already paid" do
