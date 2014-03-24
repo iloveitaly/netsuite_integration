@@ -101,17 +101,18 @@ module NetsuiteIntegration
     end
 
     def import_billing!
-      payload = @payload[:order][:billing_address]
-      sales_order.transaction_bill_address = NetSuite::Records::BillAddress.new({
-        bill_addressee: "#{payload[:firstname]} #{payload[:lastname]}",
-        bill_addr1: payload[:address1],
-        bill_addr2: payload[:address2],
-        bill_zip: payload[:zipcode],
-        bill_city: payload[:city],
-        bill_state: Services::StateService.by_state_name(payload[:state]),
-        bill_country: Services::CountryService.by_iso_country(payload[:country]),
-        bill_phone: payload[:phone].gsub(/([^0-9]*)/, "")
-      })
+      if payload = @payload[:order][:billing_address]
+        sales_order.transaction_bill_address = NetSuite::Records::BillAddress.new({
+          bill_addressee: "#{payload[:firstname]} #{payload[:lastname]}",
+          bill_addr1: payload[:address1],
+          bill_addr2: payload[:address2],
+          bill_zip: payload[:zipcode],
+          bill_city: payload[:city],
+          bill_state: Services::StateService.by_state_name(payload[:state]),
+          bill_country: Services::CountryService.by_iso_country(payload[:country]),
+          bill_phone: payload[:phone].gsub(/([^0-9]*)/, "")
+        })
+      end
     end
 
     def import_shipping!
