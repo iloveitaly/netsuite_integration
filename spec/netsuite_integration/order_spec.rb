@@ -12,6 +12,10 @@ module NetsuiteIntegration
     end
 
     context 'order was already imported' do
+      before do
+        described_class.any_instance.stub_chain :sales_order_service, :find_by_external_id
+      end
+
       context "and paid" do
         it "does nothing" do
           expect(subject.got_paid?).to be_false
@@ -30,6 +34,12 @@ module NetsuiteIntegration
     context 'when order is new' do
       let(:order_number) { 'RREGR4354EGWREERGRG' }
 
+      before do
+        described_class.any_instance.stub_chain(
+          :sales_order_service, :find_by_external_id
+        ).and_return(nil, double("SalesOrder", tran_id: 1))
+      end
+
       subject do
         payload = Factories.order_new_payload
         payload['order']['number'] = order_number
@@ -39,7 +49,7 @@ module NetsuiteIntegration
 
       it 'imports the order' do
         VCR.use_cassette('order/import') do
-          order = subject.import
+          order = subject.create
 
           expect(order).to be
           expect(order.external_id).to eq(order_number)
@@ -69,7 +79,7 @@ module NetsuiteIntegration
           payload['order']['totals']['tax'] = 3.25
           order = described_class.new(config, { payload: payload })
 
-          expect(order.import).to be
+          expect(order.create).to be
           # we really only care about item decimals here
           expect(order.sales_order.item_list.items[3].rate).to eq(3.25)
         end

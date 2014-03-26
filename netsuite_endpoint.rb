@@ -94,7 +94,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     order = NetsuiteIntegration::Order.new(@config, @message)
 
     unless order.imported?
-      if order.import
+      if order.create
         add_notification "info", "Order #{order.sales_order.external_id} sent to NetSuite # #{order.sales_order.tran_id}"
         process_result 200
       else
@@ -102,17 +102,23 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
         process_result 500
       end
     else
+
       if order.got_paid?
         if order.create_customer_deposit
           add_notification "info", "Customer Deposit created for NetSuite Sales Order #{order.sales_order.external_id}"
-          process_result 200
         else
           add_notification "error", "Failed to create a Customer Deposit for NetSuite Sales Order #{order.sales_order.external_id}"
-          process_result 500
+          process_result 500 and return
         end
-      else
-        process_result 200
       end
+
+      # if order.update
+      #   add_notification "info", "Order #{order.sales_order.external_id} updated on NetSuite # #{order.sales_order.tran_id}"
+      # else
+      #   add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite", order.errors
+      # end
+
+      process_result 200
     end
   end
 
