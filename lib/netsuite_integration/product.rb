@@ -38,7 +38,6 @@ module NetsuiteIntegration
         {
           product: {
             name: item.store_display_name || item.item_id,
-            available_on: nil,
             description: item.sales_description,
             sku: item.item_id,
             price: get_item_base_price(item.pricing_matrix.prices),
