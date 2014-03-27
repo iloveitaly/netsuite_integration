@@ -79,7 +79,7 @@ describe NetsuiteEndpoint do
     context 'when order is new' do
       let(:request) do
         payload = Factories.order_new_payload
-        payload['order']['number'] = "R43534GGW435G435FRE"
+        payload['order']['number'] = "RXXXXXC23774"
 
         {
           message: 'order:new',
@@ -108,11 +108,14 @@ describe NetsuiteEndpoint do
       end
 
       it 'creates customer deposit if order just got paid' do
+        request[:payload][:order][:number] = "RXXXXXC23774"
+
         VCR.use_cassette('order/customer_deposit_on_updated_message') do
           post '/orders', request.to_json, auth
         end
 
-        expect(json_response['notifications'][0]['subject']).to match('Customer Deposit created for NetSuite Sales Order')
+        notifications = json_response['notifications']
+        expect(notifications.last['subject']).to match('Customer Deposit set up for')
       end
 
       context "order has invalid items" do

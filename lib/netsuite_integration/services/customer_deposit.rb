@@ -3,9 +3,9 @@ module NetsuiteIntegration
     class CustomerDeposit < Base
       attr_reader :payments
 
-      def initialize(config, message)
+      def initialize(config, payload = {})
         super config
-        @payments = message[:order][:payments]
+        @payments = payload[:order][:payments] if payload[:order]
       end
 
       def create_records(sales_order)

@@ -8,7 +8,7 @@ module NetsuiteIntegration
 
     let(:customer_deposit) {
       VCR.use_cassette("customer_deposit/find_by_external_id") do
-        Services::CustomerDeposit.new(config).find_by_external_id('R123456789')
+        Services::CustomerDeposit.new(config, message[:payload]).find_by_external_id('R123456789')
       end
     }
 

@@ -43,10 +43,6 @@ module NetsuiteIntegration
       sales_order.tran_date = order_payload[:placed_on]
 
       if sales_order.add
-        if original[:payment_state] == "paid"
-          create_customer_deposit
-        end
-
         sales_order.tran_id = sales_order_service.find_by_external_id(order_payload[:number]).tran_id
         sales_order
       end
@@ -62,14 +58,8 @@ module NetsuiteIntegration
       )
     end
 
-    def create_customer_deposit
-      Services::CustomerDeposit.new(config).create sales_order, order_payload[:payments]
-    end
-
-    def got_paid?
-      if payload[:diff]
-        payload[:diff][:payment_state] == ["balance_due", "paid"]
-      end
+    def paid?
+      original[:payment_state] == "paid"
     end
 
     def errors

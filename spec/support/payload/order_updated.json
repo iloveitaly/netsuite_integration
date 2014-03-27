@@ -18,7 +18,7 @@
     "line_items": [
       {
         "name": "Case - HP Compaq nx7000",
-        "sku": "80",
+        "sku": "HP Server Case",
         "external_ref": "",
         "quantity": 3,
         "price": 49.95,
@@ -28,7 +28,7 @@
       },
       {
         "name": "400 watt power supply",
-        "sku": "387",
+        "sku": "400 watt power supply",
         "external_ref": "",
         "quantity": 2,
         "price": 109.0,

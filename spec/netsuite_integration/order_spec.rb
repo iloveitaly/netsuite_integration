@@ -11,23 +11,13 @@ module NetsuiteIntegration
       })
     end
 
-    context 'order was already imported' do
+    context 'order was paid' do
       before do
         described_class.any_instance.stub_chain :sales_order_service, :find_by_external_id
       end
 
-      context "and paid" do
-        it "does nothing" do
-          expect(subject.got_paid?).to be_false
-        end
-      end
-
-      context "and then got paid" do
-        subject do
-          described_class.new(config, { payload: Factories.order_updated_payload })
-        end
-
-        specify { expect(subject.got_paid?).to be }
+      it "says so" do
+        expect(subject.paid?).to be
       end
     end
 

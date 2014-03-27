@@ -17,8 +17,8 @@
     },
     "line_items": [
       {
-        "name": "Transfer Pricing Item",
-        "sku": "300001",
+        "name": "Case - HP Compaq nx7",
+        "sku": "HP Server Case",
         "external_ref": "",
         "quantity": 1,
         "price": 35.0,
@@ -28,7 +28,7 @@
       },
       {
         "name": "Lot Tracked Medical Supplies 1",
-        "sku": "L0011234",
+        "sku": "20Jeans Boot Cut",
         "external_ref": "",
         "quantity": 1,
         "price": 30.0,
@@ -38,7 +38,7 @@
       },
       {
         "name": "Lot Tracked Medical Supplies 2",
-        "sku": "L0021234",
+        "sku": "400 Watt Power Supply",
         "external_ref": "",
         "quantity": 1,
         "price": 65.0,

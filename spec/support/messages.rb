@@ -5,7 +5,7 @@ module Factories
       name, ext = file_name.split(".", 2)
 
       define_method("#{name}_payload") do
-        JSON.parse IO.read("#{File.dirname(__FILE__)}/payload/#{name}.json")
+        JSON.parse(IO.read("#{File.dirname(__FILE__)}/payload/#{name}.json")).with_indifferent_access
       end
     end
   end

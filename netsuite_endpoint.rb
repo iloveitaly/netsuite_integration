@@ -93,31 +93,34 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   def create_or_update_order
     order = NetsuiteIntegration::Order.new(@config, @message)
 
-    unless order.imported?
-      if order.create
-        add_notification "info", "Order #{order.sales_order.external_id} sent to NetSuite # #{order.sales_order.tran_id}"
-        process_result 200
-      else
-        add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite", order.errors
-        process_result 500
-      end
-    else
-
-      if order.got_paid?
-        if order.create_customer_deposit
-          add_notification "info", "Customer Deposit created for NetSuite Sales Order #{order.sales_order.external_id}"
-        else
-          add_notification "error", "Failed to create a Customer Deposit for NetSuite Sales Order #{order.sales_order.external_id}"
-          process_result 500 and return
-        end
-      end
-
+    if order.imported?
       if order.update
         add_notification "info", "Order #{order.sales_order.external_id} updated on NetSuite # #{order.sales_order.tran_id}"
       else
         add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite", order.errors
       end
+    else
+      if order.create
+        add_notification "info", "Order #{order.sales_order.external_id} sent to NetSuite # #{order.sales_order.tran_id}"
+      else
+        add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite", order.errors
+      end
+    end
 
+    if order.paid?
+      records = NetsuiteIntegration::Services::CustomerDeposit.new(@config, @message[:payload]).create_records order.sales_order
+      errors = records.map(&:errors).compact.map(&:message).flatten
+
+      if errors.any?
+        add_notification "error", "Failed to set up Customer Deposit for #{order.existing_sales_order.external_id} in NetSuite", errors.join(", ")
+      else
+        add_notification "info", "Customer Deposit set up for Sales Order #{(order.existing_sales_order || order.sales_order).tran_id}", errors.join(", ")
+      end
+    end
+
+    if @notifications.any? { |n| n[:level] == "error" }
+      process_result 500
+    else
       process_result 200
     end
   end
