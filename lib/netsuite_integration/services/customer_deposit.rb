@@ -1,7 +1,7 @@
 module NetsuiteIntegration
   module Services
     class CustomerDeposit < Base
-      attr_reader :payments
+      attr_reader :payments, :persisted
 
       def initialize(config, payload = {})
         super config
@@ -14,7 +14,8 @@ module NetsuiteIntegration
 
           unless record = find_by_external_id(external_id)
             record = build(sales_order, payment)
-            record.add
+            # Need to know if at least one of them was persisted
+            @persisted ||= record.add
           end
 
           record

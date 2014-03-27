@@ -107,7 +107,7 @@ describe NetsuiteEndpoint do
         }
       end
 
-      it 'creates customer deposit if order just got paid' do
+      it 'creates customer deposit' do
         request[:payload][:order][:number] = "RXXXXXC23774"
 
         VCR.use_cassette('order/customer_deposit_on_updated_message') do
@@ -164,8 +164,11 @@ describe NetsuiteEndpoint do
           end
 
           expect(last_response.status).to eq 200
-          notification = json_response['notifications'][0]
-          expect(notification['description']).to match("updated on NetSuite")
+          notifications = json_response['notifications']
+
+          # Ensure customer deposit notification are not present
+          expect(notifications.count).to eq 1
+          expect(notifications.first['description']).to match("updated on NetSuite")
         end
       end
     end

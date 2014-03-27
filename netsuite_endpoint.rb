@@ -108,12 +108,16 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     end
 
     if order.paid?
-      records = NetsuiteIntegration::Services::CustomerDeposit.new(@config, @message[:payload]).create_records order.sales_order
+      customer_deposit = NetsuiteIntegration::Services::CustomerDeposit.new(@config, @message[:payload])
+      records = customer_deposit.create_records order.sales_order
+
       errors = records.map(&:errors).compact.map(&:message).flatten
 
       if errors.any?
         add_notification "error", "Failed to set up Customer Deposit for #{order.existing_sales_order.external_id} in NetSuite", errors.join(", ")
-      else
+      end
+
+      if customer_deposit.persisted
         add_notification "info", "Customer Deposit set up for Sales Order #{(order.existing_sales_order || order.sales_order).tran_id}", errors.join(", ")
       end
     end
