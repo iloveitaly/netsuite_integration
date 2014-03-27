@@ -155,13 +155,14 @@ describe NetsuiteEndpoint do
           }
         end
 
-        it "just returns 200" do
-          # VCR.use_cassette('order/update_items') do
-          #   post '/orders', request.to_json, auth
-          # end
+        it "updates sales order" do
+          VCR.use_cassette('order/update_items') do
+            post '/orders', request.to_json, auth
+          end
 
-          # expect(last_response.status).to eq 200
-          # expect(last_response.headers["Content-Type"]).to match "application/json"
+          expect(last_response.status).to eq 200
+          notification = json_response['notifications'][0]
+          expect(notification['description']).to match("updated on NetSuite")
         end
       end
     end

@@ -1,0 +1,744 @@
+{
+  "order": {
+    "number": "R411547727",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-03-26T20:57:05.500Z",
+    "updated_at": "2014-03-26T20:59:00.148Z",
+    "status": "complete",
+    "totals": {
+      "item": 265.0,
+      "adjustment": 5.0,
+      "tax": 0.0,
+      "shipping": 5.0,
+      "payment": 195.0,
+      "order": 270.0
+    },
+    "line_items": [
+      {
+        "name": "Serialized Electronic Item 2",
+        "sku": "Serialized Electronic Item 2",
+        "external_ref": "",
+        "quantity": 2,
+        "price": 95.0,
+        "variant_id": 52,
+        "options": {
+        }
+      },
+      {
+        "name": "20Jeans Boot Cut",
+        "sku": "20Jeans Boot Cut",
+        "external_ref": "",
+        "quantity": 3,
+        "price": 25.0,
+        "variant_id": 29,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 5.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue 7th",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue 7th",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 14,
+        "status": "completed",
+        "amount": 195.0,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H56503470742",
+        "cost": 5.0,
+        "status": "ready",
+        "stock_location": "default",
+        "shipping_method": "UPS Ground (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "Serialized Electronic Item 2",
+            "sku": "Serialized Electronic Item 2",
+            "external_ref": "",
+            "quantity": 2,
+            "price": 95.0,
+            "variant_id": 52,
+            "options": {
+            }
+          },
+          {
+            "name": "20Jeans Boot Cut",
+            "sku": "20Jeans Boot Cut",
+            "external_ref": "",
+            "quantity": 3,
+            "price": 25.0,
+            "variant_id": 29,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "original": {
+    "id": 14,
+    "number": "R411547727",
+    "item_total": "265.0",
+    "total": "270.0",
+    "ship_total": "5.0",
+    "state": "complete",
+    "adjustment_total": "5.0",
+    "user_id": 1,
+    "created_at": "2014-03-26T20:56:54.070Z",
+    "updated_at": "2014-03-26T20:59:00.148Z",
+    "completed_at": "2014-03-26T20:57:05.500Z",
+    "payment_total": "195.0",
+    "shipment_state": "ready",
+    "payment_state": "credit_owed",
+    "email": "spree@example.com",
+    "special_instructions": null,
+    "channel": "spree",
+    "tax_total": "0.0",
+    "currency": "USD",
+    "bill_address": {
+      "id": 27,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue 7th",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "ship_address": {
+      "id": 28,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue 7th",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "line_items": [
+      {
+        "id": 15,
+        "quantity": 2,
+        "price": "95.0",
+        "variant_id": 52,
+        "created_at": "2014-03-26T20:56:54.098Z",
+        "updated_at": "2014-03-26T20:56:54.098Z",
+        "single_display_amount": "$95.00",
+        "display_amount": "$190.00",
+        "total": "190.0",
+        "variant": {
+          "id": 52,
+          "name": "Serialized Electronic Item 2",
+          "sku": "Serialized Electronic Item 2",
+          "price": "95.0",
+          "weight": "0.0",
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": "45.0",
+          "permalink": "serialized-electronic-item-2",
+          "product_created_at": "2014-03-26T18:43:08.565Z",
+          "product_updated_at": "2014-03-26T20:57:05.542Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 33,
+          "images": [
+
+          ]
+        }
+      },
+      {
+        "id": 16,
+        "quantity": 3,
+        "price": "25.0",
+        "variant_id": 29,
+        "created_at": "2014-03-26T20:58:37.150Z",
+        "updated_at": "2014-03-26T20:58:37.150Z",
+        "single_display_amount": "$25.00",
+        "display_amount": "$75.00",
+        "total": "75.0",
+        "variant": {
+          "id": 29,
+          "name": "20Jeans Boot Cut",
+          "sku": "20Jeans Boot Cut",
+          "price": "25.0",
+          "weight": "0.0",
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": "10.0",
+          "permalink": "20jeans-boot-cut",
+          "product_created_at": "2014-03-19T14:13:21.536Z",
+          "product_updated_at": "2014-03-26T20:58:37.233Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 19,
+          "images": [
+
+          ]
+        }
+      }
+    ],
+    "payments": [
+      {
+        "id": 14,
+        "amount": "195.0",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      }
+    ],
+    "shipments": [
+      {
+        "id": 13,
+        "tracking": null,
+        "number": "H56503470742",
+        "cost": "5.0",
+        "shipped_at": null,
+        "state": "ready",
+        "order_id": "R411547727",
+        "stock_location_name": "default",
+        "shipping_rates": [
+          {
+            "id": 50,
+            "cost": "10.0",
+            "selected": false,
+            "shipment_id": 13,
+            "shipping_method_id": 2
+          },
+          {
+            "id": 51,
+            "cost": "15.0",
+            "selected": false,
+            "shipment_id": 13,
+            "shipping_method_id": 3
+          },
+          {
+            "id": 49,
+            "cost": "5.0",
+            "selected": true,
+            "shipment_id": 13,
+            "shipping_method_id": 1
+          }
+        ],
+        "shipping_method": {
+          "name": "UPS Ground (USD)",
+          "tracking_url": null
+        },
+        "inventory_units": [
+          {
+            "id": 28,
+            "variant_id": 52,
+            "state": "on_hand"
+          },
+          {
+            "id": 27,
+            "variant_id": 52,
+            "state": "on_hand"
+          },
+          {
+            "id": 29,
+            "variant_id": 29,
+            "state": "on_hand"
+          },
+          {
+            "id": 30,
+            "variant_id": 29,
+            "state": "on_hand"
+          },
+          {
+            "id": 31,
+            "variant_id": 29,
+            "state": "on_hand"
+          }
+        ]
+      }
+    ],
+    "adjustments": [
+      {
+        "id": 19,
+        "amount": "5.0",
+        "label": "Shipping",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::ShippingMethod",
+        "adjustable_type": "Spree::Order"
+      }
+    ],
+    "credit_cards": [
+      {
+        "id": 12,
+        "month": "6",
+        "year": "2016",
+        "cc_type": "visa",
+        "last_digits": "1111",
+        "first_name": "Luis",
+        "last_name": "Braga",
+        "gateway_customer_profile_id": "BGS-303450",
+        "gateway_payment_profile_id": null
+      }
+    ]
+  },
+  "previous": {
+    "number": "R411547727",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-03-26T20:57:05.500Z",
+    "updated_at": "2014-03-26T20:57:05.565Z",
+    "status": "complete",
+    "totals": {
+      "item": 190.0,
+      "adjustment": 5.0,
+      "tax": 0.0,
+      "shipping": 5.0,
+      "payment": 195.0,
+      "order": 195.0
+    },
+    "line_items": [
+      {
+        "name": "Serialized Electronic Item 2",
+        "sku": "Serialized Electronic Item 2",
+        "external_ref": "",
+        "quantity": 2,
+        "price": 95.0,
+        "variant_id": 52,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 5.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 14,
+        "status": "completed",
+        "amount": 195.0,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H56503470742",
+        "cost": 5.0,
+        "status": "ready",
+        "stock_location": "default",
+        "shipping_method": "UPS Ground (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "Serialized Electronic Item 2",
+            "sku": "Serialized Electronic Item 2",
+            "external_ref": "",
+            "quantity": 2,
+            "price": 95.0,
+            "variant_id": 52,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "diff": {
+    "item_total": [
+      "190.0",
+      "265.0"
+    ],
+    "total": [
+      "195.0",
+      "270.0"
+    ],
+    "updated_at": [
+      "2014-03-26T20:57:05.565Z",
+      "2014-03-26T20:59:00.148Z"
+    ],
+    "payment_state": [
+      "paid",
+      "credit_owed"
+    ],
+    "bill_address": {
+      "id": [
+        25,
+        27
+      ],
+      "address1": [
+        "Avenue",
+        "Avenue 7th"
+      ]
+    },
+    "ship_address": {
+      "id": [
+        26,
+        28
+      ],
+      "address1": [
+        "Avenue",
+        "Avenue 7th"
+      ]
+    },
+    "line_items": [
+      [
+        {
+          "id": 15,
+          "quantity": 2,
+          "price": "95.0",
+          "variant_id": 52,
+          "created_at": "2014-03-26T20:56:54.098Z",
+          "updated_at": "2014-03-26T20:56:54.098Z",
+          "single_display_amount": "$95.00",
+          "display_amount": "$190.00",
+          "total": "190.0",
+          "variant": {
+            "id": 52,
+            "name": "Serialized Electronic Item 2",
+            "sku": "Serialized Electronic Item 2",
+            "price": "95.0",
+            "weight": "0.0",
+            "height": null,
+            "width": null,
+            "depth": null,
+            "is_master": true,
+            "cost_price": "45.0",
+            "permalink": "serialized-electronic-item-2",
+            "product_created_at": "2014-03-26T18:43:08.565Z",
+            "product_updated_at": "2014-03-26T20:57:05.542Z",
+            "options_text": "",
+            "option_values": [
+
+            ],
+            "product": {
+              "taxons": [
+
+              ]
+            },
+            "product_id": 33,
+            "images": [
+
+            ]
+          }
+        }
+      ],
+      [
+        {
+          "id": 15,
+          "quantity": 2,
+          "price": "95.0",
+          "variant_id": 52,
+          "created_at": "2014-03-26T20:56:54.098Z",
+          "updated_at": "2014-03-26T20:56:54.098Z",
+          "single_display_amount": "$95.00",
+          "display_amount": "$190.00",
+          "total": "190.0",
+          "variant": {
+            "id": 52,
+            "name": "Serialized Electronic Item 2",
+            "sku": "Serialized Electronic Item 2",
+            "price": "95.0",
+            "weight": "0.0",
+            "height": null,
+            "width": null,
+            "depth": null,
+            "is_master": true,
+            "cost_price": "45.0",
+            "permalink": "serialized-electronic-item-2",
+            "product_created_at": "2014-03-26T18:43:08.565Z",
+            "product_updated_at": "2014-03-26T20:57:05.542Z",
+            "options_text": "",
+            "option_values": [
+
+            ],
+            "product": {
+              "taxons": [
+
+              ]
+            },
+            "product_id": 33,
+            "images": [
+
+            ]
+          }
+        },
+        {
+          "id": 16,
+          "quantity": 3,
+          "price": "25.0",
+          "variant_id": 29,
+          "created_at": "2014-03-26T20:58:37.150Z",
+          "updated_at": "2014-03-26T20:58:37.150Z",
+          "single_display_amount": "$25.00",
+          "display_amount": "$75.00",
+          "total": "75.0",
+          "variant": {
+            "id": 29,
+            "name": "20Jeans Boot Cut",
+            "sku": "20Jeans Boot Cut",
+            "price": "25.0",
+            "weight": "0.0",
+            "height": null,
+            "width": null,
+            "depth": null,
+            "is_master": true,
+            "cost_price": "10.0",
+            "permalink": "20jeans-boot-cut",
+            "product_created_at": "2014-03-19T14:13:21.536Z",
+            "product_updated_at": "2014-03-26T20:58:37.233Z",
+            "options_text": "",
+            "option_values": [
+
+            ],
+            "product": {
+              "taxons": [
+
+              ]
+            },
+            "product_id": 19,
+            "images": [
+
+            ]
+          }
+        }
+      ]
+    ],
+    "shipments": [
+      [
+        {
+          "id": 13,
+          "tracking": null,
+          "number": "H56503470742",
+          "cost": "5.0",
+          "shipped_at": null,
+          "state": "ready",
+          "order_id": "R411547727",
+          "stock_location_name": "default",
+          "shipping_rates": [
+            {
+              "id": 47,
+              "cost": "10.0",
+              "selected": false,
+              "shipment_id": 13,
+              "shipping_method_id": 2
+            },
+            {
+              "id": 48,
+              "cost": "15.0",
+              "selected": false,
+              "shipment_id": 13,
+              "shipping_method_id": 3
+            },
+            {
+              "id": 46,
+              "cost": "5.0",
+              "selected": true,
+              "shipment_id": 13,
+              "shipping_method_id": 1
+            }
+          ],
+          "shipping_method": {
+            "name": "UPS Ground (USD)",
+            "tracking_url": null
+          },
+          "inventory_units": [
+            {
+              "id": 28,
+              "variant_id": 52,
+              "state": "on_hand"
+            },
+            {
+              "id": 27,
+              "variant_id": 52,
+              "state": "on_hand"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "id": 13,
+          "tracking": null,
+          "number": "H56503470742",
+          "cost": "5.0",
+          "shipped_at": null,
+          "state": "ready",
+          "order_id": "R411547727",
+          "stock_location_name": "default",
+          "shipping_rates": [
+            {
+              "id": 50,
+              "cost": "10.0",
+              "selected": false,
+              "shipment_id": 13,
+              "shipping_method_id": 2
+            },
+            {
+              "id": 51,
+              "cost": "15.0",
+              "selected": false,
+              "shipment_id": 13,
+              "shipping_method_id": 3
+            },
+            {
+              "id": 49,
+              "cost": "5.0",
+              "selected": true,
+              "shipment_id": 13,
+              "shipping_method_id": 1
+            }
+          ],
+          "shipping_method": {
+            "name": "UPS Ground (USD)",
+            "tracking_url": null
+          },
+          "inventory_units": [
+            {
+              "id": 28,
+              "variant_id": 52,
+              "state": "on_hand"
+            },
+            {
+              "id": 27,
+              "variant_id": 52,
+              "state": "on_hand"
+            },
+            {
+              "id": 29,
+              "variant_id": 29,
+              "state": "on_hand"
+            },
+            {
+              "id": 30,
+              "variant_id": 29,
+              "state": "on_hand"
+            },
+            {
+              "id": 31,
+              "variant_id": 29,
+              "state": "on_hand"
+            }
+          ]
+        }
+      ]
+    ]
+  }
+}
