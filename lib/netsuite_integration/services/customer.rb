@@ -1,6 +1,6 @@
 module NetsuiteIntegration
   module Services
-    class CustomerService < Base
+    class Customer < Base
 
       def find_by_external_id(email)
         NetSuite::Records::Customer.get({:external_id => email})

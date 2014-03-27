@@ -8,7 +8,7 @@ module NetsuiteIntegration
       end
 
       def customer_service
-        @customer_service ||= NetsuiteIntegration::Services::CustomerService.new(@config)
+        @customer_service ||= NetsuiteIntegration::Services::Customer.new(@config)
       end
 
       def inventory_item_service

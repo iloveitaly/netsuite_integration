@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module NetsuiteIntegration
-  describe Services::CustomerService do
+  describe Services::Customer do
     include_examples "config hash"
     include_examples "connect to netsuite"
 

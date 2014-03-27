@@ -20,7 +20,7 @@ module NetsuiteIntegration
 
     let(:customer) {
       VCR.use_cassette("customer/customer_found") do
-        Services::CustomerService.new(config).find_by_external_id('2117')
+        Services::Customer.new(config).find_by_external_id('2117')
       end
     }    
 
