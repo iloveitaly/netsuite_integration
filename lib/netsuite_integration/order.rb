@@ -31,7 +31,7 @@ module NetsuiteIntegration
     end
 
     def create
-      import_customer!
+      sales_order.entity = set_up_customer
       sales_order.item_list = build_item_list
 
       sales_order.transaction_bill_address = build_bill_address
@@ -63,8 +63,7 @@ module NetsuiteIntegration
     end
 
     def create_customer_deposit
-      order = @imported_order || sales_order
-      Services::CustomerDeposit.new(config).create order, order_payload[:totals][:order], order_payload[:number]
+      Services::CustomerDeposit.new(config).create sales_order, order_payload[:payments]
     end
 
     def got_paid?
@@ -78,7 +77,7 @@ module NetsuiteIntegration
     end
 
     private
-    def import_customer!
+    def set_up_customer
       if customer = customer_service.find_by_external_id(order_payload[:email])
         if customer.addressbook_list.addressbooks == []
           # update address if missing
@@ -88,7 +87,7 @@ module NetsuiteIntegration
         customer = customer_service.create(order_payload.dup)
       end
 
-      sales_order.entity = NetSuite::Records::RecordRef.new(external_id: customer.external_id)
+      NetSuite::Records::RecordRef.new(external_id: customer.external_id)
     end
 
     def build_item_list
