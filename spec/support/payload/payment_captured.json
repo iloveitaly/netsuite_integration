@@ -1,0 +1,525 @@
+{
+  "order": {
+    "number": "R387423113",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-03-27T17:59:11.027Z",
+    "updated_at": "2014-03-27T18:03:55.001Z",
+    "status": "complete",
+    "totals": {
+      "item": 25.0,
+      "adjustment": 5.0,
+      "tax": 0.0,
+      "shipping": 5.0,
+      "payment": 30.0,
+      "order": 30.0
+    },
+    "line_items": [
+      {
+        "name": "Serialized Electronic Item 1",
+        "sku": "Serialized Electronic Item 1",
+        "external_ref": "",
+        "quantity": 1,
+        "price": 25.0,
+        "variant_id": 50,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 5.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 17,
+        "status": "completed",
+        "amount": 30.0,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H37303864835",
+        "cost": 5.0,
+        "status": "ready",
+        "stock_location": "default",
+        "shipping_method": "UPS Ground (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "Serialized Electronic Item 1",
+            "sku": "Serialized Electronic Item 1",
+            "external_ref": "",
+            "quantity": 1,
+            "price": 25.0,
+            "variant_id": 50,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "original": {
+    "id": 16,
+    "number": "R387423113",
+    "item_total": "25.0",
+    "total": "30.0",
+    "ship_total": "5.0",
+    "state": "complete",
+    "adjustment_total": "5.0",
+    "user_id": 1,
+    "created_at": "2014-03-27T17:59:00.144Z",
+    "updated_at": "2014-03-27T18:03:55.001Z",
+    "completed_at": "2014-03-27T17:59:11.027Z",
+    "payment_total": "30.0",
+    "shipment_state": "ready",
+    "payment_state": "paid",
+    "email": "spree@example.com",
+    "special_instructions": null,
+    "channel": "spree",
+    "tax_total": "0.0",
+    "currency": "USD",
+    "bill_address": {
+      "id": 31,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "ship_address": {
+      "id": 32,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "line_items": [
+      {
+        "id": 20,
+        "quantity": 1,
+        "price": "25.0",
+        "variant_id": 50,
+        "created_at": "2014-03-27T17:59:00.225Z",
+        "updated_at": "2014-03-27T17:59:00.225Z",
+        "single_display_amount": "$25.00",
+        "display_amount": "$25.00",
+        "total": "25.0",
+        "variant": {
+          "id": 50,
+          "name": "Serialized Electronic Item 1",
+          "sku": "Serialized Electronic Item 1",
+          "price": "25.0",
+          "weight": "0.0",
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": null,
+          "permalink": "serialized-electronic-item-1",
+          "product_created_at": "2014-03-26T18:43:08.261Z",
+          "product_updated_at": "2014-03-27T17:59:11.071Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 31,
+          "images": [
+
+          ]
+        }
+      }
+    ],
+    "payments": [
+      {
+        "id": 17,
+        "amount": "30.0",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      }
+    ],
+    "shipments": [
+      {
+        "id": 15,
+        "tracking": null,
+        "number": "H37303864835",
+        "cost": "5.0",
+        "shipped_at": null,
+        "state": "ready",
+        "order_id": "R387423113",
+        "stock_location_name": "default",
+        "shipping_rates": [
+          {
+            "id": 56,
+            "cost": "10.0",
+            "selected": false,
+            "shipment_id": 15,
+            "shipping_method_id": 2
+          },
+          {
+            "id": 57,
+            "cost": "15.0",
+            "selected": false,
+            "shipment_id": 15,
+            "shipping_method_id": 3
+          },
+          {
+            "id": 55,
+            "cost": "5.0",
+            "selected": true,
+            "shipment_id": 15,
+            "shipping_method_id": 1
+          }
+        ],
+        "shipping_method": {
+          "name": "UPS Ground (USD)",
+          "tracking_url": null
+        },
+        "inventory_units": [
+          {
+            "id": 36,
+            "variant_id": 50,
+            "state": "on_hand"
+          }
+        ]
+      }
+    ],
+    "adjustments": [
+      {
+        "id": 21,
+        "amount": "5.0",
+        "label": "Shipping",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::ShippingMethod",
+        "adjustable_type": "Spree::Order"
+      }
+    ],
+    "credit_cards": [
+      {
+        "id": 14,
+        "month": "6",
+        "year": "2016",
+        "cc_type": "visa",
+        "last_digits": "1111",
+        "first_name": "Luis",
+        "last_name": "Braga",
+        "gateway_customer_profile_id": "BGS-334313",
+        "gateway_payment_profile_id": null
+      }
+    ]
+  },
+  "previous": {
+    "number": "R387423113",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-03-27T17:59:11.027Z",
+    "updated_at": "2014-03-27T17:59:11.100Z",
+    "status": "complete",
+    "totals": {
+      "item": 25.0,
+      "adjustment": 5.0,
+      "tax": 0.0,
+      "shipping": 5.0,
+      "payment": 0.0,
+      "order": 30.0
+    },
+    "line_items": [
+      {
+        "name": "Serialized Electronic Item 1",
+        "sku": "Serialized Electronic Item 1",
+        "external_ref": "",
+        "quantity": 1,
+        "price": 25.0,
+        "variant_id": 50,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 5.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 17,
+        "status": "pending",
+        "amount": 30.0,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H37303864835",
+        "cost": 5.0,
+        "status": "pending",
+        "stock_location": "default",
+        "shipping_method": "UPS Ground (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "Serialized Electronic Item 1",
+            "sku": "Serialized Electronic Item 1",
+            "external_ref": "",
+            "quantity": 1,
+            "price": 25.0,
+            "variant_id": 50,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "diff": {
+    "updated_at": [
+      "2014-03-27T17:59:11.100Z",
+      "2014-03-27T18:03:55.001Z"
+    ],
+    "payment_total": [
+      "0.0",
+      "30.0"
+    ],
+    "shipment_state": [
+      "pending",
+      "ready"
+    ],
+    "payment_state": [
+      "balance_due",
+      "paid"
+    ],
+    "payments": [
+      [
+        {
+          "id": 17,
+          "amount": "30.0",
+          "state": "pending",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        }
+      ],
+      [
+        {
+          "id": 17,
+          "amount": "30.0",
+          "state": "completed",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        }
+      ]
+    ],
+    "shipments": [
+      [
+        {
+          "id": 15,
+          "tracking": null,
+          "number": "H37303864835",
+          "cost": "5.0",
+          "shipped_at": null,
+          "state": "pending",
+          "order_id": "R387423113",
+          "stock_location_name": "default",
+          "shipping_rates": [
+            {
+              "id": 56,
+              "cost": "10.0",
+              "selected": false,
+              "shipment_id": 15,
+              "shipping_method_id": 2
+            },
+            {
+              "id": 57,
+              "cost": "15.0",
+              "selected": false,
+              "shipment_id": 15,
+              "shipping_method_id": 3
+            },
+            {
+              "id": 55,
+              "cost": "5.0",
+              "selected": true,
+              "shipment_id": 15,
+              "shipping_method_id": 1
+            }
+          ],
+          "shipping_method": {
+            "name": "UPS Ground (USD)",
+            "tracking_url": null
+          },
+          "inventory_units": [
+            {
+              "id": 36,
+              "variant_id": 50,
+              "state": "on_hand"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "id": 15,
+          "tracking": null,
+          "number": "H37303864835",
+          "cost": "5.0",
+          "shipped_at": null,
+          "state": "ready",
+          "order_id": "R387423113",
+          "stock_location_name": "default",
+          "shipping_rates": [
+            {
+              "id": 56,
+              "cost": "10.0",
+              "selected": false,
+              "shipment_id": 15,
+              "shipping_method_id": 2
+            },
+            {
+              "id": 57,
+              "cost": "15.0",
+              "selected": false,
+              "shipment_id": 15,
+              "shipping_method_id": 3
+            },
+            {
+              "id": 55,
+              "cost": "5.0",
+              "selected": true,
+              "shipment_id": 15,
+              "shipping_method_id": 1
+            }
+          ],
+          "shipping_method": {
+            "name": "UPS Ground (USD)",
+            "tracking_url": null
+          },
+          "inventory_units": [
+            {
+              "id": 36,
+              "variant_id": 50,
+              "state": "on_hand"
+            }
+          ]
+        }
+      ]
+    ]
+  }
+}

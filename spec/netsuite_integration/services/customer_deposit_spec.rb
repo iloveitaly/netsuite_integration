@@ -6,25 +6,24 @@ module NetsuiteIntegration
       include_examples "config hash"
       include_context "connect to netsuite"
 
-      subject { described_class.new config }
+      let(:payload) { Factories.payment_captured_payload }
 
-      let(:sales_order) do
-        double("SalesOrder", internal_id: 11203, external_id: 'R435245452435', entity: stub(internal_id: 2507))
-      end
+      subject { described_class.new config, payload }
 
-      let(:payments) do
-        [{ amount: 94.99 }]
-      end
+      let(:order_external_id) { payload[:order][:number] }
 
-      it "creates customer deposit give sales order id" do
+      it "creates customer deposit via sales order payments list" do
         VCR.use_cassette("customer_deposit/add") do
-          expect(subject.create sales_order, payments).to be_true
+          sales_order = Services::SalesOrder.new(config).find_by_external_id order_external_id
+
+          records = subject.create_records sales_order
+          expect(records.map(&:errors).compact).to be_empty
         end
       end
 
       it "finds customer deposit given order id" do
         VCR.use_cassette("customer_deposit/find_by_external_id") do
-          item = subject.find_by_external_id(sales_order.external_id)
+          item = subject.find_by_external_id('R435245452435')
           expect(item.internal_id).to eq "10498"
         end
       end      
