@@ -76,6 +76,20 @@ module NetsuiteIntegration
       end
     end
 
+    context "existing order" do
+      let(:existing_order) do
+        double("SalesOrder", internal_id: Time.now, external_id: 1.minute.ago)
+      end
+
+      # other objects, e.g. Customer Deposit depend on sales_order.external_id being set
+      it "sets both internal_id and external id on new sales order object" do
+        described_class.any_instance.stub_chain :sales_order_service, find_by_external_id: existing_order
+
+        expect(subject.sales_order.external_id).to eq existing_order.external_id
+        expect(subject.sales_order.internal_id).to eq existing_order.internal_id
+      end
+    end
+
     context 'when missing shipping methods' do
       subject do
         payload = Factories.order_new_payload

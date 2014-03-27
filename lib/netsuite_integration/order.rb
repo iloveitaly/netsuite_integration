@@ -14,7 +14,8 @@ module NetsuiteIntegration
 
       if existing_sales_order
         @sales_order = NetSuite::Records::SalesOrder.new({
-          internal_id: existing_sales_order.internal_id
+          internal_id: existing_sales_order.internal_id,
+          external_id: existing_sales_order.external_id
         })
       else
         @sales_order = NetSuite::Records::SalesOrder.new({

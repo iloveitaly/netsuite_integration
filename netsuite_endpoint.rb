@@ -95,7 +95,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
     if order.imported?
       if order.update
-        add_notification "info", "Order #{order.sales_order.external_id} updated on NetSuite # #{order.sales_order.tran_id}"
+        add_notification "info", "Order #{order.existing_sales_order.external_id} updated on NetSuite # #{order.existing_sales_order.tran_id}"
       else
         add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite", order.errors
       end
