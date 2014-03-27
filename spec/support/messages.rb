@@ -1,9 +1,11 @@
 module Factories
   class << self
-    # TODO put this in a specific fixture folder and loop through each file on that dir
-    [:user_new, :user_updated, :order_new, :order_updated, :order_canceled, :shipment_confirm, :order_invalid, :order_updated_items].each do |message|
-      define_method("#{message}_payload") do
-        JSON.parse IO.read("#{File.dirname(__FILE__)}/#{message}.json")
+    Dir.entries("#{File.dirname(__FILE__)}/payload").each do |file_name|
+      next if file_name == '.' or file_name == '..'
+      name, ext = file_name.split(".", 2)
+
+      define_method("#{name}_payload") do
+        JSON.parse IO.read("#{File.dirname(__FILE__)}/payload/#{name}.json")
       end
     end
   end
