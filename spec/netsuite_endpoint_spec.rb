@@ -206,7 +206,10 @@ describe NetsuiteEndpoint do
       end
 
       context 'when CustomerDeposit record DOES NOT exist' do
-        before { request[:payload][:order][:number] = "R780015316" }
+        before do
+          request[:payload][:order][:number] = "R780015316"
+          request[:payload][:order][:payments] = []
+        end
 
         it 'closes the order' do
           VCR.use_cassette("order/close") do
@@ -235,10 +238,12 @@ describe NetsuiteEndpoint do
         end
 
         def setup_stubs
-          NetsuiteIntegration::Refund.any_instance.stub_chain(:customer_deposit_service, :find_by_external_id).and_return(customer_deposit)
-          NetsuiteIntegration::Refund.any_instance.stub_chain(:customer_service, :find_by_external_id).and_return(customer)
-          NetsuiteIntegration::Refund.any_instance.stub_chain(:sales_order_service, :close!).and_return(true)
+          NetsuiteIntegration::Refund.any_instance.stub_chain(:customer_deposit_service, find_by_sales_order: [customer_deposit])
+          NetsuiteIntegration::Refund.any_instance.stub_chain(:customer_service, find_by_external_id: customer)
+          NetsuiteIntegration::Refund.any_instance.stub_chain(:sales_order_service, close!: true)
         end
+
+        it "really issues a customer refund and closes order by reaching NetSuite api"
       end
     end
   end
