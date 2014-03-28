@@ -31,7 +31,7 @@ module NetsuiteIntegration
       it "finds deposits by sales order" do
         VCR.use_cassette("customer_deposit/find_by_sales_orders") do
           sales_order = double("SalesOrder", external_id: 'R283752334') 
-          payments = [{ number: 21 }, { number: 22 }]
+          payments = [{ number: 21, amount: 1 }, { number: 22, amount: 1 }]
 
           deposits = subject.find_by_sales_order sales_order, payments
           expect(deposits.count).to eq 2

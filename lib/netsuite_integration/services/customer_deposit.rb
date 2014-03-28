@@ -12,14 +12,16 @@ module NetsuiteIntegration
         payments.map do |payment|
           external_id = "#{prefix}-#{sales_order.external_id}-#{payment[:number]}"
 
-          unless record = find_by_external_id(external_id)
-            record = build(sales_order, payment)
-            # Need to know if at least one of them was persisted
-            @persisted ||= record.add
+          if payment[:amount] > 0
+            unless record = find_by_external_id(external_id)
+              record = build(sales_order, payment)
+              # Need to know if at least one of them was persisted
+              @persisted ||= record.add
+            end
           end
 
           record
-        end
+        end.compact
       end
 
       # Apparently we dont need to pass the customer reference. Tried that for a
@@ -51,6 +53,8 @@ module NetsuiteIntegration
 
       def find_by_sales_order(sales_order, payments)
         payments.map do |p|
+          next unless p[:amount] > 0
+
           external_id = build_id sales_order, p
           NetSuite::Records::CustomerDeposit.get external_id: external_id
         end.compact

@@ -170,6 +170,15 @@ describe NetsuiteEndpoint do
           expect(notifications.count).to eq 1
           expect(notifications.first['description']).to match("updated on NetSuite")
         end
+
+        it "ignore 0 amount payments to avoid netsuite error" do
+          request[:payload] = Factories.payments_amount_0_payload.merge(parameters: parameters)
+
+          VCR.use_cassette('order/payments_amount_0') do
+            post '/orders', request.to_json, auth
+            expect(last_response.status).to eq 200
+          end
+        end
       end
     end
 

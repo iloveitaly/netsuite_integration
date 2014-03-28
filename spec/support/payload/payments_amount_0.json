@@ -1,0 +1,893 @@
+{
+  "order": {
+    "number": "R412664553",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-03-28T19:07:05.570Z",
+    "updated_at": "2014-03-28T19:12:36.563Z",
+    "status": "canceled",
+    "totals": {
+      "item": 229.95,
+      "adjustment": 5.0,
+      "tax": 0.0,
+      "shipping": 5.0,
+      "payment": 234.95,
+      "order": 234.95
+    },
+    "line_items": [
+      {
+        "name": "ALEVE Caplets - Extra Strength To Last All Day",
+        "sku": "ALEVE Caplets - Extra Strength To Last All Day",
+        "external_ref": "",
+        "quantity": 1,
+        "price": 11.95,
+        "variant_id": 54,
+        "options": {
+        }
+      },
+      {
+        "name": "400 watt power supply",
+        "sku": "400 Watt Power Supply",
+        "external_ref": "",
+        "quantity": 2,
+        "price": 109.0,
+        "variant_id": 36,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 5.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 25,
+        "status": "completed",
+        "amount": 16.95,
+        "payment_method": "Credit Card"
+      },
+      {
+        "number": 26,
+        "status": "completed",
+        "amount": 218.0,
+        "payment_method": "Credit Card"
+      },
+      {
+        "number": 27,
+        "status": "completed",
+        "amount": 0.0,
+        "payment_method": "Credit Card"
+      },
+      {
+        "number": 28,
+        "status": "completed",
+        "amount": 0.0,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H15585748686",
+        "cost": 5.0,
+        "status": "canceled",
+        "stock_location": "default",
+        "shipping_method": "UPS Ground (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "ALEVE Caplets - Extra Strength To Last All Day",
+            "sku": "ALEVE Caplets - Extra Strength To Last All Day",
+            "external_ref": "",
+            "quantity": 1,
+            "price": 11.95,
+            "variant_id": 54,
+            "options": {
+            }
+          },
+          {
+            "name": "400 watt power supply",
+            "sku": "400 Watt Power Supply",
+            "external_ref": "",
+            "quantity": 2,
+            "price": 109.0,
+            "variant_id": 36,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "original": {
+    "id": 22,
+    "number": "R412664553",
+    "item_total": "229.95",
+    "total": "234.95",
+    "ship_total": "5.0",
+    "state": "canceled",
+    "adjustment_total": "5.0",
+    "user_id": 1,
+    "created_at": "2014-03-28T19:06:53.914Z",
+    "updated_at": "2014-03-28T19:12:36.563Z",
+    "completed_at": "2014-03-28T19:07:05.570Z",
+    "payment_total": "234.95",
+    "shipment_state": "canceled",
+    "payment_state": "paid",
+    "email": "spree@example.com",
+    "special_instructions": null,
+    "channel": "spree",
+    "tax_total": "0.0",
+    "currency": "USD",
+    "bill_address": {
+      "id": 45,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "ship_address": {
+      "id": 46,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "line_items": [
+      {
+        "id": 31,
+        "quantity": 1,
+        "price": "11.95",
+        "variant_id": 54,
+        "created_at": "2014-03-28T19:06:54.006Z",
+        "updated_at": "2014-03-28T19:06:54.006Z",
+        "single_display_amount": "$11.95",
+        "display_amount": "$11.95",
+        "total": "11.95",
+        "variant": {
+          "id": 54,
+          "name": "ALEVE Caplets - Extra Strength To Last All Day",
+          "sku": "ALEVE Caplets - Extra Strength To Last All Day",
+          "price": "11.95",
+          "weight": "0.0",
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": null,
+          "permalink": "aleve-caplets-extra-strength-to-last-all-day",
+          "product_created_at": "2014-03-26T18:43:08.857Z",
+          "product_updated_at": "2014-03-28T19:12:36.072Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 35,
+          "images": [
+
+          ]
+        }
+      },
+      {
+        "id": 32,
+        "quantity": 2,
+        "price": "109.0",
+        "variant_id": 36,
+        "created_at": "2014-03-28T19:10:19.599Z",
+        "updated_at": "2014-03-28T19:10:19.599Z",
+        "single_display_amount": "$109.00",
+        "display_amount": "$218.00",
+        "total": "218.0",
+        "variant": {
+          "id": 36,
+          "name": "400 watt power supply",
+          "sku": "400 Watt Power Supply",
+          "price": "109.0",
+          "weight": "0.0",
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": null,
+          "permalink": "400-watt-power-supply",
+          "product_created_at": "2014-03-24T21:19:34.769Z",
+          "product_updated_at": "2014-03-28T19:12:36.101Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 26,
+          "images": [
+
+          ]
+        }
+      }
+    ],
+    "payments": [
+      {
+        "id": 25,
+        "amount": "16.95",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      },
+      {
+        "id": 26,
+        "amount": "218.0",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      },
+      {
+        "id": 27,
+        "amount": "0.0",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      },
+      {
+        "id": 28,
+        "amount": "0.0",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      }
+    ],
+    "shipments": [
+      {
+        "id": 22,
+        "tracking": null,
+        "number": "H15585748686",
+        "cost": "5.0",
+        "shipped_at": null,
+        "state": "canceled",
+        "order_id": "R412664553",
+        "stock_location_name": "default",
+        "shipping_rates": [
+          {
+            "id": 80,
+            "cost": "10.0",
+            "selected": false,
+            "shipment_id": 22,
+            "shipping_method_id": 2
+          },
+          {
+            "id": 81,
+            "cost": "15.0",
+            "selected": false,
+            "shipment_id": 22,
+            "shipping_method_id": 3
+          },
+          {
+            "id": 79,
+            "cost": "5.0",
+            "selected": true,
+            "shipment_id": 22,
+            "shipping_method_id": 1
+          }
+        ],
+        "shipping_method": {
+          "name": "UPS Ground (USD)",
+          "tracking_url": null
+        },
+        "inventory_units": [
+          {
+            "id": 51,
+            "variant_id": 54,
+            "state": "on_hand"
+          },
+          {
+            "id": 52,
+            "variant_id": 36,
+            "state": "on_hand"
+          },
+          {
+            "id": 53,
+            "variant_id": 36,
+            "state": "on_hand"
+          }
+        ]
+      }
+    ],
+    "adjustments": [
+      {
+        "id": 28,
+        "amount": "5.0",
+        "label": "Shipping",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::ShippingMethod",
+        "adjustable_type": "Spree::Order"
+      }
+    ],
+    "credit_cards": [
+      {
+        "id": 20,
+        "month": "6",
+        "year": "2016",
+        "cc_type": "visa",
+        "last_digits": "1111",
+        "first_name": "Luis",
+        "last_name": "Braga",
+        "gateway_customer_profile_id": "BGS-334040",
+        "gateway_payment_profile_id": null
+      }
+    ]
+  },
+  "previous": {
+    "number": "R412664553",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-03-28T19:07:05.570Z",
+    "updated_at": "2014-03-28T19:10:39.669Z",
+    "status": "complete",
+    "totals": {
+      "item": 229.95,
+      "adjustment": 5.0,
+      "tax": 0.0,
+      "shipping": 5.0,
+      "payment": 234.95,
+      "order": 234.95
+    },
+    "line_items": [
+      {
+        "name": "ALEVE Caplets - Extra Strength To Last All Day",
+        "sku": "ALEVE Caplets - Extra Strength To Last All Day",
+        "external_ref": "",
+        "quantity": 1,
+        "price": 11.95,
+        "variant_id": 54,
+        "options": {
+        }
+      },
+      {
+        "name": "400 watt power supply",
+        "sku": "400 Watt Power Supply",
+        "external_ref": "",
+        "quantity": 2,
+        "price": 109.0,
+        "variant_id": 36,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 5.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 25,
+        "status": "completed",
+        "amount": 16.95,
+        "payment_method": "Credit Card"
+      },
+      {
+        "number": 26,
+        "status": "completed",
+        "amount": 218.0,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H15585748686",
+        "cost": 5.0,
+        "status": "ready",
+        "stock_location": "default",
+        "shipping_method": "UPS Ground (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "ALEVE Caplets - Extra Strength To Last All Day",
+            "sku": "ALEVE Caplets - Extra Strength To Last All Day",
+            "external_ref": "",
+            "quantity": 1,
+            "price": 11.95,
+            "variant_id": 54,
+            "options": {
+            }
+          },
+          {
+            "name": "400 watt power supply",
+            "sku": "400 Watt Power Supply",
+            "external_ref": "",
+            "quantity": 2,
+            "price": 109.0,
+            "variant_id": 36,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "diff": {
+    "state": [
+      "complete",
+      "canceled"
+    ],
+    "updated_at": [
+      "2014-03-28T19:10:39.669Z",
+      "2014-03-28T19:12:36.563Z"
+    ],
+    "shipment_state": [
+      "ready",
+      "canceled"
+    ],
+    "line_items": [
+      [
+        {
+          "id": 31,
+          "quantity": 1,
+          "price": "11.95",
+          "variant_id": 54,
+          "created_at": "2014-03-28T19:06:54.006Z",
+          "updated_at": "2014-03-28T19:06:54.006Z",
+          "single_display_amount": "$11.95",
+          "display_amount": "$11.95",
+          "total": "11.95",
+          "variant": {
+            "id": 54,
+            "name": "ALEVE Caplets - Extra Strength To Last All Day",
+            "sku": "ALEVE Caplets - Extra Strength To Last All Day",
+            "price": "11.95",
+            "weight": "0.0",
+            "height": null,
+            "width": null,
+            "depth": null,
+            "is_master": true,
+            "cost_price": null,
+            "permalink": "aleve-caplets-extra-strength-to-last-all-day",
+            "product_created_at": "2014-03-26T18:43:08.857Z",
+            "product_updated_at": "2014-03-28T19:07:05.622Z",
+            "options_text": "",
+            "option_values": [
+
+            ],
+            "product": {
+              "taxons": [
+
+              ]
+            },
+            "product_id": 35,
+            "images": [
+
+            ]
+          }
+        },
+        {
+          "id": 32,
+          "quantity": 2,
+          "price": "109.0",
+          "variant_id": 36,
+          "created_at": "2014-03-28T19:10:19.599Z",
+          "updated_at": "2014-03-28T19:10:19.599Z",
+          "single_display_amount": "$109.00",
+          "display_amount": "$218.00",
+          "total": "218.0",
+          "variant": {
+            "id": 36,
+            "name": "400 watt power supply",
+            "sku": "400 Watt Power Supply",
+            "price": "109.0",
+            "weight": "0.0",
+            "height": null,
+            "width": null,
+            "depth": null,
+            "is_master": true,
+            "cost_price": null,
+            "permalink": "400-watt-power-supply",
+            "product_created_at": "2014-03-24T21:19:34.769Z",
+            "product_updated_at": "2014-03-28T19:10:19.684Z",
+            "options_text": "",
+            "option_values": [
+
+            ],
+            "product": {
+              "taxons": [
+
+              ]
+            },
+            "product_id": 26,
+            "images": [
+
+            ]
+          }
+        }
+      ],
+      [
+        {
+          "id": 31,
+          "quantity": 1,
+          "price": "11.95",
+          "variant_id": 54,
+          "created_at": "2014-03-28T19:06:54.006Z",
+          "updated_at": "2014-03-28T19:06:54.006Z",
+          "single_display_amount": "$11.95",
+          "display_amount": "$11.95",
+          "total": "11.95",
+          "variant": {
+            "id": 54,
+            "name": "ALEVE Caplets - Extra Strength To Last All Day",
+            "sku": "ALEVE Caplets - Extra Strength To Last All Day",
+            "price": "11.95",
+            "weight": "0.0",
+            "height": null,
+            "width": null,
+            "depth": null,
+            "is_master": true,
+            "cost_price": null,
+            "permalink": "aleve-caplets-extra-strength-to-last-all-day",
+            "product_created_at": "2014-03-26T18:43:08.857Z",
+            "product_updated_at": "2014-03-28T19:12:36.072Z",
+            "options_text": "",
+            "option_values": [
+
+            ],
+            "product": {
+              "taxons": [
+
+              ]
+            },
+            "product_id": 35,
+            "images": [
+
+            ]
+          }
+        },
+        {
+          "id": 32,
+          "quantity": 2,
+          "price": "109.0",
+          "variant_id": 36,
+          "created_at": "2014-03-28T19:10:19.599Z",
+          "updated_at": "2014-03-28T19:10:19.599Z",
+          "single_display_amount": "$109.00",
+          "display_amount": "$218.00",
+          "total": "218.0",
+          "variant": {
+            "id": 36,
+            "name": "400 watt power supply",
+            "sku": "400 Watt Power Supply",
+            "price": "109.0",
+            "weight": "0.0",
+            "height": null,
+            "width": null,
+            "depth": null,
+            "is_master": true,
+            "cost_price": null,
+            "permalink": "400-watt-power-supply",
+            "product_created_at": "2014-03-24T21:19:34.769Z",
+            "product_updated_at": "2014-03-28T19:12:36.101Z",
+            "options_text": "",
+            "option_values": [
+
+            ],
+            "product": {
+              "taxons": [
+
+              ]
+            },
+            "product_id": 26,
+            "images": [
+
+            ]
+          }
+        }
+      ]
+    ],
+    "payments": [
+      [
+        {
+          "id": 25,
+          "amount": "16.95",
+          "state": "completed",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        },
+        {
+          "id": 26,
+          "amount": "218.0",
+          "state": "completed",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        }
+      ],
+      [
+        {
+          "id": 25,
+          "amount": "16.95",
+          "state": "completed",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        },
+        {
+          "id": 26,
+          "amount": "218.0",
+          "state": "completed",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        },
+        {
+          "id": 27,
+          "amount": "0.0",
+          "state": "completed",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        },
+        {
+          "id": 28,
+          "amount": "0.0",
+          "state": "completed",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        }
+      ]
+    ],
+    "shipments": [
+      [
+        {
+          "id": 22,
+          "tracking": null,
+          "number": "H15585748686",
+          "cost": "5.0",
+          "shipped_at": null,
+          "state": "ready",
+          "order_id": "R412664553",
+          "stock_location_name": "default",
+          "shipping_rates": [
+            {
+              "id": 77,
+              "cost": "10.0",
+              "selected": false,
+              "shipment_id": 22,
+              "shipping_method_id": 2
+            },
+            {
+              "id": 78,
+              "cost": "15.0",
+              "selected": false,
+              "shipment_id": 22,
+              "shipping_method_id": 3
+            },
+            {
+              "id": 76,
+              "cost": "5.0",
+              "selected": true,
+              "shipment_id": 22,
+              "shipping_method_id": 1
+            }
+          ],
+          "shipping_method": {
+            "name": "UPS Ground (USD)",
+            "tracking_url": null
+          },
+          "inventory_units": [
+            {
+              "id": 51,
+              "variant_id": 54,
+              "state": "on_hand"
+            },
+            {
+              "id": 52,
+              "variant_id": 36,
+              "state": "on_hand"
+            },
+            {
+              "id": 53,
+              "variant_id": 36,
+              "state": "on_hand"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "id": 22,
+          "tracking": null,
+          "number": "H15585748686",
+          "cost": "5.0",
+          "shipped_at": null,
+          "state": "canceled",
+          "order_id": "R412664553",
+          "stock_location_name": "default",
+          "shipping_rates": [
+            {
+              "id": 80,
+              "cost": "10.0",
+              "selected": false,
+              "shipment_id": 22,
+              "shipping_method_id": 2
+            },
+            {
+              "id": 81,
+              "cost": "15.0",
+              "selected": false,
+              "shipment_id": 22,
+              "shipping_method_id": 3
+            },
+            {
+              "id": 79,
+              "cost": "5.0",
+              "selected": true,
+              "shipment_id": 22,
+              "shipping_method_id": 1
+            }
+          ],
+          "shipping_method": {
+            "name": "UPS Ground (USD)",
+            "tracking_url": null
+          },
+          "inventory_units": [
+            {
+              "id": 51,
+              "variant_id": 54,
+              "state": "on_hand"
+            },
+            {
+              "id": 52,
+              "variant_id": 36,
+              "state": "on_hand"
+            },
+            {
+              "id": 53,
+              "variant_id": 36,
+              "state": "on_hand"
+            }
+          ]
+        }
+      ]
+    ]
+  }
+}
