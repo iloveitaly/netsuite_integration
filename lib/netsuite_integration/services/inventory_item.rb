@@ -101,7 +101,7 @@ module NetsuiteIntegration
         end
 
         def last_updated_after
-          Time.parse(config.fetch('netsuite.last_updated_after')).iso8601
+          Time.parse(config.fetch('netsuite_last_updated_after')).iso8601
         end
     end
   end

@@ -5,28 +5,18 @@ require File.expand_path(File.dirname(__FILE__) + '/lib/netsuite_integration')
 
 class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   before do
-    if @message
-      puts "  Start NetSuite API Request at #{Time.now} for #{@message['message']}"
-    end
-
     if config = @config
       @netsuite_client ||= NetSuite.configure do
         reset!
         api_version  '2013_2'
         wsdl         'https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl'
         sandbox      false
-        email        config.fetch('netsuite.email')
-        password     config.fetch('netsuite.password')
-        account      config.fetch('netsuite.account')
+        email        config.fetch('netsuite_email')
+        password     config.fetch('netsuite_password')
+        account      config.fetch('netsuite_account')
         read_timeout 175
         log_level    :info
       end
-    end
-  end
-
-  after do
-    if @message
-      puts "  End NetSuite API Request at #{Time.now} for #{@message['message']}"
     end
   end
 
@@ -35,15 +25,14 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       products = NetsuiteIntegration::Product.new(@config)
 
       if products.collection.any?
-        add_messages "product:import", products.messages
+        add_object "product", products.messages
         add_parameter 'netsuite.last_updated_after', products.last_modified_date
-        add_notification "info", "#{products.messages.count} items found in NetSuite"
+        @summary = "#{products.messages.count} items found in NetSuite"
       end
 
-      process_result 200
+      result 200, @summary
     rescue StandardError => e
-      add_notification "error", e.message, nil, { backtrace: e.backtrace.to_a.join("\n\t") }
-      process_result 500
+      result 500, e.message
     end
   end
 
@@ -66,15 +55,15 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
   post '/inventory_stock' do
     begin
-      stock = NetsuiteIntegration::InventoryStock.new(@config, @message)
-      add_message 'stock:actual', { sku: stock.sku, quantity: stock.quantity_available }
-      add_notification "info", "#{stock.quantity_available} units available of #{stock.sku} according to NetSuite"
-      process_result 200
+      stock = NetsuiteIntegration::InventoryStock.new(@config, @payload)
+
+      add_object :inventory, { sku: stock.sku, quantity: stock.quantity_available }
+      summary = "#{stock.quantity_available} units available of #{stock.sku} according to NetSuite"
+      result 200, summary
     rescue NetSuite::RecordNotFound
-      process_result 200
+      result 200
     rescue => e
-      add_notification "error", e.message, e.backtrace.to_a.join("\n")
-      process_result 500
+      result 500, e.message
     end
   end
 

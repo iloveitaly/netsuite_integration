@@ -16,12 +16,8 @@ describe NetsuiteEndpoint do
   context "inventory stock service" do
     let(:request) do
       {
-        message: 'stock:query',
-        message_id: 123,
-        payload: {
-          sku: "1100",
-          parameters: parameters
-        }
+        sku: "1100",
+        parameters: parameters
       }
     end
 
@@ -33,7 +29,7 @@ describe NetsuiteEndpoint do
     end
 
     context "item not found" do
-      before { request[:payload][:sku] = "Im not there" }
+      before { request[:sku] = "Im not there" }
 
       it "still returns 200 but give no stock:actual message" do
         VCR.use_cassette("inventory_item/item_not_found") do
@@ -50,9 +46,7 @@ describe NetsuiteEndpoint do
 
         post '/inventory_stock', request.to_json, auth
         expect(last_response.status).to eq 500
-
-        expect(json_response['notifications'][0]['level']).to eq("error")
-        expect(json_response['notifications'][0]['subject']).to eq("Weird error")
+        expect(json_response[:summary]).to eq("Weird error")
       end
     end
   end

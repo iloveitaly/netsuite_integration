@@ -6,7 +6,7 @@ module NetsuiteIntegration
 
     def initialize(config, message)
       @config = config
-      @sku = message[:payload][:sku]
+      @sku = message[:sku]
 
       unless @item = Services::InventoryItem.new(@config).find_by_item_id(sku)
         raise NetSuite::RecordNotFound
