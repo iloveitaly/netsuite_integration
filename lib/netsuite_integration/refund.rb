@@ -1,24 +1,24 @@
 module NetsuiteIntegration
   class Refund < Base
-    attr_reader :config, :user_id, :original_payload, :order_payload, :sales_order, :customer_deposit, :customer
+    attr_reader :user_id, :order_payload, :sales_order, :customer, :deposits, :refund_service
 
-    def initialize(config, message, order)
+    def initialize(config, message, sales_order)
       super(message, config)
 
-      @config           = config
       @user_id          = original[:user_id]
       @order_payload    = payload[:order]
-      @original_payload = payload[:original]
 
-      @sales_order      = order
-      @customer_deposit = customer_deposit_service.find_by_external_id(order_payload[:number]) or
-        raise RecordNotFoundCustomerDeposit, "NetSuite Customer Deposit not found for order #{order_payload[:number]}"
+      @sales_order      = sales_order
+      @deposits = customer_deposit_service.find_by_sales_order sales_order, order_payload[:payments]
+
       @customer = customer_service.find_by_external_id(order_payload[:email]) or
         raise RecordNotFoundCustomerException, "NetSuite Customer not found for Spree user_id #{user_id}"
+
+      @refund_service = Services::CustomerRefund.new(config, customer.internal_id, payment_method_id)
     end
 
     def process!
-      if customer_refund_service.create customer.internal_id, payment_method_id, customer_deposit.internal_id, order_payload[:number]
+      if refund_service.create sales_order, deposits
         sales_order_service.close! sales_order
       end
     end
