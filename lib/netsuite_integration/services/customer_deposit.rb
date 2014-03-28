@@ -49,7 +49,18 @@ module NetsuiteIntegration
         nil
       end
 
+      def find_by_sales_order(sales_order, payments)
+        payments.map do |p|
+          external_id = build_id sales_order, p
+          NetSuite::Records::CustomerDeposit.get external_id: external_id
+        end.compact
+      end
+
       private
+        def build_id(sales_order, payment)
+          "#{prefix}-#{sales_order.external_id}-#{payment[:number]}"
+        end
+
         # Prefix is used to avoid running into external_id duplications
         def prefix
           'cd'
