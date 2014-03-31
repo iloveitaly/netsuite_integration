@@ -19,7 +19,7 @@ module NetsuiteIntegration
 
     context "collection with one child but no parents" do
       before do
-        config['netsuite.last_updated_after'] = '2014-02-06T19:58:56.001Z'
+        config['netsuite_last_updated_after'] = '2014-02-06T19:58:56.001Z'
       end
 
       pending "finds parent and still build matrix properly" do
@@ -33,7 +33,7 @@ module NetsuiteIntegration
 
     context "option value name doesn't match the one in NetSuite UI" do
       pending "is just so confusing" do
-        config['netsuite.last_updated_after'] = '2014-02-06T20:58:56.001Z'
+        config['netsuite_last_updated_after'] = '2014-02-06T20:58:56.001Z'
         VCR.use_cassette("product/there_we_go_again") do
           subject = described_class.new config
           subject.messages
@@ -62,7 +62,7 @@ module NetsuiteIntegration
     end
 
     context "pricing matrix doesn't have a price_list" do
-      before { config["netsuite.last_updated_after"] = "2014-01-28T20:56:11+00:00" }
+      before { config["netsuite_last_updated_after"] = "2014-01-28T20:56:11+00:00" }
 
       it "doesn't break at all" do
         VCR.use_cassette("inventory_item/missing_price_list") do
@@ -76,7 +76,7 @@ module NetsuiteIntegration
 
     context "matrix custom field options value key holds both Array and a Hash" do
       it "deals with it" do
-        config['netsuite.last_updated_after'] = '2014-02-12T02:19:38+00:00'
+        config['netsuite_last_updated_after'] = '2014-02-12T02:19:38+00:00'
         Services::InventoryItem.any_instance.stub(time_now: Time.parse("2014-02-12T00:48:43+00:00"))
 
         VCR.use_cassette("inventory_item/check_this_out") do
@@ -89,7 +89,7 @@ module NetsuiteIntegration
     end
 
     it "matches matrix options properly" do
-      config['netsuite.last_updated_after'] = '2014-02-13T02:37:38+00:00'
+      config['netsuite_last_updated_after'] = '2014-02-13T02:37:38+00:00'
       Services::InventoryItem.any_instance.stub(time_now: Time.parse("2014-02-13 04:07:08 -0000"))
 
       VCR.use_cassette("product/matrix_option_study_case") do

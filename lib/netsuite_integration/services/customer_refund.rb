@@ -20,7 +20,7 @@ module NetsuiteIntegration
 
         # 'account' is an optional field
         # It defaults to the first entry in the UI list... I think
-        refund.account        = NetSuite::Records::RecordRef.new(internal_id: config.fetch('netsuite.account_for_sales_id'))
+        refund.account        = NetSuite::Records::RecordRef.new(internal_id: config.fetch('netsuite_account_for_sales_id'))
         refund.external_id    = "#{prefix}#{sales_order.external_id}"
 
         # doc -> customer_deposit_id

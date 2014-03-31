@@ -144,13 +144,13 @@ module NetsuiteIntegration
 
     def shipping_id
       method = @payload[:order][:shipments][0][:shipping_method]
-      @config['netsuite.shipping_methods_mapping'][0].fetch(method).to_i
+      @config['netsuite_shipping_methods_mapping'][0].fetch(method).to_i
     rescue
-      raise "Shipping method #{method} not found in #{@config['netsuite.shipping_methods_mapping'].inspect}"
+      raise "Shipping method #{method} not found in #{@config['netsuite_shipping_methods_mapping'].inspect}"
     end
 
     def internal_id_for(type)
-      name = config.fetch('netsuite.item_for_discounts', "Spree #{type.capitalize}")
+      name = config.fetch('netsuite_item_for_discounts', "Spree #{type.capitalize}")
       non_inventory_item_service.find_or_create_by_name(name).internal_id
     end
   end

@@ -48,7 +48,7 @@ module NetsuiteIntegration
 
     context "multiple types of matrix option lists (array and hash)" do
       it "doesn't error" do
-        config['netsuite.last_updated_after'] = "2014-02-13T18:53:26+00:00"
+        config['netsuite_last_updated_after'] = "2014-02-13T18:53:26+00:00"
 
         VCR.use_cassette("inventory_item/multiple_sizes_of_matrix_option_list") do
           subject = described_class.new config

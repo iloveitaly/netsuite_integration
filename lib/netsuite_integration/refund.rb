@@ -26,9 +26,9 @@ module NetsuiteIntegration
     private
     def payment_method_id
       method = @payload[:order][:payments][0][:payment_method]
-      @config['netsuite.payment_methods_mapping'][0].fetch(method).to_i
+      @config['netsuite_payment_methods_mapping'][0].fetch(method).to_i
     rescue
-      raise "Payment method #{method} not found in #{@config['netsuite.payment_methods_mapping'].inspect}"
+      raise "Payment method #{method} not found in #{@config['netsuite_payment_methods_mapping'].inspect}"
     end
   end
 end
