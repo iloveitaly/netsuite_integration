@@ -1,14 +1,10 @@
 module NetsuiteIntegration
   class Base
-    attr_accessor :payload, :message_name, :message_id, :config, :original
+    attr_accessor :payload, :config
 
-    def initialize(message = {}, config)
+    def initialize(config, payload = {})
       @config = config
-      
-      @payload = message[:payload].with_indifferent_access
-      @original = payload[:original]
-      @message_name = message[:message]
-      @message_id = message[:message_id]
+      @payload = payload
     end
 
     def customer_service

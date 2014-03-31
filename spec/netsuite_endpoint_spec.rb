@@ -5,11 +5,7 @@ describe NetsuiteEndpoint do
 
   let(:request) do
     {
-      message: 'product:poll',
-      message_id: 123,
-      payload: {
-        parameters: parameters
-      }
+      parameters: parameters
     }
   end
 
@@ -72,14 +68,9 @@ describe NetsuiteEndpoint do
   describe '/orders' do
     context 'when order is new' do
       let(:request) do
-        payload = Factories.order_new_payload
+        payload = Factories.order_new_payload.merge(parameters: parameters)
         payload['order']['number'] = "RXXXXXC23774"
-
-        {
-          message: 'order:new',
-          message_id: 123,
-          payload: payload.merge(parameters: parameters)
-        }
+        payload
       end
 
       it 'imports the order and returns an info notification' do
@@ -88,33 +79,28 @@ describe NetsuiteEndpoint do
           expect(last_response).to be_ok
         end
 
-        expect(json_response['notifications'][0]['subject']).to match('sent to NetSuite')
+        expect(json_response[:summary]).to match('sent to NetSuite')
       end
     end
 
     context 'when order has already been imported' do
       let(:request) do
-        {
-          message: 'order:new',
-          message_id: 123,
-          payload: Factories.order_updated_payload.merge(parameters: parameters)
-        }
+        Factories.order_updated_payload.merge(parameters: parameters)
       end
 
       it 'creates customer deposit' do
-        request[:payload][:order][:number] = "RXXXXXC23774"
+        request[:order][:number] = "RXXXXXC23774"
 
         VCR.use_cassette('order/customer_deposit_on_updated_message') do
           post '/orders', request.to_json, auth
         end
 
-        notifications = json_response['notifications']
-        expect(notifications.last['subject']).to match('Customer Deposit set up for')
+        expect(json_response[:summary]).to match('Customer Deposit set up for')
       end
 
       context "order has invalid items" do
-        before do
-          request[:payload] = Factories.order_invalid_payload.merge(parameters: parameters)
+        let(:request) do
+          Factories.order_invalid_payload.merge(parameters: parameters)
         end
 
         it "displays netsuite record error messages" do
@@ -122,8 +108,7 @@ describe NetsuiteEndpoint do
             post '/orders', request.to_json, auth
             expect(last_response.status).to eq 500
 
-            notification = json_response['notifications'][0]
-            expect(notification['description']).to match('Please choose a child matrix item')
+            expect(json_response[:summary]).to match('Please choose a child matrix item')
           end
         end
 
@@ -131,25 +116,20 @@ describe NetsuiteEndpoint do
           payload = Factories.order_new_payload.with_indifferent_access
           payload[:order][:number] = "R24252RGRERGER"
           payload[:order][:line_items].first[:sku] = "Dude I'm so not there at all"
-          request[:payload] = payload.merge(parameters: parameters)
+          request = payload.merge(parameters: parameters)
 
           VCR.use_cassette('order/item_not_found') do
             post '/orders', request.to_json, auth
             expect(last_response.status).to eq 500
 
-            notification = json_response['notifications'][0]
-            expect(notification['description']).to match("Dude I'm so not there at all\" not found in NetSuite")
+            expect(json_response[:summary]).to match("Dude I'm so not there at all\" not found in NetSuite")
           end
         end
       end
 
       context "was already paid" do
         let(:request) do
-          {
-            message: 'order:updated',
-            message_id: 123,
-            payload: Factories.order_updated_items_payload.merge(parameters: parameters)
-          }
+          Factories.order_updated_items_payload.merge(parameters: parameters)
         end
 
         it "updates sales order" do
@@ -158,11 +138,10 @@ describe NetsuiteEndpoint do
           end
 
           expect(last_response.status).to eq 200
-          notifications = json_response['notifications']
 
           # Ensure customer deposit notification are not present
-          expect(notifications.count).to eq 1
-          expect(notifications.first['description']).to match("updated on NetSuite")
+          expect(json_response[:summary]).to_not match /Customer Deposit/i
+          expect(json_response[:summary]).to match("updated on NetSuite")
         end
 
         it "ignore 0 amount payments to avoid netsuite error" do
@@ -199,27 +178,20 @@ describe NetsuiteEndpoint do
       }
 
       let(:request) do
-        payload = Factories.order_canceled_payload
-
-        {
-          message: 'order:canceled',
-          message_id: 123,
-          payload: payload.merge(parameters: parameters)
-        }.with_indifferent_access
+        Factories.order_canceled_payload.merge(parameters: parameters).with_indifferent_access
       end
 
       context 'when CustomerDeposit record DOES NOT exist' do
         before do
-          request[:payload][:order][:number] = "R780015316"
-          request[:payload][:order][:payments] = []
+          request[:order][:number] = "R780015316"
+          request[:order][:payments] = []
         end
 
         it 'closes the order' do
           VCR.use_cassette("order/close") do
-            post '/orders', request.to_json, auth
+            post '/cancel_order', request.to_json, auth
             expect(last_response).to be_ok
-            expect(json_response['notifications'][0]['level']).to match('info')
-            expect(json_response['notifications'][0]['subject']).to match('was closed')          
+            expect(json_response[:summary]).to match('was closed')
           end
         end
       end
@@ -227,17 +199,15 @@ describe NetsuiteEndpoint do
       context 'when CustomerDeposit record exists' do
         before(:each) do
           NetsuiteIntegration::Services::SalesOrder.any_instance.stub(:find_by_external_id => sales_order)
-          request['payload']['original']['payment_state'] = 'paid'
           setup_stubs
         end
 
         it 'issues customer refund and closes the order' do
           VCR.use_cassette('customer_refund/create') do
-            post '/orders', request.to_json, auth
+            post '/cancel_order', request.to_json, auth
           end
           expect(last_response).to be_ok
-          expect(json_response['notifications'][0]['level']).to match('info')
-          expect(json_response['notifications'][0]['subject']).to match('Customer Refund created and NetSuite Sales Order')
+          expect(json_response[:summary]).to match('Customer Refund created and NetSuite Sales Order')
         end
 
         def setup_stubs

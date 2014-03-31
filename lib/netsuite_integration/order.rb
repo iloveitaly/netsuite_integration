@@ -1,13 +1,12 @@
 module NetsuiteIntegration
   class Order < Base
-    attr_reader :config, :collection, :user_id, :order_payload, :sales_order,
+    attr_reader :config, :collection, :order_payload, :sales_order,
       :existing_sales_order
 
-    def initialize(config, message)
-      super(message, config)
+    def initialize(config, payload = {})
+      super(config, payload)
 
       @config = config
-      @user_id = original[:user_id]
       @order_payload = payload[:order]
 
       @existing_sales_order = sales_order_service.find_by_external_id(order_payload[:number])
@@ -60,7 +59,8 @@ module NetsuiteIntegration
     end
 
     def paid?
-      original[:payment_state] == "paid"
+      payment_total = payload[:order][:payments].sum { |p| p[:amount] }
+      order_payload[:totals][:order] <= payment_total
     end
 
     def errors

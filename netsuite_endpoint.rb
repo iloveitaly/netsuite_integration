@@ -38,19 +38,16 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
   post '/orders' do
     begin
-      case @message['message']
-      when 'order:new', 'order:updated'
-        create_or_update_order
-      when 'order:canceled', 'order:cancelled'
-        cancel_order
-      end
+      create_or_update_order
     rescue NetSuite::RecordNotFound => e
-      add_notification "error", e.message
-      process_result 500
+      result 500, e.message
     rescue StandardError => e
-      add_notification "error", e.message, nil, { backtrace: e.backtrace.to_a.join("\n\t") }
-      process_result 500
+      result 500, e.message
     end
+  end
+
+  post '/cancel_order' do
+    cancel_order
   end
 
   post '/inventory_stock' do
@@ -80,68 +77,68 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
   private
   def create_or_update_order
-    order = NetsuiteIntegration::Order.new(@config, @message)
+    order = NetsuiteIntegration::Order.new(@config, @payload)
+
+    error_notification = ""
 
     if order.imported?
       if order.update
-        add_notification "info", "Order #{order.existing_sales_order.external_id} updated on NetSuite # #{order.existing_sales_order.tran_id}"
+        summary = "Order #{order.existing_sales_order.external_id} updated on NetSuite # #{order.existing_sales_order.tran_id}"
       else
-        add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite", order.errors
+        error_notification = "Failed to import order #{order.sales_order.external_id} into Netsuite"
       end
     else
       if order.create
-        add_notification "info", "Order #{order.sales_order.external_id} sent to NetSuite # #{order.sales_order.tran_id}"
+        summary = "Order #{order.sales_order.external_id} sent to NetSuite # #{order.sales_order.tran_id}"
       else
-        add_notification "error", "Failed to import order #{order.sales_order.external_id} into Netsuite", order.errors
+        error_notification = "Failed to import order #{order.sales_order.external_id} into Netsuite"
       end
     end
 
     if order.paid?
-      customer_deposit = NetsuiteIntegration::Services::CustomerDeposit.new(@config, @message[:payload])
+      customer_deposit = NetsuiteIntegration::Services::CustomerDeposit.new(@config, @payload)
       records = customer_deposit.create_records order.sales_order
 
       errors = records.map(&:errors).compact.flatten
       errors = errors.map(&:message).flatten
 
       if errors.any?
-        add_notification "error", "Failed to set up Customer Deposit for #{order.existing_sales_order.external_id} in NetSuite", errors.join(", ")
+        error_notification << " Failed to set up Customer Deposit for #{order.existing_sales_order.external_id} in NetSuite"
       end
 
       if customer_deposit.persisted
-        add_notification "info", "Customer Deposit set up for Sales Order #{(order.existing_sales_order || order.sales_order).tran_id}", errors.join(", ")
+        summary << "Customer Deposit set up for Sales Order #{(order.existing_sales_order || order.sales_order).tran_id}"
       end
     end
 
-    if @notifications.any? { |n| n[:level] == "error" }
-      process_result 500
+    if error_notification.present?
+      result 500, error_notification
     else
-      process_result 200
+      result 200, summary
     end
   end
 
   def cancel_order
-    order = sales_order_service.find_by_external_id(@message[:payload][:order][:number]) or 
-      raise RecordNotFoundSalesOrder, "NetSuite Sales Order not found for order #{order_payload[:number]}"
+    order = sales_order_service.find_by_external_id(@payload[:order][:number]) or 
+      raise RecordNotFoundSalesOrder, "NetSuite Sales Order not found for order #{@payload[:order][:number]}"
 
     if customer_record_exists?
-      refund = NetsuiteIntegration::Refund.new(@config, @message, order)
+      refund = NetsuiteIntegration::Refund.new(@config, @payload, order)
       if refund.process!
-        add_notification "info", "Customer Refund created and NetSuite Sales Order #{@message[:payload][:order][:number]} was closed"
-        process_result 200
+        summary = "Customer Refund created and NetSuite Sales Order #{@payload[:order][:number]} was closed"
+        result 200, summary
       else
-        add_notification "error", "Failed to create a Customer Refund and close the NetSuite Sales Order #{@message[:payload][:order][:number]}"
-        process_result 500
+        summary = "Failed to create a Customer Refund and close the NetSuite Sales Order #{@payload[:order][:number]}"
+        result 500, summary
       end      
     else
       sales_order_service.close!(order)
-      add_notification "info", "NetSuite Sales Order #{@message[:payload][:order][:number]} was closed"
-
-      process_result 200
+      result 200, "NetSuite Sales Order #{@payload[:order][:number]} was closed"
     end
   end
 
   def customer_record_exists?
-    @message[:payload][:order][:payments] && @message[:payload][:order][:payments].any?
+    @payload[:order][:payments] && @payload[:order][:payments].any?
   end
 
   def sales_order_service

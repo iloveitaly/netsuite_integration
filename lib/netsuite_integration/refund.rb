@@ -3,16 +3,15 @@ module NetsuiteIntegration
     attr_reader :user_id, :order_payload, :sales_order, :customer, :deposits, :refund_service
 
     def initialize(config, message, sales_order)
-      super(message, config)
+      super(config, message)
 
-      @user_id          = original[:user_id]
       @order_payload    = payload[:order]
 
       @sales_order      = sales_order
       @deposits = customer_deposit_service.find_by_sales_order sales_order, order_payload[:payments]
 
       @customer = customer_service.find_by_external_id(order_payload[:email]) or
-        raise RecordNotFoundCustomerException, "NetSuite Customer not found for Spree user_id #{user_id}"
+        raise RecordNotFoundCustomerException, "NetSuite Customer not found for Spree user #{order_payload[:email]}"
 
       @refund_service = Services::CustomerRefund.new(config, customer.internal_id, payment_method_id)
     end
