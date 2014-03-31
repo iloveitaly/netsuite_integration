@@ -28,9 +28,7 @@ module NetsuiteIntegration
       }
     end
 
-    let(:message) do
-      { payload: payload }
-    end
+    let(:message) { payload }
 
     before(:each) do
       described_class.any_instance.stub_chain(:customer_deposit_service, find_by_sales_order: deposits)

@@ -6,9 +6,7 @@ module NetsuiteIntegration
     include_examples 'connect to netsuite'
 
     subject do
-      described_class.new(config, {
-        payload: Factories.order_new_payload
-      })
+      described_class.new(config, Factories.order_new_payload)
     end
 
     context 'order was paid' do
@@ -34,7 +32,7 @@ module NetsuiteIntegration
         payload = Factories.order_new_payload
         payload['order']['number'] = order_number
 
-        described_class.new(config, { payload: payload })
+        described_class.new(config, payload)
       end
 
       it 'imports the order' do
@@ -67,7 +65,7 @@ module NetsuiteIntegration
           payload = Factories.order_new_payload
           payload['order']['number'] = "RGGADSFSFSFSFDS"
           payload['order']['totals']['tax'] = 3.25
-          order = described_class.new(config, { payload: payload })
+          order = described_class.new(config, payload)
 
           expect(order.create).to be
           # we really only care about item decimals here

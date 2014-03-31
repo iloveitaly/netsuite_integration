@@ -6,7 +6,7 @@ module NetsuiteIntegration
     include_examples 'connect to netsuite'
 
     subject do
-      described_class.new({ payload: Factories.shipment_confirm_payload }, config)
+      described_class.new(config, Factories.shipment_confirm_payload)
     end
 
     context 'when successful' do
