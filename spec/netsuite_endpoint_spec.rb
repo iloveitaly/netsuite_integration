@@ -4,9 +4,7 @@ describe NetsuiteEndpoint do
   include_examples 'request parameters'
 
   let(:request) do
-    {
-      parameters: parameters
-    }
+    { parameters: parameters }
   end
 
   context "inventory stock service" do
@@ -19,7 +17,7 @@ describe NetsuiteEndpoint do
 
     it "gets quantity available of an item" do
       VCR.use_cassette("inventory_item/find_by_sku") do
-        post '/inventory_stock', request.to_json, auth
+        post '/get_inventory', request.to_json, auth
         expect(last_response).to be_ok
       end
     end
@@ -29,7 +27,7 @@ describe NetsuiteEndpoint do
 
       it "still returns 200 but give no stock:actual message" do
         VCR.use_cassette("inventory_item/item_not_found") do
-          post '/inventory_stock', request.to_json, auth
+          post '/get_inventory', request.to_json, auth
           expect(last_response).to be_ok
           expect(json_response["messages"]).to be_blank
         end
@@ -40,7 +38,7 @@ describe NetsuiteEndpoint do
       it 'returns 500 and a notification' do
         NetsuiteIntegration::InventoryStock.should_receive(:new).and_raise 'Weird error'
 
-        post '/inventory_stock', request.to_json, auth
+        post '/get_inventory', request.to_json, auth
         expect(last_response.status).to eq 500
         expect(json_response[:summary]).to eq("Weird error")
       end
@@ -51,7 +49,7 @@ describe NetsuiteEndpoint do
     NetsuiteIntegration::Services::InventoryItem.any_instance.stub(time_now: Time.parse("2014-02-12 00:48:43 -0000"))
 
     VCR.use_cassette("inventory_item/search_on_matrix") do
-      post '/products', request.to_json, auth
+      post '/get_products', request.to_json, auth
       expect(last_response).to be_ok
     end
   end
@@ -60,12 +58,12 @@ describe NetsuiteEndpoint do
     before { NetsuiteIntegration::Product.stub_chain(:new, collection: []) }
 
     it 'returns notification telling its ok' do
-      post '/products', request.to_json, auth
+      post '/get_products', request.to_json, auth
       expect(last_response).to be_ok
     end
   end
 
-  describe '/orders' do
+  describe 'orders' do
     context 'when order is new' do
       let(:request) do
         payload = Factories.order_new_payload.merge(parameters: parameters)
@@ -75,7 +73,7 @@ describe NetsuiteEndpoint do
 
       it 'imports the order and returns an info notification' do
         VCR.use_cassette('order/import_service') do
-          post '/orders', request.to_json, auth
+          post '/add_order', request.to_json, auth
           expect(last_response).to be_ok
         end
 
@@ -92,7 +90,7 @@ describe NetsuiteEndpoint do
         request[:order][:number] = "RXXXXXC23774"
 
         VCR.use_cassette('order/customer_deposit_on_updated_message') do
-          post '/orders', request.to_json, auth
+          post '/update_order', request.to_json, auth
         end
 
         expect(json_response[:summary]).to match('Customer Deposit set up for')
@@ -105,7 +103,7 @@ describe NetsuiteEndpoint do
 
         it "displays netsuite record error messages" do
           VCR.use_cassette('order/invalid_item') do
-            post '/orders', request.to_json, auth
+            post '/add_order', request.to_json, auth
             expect(last_response.status).to eq 500
 
             expect(json_response[:summary]).to match('Please choose a child matrix item')
@@ -119,7 +117,7 @@ describe NetsuiteEndpoint do
           request = payload.merge(parameters: parameters)
 
           VCR.use_cassette('order/item_not_found') do
-            post '/orders', request.to_json, auth
+            post '/add_order', request.to_json, auth
             expect(last_response.status).to eq 500
 
             expect(json_response[:summary]).to match("Dude I'm so not there at all\" not found in NetSuite")
@@ -134,7 +132,7 @@ describe NetsuiteEndpoint do
 
         it "updates sales order" do
           VCR.use_cassette('order/update_items') do
-            post '/orders', request.to_json, auth
+            post '/update_order', request.to_json, auth
           end
 
           expect(last_response.status).to eq 200
@@ -148,7 +146,7 @@ describe NetsuiteEndpoint do
           request[:payload] = Factories.payments_amount_0_payload.merge(parameters: parameters)
 
           VCR.use_cassette('order/payments_amount_0') do
-            post '/orders', request.to_json, auth
+            post '/update_order', request.to_json, auth
             expect(last_response.status).to eq 200
           end
         end
@@ -217,6 +215,21 @@ describe NetsuiteEndpoint do
         end
 
         it "really issues a customer refund and closes order by reaching NetSuite api"
+      end
+    end
+  end
+
+  context "shipments" do
+    let(:request) do
+      Factories.shipment_confirm_payload.merge(parameters: parameters)
+    end
+
+    context 'when successful' do
+      it 'returns the fulfilled order' do
+        VCR.use_cassette("shipment/import") do
+          post '/add_shipment', request.to_json, auth
+          expect(last_response).to be_ok
+        end
       end
     end
   end

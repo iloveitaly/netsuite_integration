@@ -20,7 +20,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
-  post '/products' do
+  post '/get_products' do
     begin
       products = NetsuiteIntegration::Product.new(@config)
 
@@ -36,7 +36,17 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
-  post '/orders' do
+  post '/add_order' do
+    begin
+      create_or_update_order
+    rescue NetSuite::RecordNotFound => e
+      result 500, e.message
+    rescue StandardError => e
+      result 500, e.message
+    end
+  end
+
+  post '/update_order' do
     begin
       create_or_update_order
     rescue NetSuite::RecordNotFound => e
@@ -47,10 +57,29 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/cancel_order' do
-    cancel_order
+    begin
+      order = sales_order_service.find_by_external_id(@payload[:order][:number]) or
+        raise RecordNotFoundSalesOrder, "NetSuite Sales Order not found for order #{@payload[:order][:number]}"
+
+      if customer_record_exists?
+        refund = NetsuiteIntegration::Refund.new(@config, @payload, order)
+        if refund.process!
+          summary = "Customer Refund created and NetSuite Sales Order #{@payload[:order][:number]} was closed"
+          result 200, summary
+        else
+          summary = "Failed to create a Customer Refund and close the NetSuite Sales Order #{@payload[:order][:number]}"
+          result 500, summary
+        end
+      else
+        sales_order_service.close!(order)
+        result 200, "NetSuite Sales Order #{@payload[:order][:number]} was closed"
+      end
+    rescue => e
+      result 500, e.message
+    end
   end
 
-  post '/inventory_stock' do
+  post '/get_inventory' do
     begin
       stock = NetsuiteIntegration::InventoryStock.new(@config, @payload)
 
@@ -64,14 +93,12 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
-  post '/shipments' do
+  post '/add_shipment' do
     begin
-      order = NetsuiteIntegration::Shipment.new(@message, @config).import
-      add_notification "info", "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
-      process_result 200
+      order = NetsuiteIntegration::Shipment.new(@config, @payload).import
+      result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
     rescue StandardError => e
-      add_notification "error", e.message, e.backtrace.to_a.join("\n")
-      process_result 500
+      result 500, e.message
     end
   end
 
@@ -115,25 +142,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       result 500, error_notification
     else
       result 200, summary
-    end
-  end
-
-  def cancel_order
-    order = sales_order_service.find_by_external_id(@payload[:order][:number]) or 
-      raise RecordNotFoundSalesOrder, "NetSuite Sales Order not found for order #{@payload[:order][:number]}"
-
-    if customer_record_exists?
-      refund = NetsuiteIntegration::Refund.new(@config, @payload, order)
-      if refund.process!
-        summary = "Customer Refund created and NetSuite Sales Order #{@payload[:order][:number]} was closed"
-        result 200, summary
-      else
-        summary = "Failed to create a Customer Refund and close the NetSuite Sales Order #{@payload[:order][:number]}"
-        result 500, summary
-      end      
-    else
-      sales_order_service.close!(order)
-      result 200, "NetSuite Sales Order #{@payload[:order][:number]} was closed"
     end
   end
 
