@@ -1,14 +1,16 @@
 module NetsuiteIntegration
   class Refund < Base
-    attr_reader :user_id, :order_payload, :sales_order, :customer, :deposits, :refund_service
+    attr_reader :user_id, :order_payload, :sales_order, :customer, :deposits,
+      :refund_service, :payment_state
 
-    def initialize(config, message, sales_order)
+    def initialize(config, message, sales_order, payment_state = "completed")
       super(config, message)
 
       @order_payload    = payload[:order]
+      @payment_state = payment_state
 
       @sales_order      = sales_order
-      @deposits = customer_deposit_service.find_by_sales_order sales_order, order_payload[:payments]
+      @deposits = customer_deposit_service.find_by_sales_order sales_order, targetted_payments
 
       @customer = customer_service.find_by_external_id(order_payload[:email]) or
         raise RecordNotFoundCustomerException, "NetSuite Customer not found for Spree user #{order_payload[:email]}"
@@ -28,6 +30,10 @@ module NetsuiteIntegration
       @config['netsuite_payment_methods_mapping'][0].fetch(method).to_i
     rescue
       raise "Payment method #{method} not found in #{@config['netsuite_payment_methods_mapping'].inspect}"
+    end
+
+    def targetted_payments
+      order_payload[:payments].select { |p| p[:status] == payment_state }
     end
   end
 end
