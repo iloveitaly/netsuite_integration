@@ -38,6 +38,8 @@ module NetsuiteIntegration
       def find_by_external_id(deposits)
         external_id = build_external_id deposits
         NetSuite::Records::CustomerRefund.get external_id: external_id
+      rescue NetSuite::RecordNotFound
+        nil
       end
 
       private

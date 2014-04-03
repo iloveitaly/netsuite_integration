@@ -138,6 +138,18 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       end
     end
 
+    if any_payments_void?
+      refund = NetsuiteIntegration::Refund.new(@config, @payload, order.existing_sales_order, "void")
+
+      unless refund.service.find_by_external_id(refund.deposits)
+        if refund.create
+          summary << "Customer Refund created for #{@payload[:order][:number]}"
+        else
+          error_notification << "Failed to create a Customer Refund for order #{@payload[:order][:number]}"
+        end
+      end
+    end
+
     if error_notification.present?
       result 500, error_notification
     else
@@ -151,5 +163,11 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
   def sales_order_service
     @sales_order_service ||= NetsuiteIntegration::Services::SalesOrder.new(@config)
+  end
+
+  def any_payments_void?
+    @payload[:order][:payments].any? do |p|
+      p[:status] == "void"
+    end
   end
 end
