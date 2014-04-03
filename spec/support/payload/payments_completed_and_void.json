@@ -1,0 +1,884 @@
+{
+  "order": {
+    "number": "R153422681",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-04-03T04:03:33.469Z",
+    "updated_at": "2014-04-03T04:05:10.585Z",
+    "status": "complete",
+    "totals": {
+      "item": 89.95,
+      "adjustment": 5.0,
+      "tax": 0.0,
+      "shipping": 5.0,
+      "payment": 94.95,
+      "order": 94.95
+    },
+    "line_items": [
+      {
+        "name": "Serialized Electronic Item 1",
+        "sku": "Serialized Electronic Item 1",
+        "external_ref": "",
+        "quantity": 1,
+        "price": 25.0,
+        "variant_id": 38,
+        "options": {
+        }
+      },
+      {
+        "name": "NicoDerm CQ Patch",
+        "sku": "NicoDerm CQ Patch",
+        "external_ref": "",
+        "quantity": 5,
+        "price": 12.99,
+        "variant_id": 42,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 5.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 15,
+        "status": "completed",
+        "amount": 94.95,
+        "payment_method": "Credit Card"
+      },
+      {
+        "number": 14,
+        "status": "void",
+        "amount": 133.92,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H61857187481",
+        "cost": 5.0,
+        "status": "ready",
+        "stock_location": "default",
+        "shipping_method": "UPS Ground (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "NicoDerm CQ Patch",
+            "sku": "NicoDerm CQ Patch",
+            "external_ref": "",
+            "quantity": 5,
+            "price": 12.99,
+            "variant_id": 42,
+            "options": {
+            }
+          },
+          {
+            "name": "Serialized Electronic Item 1",
+            "sku": "Serialized Electronic Item 1",
+            "external_ref": "",
+            "quantity": 1,
+            "price": 25.0,
+            "variant_id": 38,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "original": {
+    "id": 8,
+    "number": "R153422681",
+    "item_total": "89.95",
+    "total": "94.95",
+    "ship_total": "5.0",
+    "state": "complete",
+    "adjustment_total": "5.0",
+    "user_id": 1,
+    "created_at": "2014-04-03T04:03:13.238Z",
+    "updated_at": "2014-04-03T04:05:10.585Z",
+    "completed_at": "2014-04-03T04:03:33.469Z",
+    "payment_total": "94.95",
+    "shipment_state": "ready",
+    "payment_state": "paid",
+    "email": "spree@example.com",
+    "special_instructions": null,
+    "channel": "spree",
+    "tax_total": "0.0",
+    "currency": "USD",
+    "bill_address": {
+      "id": 15,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "ship_address": {
+      "id": 16,
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "full_name": "Luis Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "city": "Bethesda",
+      "zipcode": "20814",
+      "phone": "555 123-4567",
+      "company": null,
+      "alternative_phone": null,
+      "country_id": 49,
+      "state_id": 26,
+      "state_name": null,
+      "country": {
+        "id": 49,
+        "iso_name": "UNITED STATES",
+        "iso": "US",
+        "iso3": "USA",
+        "name": "United States",
+        "numcode": 840
+      },
+      "state": {
+        "id": 26,
+        "name": "Maryland",
+        "abbr": "MD",
+        "country_id": 49
+      }
+    },
+    "line_items": [
+      {
+        "id": 10,
+        "quantity": 1,
+        "price": "25.0",
+        "variant_id": 38,
+        "created_at": "2014-04-03T04:03:13.279Z",
+        "updated_at": "2014-04-03T04:03:13.279Z",
+        "single_display_amount": "$25.00",
+        "display_amount": "$25.00",
+        "total": "25.0",
+        "variant": {
+          "id": 38,
+          "name": "Serialized Electronic Item 1",
+          "sku": "Serialized Electronic Item 1",
+          "price": "25.0",
+          "weight": "0.0",
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": null,
+          "permalink": "serialized-electronic-item-1",
+          "product_created_at": "2014-04-03T02:34:53.655Z",
+          "product_updated_at": "2014-04-03T04:03:33.547Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 28,
+          "images": [
+
+          ]
+        }
+      },
+      {
+        "id": 11,
+        "quantity": 5,
+        "price": "12.99",
+        "variant_id": 42,
+        "created_at": "2014-04-03T04:03:20.393Z",
+        "updated_at": "2014-04-03T04:04:48.651Z",
+        "single_display_amount": "$12.99",
+        "display_amount": "$64.95",
+        "total": "64.95",
+        "variant": {
+          "id": 42,
+          "name": "NicoDerm CQ Patch",
+          "sku": "NicoDerm CQ Patch",
+          "price": "12.99",
+          "weight": "0.0",
+          "height": null,
+          "width": null,
+          "depth": null,
+          "is_master": true,
+          "cost_price": null,
+          "permalink": "nicoderm-cq-patch",
+          "product_created_at": "2014-04-03T02:34:54.613Z",
+          "product_updated_at": "2014-04-03T04:04:48.725Z",
+          "options_text": "",
+          "option_values": [
+
+          ],
+          "product": {
+            "taxons": [
+
+            ]
+          },
+          "product_id": 32,
+          "images": [
+
+          ]
+        }
+      }
+    ],
+    "payments": [
+      {
+        "id": 15,
+        "amount": "94.95",
+        "state": "completed",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      },
+      {
+        "id": 14,
+        "amount": "133.92",
+        "state": "void",
+        "payment_method_id": 1,
+        "payment_method": {
+          "id": 1,
+          "name": "Credit Card",
+          "environment": "development"
+        }
+      }
+    ],
+    "shipments": [
+      {
+        "id": 8,
+        "tracking": null,
+        "number": "H61857187481",
+        "cost": "5.0",
+        "shipped_at": null,
+        "state": "ready",
+        "order_id": "R153422681",
+        "stock_location_name": "default",
+        "shipping_rates": [
+          {
+            "id": 32,
+            "cost": "10.0",
+            "selected": false,
+            "shipment_id": 8,
+            "shipping_method_id": 2
+          },
+          {
+            "id": 33,
+            "cost": "15.0",
+            "selected": false,
+            "shipment_id": 8,
+            "shipping_method_id": 3
+          },
+          {
+            "id": 31,
+            "cost": "5.0",
+            "selected": true,
+            "shipment_id": 8,
+            "shipping_method_id": 1
+          }
+        ],
+        "shipping_method": {
+          "name": "UPS Ground (USD)",
+          "tracking_url": null
+        },
+        "inventory_units": [
+          {
+            "id": 17,
+            "variant_id": 42,
+            "state": "on_hand"
+          },
+          {
+            "id": 16,
+            "variant_id": 42,
+            "state": "on_hand"
+          },
+          {
+            "id": 15,
+            "variant_id": 42,
+            "state": "on_hand"
+          },
+          {
+            "id": 14,
+            "variant_id": 42,
+            "state": "on_hand"
+          },
+          {
+            "id": 13,
+            "variant_id": 42,
+            "state": "on_hand"
+          },
+          {
+            "id": 12,
+            "variant_id": 38,
+            "state": "on_hand"
+          }
+        ]
+      }
+    ],
+    "adjustments": [
+      {
+        "id": 15,
+        "amount": "5.0",
+        "label": "Shipping",
+        "mandatory": true,
+        "eligible": true,
+        "originator_type": "Spree::ShippingMethod",
+        "adjustable_type": "Spree::Order"
+      }
+    ],
+    "credit_cards": [
+      {
+        "id": 7,
+        "month": "6",
+        "year": "2016",
+        "cc_type": "visa",
+        "last_digits": "1111",
+        "first_name": "Luis",
+        "last_name": "Braga",
+        "gateway_customer_profile_id": "BGS-231250",
+        "gateway_payment_profile_id": null
+      }
+    ]
+  },
+  "previous": {
+    "number": "R153422681",
+    "channel": "spree",
+    "email": "spree@example.com",
+    "currency": "USD",
+    "placed_on": "2014-04-03T04:03:33.469Z",
+    "updated_at": "2014-04-03T04:03:33.571Z",
+    "status": "complete",
+    "totals": {
+      "item": 128.92,
+      "adjustment": 5.0,
+      "tax": 0.0,
+      "shipping": 5.0,
+      "payment": 133.92,
+      "order": 133.92
+    },
+    "line_items": [
+      {
+        "name": "Serialized Electronic Item 1",
+        "sku": "Serialized Electronic Item 1",
+        "external_ref": "",
+        "quantity": 1,
+        "price": 25.0,
+        "variant_id": 38,
+        "options": {
+        }
+      },
+      {
+        "name": "NicoDerm CQ Patch",
+        "sku": "NicoDerm CQ Patch",
+        "external_ref": "",
+        "quantity": 8,
+        "price": 12.99,
+        "variant_id": 42,
+        "options": {
+        }
+      }
+    ],
+    "adjustments": [
+      {
+        "name": "Shipping",
+        "value": 5.0
+      }
+    ],
+    "shipping_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "billing_address": {
+      "firstname": "Luis",
+      "lastname": "Braga",
+      "address1": "Avenue",
+      "address2": "",
+      "zipcode": "20814",
+      "city": "Bethesda",
+      "state": "Maryland",
+      "country": "US",
+      "phone": "555 123-4567"
+    },
+    "payments": [
+      {
+        "number": 14,
+        "status": "completed",
+        "amount": 133.92,
+        "payment_method": "Credit Card"
+      }
+    ],
+    "shipments": [
+      {
+        "number": "H61857187481",
+        "cost": 5.0,
+        "status": "ready",
+        "stock_location": "default",
+        "shipping_method": "UPS Ground (USD)",
+        "tracking": null,
+        "updated_at": null,
+        "shipped_at": null,
+        "items": [
+          {
+            "name": "NicoDerm CQ Patch",
+            "sku": "NicoDerm CQ Patch",
+            "external_ref": "",
+            "quantity": 8,
+            "price": 12.99,
+            "variant_id": 42,
+            "options": {
+            }
+          },
+          {
+            "name": "Serialized Electronic Item 1",
+            "sku": "Serialized Electronic Item 1",
+            "external_ref": "",
+            "quantity": 1,
+            "price": 25.0,
+            "variant_id": 38,
+            "options": {
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "diff": {
+    "item_total": [
+      "128.92",
+      "89.95"
+    ],
+    "total": [
+      "133.92",
+      "94.95"
+    ],
+    "updated_at": [
+      "2014-04-03T04:03:33.571Z",
+      "2014-04-03T04:05:10.585Z"
+    ],
+    "payment_total": [
+      "133.92",
+      "94.95"
+    ],
+    "line_items": [
+      [
+        {
+          "id": 10,
+          "quantity": 1,
+          "price": "25.0",
+          "variant_id": 38,
+          "created_at": "2014-04-03T04:03:13.279Z",
+          "updated_at": "2014-04-03T04:03:13.279Z",
+          "single_display_amount": "$25.00",
+          "display_amount": "$25.00",
+          "total": "25.0",
+          "variant": {
+            "id": 38,
+            "name": "Serialized Electronic Item 1",
+            "sku": "Serialized Electronic Item 1",
+            "price": "25.0",
+            "weight": "0.0",
+            "height": null,
+            "width": null,
+            "depth": null,
+            "is_master": true,
+            "cost_price": null,
+            "permalink": "serialized-electronic-item-1",
+            "product_created_at": "2014-04-03T02:34:53.655Z",
+            "product_updated_at": "2014-04-03T04:03:33.547Z",
+            "options_text": "",
+            "option_values": [
+
+            ],
+            "product": {
+              "taxons": [
+
+              ]
+            },
+            "product_id": 28,
+            "images": [
+
+            ]
+          }
+        },
+        {
+          "id": 11,
+          "quantity": 8,
+          "price": "12.99",
+          "variant_id": 42,
+          "created_at": "2014-04-03T04:03:20.393Z",
+          "updated_at": "2014-04-03T04:03:20.393Z",
+          "single_display_amount": "$12.99",
+          "display_amount": "$103.92",
+          "total": "103.92",
+          "variant": {
+            "id": 42,
+            "name": "NicoDerm CQ Patch",
+            "sku": "NicoDerm CQ Patch",
+            "price": "12.99",
+            "weight": "0.0",
+            "height": null,
+            "width": null,
+            "depth": null,
+            "is_master": true,
+            "cost_price": null,
+            "permalink": "nicoderm-cq-patch",
+            "product_created_at": "2014-04-03T02:34:54.613Z",
+            "product_updated_at": "2014-04-03T04:03:33.525Z",
+            "options_text": "",
+            "option_values": [
+
+            ],
+            "product": {
+              "taxons": [
+
+              ]
+            },
+            "product_id": 32,
+            "images": [
+
+            ]
+          }
+        }
+      ],
+      [
+        {
+          "id": 10,
+          "quantity": 1,
+          "price": "25.0",
+          "variant_id": 38,
+          "created_at": "2014-04-03T04:03:13.279Z",
+          "updated_at": "2014-04-03T04:03:13.279Z",
+          "single_display_amount": "$25.00",
+          "display_amount": "$25.00",
+          "total": "25.0",
+          "variant": {
+            "id": 38,
+            "name": "Serialized Electronic Item 1",
+            "sku": "Serialized Electronic Item 1",
+            "price": "25.0",
+            "weight": "0.0",
+            "height": null,
+            "width": null,
+            "depth": null,
+            "is_master": true,
+            "cost_price": null,
+            "permalink": "serialized-electronic-item-1",
+            "product_created_at": "2014-04-03T02:34:53.655Z",
+            "product_updated_at": "2014-04-03T04:03:33.547Z",
+            "options_text": "",
+            "option_values": [
+
+            ],
+            "product": {
+              "taxons": [
+
+              ]
+            },
+            "product_id": 28,
+            "images": [
+
+            ]
+          }
+        },
+        {
+          "id": 11,
+          "quantity": 5,
+          "price": "12.99",
+          "variant_id": 42,
+          "created_at": "2014-04-03T04:03:20.393Z",
+          "updated_at": "2014-04-03T04:04:48.651Z",
+          "single_display_amount": "$12.99",
+          "display_amount": "$64.95",
+          "total": "64.95",
+          "variant": {
+            "id": 42,
+            "name": "NicoDerm CQ Patch",
+            "sku": "NicoDerm CQ Patch",
+            "price": "12.99",
+            "weight": "0.0",
+            "height": null,
+            "width": null,
+            "depth": null,
+            "is_master": true,
+            "cost_price": null,
+            "permalink": "nicoderm-cq-patch",
+            "product_created_at": "2014-04-03T02:34:54.613Z",
+            "product_updated_at": "2014-04-03T04:04:48.725Z",
+            "options_text": "",
+            "option_values": [
+
+            ],
+            "product": {
+              "taxons": [
+
+              ]
+            },
+            "product_id": 32,
+            "images": [
+
+            ]
+          }
+        }
+      ]
+    ],
+    "payments": [
+      [
+        {
+          "id": 14,
+          "amount": "133.92",
+          "state": "completed",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        }
+      ],
+      [
+        {
+          "id": 15,
+          "amount": "94.95",
+          "state": "completed",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        },
+        {
+          "id": 14,
+          "amount": "133.92",
+          "state": "void",
+          "payment_method_id": 1,
+          "payment_method": {
+            "id": 1,
+            "name": "Credit Card",
+            "environment": "development"
+          }
+        }
+      ]
+    ],
+    "shipments": [
+      [
+        {
+          "id": 8,
+          "tracking": null,
+          "number": "H61857187481",
+          "cost": "5.0",
+          "shipped_at": null,
+          "state": "ready",
+          "order_id": "R153422681",
+          "stock_location_name": "default",
+          "shipping_rates": [
+            {
+              "id": 32,
+              "cost": "10.0",
+              "selected": false,
+              "shipment_id": 8,
+              "shipping_method_id": 2
+            },
+            {
+              "id": 33,
+              "cost": "15.0",
+              "selected": false,
+              "shipment_id": 8,
+              "shipping_method_id": 3
+            },
+            {
+              "id": 31,
+              "cost": "5.0",
+              "selected": true,
+              "shipment_id": 8,
+              "shipping_method_id": 1
+            }
+          ],
+          "shipping_method": {
+            "name": "UPS Ground (USD)",
+            "tracking_url": null
+          },
+          "inventory_units": [
+            {
+              "id": 20,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 19,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 18,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 17,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 16,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 15,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 14,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 13,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 12,
+              "variant_id": 38,
+              "state": "on_hand"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "id": 8,
+          "tracking": null,
+          "number": "H61857187481",
+          "cost": "5.0",
+          "shipped_at": null,
+          "state": "ready",
+          "order_id": "R153422681",
+          "stock_location_name": "default",
+          "shipping_rates": [
+            {
+              "id": 32,
+              "cost": "10.0",
+              "selected": false,
+              "shipment_id": 8,
+              "shipping_method_id": 2
+            },
+            {
+              "id": 33,
+              "cost": "15.0",
+              "selected": false,
+              "shipment_id": 8,
+              "shipping_method_id": 3
+            },
+            {
+              "id": 31,
+              "cost": "5.0",
+              "selected": true,
+              "shipment_id": 8,
+              "shipping_method_id": 1
+            }
+          ],
+          "shipping_method": {
+            "name": "UPS Ground (USD)",
+            "tracking_url": null
+          },
+          "inventory_units": [
+            {
+              "id": 17,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 16,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 15,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 14,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 13,
+              "variant_id": 42,
+              "state": "on_hand"
+            },
+            {
+              "id": 12,
+              "variant_id": 38,
+              "state": "on_hand"
+            }
+          ]
+        }
+      ]
+    ]
+  }
+}
