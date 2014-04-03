@@ -21,7 +21,7 @@ module NetsuiteIntegration
         # 'account' is an optional field
         # It defaults to the first entry in the UI list... I think
         refund.account        = NetSuite::Records::RecordRef.new(internal_id: config.fetch('netsuite_account_for_sales_id'))
-        refund.external_id    = "#{prefix}#{sales_order.external_id}"
+        refund.external_id    = build_external_id deposits
 
         # doc -> customer_deposit_id
 
@@ -35,10 +35,20 @@ module NetsuiteIntegration
         refund.add or raise CreationFailCustomerRefundException, "#{refund.errors.first.code}: #{refund.errors.first.message}"
       end
 
+      def find_by_external_id(deposits)
+        external_id = build_external_id deposits
+        NetSuite::Records::CustomerRefund.get external_id: external_id
+      end
+
       private
       # Customer refund prefix
       def prefix
         'cr_'
+      end
+
+      def build_external_id(deposits)
+        deposit_ids = deposits.map { |d| d.internal_id }.join(".")
+        "#{prefix}-#{deposit_ids}"
       end
     end
   end
