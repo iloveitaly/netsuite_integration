@@ -221,21 +221,17 @@ describe NetsuiteEndpoint do
 
     context "order updated contains payments completed and void" do
       let(:request) do
-        {
-          message: 'order:updated',
-          payload: Factories.payments_completed_and_void_payload.merge(parameters: parameters)
-        }
+        Factories.payments_completed_and_void_payload.merge(parameters: parameters)
       end
 
       it "issues deposit and refund for both payments respectively" do
         VCR.use_cassette('refund/payments_completed_and_void') do
-          post '/orders', request.to_json, auth
+          post '/update_order', request.to_json, auth
           expect(last_response).to be_ok
 
-          notifications = json_response['notifications']
-          expect(notifications[0]['subject']).to match('updated on NetSuite')
-          expect(notifications[1]['subject']).to match('Customer Deposit set up for Sales Order')
-          expect(notifications[2]['subject']).to match('Customer Refund created')
+          expect(json_response[:summary]).to match('updated on NetSuite')
+          expect(json_response[:summary]).to match('Customer Deposit set up for Sales Order')
+          expect(json_response[:summary]).to match('Customer Refund created')
         end
       end
     end
