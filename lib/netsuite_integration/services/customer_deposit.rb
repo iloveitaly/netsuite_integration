@@ -9,7 +9,7 @@ module NetsuiteIntegration
       end
 
       def create_records(sales_order)
-        payments.map do |payment|
+        completed_payments.map do |payment|
           external_id = "#{prefix}-#{sales_order.external_id}-#{payment[:number]}"
 
           if payment[:amount] > 0
@@ -68,6 +68,10 @@ module NetsuiteIntegration
         # Prefix is used to avoid running into external_id duplications
         def prefix
           'cd'
+        end
+
+        def completed_payments
+          payments.select { |p| p[:status] == "completed" }
         end
     end
   end
