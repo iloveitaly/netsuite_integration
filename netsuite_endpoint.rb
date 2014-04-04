@@ -25,7 +25,10 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       products = NetsuiteIntegration::Product.new(@config)
 
       if products.collection.any?
-        add_object "product", products.messages
+        products.messages.each do |message|
+          add_object "product", message
+        end
+
         add_parameter 'netsuite_last_updated_after', products.last_modified_date
         @summary = "#{products.messages.count} items found in NetSuite"
       end
