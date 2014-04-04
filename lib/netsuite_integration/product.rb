@@ -36,14 +36,13 @@ module NetsuiteIntegration
     def standalone_products
       ignore_matrix.map do |item|
         {
-          product: {
-            name: item.store_display_name || item.item_id,
-            description: item.sales_description,
-            sku: item.item_id,
-            price: get_item_base_price(item.pricing_matrix.prices),
-            cost_price: item.cost_estimate,
-            channel: "NetSuite"
-          }
+          id: item.item_id,
+          name: item.store_display_name || item.item_id,
+          description: item.sales_description,
+          sku: item.item_id,
+          price: get_item_base_price(item.pricing_matrix.prices),
+          cost_price: item.cost_estimate,
+          channel: "NetSuite"
         }
       end
     end
@@ -70,15 +69,13 @@ module NetsuiteIntegration
     def matrix_items
       @matrix_items ||= matrix_parents.map do |item|
         {
-          product: {
-            name: item.store_display_name || item.item_id,
-            description: item.sales_description,
-            sku: item.item_id,
-            price: get_item_base_price(item.pricing_matrix.prices),
-            cost_price: item.cost_estimate,
-            channel: "NetSuite",
-            variants: map_matrix_children(item)
-          }
+          name: item.store_display_name || item.item_id,
+          description: item.sales_description,
+          sku: item.item_id,
+          price: get_item_base_price(item.pricing_matrix.prices),
+          cost_price: item.cost_estimate,
+          channel: "NetSuite",
+          variants: map_matrix_children(item)
         }
       end
     end

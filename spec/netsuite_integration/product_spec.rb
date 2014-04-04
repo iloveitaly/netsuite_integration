@@ -49,7 +49,7 @@ module NetsuiteIntegration
 
     it "maps parameteres according to current product schema" do
       VCR.use_cassette("product/building_matrix") do
-        mapped_product = subject.messages.first[:product]
+        mapped_product = subject.messages.first
         item = subject.collection.first
 
         expect(mapped_product[:name]).to eq (item.store_display_name || item.item_id)
@@ -94,7 +94,7 @@ module NetsuiteIntegration
 
       VCR.use_cassette("product/matrix_option_study_case") do
         subject = described_class.new config
-        options = subject.matrix_items.first[:product][:variants].first[:options].count
+        options = subject.matrix_items.first[:variants].first[:options].count
         matrix_options_list = subject.matrix_children.first.matrix_option_list.options.count
 
         expect(options).to eq matrix_options_list
