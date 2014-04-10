@@ -10,12 +10,12 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     if config = @config
       @netsuite_client ||= NetSuite.configure do
         reset!
-        api_version  '2013_2'
-        wsdl         'https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl'
-        sandbox      false
+        api_version  config.fetch('netsuite_api_version')
+        sandbox      config.fetch('netsuite_sandbox')
         email        config.fetch('netsuite_email')
         password     config.fetch('netsuite_password')
         account      config.fetch('netsuite_account')
+        role         config.fetch('netsuite_role')
         read_timeout 175
         log_level    :info
       end
