@@ -84,7 +84,7 @@ module NetsuiteIntegration
     def build_item_list
       sales_order_items = order_payload[:line_items].map do |item|
 
-        unless inventory_item = inventory_item_service.find_by_item_id(item[:sku])
+        unless inventory_item = inventory_item_service.find_by_item_id(item[:sku] || item[:product_id])
           raise NetSuite::RecordNotFound, "Inventory Item \"#{item[:sku]}\" not found in NetSuite"
         end
 
