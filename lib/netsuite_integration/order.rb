@@ -150,7 +150,7 @@ module NetsuiteIntegration
     end
 
     def internal_id_for(type)
-      name = config.fetch('netsuite_item_for_discounts', "Spree #{type.capitalize}")
+      name = @config.fetch('netsuite_item_for_discounts', "Spree #{type.capitalize}")
       non_inventory_item_service.find_or_create_by_name(name).internal_id
     end
   end
