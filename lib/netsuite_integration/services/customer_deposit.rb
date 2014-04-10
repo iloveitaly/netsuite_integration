@@ -30,15 +30,19 @@ module NetsuiteIntegration
       def build(sales_order, payment)
         deposit = NetSuite::Records::CustomerDeposit.new
 
+        # Warning: works with 2013_1 through 2013_2; may cause INSUFFICIENT_PERMISSION on other versions
+
         # Setting external_id to Spree's order number, so we could search by it later
         # Warning: external_id must be unique across all NetSuite data objects
         # TODO Revisit searching for customer deposits for a specific sales order
         deposit.external_id = "#{prefix}-#{sales_order.external_id}-#{payment[:number]}"
 
-        # deposit.customer = NetSuite::Records::RecordRef.new(internal_id: sales_order.entity.internal_id)
         deposit.sales_order = NetSuite::Records::RecordRef.new(internal_id: sales_order.internal_id)
+        deposit.customer = NetSuite::Records::RecordRef.new(internal_id: sales_order.entity.internal_id)
         # TODO check for reference error between customer and account
         deposit.account = NetSuite::Records::RecordRef.new(internal_id: config.fetch('netsuite_account_for_sales_id'))
+        # possible permission error on the accounts field if this is not set to false
+        deposit.undep_funds = false
         deposit.payment = payment[:amount]
 
         deposit
