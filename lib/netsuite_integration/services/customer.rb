@@ -13,7 +13,7 @@ module NetsuiteIntegration
       def create(payload)
         customer             = NetSuite::Records::Customer.new
         customer.email       = payload[:email]
-        customer.external_id = customer.entity_id = payload[:email]
+        customer.external_id = payload[:email]
 
         if payload[:shipping_address]
           customer.first_name  = payload[:shipping_address][:firstname] || 'N/A'
