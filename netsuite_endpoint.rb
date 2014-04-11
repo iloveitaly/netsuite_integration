@@ -117,7 +117,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       if order.update
         summary = "Order #{order.existing_sales_order.external_id} updated on NetSuite # #{order.existing_sales_order.tran_id}"
       else
-        error_notification = "Failed to import order #{order.sales_order.external_id} into Netsuite"
+        error_notification = "Failed to update order #{order.sales_order.external_id} into Netsuite"
       end
     else
       if order.create
@@ -135,7 +135,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       errors = errors.map(&:message).flatten
 
       if errors.any?
-        error_notification << " Failed to set up Customer Deposit for #{order.existing_sales_order.external_id} in NetSuite"
+        error_notification << " Failed to set up Customer Deposit for #{(order.existing_sales_order || order.sales_order).external_id} in NetSuite"
       end
 
       if customer_deposit.persisted
