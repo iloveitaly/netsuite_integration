@@ -32,7 +32,9 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
         end
 
         add_parameter 'netsuite_last_updated_after', products.last_modified_date
-        @summary = "#{products.messages.count} items found in NetSuite"
+
+        count = products.messages.count
+        @summary = "#{count} #{"item".pluralize count} found in NetSuite"
       end
 
       result 200, @summary
@@ -89,7 +91,9 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       stock = NetsuiteIntegration::InventoryStock.new(@config, @payload)
 
       add_object :inventory, { sku: stock.sku, quantity: stock.quantity_available }
-      summary = "#{stock.quantity_available} units available of #{stock.sku} according to NetSuite"
+
+      count = stock.quantity_available
+      summary = "#{count} #{"unit".pluralize count} available of #{stock.sku} according to NetSuite"
       result 200, summary
     rescue NetSuite::RecordNotFound
       result 200
