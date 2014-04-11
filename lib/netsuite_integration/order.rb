@@ -19,8 +19,13 @@ module NetsuiteIntegration
       else
         @sales_order = NetSuite::Records::SalesOrder.new({
           order_status: '_pendingFulfillment',
-          external_id: order_payload[:number]
+          external_id: order_payload[:number],
         })
+
+        # depending on your NS instance a custom form will need to be set to close the sales order
+        if custom_form_id = config('netsuite_sales_order_custom_form_id', false)
+          @sales_order.custom_form = NetSuite::Records::RecordRef.new(internal_id: custom_form_id)
+        end
       end
     end
 
