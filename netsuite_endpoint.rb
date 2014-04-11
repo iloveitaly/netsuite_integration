@@ -10,12 +10,12 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     if config = @config
       @netsuite_client ||= NetSuite.configure do
         reset!
-        api_version  config.fetch('netsuite_api_version')
-        sandbox      config.fetch('netsuite_sandbox')
+        api_version  config.fetch('netsuite_api_version', '2013_2')
+        sandbox      config.fetch('netsuite_sandbox', false)
         email        config.fetch('netsuite_email')
         password     config.fetch('netsuite_password')
         account      config.fetch('netsuite_account')
-        role         config.fetch('netsuite_role')
+        role         config.fetch('netsuite_role', 3)
         read_timeout 175
         log_level    :info
       end
