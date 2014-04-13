@@ -9,7 +9,7 @@ module NetsuiteIntegration
       @config = config
       @order_payload = payload[:order]
 
-      @existing_sales_order = sales_order_service.find_by_external_id(order_payload[:number])
+      @existing_sales_order = sales_order_service.find_by_external_id(order_payload[:number] || order_payload[:id])
 
       if existing_sales_order
         @sales_order = NetSuite::Records::SalesOrder.new({
@@ -21,7 +21,7 @@ module NetsuiteIntegration
           order_status: '_pendingFulfillment',
           # this is Basic Sales Order Form, allow us to close the order later if needed
           custom_form: NetSuite::Records::RecordRef.new(internal_id: 164),
-          external_id: order_payload[:number]
+          external_id: order_payload[:number] || order_payload[:id]
         })
       end
     end
@@ -43,7 +43,7 @@ module NetsuiteIntegration
       sales_order.tran_date = order_payload[:placed_on]
 
       if sales_order.add
-        sales_order.tran_id = sales_order_service.find_by_external_id(order_payload[:number]).tran_id
+        sales_order.tran_id = sales_order_service.find_by_external_id(order_payload[:number] || order_payload[:id]).tran_id
         sales_order
       end
     end
