@@ -5,21 +5,28 @@
 [NetSuite](http://www.netsuite.com) is a web-based business software suite,
 including business accounting software, ERP software, CRM software and ecommerce.
 
-#### Parameters
+#### Connection Parameters
 
 | Name | Value | example |
 | :----| :-----|
-| netsuite.email | netsuite account email | |
-| netsuite.password | netsuite account password | |
-| netsuite.account | netsuite account | |
-| netsuite.last_updated_after | Update products after this timestamp | 2014-01-29T03:14:07+00:00 |
-| netsuite.account_for_sales_id | Account used on customer deposits | |
-| netsuite.shipping_methods_mapping | A list of mappings store shipping method name => NetSuite Id | [{"UPS Ground (USD)"=>"92", "UPS Two Day (USD)"=>"77", "UPS One Day (USD)"=>"712"}] |
-| netsuite.payment_methods_mapping | A list of mappings store payment method name => NetSuite id | [{"Cash"=>"1", "Credit Card"=>"5"}] |
+| netsuite_email | netsuite account email (required) | spree@example.com |
+| netsuite_password | netsuite account password (required) | commerce |
+| netsuite_account | netsuite account (required) | TSWQEFREGR2342 |
+| netsuite_wsdl_url | NetSuite URL (optional as it's also defined by netsuite gem) | https ... |
 
-## Services
+### Push Orders
 
-  * Product Import - poll products from NetSuite
-  * Monitor Stock - poll inventory stock from NetSuite
-  * Orders Export - Import orders from the store into NetSuite as Sales Order
-  * Shipments Export - Fulfills Sales Order in NetSuite
+| Name | Value | example |
+| :----| :-----|
+| netsuite_account_for_sales_id | Account id used on customer deposit and refund (required) | 2 |
+| netsuite_payment_methods_mapping | A list of mappings store payment method name => NetSuite id (required for refunds) | [{"Cash"=>"1", "Credit Card"=>"5"}] |
+| netsuite_item_for_discounts | Item name to represent store discounts | Spree Discount |
+| netsuite_item_for_taxes | Item name to represent store taxes | Spree Tax |
+
+### Push shipments
+
+### Product polling
+
+| Name | Value | example |
+| :----| :-----|
+| netsuite_last_updated_after | Fetch products updated after this timestamp | 2014-01-29T03:14:07+00:00 |
