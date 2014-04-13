@@ -126,13 +126,13 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       if order.update
         summary = "Order #{order.existing_sales_order.external_id} updated on NetSuite # #{order.existing_sales_order.tran_id}"
       else
-        error_notification = "Failed to update order #{order.sales_order.external_id} into Netsuite"
+        error_notification = "Failed to update order #{order.sales_order.external_id} into Netsuite: #{order.errors}"
       end
     else
       if order.create
         summary = "Order #{order.sales_order.external_id} sent to NetSuite # #{order.sales_order.tran_id}"
       else
-        error_notification = "Failed to import order #{order.sales_order.external_id} into Netsuite"
+        error_notification = "Failed to import order #{order.sales_order.external_id} into Netsuite: #{order.errors}"
       end
     end
 
@@ -148,7 +148,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       end
 
       if customer_deposit.persisted
-        summary << "Customer Deposit set up for Sales Order #{(order.existing_sales_order || order.sales_order).tran_id}"
+        summary << ". Customer Deposit set up for Sales Order #{(order.existing_sales_order || order.sales_order).tran_id}"
       end
     end
 
@@ -157,7 +157,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
       unless refund.service.find_by_external_id(refund.deposits)
         if refund.create
-          summary << "Customer Refund created for #{@payload[:order][:number]}"
+          summary << ". Customer Refund created for #{@payload[:order][:number]}"
         else
           error_notification << "Failed to create a Customer Refund for order #{@payload[:order][:number]}"
         end
