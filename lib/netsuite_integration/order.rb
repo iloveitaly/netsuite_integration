@@ -37,7 +37,6 @@ module NetsuiteIntegration
       sales_order.transaction_bill_address = build_bill_address
 
       sales_order.shipping_cost = order_payload[:totals][:shipping]
-      sales_order.ship_method = NetSuite::Records::RecordRef.new(internal_id: shipping_id)
       sales_order.transaction_ship_address = build_ship_address
 
       sales_order.tran_date = order_payload[:placed_on]
@@ -53,7 +52,6 @@ module NetsuiteIntegration
         item_list: build_item_list,
         transaction_bill_address: build_bill_address,
         shipping_cost: order_payload[:totals][:shipping],
-        ship_method: NetSuite::Records::RecordRef.new(internal_id: shipping_id),
         transaction_ship_address: build_ship_address
       )
     end
@@ -114,7 +112,7 @@ module NetsuiteIntegration
     end
 
     def build_bill_address
-      if payload = @payload[:order][:billing_address]
+      if payload = order_payload[:billing_address]
         NetSuite::Records::BillAddress.new({
           bill_addressee: "#{payload[:firstname]} #{payload[:lastname]}",
           bill_addr1: payload[:address1],
@@ -129,24 +127,18 @@ module NetsuiteIntegration
     end
 
     def build_ship_address
-      payload = @payload[:order][:shipping_address]
-      NetSuite::Records::ShipAddress.new({
-        ship_addressee: "#{payload[:firstname]} #{payload[:lastname]}",
-        ship_addr1: payload[:address1],
-        ship_addr2: payload[:address2],
-        ship_zip: payload[:zipcode],
-        ship_city: payload[:city],
-        ship_state: Services::StateService.by_state_name(payload[:state]),
-        ship_country: Services::CountryService.by_iso_country(payload[:country]),
-        ship_phone: payload[:phone].gsub(/([^0-9]*)/, "")
-      })
-    end
-
-    def shipping_id
-      method = @payload[:order][:shipments][0][:shipping_method]
-      @config['netsuite_shipping_methods_mapping'][0].fetch(method).to_i
-    rescue
-      raise "Shipping method #{method} not found in #{@config['netsuite_shipping_methods_mapping'].inspect}"
+      if payload = order_payload[:shipping_address]
+        NetSuite::Records::ShipAddress.new({
+          ship_addressee: "#{payload[:firstname]} #{payload[:lastname]}",
+          ship_addr1: payload[:address1],
+          ship_addr2: payload[:address2],
+          ship_zip: payload[:zipcode],
+          ship_city: payload[:city],
+          ship_state: Services::StateService.by_state_name(payload[:state]),
+          ship_country: Services::CountryService.by_iso_country(payload[:country]),
+          ship_phone: payload[:phone].gsub(/([^0-9]*)/, "")
+        })
+      end
     end
 
     def internal_id_for(type)
