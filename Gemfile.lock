@@ -1,7 +1,6 @@
 GIT
-  remote: git://github.com/huoxito/netsuite.git
-  revision: 4a3eeab18d0ee08b0ffdec4535d68e01c2c64fb6
-  branch: patches
+  remote: git://github.com/RevolutionPrep/netsuite.git
+  revision: a138f1a4b991cafec130c543bd85f8814e763cbb
   specs:
     netsuite (0.2.2)
       savon (~> 2.3.0)
@@ -54,7 +53,7 @@ GEM
     kgio (2.8.1)
     method_source (0.8.2)
     mime-types (1.25.1)
-    mini_portile (0.5.2)
+    mini_portile (0.5.3)
     minitest (5.3.2)
     multi_json (1.9.2)
     net-scp (1.1.2)
