@@ -10,6 +10,11 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     if config = @config
       @netsuite_client ||= NetSuite.configure do
         reset!
+
+        if config['netsuite_wsdl_url'].present?
+          wsdl config['netsuite_wsdl_url']
+        end
+
         api_version  config.fetch('netsuite_api_version', '2013_2')
         sandbox      config.fetch('netsuite_sandbox', false)
         email        config.fetch('netsuite_email')
