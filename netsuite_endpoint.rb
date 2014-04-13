@@ -53,8 +53,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       create_or_update_order
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
-    rescue StandardError => e
-      result 500, e.message
     end
   end
 
@@ -62,8 +60,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     begin
       create_or_update_order
     rescue NetSuite::RecordNotFound => e
-      result 500, e.message
-    rescue StandardError => e
       result 500, e.message
     end
   end
