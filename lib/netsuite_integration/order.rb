@@ -42,7 +42,10 @@ module NetsuiteIntegration
       sales_order.tran_date = order_payload[:placed_on]
 
       if sales_order.add
-        sales_order.tran_id = sales_order_service.find_by_external_id(order_payload[:number] || order_payload[:id]).tran_id
+        fresh_sales_order = sales_order_service.find_by_external_id(order_payload[:number] || order_payload[:id])
+        sales_order.tran_id = fresh_sales_order.tran_id
+        # need entity on sales_order for CustomerDeposit.customer
+        sales_order.entity = fresh_sales_order.entity
         sales_order
       end
     end
