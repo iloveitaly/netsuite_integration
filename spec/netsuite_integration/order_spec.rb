@@ -25,7 +25,7 @@ module NetsuiteIntegration
       before do
         described_class.any_instance.stub_chain(
           :sales_order_service, :find_by_external_id
-        ).and_return(nil, double("SalesOrder", tran_id: 1))
+        ).and_return(nil, double("SalesOrder", tran_id: 1, entity: "Entity"))
       end
 
       subject do
