@@ -122,22 +122,23 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     order = NetsuiteIntegration::Order.new(@config, @payload)
 
     error_notification = ""
+    summary = ""
 
     if order.imported?
       if order.update
-        summary = "Order #{order.existing_sales_order.external_id} updated on NetSuite # #{order.existing_sales_order.tran_id}"
+        summary << "Order #{order.existing_sales_order.external_id} updated on NetSuite # #{order.existing_sales_order.tran_id}"
       else
-        error_notification = "Failed to update order #{order.sales_order.external_id} into Netsuite: #{order.errors}"
+        error_notification << "Failed to update order #{order.sales_order.external_id} into Netsuite: #{order.errors}"
       end
     else
       if order.create
-        summary = "Order #{order.sales_order.external_id} sent to NetSuite # #{order.sales_order.tran_id}"
+        summary << "Order #{order.sales_order.external_id} sent to NetSuite # #{order.sales_order.tran_id}"
       else
-        error_notification = "Failed to import order #{order.sales_order.external_id} into Netsuite: #{order.errors}"
+        error_notification << "Failed to import order #{order.sales_order.external_id} into Netsuite: #{order.errors}"
       end
     end
 
-    if order.paid?
+    if order.paid? && !error_notification.present?
       customer_deposit = NetsuiteIntegration::Services::CustomerDeposit.new(@config, @payload)
       records = customer_deposit.create_records order.sales_order
 
@@ -153,7 +154,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       end
     end
 
-    if any_payments_void?
+    if any_payments_void? && !error_notification.present?
       refund = NetsuiteIntegration::Refund.new(@config, @payload, order.existing_sales_order, "void")
 
       unless refund.service.find_by_external_id(refund.deposits)
