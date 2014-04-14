@@ -8,7 +8,7 @@ module NetsuiteIntegration
     subject { described_class.new config }
 
     let(:items) do
-      VCR.use_cassette("inventory_item/search") do
+      VCR.use_cassette("inventory_item/new_search") do
         subject.latest
       end
     end
@@ -18,6 +18,12 @@ module NetsuiteIntegration
 
       (1..(items.count - 1)).each do |time|
         expect(items[time].last_modified_date).to be >= items[time-1].last_modified_date
+      end
+    end
+
+    it "ensures all items have a present item_id" do
+      items.map(&:item_id).each do |id|
+        expect(id).to be_present
       end
     end
 

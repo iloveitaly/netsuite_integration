@@ -69,6 +69,7 @@ module NetsuiteIntegration
     def matrix_items
       @matrix_items ||= matrix_parents.map do |item|
         {
+          id: item.item_id,
           name: item.store_display_name || item.item_id,
           description: item.sales_description,
           sku: item.item_id,

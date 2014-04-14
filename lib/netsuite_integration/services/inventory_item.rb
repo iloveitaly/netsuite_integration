@@ -16,7 +16,7 @@ module NetsuiteIntegration
     # losing data
     class InventoryItem < Base
       def latest
-        ignore_future.sort_by { |c| c.last_modified_date.utc }
+        valid_items.sort_by { |c| c.last_modified_date.utc }
       end
 
       def find_by_name(name)
@@ -55,6 +55,13 @@ module NetsuiteIntegration
       end
 
       private
+        def valid_items
+          items = search
+
+          ignored_items = ignore_future items
+          drop_invalid_ids ignored_items
+        end
+
         # We need to set bodyFieldsOnly false to grab the pricing matrix
         def search
           NetSuite::Records::InventoryItem.search({
@@ -88,10 +95,14 @@ module NetsuiteIntegration
           }).results
         end
 
-        def ignore_future
-          search.select do |item|
+        def ignore_future(items)
+          items.select do |item|
             item.last_modified_date.utc <= time_now
           end
+        end
+
+        def drop_invalid_ids(items)
+          items.select { |item| item.item_id.present? }
         end
 
         # Help us mock this when running the specs. Otherwise we might get VCR

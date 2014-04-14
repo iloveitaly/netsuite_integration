@@ -11,6 +11,22 @@ module NetsuiteIntegration
       end
     end
 
+    context "id nil check" do
+      subject do
+        VCR.use_cassette("inventory_item/new_search") do
+          described_class.new config
+        end
+      end
+
+      it "doesn't return messages with id nil" do
+        VCR.use_cassette("product/return_no_nil_id") do
+          subject.messages.each do |message|
+            expect(message[:id]).to be_present
+          end
+        end
+      end
+    end
+
     it "builds product variants from matrix items" do
       VCR.use_cassette("product/building_matrix") do
         expect(subject.matrix_items.count).to eq subject.matrix_parents.count
