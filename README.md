@@ -16,6 +16,12 @@ including business accounting software, ERP software, CRM software and ecommerce
 | netsuite_api_version | Optional api version (defaults to 2013_2) | 2012_2 |
 | netsuite_sandbox | Optional sandbox flag (defaults `false`) | true |
 
+### Product polling
+
+| Name | Value | example |
+| :----| :-----| :------ |
+| netsuite_last_updated_after | Fetch products updated after this timestamp | 2014-01-29T03:14:07+00:00 |
+
 ### Push Orders
 
 | Name | Value | example |
@@ -26,9 +32,3 @@ including business accounting software, ERP software, CRM software and ecommerce
 | netsuite_item_for_taxes | Item name to represent store taxes | Spree Tax |
 
 ### Push shipments
-
-### Product polling
-
-| Name | Value | example |
-| :----| :-----| :------ |
-| netsuite_last_updated_after | Fetch products updated after this timestamp | 2014-01-29T03:14:07+00:00 |

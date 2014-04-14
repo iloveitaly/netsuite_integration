@@ -15,7 +15,12 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
           wsdl config['netsuite_wsdl_url']
         end
 
-        api_version  config.fetch('netsuite_api_version', '2013_2')
+        if config['netsuite_api_version'].present?
+          api_version config['netsuite_api_version']
+        else
+          api_version "2013_2"
+        end
+
         sandbox      config.fetch('netsuite_sandbox', false)
         email        config.fetch('netsuite_email')
         password     config.fetch('netsuite_password')
