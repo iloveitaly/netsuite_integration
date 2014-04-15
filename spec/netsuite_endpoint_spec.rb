@@ -79,6 +79,21 @@ describe NetsuiteEndpoint do
 
         expect(json_response[:summary]).to match('sent to NetSuite')
       end
+
+      # Usually NetSuite returns an "confirm step" which translates as an error
+      # for us when you the sales order and customer deposit totals don't match
+      #
+      # It should cover all keys under order[:totals]
+      it "double check for payment and order totals" do
+        request = { parameters: parameters }
+        request.merge!(order: Factories.add_order_payload)
+
+        VCR.use_cassette('order/totals_check') do
+          post '/add_order', request.to_json, auth
+          expect(last_response).to be_ok
+          expect(json_response[:summary]).to match('sent to NetSuite')
+        end
+      end
     end
 
     context 'when order has already been imported' do

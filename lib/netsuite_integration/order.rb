@@ -103,7 +103,7 @@ module NetsuiteIntegration
       end
 
       # Due to NetSuite complexity, taxes and discounts will be treated as line items.
-      ["tax", "discount"].map do |type|
+      ["tax", "discount", "adjustment"].map do |type|
         value = order_payload[:totals][type] || 0
 
         if value > 0
@@ -148,7 +148,7 @@ module NetsuiteIntegration
     end
 
     def internal_id_for(type)
-      name = @config.fetch('netsuite_item_for_discounts', "Spree #{type.capitalize}")
+      name = @config.fetch("netsuite_item_for_#{type}s", "Store #{type.capitalize}")
       non_inventory_item_service.find_or_create_by_name(name).internal_id
     end
   end
