@@ -95,7 +95,11 @@ module NetsuiteIntegration
         NetSuite::Records::SalesOrderItem.new({
           item: { internal_id: inventory_item.internal_id },
           quantity: item[:quantity],
-          amount: item[:quantity] * item[:price],
+          # allows us to set item rate
+          price: { internal_id: -1 },
+          # setting the rate rather than the price; this enables us to optionally push
+          # promotional/volume discount prices to NS
+          rate: item[:price],
           # Force tax rate to 0. NetSuite might create taxes rates automatically which
           # will cause the sales order total to differ from the order in the Spree store
           tax_rate1: 0
