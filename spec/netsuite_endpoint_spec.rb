@@ -40,7 +40,7 @@ describe NetsuiteEndpoint do
 
         post '/get_inventory', request.to_json, auth
         expect(last_response.status).to eq 500
-        expect(json_response[:summary]).to eq("Weird error")
+        expect(json_response[:summary]).to match "Weird error"
       end
     end
   end

@@ -49,7 +49,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
       result 200, @summary
     rescue StandardError => e
-      result 500, e.message
+      result 500, "#{e.message} #{e.backtrace.to_a.join("\n")}"
     end
   end
 
@@ -58,6 +58,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       create_or_update_order
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
+    rescue => e
+      result 500, "#{e.message} #{e.backtrace.to_a.join("\n")}"
     end
   end
 
@@ -66,6 +68,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       create_or_update_order
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
+    rescue => e
+      result 500, "#{e.message} #{e.backtrace.to_a.join("\n")}"
     end
   end
 
@@ -88,7 +92,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
         result 200, "NetSuite Sales Order #{@payload[:order][:number]} was closed"
       end
     rescue => e
-      result 500, e.message
+      result 500, "#{e.message} #{e.backtrace.to_a.join("\n")}"
     end
   end
 
@@ -104,7 +108,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     rescue NetSuite::RecordNotFound
       result 200
     rescue => e
-      result 500, e.message
+      result 500, "#{e.message} #{e.backtrace.to_a.join("\n")}"
     end
   end
 
@@ -113,7 +117,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       order = NetsuiteIntegration::Shipment.new(@config, @payload).import
       result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
     rescue StandardError => e
-      result 500, e.message
+      result 500, "#{e.message} #{e.backtrace.to_a.join("\n")}"
     end
   end
 
