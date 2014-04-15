@@ -146,7 +146,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       errors = errors.map(&:message).flatten
 
       if errors.any?
-        error_notification << " Failed to set up Customer Deposit for #{(order.existing_sales_order || order.sales_order).external_id} in NetSuite"
+        error_notification << " Failed to set up Customer Deposit for #{(order.existing_sales_order || order.sales_order).external_id}: #{errors.join(", ")}"
       end
 
       if customer_deposit.persisted
