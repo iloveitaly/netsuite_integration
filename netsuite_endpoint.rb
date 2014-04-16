@@ -75,8 +75,9 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
   post '/cancel_order' do
     begin
-      order = sales_order_service.find_by_external_id(@payload[:order][:number]) or
-        raise RecordNotFoundSalesOrder, "NetSuite Sales Order not found for order #{@payload[:order][:number]}"
+      unless order = sales_order_service.find_by_external_id(@payload[:order][:number] || @payload[:order][:id])
+        raise NetsuiteIntegration::RecordNotFoundSalesOrder, "NetSuite Sales Order not found for order #{@payload[:order][:number] || @payload[:order][:id]}"
+      end
 
       if customer_record_exists?
         refund = NetsuiteIntegration::Refund.new(@config, @payload, order)
