@@ -61,7 +61,7 @@ module NetsuiteIntegration
     end
 
     def order
-      @order ||= sales_order_service.find_by_external_id(payload[:shipment][:order_number])
+      @order ||= sales_order_service.find_by_external_id(payload[:shipment][:order_number] || payload[:shipment][:order_id])
     end
 
     def address
