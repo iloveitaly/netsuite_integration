@@ -106,7 +106,7 @@ module NetsuiteIntegration
       ["tax", "discount", "adjustment"].map do |type|
         value = order_payload[:totals][type] || 0
 
-        if value > 0
+        if value != 0
           sales_order_items.push(NetSuite::Records::SalesOrderItem.new({
             item: { internal_id: internal_id_for(type) },
             rate: value
