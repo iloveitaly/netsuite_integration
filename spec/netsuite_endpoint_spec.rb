@@ -27,6 +27,7 @@ describe NetsuiteEndpoint do
         post '/get_inventory', { parameters: parameters }.to_json, auth
         expect(last_response).to be_ok
         expect(json_response[:inventories]).to be_present
+        expect(json_response[:parameters]).to have_key 'netsuite_poll_stock_timestamp'
       end
     end
 

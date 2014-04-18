@@ -36,5 +36,9 @@ module NetsuiteIntegration
         }
       end
     end
+
+    def last_modified_date
+      items.last.last_modified_date.utc + 1.second
+    end
   end
 end

@@ -105,6 +105,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
         stock.inventory_units.each { |unit| add_object :inventory, unit }
         count = stock.inventory_units.count
         summary = "#{count} #{"inventory units".pluralize count} fetched from NetSuite"
+
+        add_parameter 'netsuite_poll_stock_timestamp', stock.last_modified_date
       else
         add_object :inventory, { id: stock.sku, sku: stock.sku, quantity: stock.quantity_available }
         count = stock.quantity_available
