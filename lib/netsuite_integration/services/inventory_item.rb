@@ -15,6 +15,13 @@ module NetsuiteIntegration
     # catch all items at once and sort by date properly or we might end up
     # losing data
     class InventoryItem < Base
+      attr_reader :poll_param
+
+      def initialize(config, poll_param = 'netsuite_last_updated_after')
+        super config
+        @poll_param = poll_param
+      end
+
       def latest
         valid_items.sort_by { |c| c.last_modified_date.utc }
       end
@@ -34,23 +41,9 @@ module NetsuiteIntegration
       def find_by_item_id(item_id)
         NetSuite::Records::InventoryItem.search({
           criteria: {
-            basic: [
-              {
-                field: 'itemId',
-                value: item_id,
-                operator: 'is'
-              },
-              {
-                field: 'type',
-                operator: 'anyOf',
-                type: 'SearchEnumMultiSelectField',
-                value: ['_inventoryItem']
-              },
-            ]
+            basic: basic_criteria + [{ field: 'itemId', value: item_id, operator: 'is' }]
           },
-          preferences: {
-            bodyFieldsOnly: false
-          }
+          preferences: default_preferences
         }).results.first
       end
 
@@ -66,33 +59,44 @@ module NetsuiteIntegration
         def search
           NetSuite::Records::InventoryItem.search({
             criteria: {
-              basic: [
-                {
-                  field: 'lastModifiedDate',
-                  type: 'SearchDateField',
-                  operator: 'within',
-                  value: [
-                    last_updated_after,
-                    time_now.iso8601
-                  ]
-                },
-                {
-                  field: 'type',
-                  operator: 'anyOf',
-                  type: 'SearchEnumMultiSelectField',
-                  value: ['_inventoryItem']
-                },
-                {
-                  field: 'isInactive',
-                  value: false
-                }
-              ]
+              basic: basic_criteria.push(polling_filter)
             },
-            preferences: {
-              pageSize: 100,
-              bodyFieldsOnly: false
-            }
+            preferences: default_preferences
           }).results
+        end
+
+        def default_preferences
+          {
+            pageSize: 100,
+            bodyFieldsOnly: false
+          }
+        end
+
+        def basic_criteria
+          [
+            {
+              field: 'type',
+              operator: 'anyOf',
+              type: 'SearchEnumMultiSelectField',
+              value: ['_inventoryItem']
+            },
+            {
+              field: 'isInactive',
+              value: false
+            }
+          ]
+        end
+
+        def polling_filter
+          {
+            field: 'lastModifiedDate',
+            type: 'SearchDateField',
+            operator: 'within',
+            value: [
+              last_updated_after,
+              time_now.iso8601
+            ]
+          }
         end
 
         def ignore_future(items)
@@ -112,7 +116,7 @@ module NetsuiteIntegration
         end
 
         def last_updated_after
-          Time.parse(config.fetch('netsuite_last_updated_after')).iso8601
+          Time.parse(config.fetch(poll_param)).iso8601
         end
     end
   end
