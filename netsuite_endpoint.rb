@@ -101,10 +101,16 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     begin
       stock = NetsuiteIntegration::InventoryStock.new(@config, @payload)
 
-      add_object :inventory, { sku: stock.sku, quantity: stock.quantity_available }
+      if stock.collection?
+        stock.inventory_units.each { |unit| add_object :inventory, unit }
+        count = stock.inventory_units.count
+        summary = "#{count} #{"inventory units".pluralize count} fetched from NetSuite"
+      else
+        add_object :inventory, { id: stock.sku, sku: stock.sku, quantity: stock.quantity_available }
+        count = stock.quantity_available
+        summary = "#{count} #{"unit".pluralize count} available of #{stock.sku} according to NetSuite"
+      end
 
-      count = stock.quantity_available
-      summary = "#{count} #{"unit".pluralize count} available of #{stock.sku} according to NetSuite"
       result 200, summary
     rescue NetSuite::RecordNotFound
       result 200

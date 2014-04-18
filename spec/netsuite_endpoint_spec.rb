@@ -22,6 +22,14 @@ describe NetsuiteEndpoint do
       end
     end
 
+    it "gets a collection of inventory_units" do
+      VCR.use_cassette("inventory_item/new_search") do
+        post '/get_inventory', { parameters: parameters }.to_json, auth
+        expect(last_response).to be_ok
+        expect(json_response[:inventories]).to be_present
+      end
+    end
+
     context "item not found" do
       before { request[:sku] = "Im not there" }
 
