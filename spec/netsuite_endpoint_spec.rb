@@ -31,6 +31,15 @@ describe NetsuiteEndpoint do
       end
     end
 
+    it "returns 200 on empty collection" do
+      NetsuiteIntegration::InventoryStock.any_instance.stub inventory_units: []
+
+      VCR.use_cassette("inventory_item/new_search") do
+        post '/get_inventory', { parameters: parameters }.to_json, auth
+        expect(last_response).to be_ok
+      end
+    end
+
     context "item not found" do
       before { request[:sku] = "Im not there" }
 
