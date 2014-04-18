@@ -5,6 +5,7 @@ config_hash = {
   'netsuite_password' => 'test',
   'netsuite_account' => 'test',
   'netsuite_last_updated_after' => '2014-04-13T18:48:56.001Z',
+  'netsuite_poll_stock_timestamp' => '2014-04-13T18:48:56.001Z',
   'netsuite_account_for_sales_id' => 2,
   'netsuite_shipping_methods_mapping' => [{
     "UPS Ground (USD)"=>"92",
