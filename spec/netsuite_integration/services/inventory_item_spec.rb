@@ -27,6 +27,16 @@ module NetsuiteIntegration
       end
     end
 
+    context "user set items type to poll" do
+      before do
+        config["netsuite_item_types"] = "AssemblyItem; NonInventoryItem; KitItem; InventoryItem"
+      end
+
+      it "fetches those items just fine" do
+        expect(subject.item_type_to_fetch).to eq ["_assemblyItem", "_nonInventoryItem", "_kitItem", "_inventoryItem"]
+      end
+    end
+
     describe "#find_by_name" do
       context "item exists" do
         it "returns the item" do

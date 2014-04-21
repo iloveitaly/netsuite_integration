@@ -47,6 +47,17 @@ module NetsuiteIntegration
         }).results.first
       end
 
+      def item_type_to_fetch
+        if (item_types = config["netsuite_item_types"]).present?
+          item_types.split(";").map do |item_type|
+            item_type = item_type.strip
+            "_#{item_type[0].downcase}#{item_type[1..-1]}"
+          end
+        else
+          ['_inventoryItem']
+        end
+      end
+
       private
         def valid_items
           items = search
@@ -78,7 +89,7 @@ module NetsuiteIntegration
               field: 'type',
               operator: 'anyOf',
               type: 'SearchEnumMultiSelectField',
-              value: ['_inventoryItem']
+              value: item_type_to_fetch
             },
             {
               field: 'isInactive',
