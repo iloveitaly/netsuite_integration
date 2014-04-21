@@ -33,7 +33,7 @@ module NetsuiteIntegration
       end
 
       it "fetches those items just fine" do
-        expect(subject.item_type_to_fetch).to eq ["_assemblyItem", "_nonInventoryItem", "_kitItem", "_inventoryItem"]
+        expect(subject.item_type_to_fetch).to eq ["assemblyItem", "nonInventoryItem", "kitItem", "inventoryItem"]
       end
     end
 
