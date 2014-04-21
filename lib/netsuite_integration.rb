@@ -11,6 +11,7 @@ require 'netsuite_integration/services/customer_deposit'
 require 'netsuite_integration/services/customer_refund'
 require 'netsuite_integration/services/country_service'
 require 'netsuite_integration/services/state_service'
+require 'netsuite_integration/services/item_fulfillment'
 
 require 'netsuite_integration/base'
 require 'netsuite_integration/customer_importer'
