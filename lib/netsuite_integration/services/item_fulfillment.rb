@@ -23,7 +23,8 @@ module NetsuiteIntegration
             ]
           },
           preferences: {
-            pageSize: 80,
+            pageSize: 50,
+            bodyFieldsOnly: false
           }
         }).results
       end

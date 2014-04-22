@@ -1,6 +1,6 @@
 module NetsuiteIntegration
   class Shipment < Base
-    attr_reader :config, :collection
+    attr_reader :config
 
     def import
       create_item_fulfillment
@@ -47,6 +47,24 @@ module NetsuiteIntegration
       verify_errors(fulfillment)
     end
 
+    def messages
+      shipments = Services::ItemFulfillment.new(config).latest
+
+      shipments.map do |shipment|
+        {
+          id: shipment.internal_id,
+          order_id: shipment.created_from.external_id,
+          cost: shipment.shipping_cost,
+          status: shipment.ship_status[1..-1],
+          shipping_method: try_shipping_method(shipment),
+          tracking: shipment.package_list.packages.map(&:package_tracking_number).join(", "),
+          shipped_at: shipment.tran_date,
+          shipping_address: build_shipping_address(shipment.transaction_ship_address),
+          items: []
+        }
+      end
+    end
+
     private
     def order_pending_fulfillment?
       order.status == 'Pending Fulfillment'
@@ -77,5 +95,31 @@ module NetsuiteIntegration
         object
       end
     end
+
+      def build_shipping_address(address)
+        if address && address.ship_attention
+          firstname, lastname = address.ship_attention.split(" ")
+
+          {
+            firstname: firstname,
+            lastname: lastname,
+            address1: address.ship_addr1,
+            address2: address.ship_addressee,
+            zipcode: address.ship_zip,
+            city: address.ship_city,
+            state: Services::StateService.by_state_name(address.ship_state),
+            country: Services::CountryService.by_iso_country(address.ship_country),
+            phone: address.ship_phone
+          }
+        end
+      end
+
+      def try_shipping_method(shipment)
+        if shipment.ship_method
+          shipment.ship_method.name
+        end
+      rescue NoMethodError => e
+        nil
+      end
   end
 end
