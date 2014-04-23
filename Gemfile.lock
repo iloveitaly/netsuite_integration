@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/RevolutionPrep/netsuite.git
-  revision: a138f1a4b991cafec130c543bd85f8814e763cbb
+  revision: 487597cd6f4d04d8f21edf4470ab650ed995e433
   specs:
-    netsuite (0.2.2)
+    netsuite (0.2.3)
       savon (~> 2.3.0)
 
 GIT
@@ -24,7 +24,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.5)
-    akami (1.2.1)
+    akami (1.2.2)
       gyoku (>= 0.4.0)
       nokogiri
     builder (3.2.2)
