@@ -116,5 +116,19 @@ module NetsuiteIntegration
         expect(options).to eq matrix_options_list
       end
     end
+
+    context "multiple item types involved" do
+      before do
+        config["netsuite_item_types"] = "Assembly; NonInventoryItem; DownloadItem; InventoryItem"
+        config['netsuite_last_updated_after'] = "2014-04-23T14:53:26+00:00"
+      end
+
+      it "still build out collection of products just fine" do
+        VCR.use_cassette("product/many_item_types") do
+          subject = described_class.new config
+          messages = subject.messages
+        end
+      end
+    end
   end
 end

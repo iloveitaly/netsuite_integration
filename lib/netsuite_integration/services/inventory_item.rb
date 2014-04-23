@@ -47,11 +47,12 @@ module NetsuiteIntegration
         }).results.first
       end
 
+      # See ItemTypes examples here https://system.netsuite.com/help/helpcenter/en_US/SchemaBrowser/lists/v2013_2_0/accountingTypes.html#listAcctTyp:ItemType
       def item_type_to_fetch
         if (item_types = config["netsuite_item_types"]).present?
           item_types.split(";").map do |item_type|
             item_type = item_type.strip
-            "#{item_type[0].downcase}#{item_type[1..-1]}"
+            "_#{item_type[0].downcase}#{item_type[1..-1]}"
           end
         else
           ['_inventoryItem']

@@ -29,11 +29,12 @@ module NetsuiteIntegration
 
     context "user set items type to poll" do
       before do
-        config["netsuite_item_types"] = "AssemblyItem; NonInventoryItem; KitItem; InventoryItem"
+        config["netsuite_item_types"] = "Assembly; NonInventoryItem; DownloadItem; InventoryItem"
+        config['netsuite_last_updated_after'] = "2014-04-23T14:53:26+00:00"
       end
 
-      it "fetches those items just fine" do
-        expect(subject.item_type_to_fetch).to eq ["assemblyItem", "nonInventoryItem", "kitItem", "inventoryItem"]
+      it "builds out an proper array of item types to filter" do
+        expect(subject.item_type_to_fetch).to eq ["_assembly", "_nonInventoryItem", "_downloadItem", "_inventoryItem"]
       end
     end
 
