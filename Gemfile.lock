@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/spree/endpoint_base.git
-  revision: a9a9f4f91e3c42d88a3f8fe4182877161d050e1a
+  revision: 293980c89d693de97a740c6925945edad7b3a2c5
   specs:
     endpoint_base (0.3)
       activesupport
@@ -54,7 +54,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.5.3)
-    minitest (5.3.2)
+    minitest (5.3.3)
     multi_json (1.9.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
