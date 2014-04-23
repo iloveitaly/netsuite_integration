@@ -23,6 +23,10 @@ including business accounting software, ERP software, CRM software and ecommerce
 | Name | Value | example |
 | :----| :-----| :------ |
 | netsuite_last_updated_after | Fetch products updated after this timestamp | 2014-01-29T03:14:07+00:00 |
+| netsuite_item_types | List of item types you want to poll (default to InventoryItem) | InventoryItem; NonInventoryItem |
+
+See https://system.netsuite.com/help/helpcenter/en_US/SchemaBrowser/lists/v2013_2_0/accountingTypes.html#listAcctTyp:ItemType
+for a list of valid item types.
 
 ### Inventory polling
 
