@@ -50,9 +50,17 @@ module NetsuiteIntegration
       # See ItemTypes examples here https://system.netsuite.com/help/helpcenter/en_US/SchemaBrowser/lists/v2013_2_0/accountingTypes.html#listAcctTyp:ItemType
       def item_type_to_fetch
         if (item_types = config["netsuite_item_types"]).present?
-          item_types.split(";").map do |item_type|
-            item_type = item_type.strip
-            "_#{item_type[0].downcase}#{item_type[1..-1]}"
+          item_types.split(";").map(&:strip).map do |item_type|
+            # need this hack because of inconsistent type naming
+            # https://github.com/spree/netsuite_endpoint/issues/7#issuecomment-41196467
+            case item_type
+            when 'AssemblyItem'
+              '_assembly'
+            when 'KitItem'
+              '_kit'
+            else
+              "_#{item_type[0].downcase}#{item_type[1..-1]}"
+            end
           end
         else
           ['_inventoryItem']
