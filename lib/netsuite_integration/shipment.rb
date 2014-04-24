@@ -97,8 +97,8 @@ module NetsuiteIntegration
     end
 
       def build_shipping_address(address)
-        if address && address.ship_attention
-          firstname, lastname = address.ship_attention.split(" ")
+        if address && address.ship_addressee
+          firstname, lastname = address.ship_addressee.split(" ")
 
           {
             firstname: firstname,
@@ -108,7 +108,7 @@ module NetsuiteIntegration
             zipcode: address.ship_zip,
             city: address.ship_city,
             state: Services::StateService.by_state_name(address.ship_state),
-            country: Services::CountryService.by_iso_country(address.ship_country),
+            country: normalize_country_name(address.ship_country),
             phone: address.ship_phone
           }
         end
@@ -120,6 +120,17 @@ module NetsuiteIntegration
         end
       rescue NoMethodError => e
         nil
+      end
+
+      # See https://system.netsuite.com/help/helpcenter/en_US/SchemaBrowser/platform/v2013_2_0/commonTypes.html#platformCommonTyp:Country
+      #
+      #   _unitedStates => UnitedStates
+      #
+      def normalize_country_name(name)
+        if name.is_a? String
+          name = name[1..-1]
+          "#{name[0].upcase}#{name[1..-1]}"
+        end
       end
   end
 end
