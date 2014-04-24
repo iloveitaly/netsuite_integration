@@ -37,6 +37,10 @@ module NetsuiteIntegration
       sales_order.entity = set_up_customer
       sales_order.item_list = build_item_list
 
+      # Prevent NetSuite from charging taxes automatically which
+      # will cause the sales order total to differ from the order in the Spree store
+      sales_order.is_taxable = false
+
       sales_order.transaction_bill_address = build_bill_address
 
       sales_order.shipping_cost = order_payload[:totals][:shipping]
@@ -96,10 +100,7 @@ module NetsuiteIntegration
         NetSuite::Records::SalesOrderItem.new({
           item: { internal_id: inventory_item.internal_id },
           quantity: item[:quantity],
-          amount: item[:quantity] * item[:price],
-          # Force tax rate to 0. NetSuite might create taxes rates automatically which
-          # will cause the sales order total to differ from the order in the Spree store
-          tax_rate1: 0
+          amount: item[:quantity] * item[:price]
         })
       end
 
