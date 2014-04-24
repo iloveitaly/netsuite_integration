@@ -13,14 +13,17 @@ module NetsuiteIntegration
           external_id = "#{prefix}-#{sales_order.external_id}-#{payment[:number]}"
 
           if payment[:amount] > 0
-            unless record = find_by_external_id(external_id)
-              record = build(sales_order, payment)
+            unless deposit = find_by_external_id(external_id)
+              deposit = build(sales_order, payment)
+
+              result = deposit.add
+              
               # Need to know if at least one of them was persisted
-              @persisted ||= record.add
+              @persisted ||= result
             end
           end
 
-          record
+          deposit
         end.compact
       end
 
