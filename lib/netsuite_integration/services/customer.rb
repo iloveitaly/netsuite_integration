@@ -4,9 +4,19 @@ module NetsuiteIntegration
       attr_reader :customer_instance
 
       def find_by_external_id(email)
-        NetSuite::Records::Customer.get(external_id: email)
-        # Silence the error
-        # We don't care that the record was not found
+        search = NetSuite::Records::Customer.search({
+          basic: [
+            {
+              field: 'email',
+              value: email,
+              operator: 'is'
+            }
+          ]
+        })
+
+        search.results.first
+      # Silence the error
+      # We don't care that the record was not found
       rescue NetSuite::RecordNotFound
       end
 
