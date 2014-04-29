@@ -15,6 +15,7 @@ including business accounting software, ERP software, CRM software and ecommerce
 | netsuite_wsdl_url | NetSuite URL (optional as it's also defined by netsuite gem) | https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl |
 | netsuite_api_version | Optional api version (defaults to 2013_2) | 2012_2 |
 | netsuite_sandbox | Optional sandbox flag (defaults `false`) | true |
+| netsuite_role | NetSuite user role ID (defaults to 3) | 3 |
 
 ### Product polling
 

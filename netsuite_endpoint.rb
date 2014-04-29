@@ -28,11 +28,16 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
           api_version "2013_2"
         end
 
+        if config['netsuite_role'].present?
+          role config['netsuite_role']
+        else
+          role 3
+        end
+
         sandbox      config.fetch('netsuite_sandbox', false)
         email        config.fetch('netsuite_email')
         password     config.fetch('netsuite_password')
         account      config.fetch('netsuite_account')
-        role         config.fetch('netsuite_role', 3)
         read_timeout 175
         log_level    :info
       end
