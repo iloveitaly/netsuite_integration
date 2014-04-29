@@ -103,5 +103,18 @@ module NetsuiteIntegration
         end
       end
     end
+
+    context 'netsuite instance requires Department' do
+      subject do
+        config['netsuite_department_id'] = 5
+        described_class.new(config, { order: Factories.add_order_department_payload })
+      end
+
+      it 'still can create sales order successfully' do
+        VCR.use_cassette('order/set_department') do
+          expect(subject.create).to be
+        end
+      end
+    end
   end
 end

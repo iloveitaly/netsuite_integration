@@ -44,6 +44,10 @@ module NetsuiteIntegration
 
       sales_order.tran_date = order_payload[:placed_on]
 
+      if (department_id = config['netsuite_department_id']).present?
+        sales_order.department = NetSuite::Records::RecordRef.new(internal_id: department_id)
+      end
+
       if sales_order.add
         fresh_sales_order = sales_order_service.find_by_external_id(order_payload[:number] || order_payload[:id])
         sales_order.tran_id = fresh_sales_order.tran_id
