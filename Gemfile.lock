@@ -42,6 +42,8 @@ GEM
       thor (>= 0.13.6)
     gyoku (1.1.1)
       builder (>= 2.1.2)
+    honeybadger (1.13.0)
+      json
     httpi (2.1.0)
       rack
       rubyntlm (~> 0.3.2)
@@ -131,6 +133,7 @@ DEPENDENCIES
   capistrano
   endpoint_base!
   foreman
+  honeybadger
   netsuite!
   pry
   rack-test

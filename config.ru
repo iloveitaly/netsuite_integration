@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'bundler'
-Bundler.setup
 
+Bundler.require(:default)
 require "./netsuite_endpoint"
 run NetsuiteEndpoint
