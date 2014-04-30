@@ -88,22 +88,6 @@ module NetsuiteIntegration
       end
     end
 
-    context 'when missing shipping methods' do
-      subject do
-        payload = Factories.order_new_payload
-        payload['order']['number'] = '1234GGG'
-        payload['order']['shipments'][0]['shipping_method'] = "Santa Claus"
-
-        described_class.new(config, { payload: payload })
-      end
-
-      it 'raises an error' do
-        VCR.use_cassette('order/import_no_shipping') do
-          expect{subject.import}.to raise_error
-        end
-      end
-    end
-
     context 'netsuite instance requires Department' do
       subject do
         config['netsuite_department_id'] = 5
