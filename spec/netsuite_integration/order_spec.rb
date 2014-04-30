@@ -74,6 +74,30 @@ module NetsuiteIntegration
       end
     end
 
+    context "tax, discount names" do
+      let(:tax) { "Tax 2345" }
+      let(:discount) { "Discount 34543" }
+      let(:item) { double("Item", internal_id: 1) }
+
+      before do
+        config['netsuite_item_for_taxes'] = tax
+        config['netsuite_item_for_discounts'] = discount
+      end
+
+      subject do
+        described_class.any_instance.stub_chain :sales_order_service, :find_by_external_id
+        described_class.new(config, order: Factories.order_new_payload)
+      end
+
+      it "finds by using proper names" do
+        expect(subject.non_inventory_item_service).to receive(:find_or_create_by_name).with(tax).and_return item
+        subject.send :internal_id_for, "tax"
+
+        expect(subject.non_inventory_item_service).to receive(:find_or_create_by_name).with(discount).and_return item
+        subject.send :internal_id_for, "discount"
+      end
+    end
+
     context "existing order" do
       let(:existing_order) do
         double("SalesOrder", internal_id: Time.now, external_id: 1.minute.ago)
