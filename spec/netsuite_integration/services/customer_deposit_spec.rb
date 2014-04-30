@@ -17,7 +17,7 @@ module NetsuiteIntegration
           sales_order = Services::SalesOrder.new(config).find_by_external_id order_external_id
 
           records = subject.create_records sales_order
-          expect(records.map(&:errors).compact).to be_empty
+          expect(records.map(&:errors).flatten.compact).to be_empty
         end
       end
 
