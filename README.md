@@ -48,6 +48,7 @@ for a list of valid item types.
 | netsuite_item_for_discounts | Item name to represent store discounts | Spree Discount |
 | netsuite_item_for_taxes | Item name to represent store taxes | Spree Tax |
 | netsuite_payment_methods_mapping | A list of mappings store payment method name => NetSuite id | [{"Cash"=>"1", "Credit Card"=>"5"}] |
+| netsuite_department_id | Sales Order Department ID (optional) | 5 |
 
 ### Push shipments
 
