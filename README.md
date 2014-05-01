@@ -50,6 +50,23 @@ for a list of valid item types.
 | netsuite_payment_methods_mapping | A list of mappings store payment method name => NetSuite id | [{"Cash"=>"1", "Credit Card"=>"5"}] |
 | netsuite_department_id | Sales Order Department ID (optional) | 5 |
 
+The Sales Order shipping cost will be set according to `order[:totals][:shipping]`.
+Taxes and Discounts are set from values within `order[:adjustments]`. e.g.
+
+```json
+{
+  "totals": {
+    "shipping": 7
+  },
+  "adjustments": [
+    { "name": "Tax", "value": 7 },
+    { "name": "Discount", "value": -5 }
+  ]
+}
+```
+
+See http://spreecommerce.com/docs/hub/order_object.html for examples on the order object.
+
 ### Push shipments
 
 /add_shipment webhooks.
