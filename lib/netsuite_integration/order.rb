@@ -72,7 +72,9 @@ module NetsuiteIntegration
     end
 
     def errors
-      self.sales_order.errors.map(&:message).join(", ")
+      if sales_order && sales_order.errors.is_a?(Array)
+        self.sales_order.errors.map(&:message).join(", ")
+      end
     end
 
     private
