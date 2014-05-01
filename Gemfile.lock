@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/RevolutionPrep/netsuite.git
-  revision: fa333bc8d87f91160f93a2598056707b8355997c
+  remote: git://github.com/huoxito/netsuite.git
+  revision: 4439ac30929c84a6b0cdf704740148a86e57dd6a
+  branch: one-package-list
   specs:
     netsuite (0.2.4)
       savon (~> 2.3.0)

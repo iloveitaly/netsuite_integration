@@ -43,11 +43,11 @@ module NetsuiteIntegration
 
     context "shipments polling" do
       before do
-        config["netsuite_poll_fulfillment_timestamp"] = '2014-04-13t18:48:56.001z'
+        config["netsuite_poll_fulfillment_timestamp"] = '2014-04-27t11:48:56.001z'
       end
 
-      pending "builds out a collection of shipments from item fulfillments" do
-        VCR.use_cassette("item_fulfillment/latest") do
+      it "builds out a collection of shipments from item fulfillments" do
+        VCR.use_cassette("item_fulfillment/more_latest") do
           subject.messages
         end
       end
