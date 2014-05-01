@@ -63,8 +63,9 @@ module NetsuiteIntegration
       it "set items decimal values properly" do
         VCR.use_cassette('order/import_check_decimals') do
           payload = Factories.order_new_payload
-          payload['order']['number'] = "RGGADSFSFSFSFDS"
-          payload['order']['totals']['tax'] = 3.25
+          payload[:order][:number] = "RGGADSFSFSFSFDS"
+          payload[:order][:adjustments].push({ name: 'Tax', value: 3.25 })
+
           order = described_class.new(config, payload)
 
           expect(order.create).to be
