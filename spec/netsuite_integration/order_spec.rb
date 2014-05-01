@@ -98,6 +98,22 @@ module NetsuiteIntegration
       end
     end
 
+    context "account for both taxes and discounts in order[adjustments]" do
+      subject do
+        described_class.new(config, order: Factories.order_taxes_and_discounts_payload)
+      end
+
+      it "builds both tax and discount line" do
+        VCR.use_cassette('order/taxes_and_discounts') do
+          expect(subject.create).to be
+
+          rates = subject.sales_order.item_list.items.map(&:rate)
+          expect(rates).to include(-5)
+          expect(rates).to include(25)
+        end
+      end
+    end
+
     context "existing order" do
       let(:existing_order) do
         double("SalesOrder", internal_id: Time.now, external_id: 1.minute.ago)
