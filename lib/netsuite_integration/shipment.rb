@@ -60,7 +60,7 @@ module NetsuiteIntegration
           tracking: shipment.package_list.packages.map(&:package_tracking_number).join(", "),
           shipped_at: shipment.tran_date,
           shipping_address: build_shipping_address(shipment.transaction_ship_address),
-          items: []
+          items: build_item_list(shipment.item_list.items)
         }
       end
     end
@@ -95,6 +95,16 @@ module NetsuiteIntegration
         object
       end
     end
+
+      def build_item_list(items)
+        items.map do |item|
+          {
+            name: item.item.name,
+            product_id: item.item.name,
+            quantity: item.quantity.to_i,
+          }
+        end
+      end
 
       def build_shipping_address(address)
         if address && address.ship_addressee
