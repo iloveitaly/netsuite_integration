@@ -53,7 +53,7 @@ module NetsuiteIntegration
       shipments.map do |shipment|
         {
           id: shipment.internal_id,
-          order_id: shipment.created_from.external_id,
+          order_id: NetSuite::Records::SalesOrder.get(shipment.created_from.internal_id).external_id,
           cost: shipment.shipping_cost,
           status: shipment.ship_status[1..-1],
           shipping_method: try_shipping_method(shipment),
