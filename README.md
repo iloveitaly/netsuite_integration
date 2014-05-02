@@ -67,12 +67,6 @@ Taxes and Discounts are set from values within `order[:adjustments]`. e.g.
 
 See http://spreecommerce.com/docs/hub/order_object.html for examples on the order object.
 
-### Push shipments
-
-/add_shipment webhooks.
-
-Doesn't require any config parameter
-
 ### Cancel Orders / Refunds
 
 /cancel_order webhook
@@ -81,3 +75,17 @@ Doesn't require any config parameter
 | :----| :-----| :------ |
 | netsuite_account_for_sales_id | Account id used on customer deposit and refund (required) | 2 |
 | netsuite_payment_methods_mapping | A list of mappings store payment method name => NetSuite id | [{"Cash"=>"1", "Credit Card"=>"5"}] |
+
+### Push shipments
+
+/add_shipment webhooks.
+
+Doesn't require any config parameter
+
+### Get shipments
+
+/get_shipments
+
+| Name | Value | example |
+| :----| :-----| :------ |
+| netsuite_poll_fulfillment_timestamp | Fetch Item Fulfillments updated after this timestamp | 2014-01-29T03:14:07+00:00 |
