@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/RevolutionPrep/netsuite.git
-  revision: fa333bc8d87f91160f93a2598056707b8355997c
+  remote: git://github.com/huoxito/netsuite.git
+  revision: 6f291400dd9d5e77a61b3eb23dd00bc4c804f47a
+  branch: item-fulfillment-modified-date
   specs:
     netsuite (0.2.4)
       savon (~> 2.3.0)

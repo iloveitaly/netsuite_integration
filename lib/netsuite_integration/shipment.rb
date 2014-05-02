@@ -48,53 +48,77 @@ module NetsuiteIntegration
     end
 
     def messages
-      shipments = Services::ItemFulfillment.new(config).latest
-
-      shipments.map do |shipment|
+      latest_fulfillments.map do |shipment|
         {
           id: shipment.internal_id,
-          order_id: shipment.created_from.external_id,
+          order_id: sales_orders_for_shipment(shipment.created_from.internal_id).external_id,
           cost: shipment.shipping_cost,
           status: shipment.ship_status[1..-1],
           shipping_method: try_shipping_method(shipment),
           tracking: shipment.package_list.packages.map(&:package_tracking_number).join(", "),
           shipped_at: shipment.tran_date,
           shipping_address: build_shipping_address(shipment.transaction_ship_address),
-          items: []
+          items: build_item_list(shipment.item_list.items)
         }
       end
     end
 
+    def last_modified_date
+      latest_fulfillments.last.last_modified_date.utc + 1.second
+    end
+
+    def latest_fulfillments
+      @latest_fulfillments ||= Services::ItemFulfillment.new(config).latest
+    end
+
     private
-    def order_pending_fulfillment?
-      order.status == 'Pending Fulfillment'
-    end
-
-    def order_pending_billing?
-      @fulfilled || order.status == 'Pending Billing'
-    end
-
-    def order_id
-      order.internal_id
-    end
-
-    def order
-      @order ||= sales_order_service.find_by_external_id(payload[:shipment][:order_number] || payload[:shipment][:order_id])
-    end
-
-    def address
-      payload[:shipment][:shipping_address]
-    end
-
-    def verify_errors(object)
-      unless (errors = (object.errors || []).select {|e| e.type == "ERROR"}).blank?
-        text = errors.inject("") {|buf, cur| buf += cur.message}
-
-        raise StandardError.new(text) if text.length > 0
-      else
-        object
+      def sales_orders_for_shipment(internal_id)
+        sales_order_list[internal_id] ||= NetSuite::Records::SalesOrder.get(internal_id)
       end
-    end
+
+      def sales_order_list
+        @sales_order_list ||= {}
+      end
+
+      def order_pending_fulfillment?
+        order.status == 'Pending Fulfillment'
+      end
+
+      def order_pending_billing?
+        @fulfilled || order.status == 'Pending Billing'
+      end
+
+      def order_id
+        order.internal_id
+      end
+
+      def order
+        @order ||= sales_order_service.find_by_external_id(payload[:shipment][:order_number] || payload[:shipment][:order_id])
+      end
+
+      def address
+        payload[:shipment][:shipping_address]
+      end
+
+      def verify_errors(object)
+        unless (errors = (object.errors || []).select {|e| e.type == "ERROR"}).blank?
+          text = errors.inject("") {|buf, cur| buf += cur.message}
+
+          raise StandardError.new(text) if text.length > 0
+        else
+          object
+        end
+      end
+
+      def build_item_list(items)
+        items.map do |item|
+          {
+            name: item.item.name,
+            product_id: item.item.name,
+            quantity: item.quantity.to_i,
+          }
+        end
+      end
 
       def build_shipping_address(address)
         if address && address.ship_addressee

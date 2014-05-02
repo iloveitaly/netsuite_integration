@@ -2,34 +2,38 @@ module NetsuiteIntegration
   module Services
     class ItemFulfillment < Base
       def latest
-        NetSuite::Records::ItemFulfillment.search({
-          criteria: {
-            basic: [
-              {
-                field: 'type',
-                operator: 'anyOf',
-                type: 'SearchEnumMultiSelectField',
-                value: ["_itemFulfillment"]
-              },
-              {
-                field: 'lastModifiedDate',
-                type: 'SearchDateField',
-                operator: 'within',
-                value: [
-                  last_updated_after,
-                  time_now.iso8601
-                ]
-              }
-            ]
-          },
-          preferences: {
-            pageSize: 50,
-            bodyFieldsOnly: false
-          }
-        }).results
+        @latest ||= search.sort_by { |item| item.last_modified_date.utc }
       end
 
       private
+        def search
+          NetSuite::Records::ItemFulfillment.search({
+            criteria: {
+              basic: [
+                {
+                  field: 'type',
+                  operator: 'anyOf',
+                  type: 'SearchEnumMultiSelectField',
+                  value: ["_itemFulfillment"]
+                },
+                {
+                  field: 'lastModifiedDate',
+                  type: 'SearchDateField',
+                  operator: 'within',
+                  value: [
+                    last_updated_after,
+                    time_now.iso8601
+                  ]
+                }
+              ]
+            },
+            preferences: {
+              pageSize: 50,
+              bodyFieldsOnly: false
+            }
+          }).results
+        end
+
         def time_now
           Time.now.utc
         end
