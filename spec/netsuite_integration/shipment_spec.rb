@@ -42,14 +42,21 @@ module NetsuiteIntegration
     end
 
     context "shipments polling" do
+      let(:items) do
+        VCR.use_cassette("item_fulfillment/latest") do
+          Services::ItemFulfillment.new(config).latest
+        end
+      end
+
       before do
-        config["netsuite_poll_fulfillment_timestamp"] = '2014-04-27t11:48:56.001z'
+        config["netsuite_poll_fulfillment_timestamp"] = '2014-04-27T18:48:56.001Z'
+        Services::ItemFulfillment.any_instance.stub latest: items
+        NetSuite::Records::SalesOrder.stub get: double("Sales Order", external_id: 123)
       end
 
       it "builds out a collection of shipments from item fulfillments" do
-        VCR.use_cassette("item_fulfillment/more_latest") do
-          subject.messages
-        end
+        messages = subject.messages
+        expect(messages.last[:tracking]).to_not be_empty
       end
     end
   end
