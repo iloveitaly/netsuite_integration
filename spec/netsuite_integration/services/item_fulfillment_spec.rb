@@ -9,12 +9,16 @@ module NetsuiteIntegration
       subject { described_class.new config }
 
       before do
-        config["netsuite_poll_fulfillment_timestamp"] = '2014-04-13t18:48:56.001z'
+        config["netsuite_poll_fulfillment_timestamp"] = '2014-04-27T18:48:56.001Z'
       end
 
-      pending "polls for item fullfillments" do
+      it "returns ordered by last modified date" do
         VCR.use_cassette("item_fulfillment/latest") do
-          subject.latest
+          shipments = subject.latest
+
+          (1..(shipments.count - 1)).each do |time|
+            expect(shipments[time].last_modified_date).to be >= shipments[time-1].last_modified_date
+          end
         end
       end
     end
