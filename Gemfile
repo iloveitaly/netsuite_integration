@@ -7,7 +7,7 @@ gem 'tilt-jbuilder', require: 'sinatra/jbuilder'
 gem 'endpoint_base', github: 'spree/endpoint_base'
 gem 'capistrano'
 
-gem 'netsuite', github: 'huoxito/netsuite', branch: 'one-package-list'
+gem 'netsuite', github: 'huoxito/netsuite', branch: 'item-fulfillment-modified-date'
 gem 'honeybadger'
 
 group :development do
