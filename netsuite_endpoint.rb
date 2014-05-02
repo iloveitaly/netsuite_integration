@@ -130,6 +130,28 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     end
   end
 
+  post '/get_shipments' do
+    begin
+      shipment = NetsuiteIntegration::Shipment.new(@config, @payload)
+
+      if !shipment.latest_fulfillments.empty?
+
+        count = shipment.latest_fulfillments.count
+        summary = "#{count} #{"shipment".pluralize count} found in NetSuite"
+
+        add_parameter 'netsuite_poll_fulfillment_timestamp', shipment.last_modified_date
+        shipment.messages.each { |s| add_object :shipment, s }
+
+        result 200, summary
+      else
+        result 200
+      end
+    rescue => e
+      log_exception(e)
+      result 500, e.message
+    end
+  end
+
   post '/add_shipment' do
     order = NetsuiteIntegration::Shipment.new(@config, @payload).import
     result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"

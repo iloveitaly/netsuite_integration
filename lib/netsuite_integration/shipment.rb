@@ -48,9 +48,7 @@ module NetsuiteIntegration
     end
 
     def messages
-      shipments = Services::ItemFulfillment.new(config).latest
-
-      shipments.map do |shipment|
+      latest_fulfillments.map do |shipment|
         {
           id: shipment.internal_id,
           order_id: sales_orders_for_shipment(shipment.created_from.internal_id).external_id,
@@ -63,6 +61,14 @@ module NetsuiteIntegration
           items: build_item_list(shipment.item_list.items)
         }
       end
+    end
+
+    def last_modified_date
+      latest_fulfillments.last.last_modified_date.utc + 1.second
+    end
+
+    def latest_fulfillments
+      @latest_fulfillments ||= Services::ItemFulfillment.new(config).latest
     end
 
     private
