@@ -146,6 +146,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       else
         result 200
       end
+    rescue NetSuite::RecordNotFound => e
+      result 500, e.message
     rescue => e
       log_exception(e)
       result 500, e.message
