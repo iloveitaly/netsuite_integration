@@ -129,6 +129,13 @@ module NetsuiteIntegration
         expect(subject.sales_order.external_id).to eq existing_order.external_id
         expect(subject.sales_order.internal_id).to eq existing_order.internal_id
       end
+
+      it "updates the order along with customer address" do
+        VCR.use_cassette('order/update_order_customer_address') do
+          subject = described_class.new(config, order: Factories.update_order_customer_address_payload)
+          expect(subject.update).to be
+        end
+      end
     end
 
     context 'netsuite instance requires Department' do

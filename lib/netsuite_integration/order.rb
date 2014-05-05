@@ -59,6 +59,7 @@ module NetsuiteIntegration
 
     def update
       sales_order.update(
+        entity: set_up_customer,
         item_list: build_item_list,
         transaction_bill_address: build_bill_address,
         shipping_cost: order_payload[:totals][:shipping],
