@@ -123,6 +123,7 @@ describe NetsuiteEndpoint do
 
       it 'creates customer deposit' do
         request[:order][:number] = "RXXXXXC23774"
+        NetsuiteIntegration::Order.any_instance.stub set_up_customer: nil
 
         VCR.use_cassette('order/customer_deposit_on_updated_message') do
           post '/update_order', request.to_json, auth
@@ -165,6 +166,8 @@ describe NetsuiteEndpoint do
         let(:request) do
           Factories.order_updated_items_payload.merge(parameters: parameters)
         end
+
+        before { NetsuiteIntegration::Order.any_instance.stub set_up_customer: nil }
 
         it "updates sales order" do
           VCR.use_cassette('order/update_items') do
@@ -258,6 +261,8 @@ describe NetsuiteEndpoint do
       let(:request) do
         Factories.payments_completed_and_void_payload.merge(parameters: parameters)
       end
+
+      before { NetsuiteIntegration::Order.any_instance.stub set_up_customer: nil }
 
       it "issues deposit and refund for both payments respectively" do
         VCR.use_cassette('refund/payments_completed_and_void') do
