@@ -13,6 +13,10 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
   set :logging, true
 
+  error Savon::SOAPFault do
+    result 500, env['sinatra.error'].to_s
+  end
+
   before do
     if config = @config
       @netsuite_client ||= NetSuite.configure do
@@ -45,24 +49,20 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/get_products' do
-    begin
-      products = NetsuiteIntegration::Product.new(@config)
+    products = NetsuiteIntegration::Product.new(@config)
 
-      if products.collection.any?
-        products.messages.each do |message|
-          add_object "product", message
-        end
-
-        add_parameter 'netsuite_last_updated_after', products.last_modified_date
-
-        count = products.messages.count
-        @summary = "#{count} #{"item".pluralize count} found in NetSuite"
+    if products.collection.any?
+      products.messages.each do |message|
+        add_object "product", message
       end
 
-      result 200, @summary
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
+      add_parameter 'netsuite_last_updated_after', products.last_modified_date
+
+      count = products.messages.count
+      @summary = "#{count} #{"item".pluralize count} found in NetSuite"
     end
+
+    result 200, @summary
   end
 
   post '/add_order' do
@@ -126,8 +126,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       end
 
       result 200, summary
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
     rescue NetSuite::RecordNotFound
       result 200
     rescue => e
@@ -152,8 +150,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       else
         result 200
       end
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
     rescue => e
