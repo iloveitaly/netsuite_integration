@@ -68,6 +68,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   post '/add_order' do
     begin
       create_or_update_order
+    rescue Savon::SOAPFault => e
+      result 500, e.to_s
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
     rescue => e
@@ -79,6 +81,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   post '/update_order' do
     begin
       create_or_update_order
+    rescue Savon::SOAPFault => e
+      result 500, e.to_s
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
     rescue => e
@@ -88,22 +92,26 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/cancel_order' do
-    unless order = sales_order_service.find_by_external_id(@payload[:order][:number] || @payload[:order][:id])
-      raise NetsuiteIntegration::RecordNotFoundSalesOrder, "NetSuite Sales Order not found for order #{@payload[:order][:number] || @payload[:order][:id]}"
-    end
-
-    if customer_record_exists?
-      refund = NetsuiteIntegration::Refund.new(@config, @payload, order)
-      if refund.process!
-        summary = "Customer Refund created and NetSuite Sales Order #{@payload[:order][:number]} was closed"
-        result 200, summary
+    begin
+      if order = sales_order_service.find_by_external_id(@payload[:order][:number] || @payload[:order][:id])
+        if customer_record_exists?
+          refund = NetsuiteIntegration::Refund.new(@config, @payload, order)
+          if refund.process!
+            summary = "Customer Refund created and NetSuite Sales Order #{@payload[:order][:number]} was closed"
+            result 200, summary
+          else
+            summary = "Failed to create a Customer Refund and close the NetSuite Sales Order #{@payload[:order][:number]}"
+            result 500, summary
+          end
+        else
+          sales_order_service.close!(order)
+          result 200, "NetSuite Sales Order #{@payload[:order][:number]} was closed"
+        end
       else
-        summary = "Failed to create a Customer Refund and close the NetSuite Sales Order #{@payload[:order][:number]}"
-        result 500, summary
+        result 500, "NetSuite Sales Order not found for order #{@payload[:order][:number] || @payload[:order][:id]}"
       end
-    else
-      sales_order_service.close!(order)
-      result 200, "NetSuite Sales Order #{@payload[:order][:number]} was closed"
+    rescue Savon::SOAPFault => e
+      result 500, e.to_s
     end
   end
 
@@ -163,8 +171,12 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_shipment' do
-    order = NetsuiteIntegration::Shipment.new(@config, @payload).import
-    result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
+    begin
+      order = NetsuiteIntegration::Shipment.new(@config, @payload).import
+      result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
+    rescue Savon::SOAPFault => e
+      result 500, e.to_s
+    end
   end
 
   private
