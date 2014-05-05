@@ -6,6 +6,7 @@ module NetsuiteIntegration
     include_examples "connect to netsuite"
 
     let(:user) { Factories.user_new_payload['user'].with_indifferent_access }
+
     subject { described_class.new config }
 
     context '#find_by_external_id' do
@@ -38,6 +39,23 @@ module NetsuiteIntegration
 
           res = subject.update_attributes(customer, {email: 'wasss@spreecommerce.com'})
           res.should be_kind_of(NetSuite::Records::Customer)
+        end
+      end
+
+      it "adds new address to booklist" do
+        address = Factories.add_order_payload[:shipping_address]
+        user[:email] = "test@spreecommerce.com"
+        address[:city] = "Joao Pessoa"
+
+        VCR.use_cassette('customer/new_default_customer_address') do
+          # subject.create(user).should be_kind_of(NetSuite::Records::Customer)
+          customer = subject.find_by_external_id(user[:email])
+          expect(subject.create_new_default_address(customer, address)).to be
+          updated_customer = subject.find_by_external_id(user[:email])
+
+          count = customer.addressbook_list.addressbooks.count
+          updated_count = updated_customer.addressbook_list.addressbooks.count
+          expect(updated_count).to be > count
         end
       end
     end
