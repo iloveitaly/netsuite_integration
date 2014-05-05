@@ -41,6 +41,20 @@ module NetsuiteIntegration
           res.should be_kind_of(NetSuite::Records::Customer)
         end
       end
+    end
+
+    context "addresses" do
+      let(:address) { Factories.add_order_payload[:shipping_address] }
+
+      it "compares them" do
+        VCR.use_cassette('customer/compare_addresses') do
+          customer = subject.find_by_external_id("spree@example.com")
+          expect(subject).not_to have_changed_address customer, address
+
+          address[:city] = "Teresina"
+          expect(subject).to have_changed_address customer, address
+        end
+      end
 
       it "adds new address to booklist" do
         address = Factories.add_order_payload[:shipping_address]

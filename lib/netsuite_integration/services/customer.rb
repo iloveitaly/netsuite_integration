@@ -52,6 +52,23 @@ module NetsuiteIntegration
         end
       end
 
+      def has_changed_address?(customer, payload)
+        default = existing_addresses(customer).select { |a| a[:default_shipping] }.first
+
+        address = {
+          default_shipping: true,
+          addr1: payload[:address1],
+          addr2: payload[:address2],
+          zip: payload[:zipcode],
+          city: payload[:city],
+          state: StateService.by_state_name(payload[:state]),
+          country: CountryService.by_iso_country(payload[:country]),
+          phone: payload[:phone].gsub(/([^0-9]*)/, "")
+        }
+
+        !(default == address)
+      end
+
       def create_new_default_address(customer, payload)
         attrs = [{
           default_shipping: true,
@@ -64,22 +81,22 @@ module NetsuiteIntegration
           phone: payload[:phone].gsub(/([^0-9]*)/, "")
         }]
 
-        addresses = attrs.push existing_addresses(customer)
-        customer.update addressbook_list: { addressbook: addresses.flatten }
+        existing = existing_addresses(customer).map { |a| a[:default_shipping] = false }
+        customer.update addressbook_list: { addressbook: attrs.push(existing).flatten }
       end
 
       private
         def existing_addresses(customer)
           customer.addressbook_list.addressbooks.map do |addr|
             {
-              default_shipping: false,
-              addr1: addr.addr1,
-              addr2: addr.addr2,
-              zip: addr.zip,
-              city: addr.city,
-              state: addr.state,
-              country: addr.country,
-              phone: addr.phone
+              default_shipping: addr.default_shipping,
+              addr1: addr.addr1.to_s,
+              addr2: addr.addr2.to_s,
+              zip: addr.zip.to_s,
+              city: addr.city.to_s,
+              state: addr.state.to_s,
+              country: addr.country.to_s,
+              phone: addr.phone.gsub(/([^0-9]*)/, "")
             }
           end
         end
