@@ -64,7 +64,7 @@ module NetsuiteIntegration
         VCR.use_cassette('customer/new_default_customer_address') do
           # subject.create(user).should be_kind_of(NetSuite::Records::Customer)
           customer = subject.find_by_external_id(user[:email])
-          expect(subject.create_new_default_address(customer, address)).to be
+          expect(subject.set_or_create_default_address(customer, address)).to be
           updated_customer = subject.find_by_external_id(user[:email])
 
           count = customer.addressbook_list.addressbooks.count

@@ -53,10 +53,7 @@ module NetsuiteIntegration
       end
 
       def has_changed_address?(customer, payload)
-        default = existing_addresses(customer).select { |a| a[:default_shipping] }.first
-
-        address = {
-          default_shipping: true,
+        current = {
           addr1: payload[:address1],
           addr2: payload[:address2],
           zip: payload[:zipcode],
@@ -66,10 +63,13 @@ module NetsuiteIntegration
           phone: payload[:phone].gsub(/([^0-9]*)/, "")
         }
 
-        !(default == address)
+        existing_addresses(customer).none? do |address|
+          address.delete :default_shipping
+          address == current
+        end
       end
 
-      def create_new_default_address(customer, payload)
+      def set_or_create_default_address(customer, payload)
         attrs = [{
           default_shipping: true,
           addr1: payload[:address1],
