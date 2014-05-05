@@ -80,9 +80,8 @@ module NetsuiteIntegration
     private
     def set_up_customer
       if customer = customer_service.find_by_external_id(order_payload[:email])
-        if customer.addressbook_list.addressbooks == []
-          # update address if missing
-          customer_service.update_address(customer, order_payload[:shipping_address])
+        if customer_service.has_changed_address? customer, order_payload[:shipping_address]
+          customer_service.create_new_default_address customer, order_payload[:shipping_address]
         end
       else
         customer = customer_service.create(order_payload.dup)

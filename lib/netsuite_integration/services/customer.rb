@@ -81,7 +81,11 @@ module NetsuiteIntegration
           phone: payload[:phone].gsub(/([^0-9]*)/, "")
         }]
 
-        existing = existing_addresses(customer).map { |a| a[:default_shipping] = false }
+        existing = existing_addresses(customer).map do |a|
+          a[:default_shipping] = false
+          a
+        end
+
         customer.update addressbook_list: { addressbook: attrs.push(existing).flatten }
       end
 
