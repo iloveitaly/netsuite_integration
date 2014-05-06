@@ -114,6 +114,14 @@ describe NetsuiteEndpoint do
           expect(json_response[:summary]).to match('sent to NetSuite')
         end
       end
+
+      it "rescues customer creation failure" do
+        expect(NetsuiteIntegration::Order).to receive(:new).and_raise NetsuiteIntegration::CreationFailCustomerException
+
+        post '/add_order', request.to_json, auth
+        expect(last_response.status).to eq 500
+        expect(json_response[:summary]).to match "Could not save customer with"
+      end
     end
 
     context 'when order has already been imported' do

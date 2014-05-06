@@ -88,6 +88,8 @@ module NetsuiteIntegration
         customer = customer_service.create(order_payload.dup)
       end
 
+      raise CreationFailCustomerException unless customer
+
       NetSuite::Records::RecordRef.new(external_id: customer.external_id)
     end
 
