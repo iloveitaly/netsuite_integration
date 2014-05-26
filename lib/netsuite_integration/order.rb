@@ -60,13 +60,15 @@ module NetsuiteIntegration
     end
 
     def update
-      sales_order.update(
+      fields = {
         entity: set_up_customer,
         item_list: build_item_list,
         transaction_bill_address: build_bill_address,
         shipping_cost: order_payload[:totals][:shipping],
         transaction_ship_address: build_ship_address
-      )
+      }
+
+      sales_order.update fields.merge(handle_extra_fields)
     end
 
     def paid?
@@ -82,19 +84,23 @@ module NetsuiteIntegration
 
     def handle_extra_fields
       if order_payload[:extra_fields] && order_payload[:extra_fields].is_a?(Hash)
+        extra = {}
         order_payload[:extra_fields].each do |k, v|
+
           method = "#{k}=".to_sym
           ref_method = if k =~ /_id$/ || k =~ /_ref$/
                          "#{k[0..-4]}=".to_sym
                        end
 
           if sales_order.respond_to? method
-            sales_order.send method, v
+            extra[k.to_sym] = sales_order.send method, v
           elsif ref_method && sales_order.respond_to?(ref_method)
-            sales_order.send ref_method, NetSuite::Records::RecordRef.new(internal_id: v)
+            extra[k[0..-4].to_sym] = sales_order.send ref_method, NetSuite::Records::RecordRef.new(internal_id: v)
           end
         end
-      end
+
+        extra
+      end || {}
     end
 
     private
