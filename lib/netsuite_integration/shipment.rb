@@ -25,6 +25,8 @@ module NetsuiteIntegration
         }
       })
 
+      handle_extra_fields invoice, :invoice_extra_fields
+
       invoice.add
       verify_errors(invoice)
     end
@@ -48,7 +50,7 @@ module NetsuiteIntegration
         }
       })
 
-      handle_extra_fulfillment_fields fulfillment
+      handle_extra_fields fulfillment, :fulfillment_extra_fields
 
       @fulfilled = fulfillment.add
       verify_errors(fulfillment)
@@ -78,18 +80,18 @@ module NetsuiteIntegration
       @latest_fulfillments ||= Services::ItemFulfillment.new(config).latest
     end
 
-    def handle_extra_fulfillment_fields(item_fulfillment)
-      if shipment_payload[:fulfillment_extra_fields] && shipment_payload[:fulfillment_extra_fields].is_a?(Hash)
-        shipment_payload[:fulfillment_extra_fields].each do |k, v|
+    def handle_extra_fields(record, extra_key)
+      if shipment_payload[extra_key] && shipment_payload[extra_key].is_a?(Hash)
+        shipment_payload[extra_key].each do |k, v|
           method = "#{k}=".to_sym
           ref_method = if k =~ /_id$/ || k =~ /_ref$/
                          "#{k[0..-4]}=".to_sym
                        end
 
-          if item_fulfillment.respond_to? method
-            item_fulfillment.send method, v
-          elsif ref_method && item_fulfillment.respond_to?(ref_method)
-            item_fulfillment.send ref_method, NetSuite::Records::RecordRef.new(internal_id: v)
+          if record.respond_to? method
+            record.send method, v
+          elsif ref_method && record.respond_to?(ref_method)
+            record.send ref_method, NetSuite::Records::RecordRef.new(internal_id: v)
           end
         end
       end
