@@ -59,5 +59,39 @@ module NetsuiteIntegration
         expect(messages.last[:tracking]).to_not be_empty
       end
     end
+
+    context "extra fields" do
+      subject do
+        payload = Factories.shipment_confirm_payload
+        payload[:shipment][:fulfillment_extra_fields] = {
+          ship_method_id: 3,
+          memo: "Extra memo"
+        }
+
+        described_class.new(config, payload)
+      end
+
+      let(:fulfillment) do
+        NetSuite::Records::ItemFulfillment.new
+      end
+
+      it "handles extra attributes when creating fulfillment" do
+        subject.stub order_pending_fulfillment?: true, order_id: 1
+
+        expect(NetSuite::Records::ItemFulfillment).to receive(:new).and_return double.as_null_object
+        expect(subject).to receive(:handle_extra_fulfillment_fields)
+        subject.create_item_fulfillment
+      end
+
+      it "sets extra attributes properly" do
+        subject.handle_extra_fulfillment_fields fulfillment
+        expect(fulfillment.memo).to eq "Extra memo"
+      end
+
+      it "sets extra attributes properly as reference" do
+        subject.handle_extra_fulfillment_fields fulfillment
+        expect(fulfillment.ship_method.internal_id).to eq 3
+      end
+    end
   end
 end
