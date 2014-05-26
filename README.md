@@ -5,6 +5,8 @@
 [NetSuite](http://www.netsuite.com) is a web-based business software suite,
 including business accounting software, ERP software, CRM software and ecommerce.
 
+See The [SuiteTalk Web Services](https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SuiteTalkWebServices.html) for further info on how integration can be improved.
+
 #### Connection Parameters
 
 | Name | Value | example |
