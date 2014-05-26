@@ -75,6 +75,36 @@ module NetsuiteIntegration
       end
     end
 
+    context "extra attributes" do
+      subject do
+        payload = Factories.order_new_payload
+        payload[:order][:extra_fields] = { department_id: 1, message: "hey you!" }
+
+        described_class.any_instance.stub_chain :sales_order_service, find_by_external_id: nil
+        described_class.new(config, payload)
+      end
+
+      it " handles extra attributes on create" do
+        expect(subject).to receive :set_up_customer
+        expect(subject).to receive :build_item_list
+
+        expect(subject).to receive :handle_extra_fields
+
+        expect(subject.sales_order).to receive :add
+        subject.create
+      end
+
+      it "calls setter on netsuite sales order record" do
+        subject.handle_extra_fields
+        expect(subject.sales_order.message).to eq "hey you!"
+      end
+
+      it "converts them to reference when needed" do
+        subject.handle_extra_fields
+        expect(subject.sales_order.department.internal_id).to eq 1
+      end
+    end
+
     context "tax, discount names" do
       let(:tax) { "Tax 2345" }
       let(:discount) { "Discount 34543" }

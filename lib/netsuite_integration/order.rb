@@ -48,6 +48,8 @@ module NetsuiteIntegration
         sales_order.department = NetSuite::Records::RecordRef.new(internal_id: department_id)
       end
 
+      handle_extra_fields
+
       if sales_order.add
         fresh_sales_order = sales_order_service.find_by_external_id(order_payload[:number] || order_payload[:id])
         sales_order.tran_id = fresh_sales_order.tran_id
@@ -75,6 +77,23 @@ module NetsuiteIntegration
     def errors
       if sales_order && sales_order.errors.is_a?(Array)
         self.sales_order.errors.map(&:message).join(", ")
+      end
+    end
+
+    def handle_extra_fields
+      if order_payload[:extra_fields] && order_payload[:extra_fields].is_a?(Hash)
+        order_payload[:extra_fields].each do |k, v|
+          method = "#{k}=".to_sym
+          ref_method = if k =~ /_id$/ || k =~ /_ref$/
+                         "#{k[0..-4]}=".to_sym
+                       end
+
+          if sales_order.respond_to? method
+            sales_order.send method, v
+          elsif ref_method && sales_order.respond_to?(ref_method)
+            sales_order.send ref_method, NetSuite::Records::RecordRef.new(internal_id: v)
+          end
+        end
       end
     end
 
