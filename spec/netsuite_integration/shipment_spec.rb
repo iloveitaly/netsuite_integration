@@ -59,5 +59,70 @@ module NetsuiteIntegration
         expect(messages.last[:tracking]).to_not be_empty
       end
     end
+
+    context "extra fields" do
+      subject do
+        payload = Factories.shipment_confirm_payload
+        payload[:shipment][:fulfillment_extra_fields] = {
+          ship_method_id: 3,
+          memo: "Extra memo"
+        }
+
+        payload[:shipment][:invoice_extra_fields] = {
+          department_id: 3,
+          message: "Extra message"
+        }
+
+        described_class.new(config, payload)
+      end
+
+      context "fulfillment" do
+        let(:fulfillment) do
+          NetSuite::Records::ItemFulfillment.new
+        end
+
+        it "handles extra attributes when creating fulfillment" do
+          subject.stub order_pending_fulfillment?: true, order_id: 1
+
+          expect(NetSuite::Records::ItemFulfillment).to receive(:new).and_return double.as_null_object
+          expect(subject).to receive(:handle_extra_fields)
+          subject.create_item_fulfillment
+        end
+
+        it "sets extra attributes properly" do
+          subject.handle_extra_fields fulfillment, :fulfillment_extra_fields
+          expect(fulfillment.memo).to eq "Extra memo"
+        end
+
+        it "sets extra attributes properly as reference" do
+          subject.handle_extra_fields fulfillment, :fulfillment_extra_fields
+          expect(fulfillment.ship_method.internal_id).to eq 3
+        end
+      end
+
+      context "invoice" do
+        let(:invoice) do
+          NetSuite::Records::Invoice.new
+        end
+
+        it "handles extra attributes when creating invoice" do
+          subject.stub order_pending_billing?: true, order_id: 1
+
+          expect(NetSuite::Records::Invoice).to receive(:new).and_return double.as_null_object
+          expect(subject).to receive(:handle_extra_fields)
+          subject.create_invoice
+        end
+
+        it "sets extra attributes properly" do
+          subject.handle_extra_fields invoice, :invoice_extra_fields
+          expect(invoice.message).to eq "Extra message"
+        end
+
+        it "sets extra attributes properly as reference" do
+          subject.handle_extra_fields invoice, :invoice_extra_fields
+          expect(invoice.department.internal_id).to eq 3
+        end
+      end
+    end
   end
 end

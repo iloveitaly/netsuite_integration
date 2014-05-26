@@ -1,6 +1,11 @@
 module NetsuiteIntegration
   class Shipment < Base
-    attr_reader :config
+    attr_reader :shipment_payload
+
+    def initialize(config, payload = {})
+      super config, payload
+      @shipment_payload = payload[:shipment]
+    end
 
     def import
       create_item_fulfillment
@@ -19,6 +24,8 @@ module NetsuiteIntegration
           internal_id: order_id
         }
       })
+
+      handle_extra_fields invoice, :invoice_extra_fields
 
       invoice.add
       verify_errors(invoice)
@@ -42,6 +49,8 @@ module NetsuiteIntegration
           ship_phone:     address[:phone].gsub(/([^0-9]*)/, "")
         }
       })
+
+      handle_extra_fields fulfillment, :fulfillment_extra_fields
 
       @fulfilled = fulfillment.add
       verify_errors(fulfillment)
@@ -69,6 +78,23 @@ module NetsuiteIntegration
 
     def latest_fulfillments
       @latest_fulfillments ||= Services::ItemFulfillment.new(config).latest
+    end
+
+    def handle_extra_fields(record, extra_key)
+      if shipment_payload[extra_key] && shipment_payload[extra_key].is_a?(Hash)
+        shipment_payload[extra_key].each do |k, v|
+          method = "#{k}=".to_sym
+          ref_method = if k =~ /_id$/ || k =~ /_ref$/
+                         "#{k[0..-4]}=".to_sym
+                       end
+
+          if record.respond_to? method
+            record.send method, v
+          elsif ref_method && record.respond_to?(ref_method)
+            record.send ref_method, NetSuite::Records::RecordRef.new(internal_id: v)
+          end
+        end
+      end
     end
 
     private

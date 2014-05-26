@@ -84,7 +84,7 @@ module NetsuiteIntegration
         described_class.new(config, payload)
       end
 
-      it " handles extra attributes on create" do
+      it "handles extra attributes on create" do
         expect(subject).to receive :set_up_customer
         expect(subject).to receive :build_item_list
 
@@ -92,6 +92,16 @@ module NetsuiteIntegration
 
         expect(subject.sales_order).to receive :add
         subject.create
+      end
+
+      it "handles extra attributes on update" do
+        expect(subject).to receive :set_up_customer
+        expect(subject).to receive :build_item_list
+
+        expected = hash_including(department: instance_of(NetSuite::Records::RecordRef), message: "hey you!")
+        expect(subject.sales_order).to receive(:update).with expected
+
+        subject.update
       end
 
       it "calls setter on netsuite sales order record" do
