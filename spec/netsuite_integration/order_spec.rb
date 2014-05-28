@@ -190,5 +190,26 @@ module NetsuiteIntegration
         end
       end
     end
+
+    context "setting up customer" do
+      subject do
+        described_class.any_instance.stub_chain :sales_order_service, :find_by_external_id
+        described_class.new(config, { order: Factories.add_order_department_payload })
+      end
+
+      let(:customer_instance) { double("Customer", errors: [double(message: "hey hey")]) }
+
+      before do
+        subject.stub_chain :customer_service, :find_by_external_id
+        subject.stub_chain :customer_service, :create
+        subject.stub_chain :customer_service, customer_instance: customer_instance
+      end
+
+      it "shows detailed error message" do
+        expect {
+          subject.set_up_customer
+        }.to raise_error "hey hey"
+      end
+    end
   end
 end

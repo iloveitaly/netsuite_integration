@@ -116,11 +116,12 @@ describe NetsuiteEndpoint do
       end
 
       it "rescues customer creation failure" do
-        expect(NetsuiteIntegration::Order).to receive(:new).and_raise NetsuiteIntegration::CreationFailCustomerException
+        expect(NetsuiteIntegration::Order).to receive(:new).and_raise NetsuiteIntegration::CreationFailCustomerException, "error message"
 
         post '/add_order', request.to_json, auth
         expect(last_response.status).to eq 500
-        expect(json_response[:summary]).to match "Could not save customer with"
+        expect(json_response[:summary]).to match "Could not save customer"
+        expect(json_response[:summary]).to match "error message"
       end
     end
 

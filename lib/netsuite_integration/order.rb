@@ -103,7 +103,6 @@ module NetsuiteIntegration
       end || {}
     end
 
-    private
     def set_up_customer
       if customer = customer_service.find_by_external_id(order_payload[:email])
         if customer_service.has_changed_address? customer, order_payload[:shipping_address]
@@ -113,11 +112,18 @@ module NetsuiteIntegration
         customer = customer_service.create(order_payload.dup)
       end
 
-      raise CreationFailCustomerException unless customer
+      unless customer
+        message = if customer_service.customer_instance && customer_service.customer_instance.errors.is_a?(Array)
+          customer_service.customer_instance.errors.map(&:message).join(", ")
+        end
+
+        raise CreationFailCustomerException, message
+      end
 
       NetSuite::Records::RecordRef.new(external_id: customer.external_id)
     end
 
+    private
     def build_item_list
       sales_order_items = order_payload[:line_items].map do |item|
 

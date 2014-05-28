@@ -1,6 +1,7 @@
 module NetsuiteIntegration
   module Services
     class Customer < Base
+      attr_reader :customer_instance
 
       def find_by_external_id(email)
         NetSuite::Records::Customer.get({:external_id => email})
@@ -11,7 +12,7 @@ module NetsuiteIntegration
 
       # entity_id -> Customer name
       def create(payload)
-        customer             = NetSuite::Records::Customer.new
+        @customer_instance = customer = NetSuite::Records::Customer.new
         customer.email       = payload[:email]
         customer.external_id = payload[:email]
 
