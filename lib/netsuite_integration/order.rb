@@ -125,6 +125,15 @@ module NetsuiteIntegration
       NetSuite::Records::RecordRef.new(external_id: customer.external_id)
     end
 
+    def internal_id_for(type)
+      name = @config.fetch("netsuite_item_for_#{type.pluralize}", "Store #{type.capitalize}")
+      if item = non_inventory_item_service.find_or_create_by_name(name)
+        item.internal_id
+      else
+        raise NonInventoryItemException, "Couldn't find or create item #{name}: #{non_inventory_item_service.error_messages}"
+      end
+    end
+
     private
     def build_item_list
       sales_order_items = order_payload[:line_items].map do |item|
@@ -192,15 +201,6 @@ module NetsuiteIntegration
           ship_country: Services::CountryService.by_iso_country(payload[:country]),
           ship_phone: payload[:phone].gsub(/([^0-9]*)/, "")
         })
-      end
-    end
-
-    def internal_id_for(type)
-      name = @config.fetch("netsuite_item_for_#{type.pluralize}", "Store #{type.capitalize}")
-      if item = non_inventory_item_service.find_or_create_by_name(name)
-        item.internal_id
-      else
-        raise NonInventoryItemException, "Couldn't find or create item #{name}: #{inventory_item_service.error_messages}"
       end
     end
   end

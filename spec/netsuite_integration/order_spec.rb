@@ -216,5 +216,23 @@ module NetsuiteIntegration
         }.to raise_error "hey hey"
       end
     end
+
+    context "non inventory items" do
+      subject do
+        described_class.any_instance.stub_chain :sales_order_service, :find_by_external_id
+        described_class.new(config, { order: Factories.add_order_department_payload })
+      end
+
+      before do
+        subject.stub_chain :non_inventory_item_service, :find_or_create_by_name
+        subject.stub_chain :non_inventory_item_service, :error_messages
+      end
+
+      it "raises if item not found or created" do
+        expect {
+          subject.internal_id_for "AAAAAaaaaaaaaaawwwwwwww"
+        }.to raise_error NonInventoryItemException
+      end
+    end
   end
 end
