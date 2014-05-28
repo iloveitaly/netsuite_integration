@@ -1,5 +1,6 @@
 config_hash = {
   'netsuite_api_version' => '2013_2',
+  'netsuite_sandbox' => false,
   'netsuite_wsdl_url' => 'https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl',
   'netsuite_email' => 'washington@spreecommerce.com',
   'netsuite_password' => 'test',
@@ -32,8 +33,12 @@ shared_context "connect to netsuite" do
     NetSuite.configure do
       reset!
       api_version config_hash.fetch('netsuite_api_version')
-      wsdl        config_hash.fetch('netsuite_wsdl_url')
-      sandbox     false
+
+      if config_hash['netsuite_wsdl_url'].present?
+        wsdl        config_hash.fetch('netsuite_wsdl_url')
+      end
+
+      sandbox     config_hash.fetch('netsuite_sandbox')
       email       config_hash.fetch('netsuite_email')
       password    config_hash.fetch('netsuite_password')
       account     config_hash.fetch('netsuite_account')

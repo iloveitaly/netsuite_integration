@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/RevolutionPrep/netsuite.git
-  revision: 6eb44047560a74c16262eedcf3c2bd09258a50dc
+  remote: git://github.com/huoxito/netsuite.git
+  revision: 4c4915ca4f413561f74aa236ba210dd9a0d17622
+  branch: fix-customer-field-refs
   specs:
     netsuite (0.2.4)
       savon (~> 2.3.0)

@@ -25,6 +25,8 @@ module NetsuiteIntegration
           customer.last_name   = 'N/A'
         end
 
+        handle_extra_fields customer, payload[:netsuite_customer_fields]
+
         # Defaults
         customer.is_person   = true
         # I don't think we need to make the customer inactive
@@ -35,6 +37,27 @@ module NetsuiteIntegration
         else
           false
         end
+      end
+
+      def handle_extra_fields(record, extra_fields)
+        if extra_fields && extra_fields.is_a?(Hash)
+          extra = {}
+          extra_fields.each do |k, v|
+
+            method = "#{k}=".to_sym
+            ref_method = if k =~ /_id$/ || k =~ /_ref$/
+                           "#{k[0..-4]}=".to_sym
+                         end
+
+            if record.respond_to? method
+              extra[k.to_sym] = record.send method, v
+            elsif ref_method && record.respond_to?(ref_method)
+              extra[k[0..-4].to_sym] = record.send ref_method, NetSuite::Records::RecordRef.new(internal_id: v)
+            end
+          end
+
+          extra
+        end || {}
       end
 
       def update_attributes(customer, attrs)

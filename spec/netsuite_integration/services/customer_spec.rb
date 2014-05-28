@@ -26,8 +26,39 @@ module NetsuiteIntegration
     context '#create' do
       it 'creates the record' do
         VCR.use_cassette('customer/create') do
+          user[:email] = "spree@example.com"
+          user[:shipping_address] = {}
+          user[:shipping_address][:firstname] = "Spree"
+          user[:shipping_address][:lastname] = "Commerce"
+
           subject.create(user).should be_kind_of(NetSuite::Records::Customer)
         end
+      end
+    end
+
+    context "handle extra fields" do
+      let(:customer) { NetSuite::Records::Customer.new }
+
+      let(:extra_fields) do
+        {
+          category_id: 1,
+          subsidiary_id: 1,
+          lead_source_id: 99995,
+          partner_id: 171,
+          price_level_id: 2,
+          comments: "huhu!"
+        }
+      end
+
+      it "handle them just fine" do
+        subject.handle_extra_fields customer, extra_fields
+
+        expect(customer.category.internal_id).to eq 1
+        expect(customer.subsidiary.internal_id).to eq 1
+        expect(customer.lead_source.internal_id).to eq 99995
+        expect(customer.partner.internal_id).to eq 171
+        expect(customer.price_level.internal_id).to eq 2
+        expect(customer.comments).to eq "huhu!"
       end
     end
 
