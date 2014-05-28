@@ -123,6 +123,14 @@ describe NetsuiteEndpoint do
         expect(json_response[:summary]).to match "Could not save customer"
         expect(json_response[:summary]).to match "error message"
       end
+
+      it "rescues non inventory item failure" do
+        expect(NetsuiteIntegration::Order).to receive(:new).and_raise NetsuiteIntegration::NonInventoryItemException, "error message"
+
+        post '/add_order', request.to_json, auth
+        expect(last_response.status).to eq 500
+        expect(json_response[:summary]).to match "error message"
+      end
     end
 
     context 'when order has already been imported' do

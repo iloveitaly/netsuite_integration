@@ -197,7 +197,11 @@ module NetsuiteIntegration
 
     def internal_id_for(type)
       name = @config.fetch("netsuite_item_for_#{type.pluralize}", "Store #{type.capitalize}")
-      non_inventory_item_service.find_or_create_by_name(name).internal_id
+      if item = non_inventory_item_service.find_or_create_by_name(name)
+        item.internal_id
+      else
+        raise NonInventoryItemException, "Couldn't find or create item #{name}: #{inventory_item_service.error_messages}"
+      end
     end
   end
 end

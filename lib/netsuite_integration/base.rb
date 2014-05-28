@@ -46,4 +46,6 @@ module NetsuiteIntegration
 
   # Customer Refund Errors
   class CreationFailCustomerRefundException < StandardError; end
+
+  class NonInventoryItemException < StandardError; end
 end
