@@ -83,9 +83,9 @@ module NetsuiteIntegration
     end
 
     def handle_extra_fields
-      if order_payload[:extra_fields] && order_payload[:extra_fields].is_a?(Hash)
+      if order_payload[:netsuite_order_fields] && order_payload[:netsuite_order_fields].is_a?(Hash)
         extra = {}
-        order_payload[:extra_fields].each do |k, v|
+        order_payload[:netsuite_order_fields].each do |k, v|
 
           method = "#{k}=".to_sym
           ref_method = if k =~ /_id$/ || k =~ /_ref$/

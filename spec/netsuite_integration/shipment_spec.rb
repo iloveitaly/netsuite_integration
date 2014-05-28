@@ -63,12 +63,12 @@ module NetsuiteIntegration
     context "extra fields" do
       subject do
         payload = Factories.shipment_confirm_payload
-        payload[:shipment][:fulfillment_extra_fields] = {
+        payload[:shipment][:netsuite_shipment_fields] = {
           ship_method_id: 3,
           memo: "Extra memo"
         }
 
-        payload[:shipment][:invoice_extra_fields] = {
+        payload[:shipment][:netsuite_invoice_fields] = {
           department_id: 3,
           message: "Extra message"
         }
@@ -90,12 +90,12 @@ module NetsuiteIntegration
         end
 
         it "sets extra attributes properly" do
-          subject.handle_extra_fields fulfillment, :fulfillment_extra_fields
+          subject.handle_extra_fields fulfillment, :netsuite_shipment_fields
           expect(fulfillment.memo).to eq "Extra memo"
         end
 
         it "sets extra attributes properly as reference" do
-          subject.handle_extra_fields fulfillment, :fulfillment_extra_fields
+          subject.handle_extra_fields fulfillment, :netsuite_shipment_fields
           expect(fulfillment.ship_method.internal_id).to eq 3
         end
       end
@@ -114,12 +114,12 @@ module NetsuiteIntegration
         end
 
         it "sets extra attributes properly" do
-          subject.handle_extra_fields invoice, :invoice_extra_fields
+          subject.handle_extra_fields invoice, :netsuite_invoice_fields
           expect(invoice.message).to eq "Extra message"
         end
 
         it "sets extra attributes properly as reference" do
-          subject.handle_extra_fields invoice, :invoice_extra_fields
+          subject.handle_extra_fields invoice, :netsuite_invoice_fields
           expect(invoice.department.internal_id).to eq 3
         end
       end

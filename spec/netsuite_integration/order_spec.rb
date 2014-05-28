@@ -78,7 +78,7 @@ module NetsuiteIntegration
     context "extra attributes" do
       subject do
         payload = Factories.order_new_payload
-        payload[:order][:extra_fields] = { department_id: 1, message: "hey you!", class_id: 1 }
+        payload[:order][:netsuite_order_fields] = { department_id: 1, message: "hey you!", class_id: 1 }
 
         described_class.any_instance.stub_chain :sales_order_service, find_by_external_id: nil
         described_class.new(config, payload)
