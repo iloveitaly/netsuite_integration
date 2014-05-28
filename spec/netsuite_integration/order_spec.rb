@@ -78,7 +78,7 @@ module NetsuiteIntegration
     context "extra attributes" do
       subject do
         payload = Factories.order_new_payload
-        payload[:order][:extra_fields] = { department_id: 1, message: "hey you!" }
+        payload[:order][:extra_fields] = { department_id: 1, message: "hey you!", class_id: 1 }
 
         described_class.any_instance.stub_chain :sales_order_service, find_by_external_id: nil
         described_class.new(config, payload)
@@ -107,6 +107,11 @@ module NetsuiteIntegration
       it "calls setter on netsuite sales order record" do
         subject.handle_extra_fields
         expect(subject.sales_order.message).to eq "hey you!"
+      end
+
+      it "handles reserved class attribute properly" do
+        subject.handle_extra_fields
+        expect(subject.sales_order.klass.internal_id).to eq 1
       end
 
       it "converts them to reference when needed" do

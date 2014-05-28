@@ -92,6 +92,8 @@ module NetsuiteIntegration
                          "#{k[0..-4]}=".to_sym
                        end
 
+          ref_method = ref_method == :class= ? :klass= : ref_method
+
           if sales_order.respond_to? method
             extra[k.to_sym] = sales_order.send method, v
           elsif ref_method && sales_order.respond_to?(ref_method)
