@@ -25,7 +25,7 @@ module NetsuiteIntegration
         }
       })
 
-      handle_extra_fields invoice, :invoice_extra_fields
+      handle_extra_fields invoice, :netsuite_invoice_fields
 
       invoice.add
       verify_errors(invoice)
@@ -50,7 +50,7 @@ module NetsuiteIntegration
         }
       })
 
-      handle_extra_fields fulfillment, :fulfillment_extra_fields
+      handle_extra_fields fulfillment, :netsuite_shipment_fields
 
       @fulfilled = fulfillment.add
       verify_errors(fulfillment)
