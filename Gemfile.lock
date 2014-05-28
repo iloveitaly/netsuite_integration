@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/huoxito/netsuite.git
-  revision: 4c4915ca4f413561f74aa236ba210dd9a0d17622
+  revision: 901e07a3f955eb0abf9f7b0a4f82d517bb3fc0ac
   branch: fix-customer-field-refs
   specs:
     netsuite (0.2.4)
