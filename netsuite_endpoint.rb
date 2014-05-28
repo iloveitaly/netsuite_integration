@@ -73,7 +73,7 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
     rescue NetsuiteIntegration::CreationFailCustomerException => e
-      result 500, "Could not save customer with id #{@payload[:order][:email]}"
+      result 500, "Could not save customer #{@payload[:order][:email]}: #{e.message}"
     rescue => e
       log_exception(e)
       result 500, e.message
