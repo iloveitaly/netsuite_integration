@@ -130,7 +130,7 @@ module NetsuiteIntegration
       if item = non_inventory_item_service.find_or_create_by_name(name, order_payload[:netsuite_non_inventory_fields])
         item.internal_id
       else
-        raise NonInventoryItemException, "Couldn't find or create item #{name}: #{non_inventory_item_service.error_messages}"
+        raise NonInventoryItemException, "Couldn't create item #{name}: #{non_inventory_item_service.error_messages}"
       end
     end
 

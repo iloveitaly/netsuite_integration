@@ -84,7 +84,7 @@ module NetsuiteIntegration
           city: payload[:city],
           state: StateService.by_state_name(payload[:state]),
           country: CountryService.by_iso_country(payload[:country]),
-          phone: payload[:phone].gsub(/([^0-9]*)/, "")
+          phone: payload[:phone].to_s.gsub(/([^0-9]*)/, "")
         }
 
         existing_addresses(customer).none? do |address|
@@ -102,7 +102,7 @@ module NetsuiteIntegration
           city: payload[:city],
           state: StateService.by_state_name(payload[:state]),
           country: CountryService.by_iso_country(payload[:country]),
-          phone: payload[:phone].gsub(/([^0-9]*)/, "")
+          phone: payload[:phone].to_s.gsub(/([^0-9]*)/, "")
         }]
 
         existing = existing_addresses(customer).map do |a|
@@ -124,7 +124,7 @@ module NetsuiteIntegration
               city: addr.city.to_s,
               state: addr.state.to_s,
               country: addr.country.to_s,
-              phone: addr.phone.gsub(/([^0-9]*)/, "")
+              phone: addr.phone.to_s.gsub(/([^0-9]*)/, "")
             }
           end
         end
@@ -140,7 +140,7 @@ module NetsuiteIntegration
                 city: payload[:city],
                 state: StateService.by_state_name(payload[:state]),
                 country: CountryService.by_iso_country(payload[:country]),
-                phone: payload[:phone].gsub(/([^0-9]*)/, "")
+                phone: payload[:phone].to_s.gsub(/([^0-9]*)/, "")
               }
             }
           end
