@@ -11,7 +11,7 @@ module NetsuiteIntegration
             external_id: name
           )
 
-          handle_extra_attributes new_item, extra_fields
+          handle_extra_attributes new_item, extra_fields || {}
 
           if new_item.add
             # unfortunately, we have to reload the object
