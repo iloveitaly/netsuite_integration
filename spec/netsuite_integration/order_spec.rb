@@ -136,10 +136,10 @@ module NetsuiteIntegration
       end
 
       it "finds by using proper names" do
-        expect(subject.non_inventory_item_service).to receive(:find_or_create_by_name).with(tax).and_return item
+        expect(subject.non_inventory_item_service).to receive(:find_or_create_by_name).with(tax, nil).and_return item
         subject.send :internal_id_for, "tax"
 
-        expect(subject.non_inventory_item_service).to receive(:find_or_create_by_name).with(discount).and_return item
+        expect(subject.non_inventory_item_service).to receive(:find_or_create_by_name).with(discount, nil).and_return item
         subject.send :internal_id_for, "discount"
       end
     end
