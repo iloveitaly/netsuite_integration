@@ -7,9 +7,10 @@ This is a fully hosted and supported integration for use with the [Wombat](http:
 product. With this integration you can perform the following functions:
 
 * Send orders to NetSuite as Sales Orders
+* Send customers to NetSuite (through orders)
 * Poll for Inventory Item (or any other kind of Item) from NetSuite
 * Create refunds and close Sales Orders in NetSuite once order is canceled
-* Poll for Items from NetSuite
+* Poll for Items in NetSuite (they're persisted as products in wombat.co)
 * Poll for shipments (Item Fulfillments) from NetSuite
 * Send shipments as Item Fulfillment to NetSuite along with Invoice creation
 
