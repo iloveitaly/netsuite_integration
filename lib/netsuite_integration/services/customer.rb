@@ -77,19 +77,21 @@ module NetsuiteIntegration
       end
 
       def has_changed_address?(customer, payload)
-        current = {
-          addr1: payload[:address1],
-          addr2: payload[:address2],
-          zip: payload[:zipcode],
-          city: payload[:city],
-          state: StateService.by_state_name(payload[:state]),
-          country: CountryService.by_iso_country(payload[:country]),
-          phone: payload[:phone].to_s.gsub(/([^0-9]*)/, "")
-        }
+        if payload.is_a? Hash
+          current = {
+            addr1: payload[:address1],
+            addr2: payload[:address2],
+            zip: payload[:zipcode],
+            city: payload[:city],
+            state: StateService.by_state_name(payload[:state]),
+            country: CountryService.by_iso_country(payload[:country]),
+            phone: payload[:phone].to_s.gsub(/([^0-9]*)/, "")
+          }
 
-        existing_addresses(customer).none? do |address|
-          address.delete :default_shipping
-          address == current
+          existing_addresses(customer).none? do |address|
+            address.delete :default_shipping
+            address == current
+          end
         end
       end
 
