@@ -1,93 +1,32 @@
 # NetSuite Integration
 
-## Overview
-
 [NetSuite](http://www.netsuite.com) is a web-based business software suite,
 including business accounting software, ERP software, CRM software and ecommerce.
 
+This is a fully hosted and supported integration for use with the [Wombat](http://wombat.co)
+product. With this integration you can perform the following functions:
+
+* Send orders to NetSuite as Sales Orders
+* Send customers to NetSuite (through orders)
+* Poll for Inventory Item (or any other kind of Item) from NetSuite
+* Create refunds and close Sales Orders in NetSuite once order is canceled
+* Poll for Items in NetSuite (they're persisted as products in wombat.co)
+* Poll for shipments (Item Fulfillments) from NetSuite
+* Send shipments as Item Fulfillment to NetSuite along with Invoice creation
+
 See The [SuiteTalk Web Services](https://system.netsuite.com/help/helpcenter/en_US/Output/Help/SuiteCloudCustomizationScriptingWebServices/SuiteTalkWebServices/SuiteTalkWebServices.html) for further info on how integration can be improved.
 
-#### Connection Parameters
+Also view the [wiki](https://github.com/wombat/netsuite_integration/wiki) for
+more details about parameters and webhooks.
 
-| Name | Value | example |
-| :----| :-----| :------ |
-| netsuite_email | netsuite account email (required) | spree@example.com |
-| netsuite_password | netsuite account password (required) | commerce |
-| netsuite_account | netsuite account (required) | TSWQEFREGR2342 |
-| netsuite_wsdl_url | NetSuite URL (optional as it's also defined by netsuite gem) | https://webservices.na1.netsuite.com/wsdl/v2013_2_0/netsuite.wsdl |
-| netsuite_api_version | Optional api version (defaults to 2013_2) | 2012_2 |
-| netsuite_sandbox | Optional sandbox flag (defaults `false`) | true |
-| netsuite_role | NetSuite user role ID (defaults to 3) | 3 |
+_ps. To run the specs on this repo you need to check out the [cassetes](https://github.com/wombat/netsuite_integration/tree/cassetes)
+branch. No cassetes should be recorded on master._
 
-### Product polling
+[Wombat](http://wombat.co) allows you to connect to your own custom integrations.
+Feel free to modify the source code and host your own version of the integration
+or better yet, help to make the official integration better by submitting a pull request!
 
-/get_products webhook
+![Wombat Logo](http://spreecommerce.com/images/wombat_logo.png)
 
-| Name | Value | example |
-| :----| :-----| :------ |
-| netsuite_last_updated_after | Fetch products updated after this timestamp | 2014-01-29T03:14:07+00:00 |
-| netsuite_item_types | List of item types you want to poll (default to InventoryItem) | InventoryItem; NonInventoryItem |
+This integration is 100% open source an licensed under the terms of the New BSD License.
 
-See https://system.netsuite.com/help/helpcenter/en_US/SchemaBrowser/lists/v2013_2_0/accountingTypes.html#listAcctTyp:ItemType
-for a list of valid item types.
-
-### Inventory polling
-
-/get_inventory webhook
-
-| Name | Value | example |
-| :----| :-----| :------ |
-| netsuite_poll_stock_timestamp | Fetch inventories quantity updated after this timestamp | 2014-01-29T03:14:07+00:00 |
-
-### Push Orders
-
-/add_order and /update_order webhooks
-
-| Name | Value | example |
-| :----| :-----| :------ |
-| netsuite_account_for_sales_id | Account id used on customer deposit and refund (required) | 2 |
-| netsuite_sales_order_custom_form_id | Depending on your NS instance a custom form id will need to be set to close the sales order | 164 |
-| netsuite_item_for_discounts | Item name to represent store discounts | Spree Discount |
-| netsuite_item_for_taxes | Item name to represent store taxes | Spree Tax |
-| netsuite_payment_methods_mapping | A list of mappings store payment method name => NetSuite id | [{"Cash"=>"1", "Credit Card"=>"5"}] |
-| netsuite_department_id | Sales Order Department ID (optional) | 5 |
-
-The Sales Order shipping cost will be set according to `order[:totals][:shipping]`.
-Taxes and Discounts are set from values within `order[:adjustments]`. e.g.
-
-```json
-{
-  "totals": {
-    "shipping": 7
-  },
-  "adjustments": [
-    { "name": "Tax", "value": 7 },
-    { "name": "Discount", "value": -5 }
-  ]
-}
-```
-
-See http://spreecommerce.com/docs/hub/order_object.html for examples on the order object.
-
-### Cancel Orders / Refunds
-
-/cancel_order webhook
-
-| Name | Value | example |
-| :----| :-----| :------ |
-| netsuite_account_for_sales_id | Account id used on customer deposit and refund (required) | 2 |
-| netsuite_payment_methods_mapping | A list of mappings store payment method name => NetSuite id | [{"Cash"=>"1", "Credit Card"=>"5"}] |
-
-### Push shipments
-
-/add_shipment webhooks.
-
-Doesn't require any config parameter
-
-### Get shipments
-
-/get_shipments
-
-| Name | Value | example |
-| :----| :-----| :------ |
-| netsuite_poll_fulfillment_timestamp | Fetch Item Fulfillments updated after this timestamp | 2014-01-29T03:14:07+00:00 |

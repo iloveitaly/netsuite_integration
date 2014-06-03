@@ -18,9 +18,11 @@ module NetsuiteIntegration
         refund.customer       = NetSuite::Records::RecordRef.new(internal_id: customer_id) # '1397' -> Smith Supplies
         refund.payment_method = NetSuite::Records::RecordRef.new(internal_id: payment_method_id) # '1' -> Cash        
 
-        # 'account' is an optional field
-        # It defaults to the first entry in the UI list... I think
-        refund.account        = NetSuite::Records::RecordRef.new(internal_id: config.fetch('netsuite_account_for_sales_id'))
+        if config['netsuite_account_for_sales_id'].present?
+          refund.account = NetSuite::Records::RecordRef.new(internal_id: config.fetch('netsuite_account_for_sales_id'))
+        end
+
+        refund.tran_date = deposits.first.tran_date if deposits.first.tran_date
         refund.external_id    = build_external_id deposits
 
         # doc -> customer_deposit_id
