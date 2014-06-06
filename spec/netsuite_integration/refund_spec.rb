@@ -7,8 +7,8 @@ module NetsuiteIntegration
 
     let(:deposits) do
       [
-        double("CustomerDeposit", internal_id: "18695"),
-        double("CustomerDeposit", internal_id: "18787")
+        double("CustomerDeposit", internal_id: "18695").as_null_object,
+        double("CustomerDeposit", internal_id: "18787").as_null_object
       ]
     end
 

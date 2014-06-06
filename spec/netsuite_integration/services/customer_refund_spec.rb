@@ -8,7 +8,7 @@ module NetsuiteIntegration
 
       let(:customer_id)         { '75' }
       let(:payment_method_id)   { '1' }
-      let(:deposits) { [double("CustomerDeposit", internal_id: '8079')] }
+      let(:deposits) { [double("CustomerDeposit", internal_id: '8079').as_null_object] }
       let(:sales_order)        { double("SalesOrder", external_id: 'R123456789') }
 
       subject { described_class.new config, customer_id, payment_method_id }
