@@ -19,6 +19,7 @@ module NetsuiteIntegration
         if payload[:shipping_address]
           customer.first_name  = payload[:shipping_address][:firstname] || 'N/A'
           customer.last_name   = payload[:shipping_address][:lastname] || 'N/A'
+          customer.phone       = payload[:shipping_address][:phone]
           fill_address(customer, payload[:shipping_address])
         else
           customer.first_name  = 'N/A'
