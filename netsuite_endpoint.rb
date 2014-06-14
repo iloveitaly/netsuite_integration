@@ -13,6 +13,17 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
   set :logging, true
 
+  # Make sure sinatra error handlers run
+  set :show_exceptions, :after_handler
+
+  error Errno::ENOENT do
+    result 500, env['sinatra.error'].message
+  end
+
+  error Savon::SOAPFault do
+    result 500, env['sinatra.error'].to_s
+  end
+
   before do
     if config = @config
       @netsuite_client ||= NetSuite.configure do
@@ -45,31 +56,25 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/get_products' do
-    begin
-      products = NetsuiteIntegration::Product.new(@config)
+    products = NetsuiteIntegration::Product.new(@config)
 
-      if products.collection.any?
-        products.messages.each do |message|
-          add_object "product", message
-        end
-
-        add_parameter 'netsuite_last_updated_after', products.last_modified_date
-
-        count = products.messages.count
-        @summary = "#{count} #{"item".pluralize count} found in NetSuite"
+    if products.collection.any?
+      products.messages.each do |message|
+        add_object "product", message
       end
 
-      result 200, @summary
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
+      add_parameter 'netsuite_last_updated_after', products.last_modified_date
+
+      count = products.messages.count
+      @summary = "#{count} #{"item".pluralize count} found in NetSuite"
     end
+
+    result 200, @summary
   end
 
   post '/add_order' do
     begin
       create_or_update_order
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
     rescue NetsuiteIntegration::CreationFailCustomerException => e
@@ -85,8 +90,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   post '/update_order' do
     begin
       create_or_update_order
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
     rescue NetsuiteIntegration::CreationFailCustomerException => e
@@ -100,26 +103,22 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/cancel_order' do
-    begin
-      if order = sales_order_service.find_by_external_id(@payload[:order][:number] || @payload[:order][:id])
-        if customer_record_exists?
-          refund = NetsuiteIntegration::Refund.new(@config, @payload, order)
-          if refund.process!
-            summary = "Customer Refund created and NetSuite Sales Order #{@payload[:order][:number]} was closed"
-            result 200, summary
-          else
-            summary = "Failed to create a Customer Refund and close the NetSuite Sales Order #{@payload[:order][:number]}"
-            result 500, summary
-          end
+    if order = sales_order_service.find_by_external_id(@payload[:order][:number] || @payload[:order][:id])
+      if customer_record_exists?
+        refund = NetsuiteIntegration::Refund.new(@config, @payload, order)
+        if refund.process!
+          summary = "Customer Refund created and NetSuite Sales Order #{@payload[:order][:number]} was closed"
+          result 200, summary
         else
-          sales_order_service.close!(order)
-          result 200, "NetSuite Sales Order #{@payload[:order][:number]} was closed"
+          summary = "Failed to create a Customer Refund and close the NetSuite Sales Order #{@payload[:order][:number]}"
+          result 500, summary
         end
       else
-        result 500, "NetSuite Sales Order not found for order #{@payload[:order][:number] || @payload[:order][:id]}"
+        sales_order_service.close!(order)
+        result 200, "NetSuite Sales Order #{@payload[:order][:number]} was closed"
       end
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
+    else
+      result 500, "NetSuite Sales Order not found for order #{@payload[:order][:number] || @payload[:order][:id]}"
     end
   end
 
@@ -142,8 +141,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       end
 
       result 200, summary
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
     rescue NetSuite::RecordNotFound
       result 200
     rescue => e
@@ -168,8 +165,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       else
         result 200
       end
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
     rescue => e
@@ -182,8 +177,6 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     begin
       order = NetsuiteIntegration::Shipment.new(@config, @payload).import
       result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
     end
   end
 
