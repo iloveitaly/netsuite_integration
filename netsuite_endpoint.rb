@@ -13,6 +13,13 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
   set :logging, true
 
+  # Make sure sinatra error handlers run
+  set :show_exceptions, :after_handler
+
+  error Errno::ENOENT do
+    result 500, env['sinatra.error'].message
+  end
+
   before do
     if config = @config
       @netsuite_client ||= NetSuite.configure do
@@ -60,6 +67,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       end
 
       result 200, @summary
+    # rescue Errno::ENOENT => e
+    #   result 500, e.message
     rescue Savon::SOAPFault => e
       result 500, e.to_s
     end
