@@ -106,7 +106,7 @@ describe NetsuiteEndpoint do
         request = { parameters: parameters }
         request.merge!(order: Factories.add_order_payload)
 
-        NetsuiteIntegration::Services::Customer.any_instance.stub has_changed_address?: false
+        NetsuiteIntegration::Services::Customer.any_instance.stub address_exists?: true
 
         VCR.use_cassette('order/totals_check') do
           post '/add_order', request.to_json, auth

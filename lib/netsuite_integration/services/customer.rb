@@ -77,10 +77,10 @@ module NetsuiteIntegration
         end
       end
 
-      def has_changed_address?(customer, payload)
+      def address_exists?(customer, payload)
         current = create_address_hash(payload)
 
-        existing_addresses(customer).none? do |address|
+        existing_addresses(customer).any? do |address|
           address.delete :default_shipping
           address == current
         end
