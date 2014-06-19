@@ -78,7 +78,7 @@ module NetsuiteIntegration
       end
 
       def address_exists?(customer, payload)
-        current = create_address_hash(payload)
+        current = address_hash(payload)
 
         existing_addresses(customer).any? do |address|
           address.delete :default_shipping
@@ -87,7 +87,7 @@ module NetsuiteIntegration
       end
 
       def set_or_create_default_address(customer, payload)
-        attrs = [ create_address_hash(payload).update({ default_shipping: true }) ]
+        attrs = [ address_hash(payload).update({ default_shipping: true }) ]
 
         existing = existing_addresses(customer).map do |a|
           a[:default_shipping] = false
@@ -101,7 +101,7 @@ module NetsuiteIntegration
         return if address_exists?(customer, payload)
         
         customer.update addressbook_list: {
-          addressbook: existing_addresses(customer).push(create_address_hash(payload))
+          addressbook: existing_addresses(customer).push(address_hash(payload))
         }
       end
 
@@ -124,12 +124,12 @@ module NetsuiteIntegration
         def fill_address(customer, payload)
           if payload[:address1].present?
             customer.addressbook_list = {
-              addressbook: create_address_hash(payload).update({ default_shipping: true })
+              addressbook: address_hash(payload).update({ default_shipping: true })
             }
           end
         end
 
-        def create_address_hash(payload)
+        def address_hash(payload)
           {
             addr1: payload[:address1],
             addr2: payload[:address2],
