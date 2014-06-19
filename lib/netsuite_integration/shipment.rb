@@ -62,7 +62,7 @@ module NetsuiteIntegration
           id: shipment.internal_id,
           order_id: sales_orders_for_shipment(shipment.created_from.internal_id).external_id,
           cost: shipment.shipping_cost,
-          status: shipment.ship_status.to_s[1..-1],
+          status: shipment.ship_status.to_s[1..-1] || 'shipped',
           shipping_method: try_shipping_method(shipment),
           tracking: shipment.package_list.packages.map(&:package_tracking_number).join(", "),
           shipped_at: shipment.tran_date,
