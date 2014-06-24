@@ -160,7 +160,7 @@ module NetsuiteIntegration
       # Due to NetSuite complexity, taxes and discounts will be treated as line items.
       ["tax", "discount"].map do |type|
         value = order_payload[:adjustments].sum do |hash|
-          if hash[:name] == type.capitalize
+          if hash[:name].to_s.downcase == type.downcase
             hash[:value]
           else
             0
