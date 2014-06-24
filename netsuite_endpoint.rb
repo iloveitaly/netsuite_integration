@@ -75,6 +75,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   post '/add_order' do
     begin
       create_or_update_order
+    rescue Savon::SOAPFault => e
+      result 500, e.to_s
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
     rescue NetsuiteIntegration::CreationFailCustomerException => e
@@ -90,6 +92,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   post '/update_order' do
     begin
       create_or_update_order
+    rescue Savon::SOAPFault => e
+      result 500, e.to_s
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
     rescue NetsuiteIntegration::CreationFailCustomerException => e
@@ -141,6 +145,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       end
 
       result 200, summary
+    rescue Savon::SOAPFault => e
+      result 500, e.to_s
     rescue NetSuite::RecordNotFound
       result 200
     rescue => e
@@ -165,6 +171,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       else
         result 200
       end
+    rescue Savon::SOAPFault => e
+      result 500, e.to_s
     rescue NetSuite::RecordNotFound => e
       result 500, e.message
     rescue => e
@@ -174,10 +182,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_shipment' do
-    begin
-      order = NetsuiteIntegration::Shipment.new(@config, @payload).import
-      result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
-    end
+    order = NetsuiteIntegration::Shipment.new(@config, @payload).import
+    result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
   end
 
   private
