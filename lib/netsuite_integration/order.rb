@@ -72,8 +72,12 @@ module NetsuiteIntegration
     end
 
     def paid?
-      payment_total = order_payload[:payments].sum { |p| p[:amount] }
-      order_payload[:totals][:order] <= payment_total
+      if order_payload[:payments]
+        payment_total = order_payload[:payments].sum { |p| p[:amount] }
+        order_payload[:totals][:order] <= payment_total
+      else
+        false
+      end
     end
 
     def errors
