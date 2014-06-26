@@ -4,7 +4,7 @@ module NetsuiteIntegration
   class InventoryStock
     attr_reader :config, :sku, :item, :items
 
-    def initialize(config, message)
+    def initialize(config, message = {})
       @config = config
       @sku = message[:sku]
 
@@ -21,9 +21,23 @@ module NetsuiteIntegration
       !sku.present?
     end
 
+    # An Inventory Item locations might not always be a hash with quantities
+    # available. See for example:
+    #
+    #   <listAcct:locationsList>
+    #     <listAcct:locations>
+    #       <listAcct:location>Fifth Gear</listAcct:location>
+    #       <listAcct:locationId internalId="1"/>
+    #     </listAcct:locations>
+    #   </listAcct:locationsList>
+    #
     def quantity_available(item = nil)
       (item || self.item).locations_list.locations.inject(0) do |quantity, location|
-        quantity += location[:quantity_available].to_i
+        unless location.is_a? Array
+          quantity += location[:quantity_available].to_i
+        else
+          quantity
+        end
       end
     end
 
