@@ -2,6 +2,44 @@ module NetsuiteIntegration
   module Services
     class CountryService
       class << self
+        def to_iso_country
+          {
+            '_canada' => 'CA',
+            '_unitedStates' => 'US',
+            '_ireland' => 'IE',
+            '_netherlands' => 'NL',
+            '_unitedArabEmirates' => 'AE',
+            '_newZealand' => 'NZ',
+            '_kuwait' => 'KW',
+            '_australia' => 'AU',
+            '_southAfrica' => 'ZA',
+            '_singapore' => 'SG',
+            '_portugal' => 'PT',
+            '_jordan' => 'JO',
+            '_germany' => 'DE',
+            '_pakistan' => 'PK',
+            '_unitedKingdomGB' => 'GB',
+            '_belgium' => 'BE',
+            '_philippines' => 'PH',
+            '_italy' => 'IT',
+            '_malaysia' => 'MY',
+            '_zambia' => 'ZM',
+            '_india' => 'IN',
+            '_malta' => 'ML',
+            '_mexico' => 'MX',
+            '_poland' => 'PL',
+            '_trinidadAndTobago' => 'TT',
+            '_france' => 'FR',
+            '_nigeria' => 'NG',
+            '_bruneiDarussalam' => 'BN',
+            '_hongKong' => 'HK',
+            '_guam' => 'GU',
+            '_jamaica' => 'JAM',
+            '_virginIslandsUSA' => 'VI',
+            '_croatiaHrvatska' => 'HR',
+            '_spain' => 'ES'
+          }
+        end
 
         def by_iso_country(iso_country)
           country = @@countries.fetch(iso_country, "United States")

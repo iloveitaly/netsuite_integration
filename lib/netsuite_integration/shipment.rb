@@ -158,7 +158,7 @@ module NetsuiteIntegration
             zipcode: address.ship_zip,
             city: address.ship_city,
             state: Services::StateService.by_state_name(address.ship_state),
-            country: normalize_country_name(address.ship_country),
+            country: iso_country_name(address.ship_country),
             phone: address.ship_phone
           }
         end
@@ -173,14 +173,8 @@ module NetsuiteIntegration
       end
 
       # See https://system.netsuite.com/help/helpcenter/en_US/SchemaBrowser/platform/v2013_2_0/commonTypes.html#platformCommonTyp:Country
-      #
-      #   _unitedStates => UnitedStates
-      #
-      def normalize_country_name(name)
-        if name.is_a? String
-          name = name[1..-1]
-          "#{name[0].upcase}#{name[1..-1]}"
-        end
+      def iso_country_name(name)
+        Services::CountryService.to_iso_country[name] || name
       end
   end
 end
