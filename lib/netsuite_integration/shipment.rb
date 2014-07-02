@@ -64,6 +64,7 @@ module NetsuiteIntegration
           cost: shipment.shipping_cost,
           status: shipment.ship_status.to_s[1..-1] || 'shipped',
           shipping_method: try_shipping_method(shipment),
+          shipping_method_id: shipment.ship_method.internal_id,
           tracking: shipment.package_list.packages.map(&:package_tracking_number).join(", "),
           shipped_at: shipment.tran_date,
           shipping_address: build_shipping_address(shipment.transaction_ship_address),
