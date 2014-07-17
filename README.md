@@ -19,8 +19,9 @@ See The [SuiteTalk Web Services](https://system.netsuite.com/help/helpcenter/en_
 Also view the [wiki](https://github.com/wombat/netsuite_integration/wiki) for
 more details about parameters and webhooks.
 
-_ps. To run the specs on this repo you need to check out the [cassetes](https://github.com/wombat/netsuite_integration/tree/cassetes)
-branch. No cassetes should be recorded on master._
+> NOTE: To run the specs on this repo you need to check out the [cassetes](https://github.com/wombat/netsuite_integration/tree/cassetes)
+branch. No cassetes should be recorded on master. Also all commits in
+master are regurlarly merged into the cassetes branch.
 
 [Wombat](http://wombat.co) allows you to connect to your own custom integrations.
 Feel free to modify the source code and host your own version of the integration
