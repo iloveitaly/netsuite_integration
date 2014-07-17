@@ -99,8 +99,8 @@ module NetsuiteIntegration
           { get_option_name(option.type_id) => get_option_value(option, parent) }
         end
 
-        validated_options = options.select { |o| o.values.all? }
-
+        validated_options = options.select { |o| o.values.all? }.reduce Hash.new, :merge
+        
         { price: price, sku: child.item_id, options: validated_options }
       end
     end
@@ -171,7 +171,7 @@ module NetsuiteIntegration
       end
 
       # Crazy NetSuite pricing matrix structure
-      #   
+      #
       #   #<NetSuite::Records::RecordRef:0x007fdb3f1399e0 @internal_id=nil, @external_id=nil, @type=nil,
       #     @attributes={:currency=>{:name=>"USA", :@internal_id=>"1"},
       #         :price_level=>{:name=>"Base Price", :@internal_id=>"1"},
