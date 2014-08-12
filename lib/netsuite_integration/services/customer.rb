@@ -10,6 +10,10 @@ module NetsuiteIntegration
               field: 'email',
               value: email,
               operator: 'is'
+            },
+            {
+              field: 'isInactive',
+              value: false
             }
           ]
         })
