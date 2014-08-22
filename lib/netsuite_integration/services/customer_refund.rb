@@ -25,6 +25,10 @@ module NetsuiteIntegration
         refund.tran_date = deposits.first.tran_date if deposits.first.tran_date
         refund.external_id    = build_external_id deposits
 
+        if config['netsuite_location_for_customer_refund'].present?
+          refund.location = { internal_id: config['netsuite_location_for_customer_refund'] }
+        end
+
         # doc -> customer_deposit_id
 
         deposits_to_refund = deposits.map do |d|
