@@ -35,7 +35,11 @@ module NetsuiteIntegration
         end
 
         def time_now
-          Time.now.utc
+          if end_timestamp = config["netsuite_poll_fulfillment_end_timestamp"]
+            Time.parse(end_timestamp)
+          else
+            Time.now.utc
+          end
         end
 
         def last_updated_after
