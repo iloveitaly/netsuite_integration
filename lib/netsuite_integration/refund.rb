@@ -15,7 +15,7 @@ module NetsuiteIntegration
       @customer = customer_service.find_by_external_id(order_payload[:email]) or
         raise RecordNotFoundCustomerException, "NetSuite Customer not found for Spree user #{order_payload[:email]}"
 
-      @service = Services::CustomerRefund.new(config, customer.internal_id, payment_method_id)
+      @service = Services::CustomerRefund.new(config, payload, customer.internal_id, payment_method_id)
     end
 
     def process!

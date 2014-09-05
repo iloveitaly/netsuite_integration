@@ -3,9 +3,10 @@ module NetsuiteIntegration
     class CustomerRefund < Base
       attr_reader :customer_id, :payment_method_id
 
-      def initialize(config, customer_id, payment_method_id)
-        super config
+      def initialize(config, payload, customer_id, payment_method_id)
+        super(config)
 
+        @payload = payload
         @customer_id = customer_id
         @payment_method_id = payment_method_id
       end
