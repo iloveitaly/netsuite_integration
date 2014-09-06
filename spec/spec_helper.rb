@@ -13,10 +13,18 @@ require 'spree/testing_support/controllers'
 
 Sinatra::Base.environment = 'test'
 
+ENV['NETSUITE_EMAIL'] ||= 'washington@spreecommerce.com'
+ENV['NETSUITE_PASSWORD'] ||= 'test'
+ENV['NETSUITE_ACCOUNT'] ||= 'test'
+
 VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = false
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
+
+  c.filter_sensitive_data("NETSUITE_EMAIL") { ENV["NETSUITE_EMAIL"] }
+  c.filter_sensitive_data("NETSUITE_PASSWORD") { ENV["NETSUITE_PASSWORD"] }
+  c.filter_sensitive_data("NETSUITE_ACCOUNT") { ENV["NETSUITE_ACCOUNT"] }
 end
 
 RSpec.configure do |config|
