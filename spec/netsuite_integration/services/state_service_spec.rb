@@ -17,7 +17,9 @@ module NetsuiteIntegration
     end
 
     it 'fetches non us states' do
-      expect(subject.by_state_name('Guanajuato')).to eq('GTO')
+      VCR.use_cassette "states/others" do
+        expect(subject.by_state_name('Guanajuato')).to eq('GTO')
+      end
     end
   end
 end
