@@ -182,8 +182,13 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   end
 
   post '/add_shipment' do
-    order = NetsuiteIntegration::Shipment.new(@config, @payload).import
-    result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
+    begin
+      order = NetsuiteIntegration::Shipment.new(@config, @payload).import
+      result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
+    rescue => e
+      log_exception(e)
+      result 500, e.message
+    end
   end
 
   private
