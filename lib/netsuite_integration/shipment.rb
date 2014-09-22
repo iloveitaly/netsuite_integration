@@ -38,18 +38,31 @@ module NetsuiteIntegration
         created_from: {
           internal_id: order_id
         },
-        transaction_ship_address: {
-          ship_addressee: "#{address[:firstname]} #{address[:lastname]}",
-          ship_addr1:     address[:address1],
-          ship_addr2:     address[:address2],
-          ship_zip:       address[:zipcode],
-          ship_city:      address[:city],
-          ship_state:     Services::StateService.by_state_name(address[:state]),
-          ship_country:   Services::CountryService.by_iso_country(address[:country]),
-          ship_phone:     address[:phone].gsub(/([^0-9]*)/, "")
-        }
+        # transaction_ship_address: {
+        #   ship_addressee: "#{address[:firstname]} #{address[:lastname]}",
+        #   ship_addr1:     address[:address1],
+        #   ship_addr2:     address[:address2],
+        #   ship_zip:       address[:zipcode],
+        #   ship_city:      address[:city],
+        #   ship_state:     Services::StateService.by_state_name(address[:state]),
+        #   ship_country:   Services::CountryService.by_iso_country(address[:country]),
+        #   ship_phone:     address[:phone].gsub(/([^0-9]*)/, "")
+        # }
       })
 
+      item_list = shipment_payload[:items].map do |item|
+        reference = item[:sku] || item[:product_id]
+        unless inventory_item = inventory_item_service.find_by_item_id(reference)
+          raise NetSuite::RecordNotFound, "Inventory Item \"#{reference}\" not found in NetSuite"
+        end
+
+        NetSuite::Records::ItemFulfillmentItem.new(
+          item: { internal_id: inventory_item.internal_id },
+          quantity: item[:quantity]
+        )
+      end
+
+      fulfillment.item_list = NetSuite::Records::ItemFulfillmentItemList.new(item: item_list)
       handle_extra_fields fulfillment, :netsuite_shipment_fields
 
       @fulfilled = fulfillment.add
