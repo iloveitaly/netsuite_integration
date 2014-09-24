@@ -50,15 +50,26 @@ module NetsuiteIntegration
         # }
       })
 
-      item_list = shipment_payload[:items].map do |item|
-        reference = item[:sku] || item[:product_id]
-        unless inventory_item = inventory_item_service.find_by_item_id(reference)
-          raise NetSuite::RecordNotFound, "Inventory Item \"#{reference}\" not found in NetSuite"
-        end
+      # Building the item list based on items present in shipment payload
+      #
+      # item_list = shipment_payload[:items].map do |item|
+      #   reference = item[:sku] || item[:product_id]
+      #   unless inventory_item = inventory_item_service.find_by_item_id(reference)
+      #     raise NetSuite::RecordNotFound, "Inventory Item \"#{reference}\" not found in NetSuite"
+      #   end
 
+      #   NetSuite::Records::ItemFulfillmentItem.new(
+      #     item: { internal_id: inventory_item.internal_id },
+      #     quantity: item[:quantity]
+      #   )
+      # end
+
+      # Building item list based on Sales Order lines
+      item_list = order.item_list.items.map do |item|
         NetSuite::Records::ItemFulfillmentItem.new(
-          item: { internal_id: inventory_item.internal_id },
-          quantity: item[:quantity]
+          item: { internal_id: item.item.internal_id },
+          order_line: item.line,
+          quantity: item.quantity
         )
       end
 
