@@ -8,15 +8,15 @@ module NetsuiteIntegration
     end
 
     def import
-      create_item_fulfillment unless order_pending_fulfillment?
-      create_invoice
+      if order_pending_fulfillment?
+        create_item_fulfillment
+        create_invoice
+      end
 
       order
     end
 
     def create_invoice
-      return unless order_pending_billing?
-
       invoice = NetSuite::Records::Invoice.new({
         tax_rate: 0,
         is_taxable: false,
@@ -69,7 +69,7 @@ module NetsuiteIntegration
 
       handle_extra_fields fulfillment, :netsuite_shipment_fields
 
-      @fulfilled = fulfillment.add
+      fulfillment.add
       verify_errors(fulfillment)
     end
 
@@ -125,10 +125,6 @@ module NetsuiteIntegration
 
       def order_pending_fulfillment?
         order.status == 'Pending Fulfillment' || !!(order.status =~ /Partially Fulfilled/)
-      end
-
-      def order_pending_billing?
-        @fulfilled || order.status == 'Pending Billing'
       end
 
       def order_id

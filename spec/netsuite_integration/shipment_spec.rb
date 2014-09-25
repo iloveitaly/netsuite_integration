@@ -5,17 +5,20 @@ module NetsuiteIntegration
     include_examples 'config hash'
     include_examples 'connect to netsuite'
 
+    let(:shipment) { Factories.shipment_confirm_payload }
+
     subject do
       described_class.new(config, Factories.shipment_confirm_payload)
     end
 
     context 'when successful' do
       it 'returns the fulfilled order' do
-        VCR.use_cassette("shipment/import") do
-          fulfilled_order = subject.import
+        shipment = Factories.shipment_fulfillment_payload
+        subject = described_class.new(config, Factories.shipment_fulfillment_payload)
 
-          fulfilled_order.internal_id.should eq("9593")
-          fulfilled_order.external_id.should eq("R375526411")
+        VCR.use_cassette("shipment/#{shipment[:shipment][:id]}") do
+          fulfilled_order = subject.import
+          fulfilled_order.external_id.should eq shipment[:shipment][:order_id]
         end
       end
     end
@@ -24,7 +27,7 @@ module NetsuiteIntegration
       context 'when invoice is ok' do
         xit 'creates only the invoice' do
           VCR.use_cassette("shipment/import_only_invoice") do
-            fulfilled_order = subject.import
+            fulfilled_order = subject.create_invoice
 
             fulfilled_order.internal_id.should eq("9593")
             fulfilled_order.external_id.should eq("R375526411")
@@ -35,7 +38,7 @@ module NetsuiteIntegration
       context 'when invoice has errors' do
         it 'generates an error' do
           VCR.use_cassette("shipment/order_fulfilled_but_errors_on_invoice") do
-            expect { subject.import }.to raise_error("Transaction is not in balance!  amounts+taxes+shipping: 194.0, total amount: 208.77")
+            expect { subject.create_invoice }.to raise_error("Transaction is not in balance!  amounts+taxes+shipping: 194.0, total amount: 208.77")
           end
         end
       end
@@ -87,12 +90,12 @@ module NetsuiteIntegration
           expect(NetSuite::Records::ItemFulfillment).to receive(:new).and_return double.as_null_object
           expect(subject).to receive(:handle_extra_fields)
           subject.create_item_fulfillment
-        end
+          end
 
-        it "sets extra attributes properly" do
-          subject.handle_extra_fields fulfillment, :netsuite_shipment_fields
-          expect(fulfillment.memo).to eq "Extra memo"
-        end
+          it "sets extra attributes properly" do
+            subject.handle_extra_fields fulfillment, :netsuite_shipment_fields
+            expect(fulfillment.memo).to eq "Extra memo"
+          end
 
         it "sets extra attributes properly as reference" do
           subject.handle_extra_fields fulfillment, :netsuite_shipment_fields
