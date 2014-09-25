@@ -1,0 +1,27 @@
+{
+  "shipment": {
+    "id": "H3244354325435",
+    "order_id": "R153452234324324",
+    "channel": "Amazon.com",
+    "cost": 4.77,
+    "totals": {
+      "item": 0,
+      "adjustment": 0,
+      "tax": 0,
+      "shipping": 0,
+      "order": 128.97,
+      "payment": 128.97
+    },
+    "shipping_method": "UPS Ground",
+    "items": [
+      {
+        "product_id": "SPREE-T-SHIRT",
+        "quantity": 1
+      }
+    ],
+    "amazon_shipping_method": "FreeEconomy",
+    "tracking": "25654365653645654634",
+    "shipped_at": "2014-09-20T04:01:34Z",
+    "updated_at": "2014-09-20T04:01:34Z"
+  }
+}

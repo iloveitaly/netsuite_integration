@@ -8,15 +8,15 @@ module NetsuiteIntegration
     end
 
     def import
-      create_item_fulfillment
-      create_invoice
+      if order_pending_fulfillment?
+        create_item_fulfillment
+        create_invoice
+      end
 
       order
     end
 
     def create_invoice
-      return unless order_pending_billing?
-
       invoice = NetSuite::Records::Invoice.new({
         tax_rate: 0,
         is_taxable: false,
@@ -32,13 +32,15 @@ module NetsuiteIntegration
     end
 
     def create_item_fulfillment
-      return unless order_pending_fulfillment?
+      # Initializing a fulfillment via api allows us to do partial fulfillment
+      # much like is done via normal NetSuite UI.
+      #
+      # All default attributes are set on the fulfillment object
+      fulfillment = NetSuite::Records::ItemFulfillment.initialize order
+      fulfillment.shipping_cost = shipment_payload[:cost]
 
-      fulfillment = NetSuite::Records::ItemFulfillment.new({
-        created_from: {
-          internal_id: order_id
-        },
-        transaction_ship_address: {
+      if address
+        fulfillment.transaction_ship_address = {
           ship_addressee: "#{address[:firstname]} #{address[:lastname]}",
           ship_addr1:     address[:address1],
           ship_addr2:     address[:address2],
@@ -48,11 +50,26 @@ module NetsuiteIntegration
           ship_country:   Services::CountryService.by_iso_country(address[:country]),
           ship_phone:     address[:phone].gsub(/([^0-9]*)/, "")
         }
-      })
+      end
+
+      # NetSuite will through an error when you dont return all items back
+      # in the fulfillment request so we just set the quantity to 0 here
+      # for those not present in the shipment payload
+      fulfillment.item_list.items.each do |item_fulfillment_item|
+        item = shipment_payload[:items].find do |i|
+          i[:product_id] == item_fulfillment_item.item.name
+        end
+
+        if item
+          item_fulfillment_item.quantity = item[:quantity]
+        else
+          item_fulfillment_item.quantity = 0
+        end
+      end
 
       handle_extra_fields fulfillment, :netsuite_shipment_fields
 
-      @fulfilled = fulfillment.add
+      fulfillment.add
       verify_errors(fulfillment)
     end
 
@@ -107,11 +124,7 @@ module NetsuiteIntegration
       end
 
       def order_pending_fulfillment?
-        order.status == 'Pending Fulfillment'
-      end
-
-      def order_pending_billing?
-        @fulfilled || order.status == 'Pending Billing'
+        order.status == 'Pending Fulfillment' || !!(order.status =~ /Partially Fulfilled/)
       end
 
       def order_id
