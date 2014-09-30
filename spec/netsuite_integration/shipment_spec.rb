@@ -127,5 +127,19 @@ module NetsuiteIntegration
         end
       end
     end
+
+    it "only sets valid netsuite status" do
+      subject = described_class.new(config, shipment: { status: "none" })
+      expect(subject.fulfillment_ship_status).to eq "_shipped"
+
+      subject = described_class.new(config, shipment: { status: "Shipped" })
+      expect(subject.fulfillment_ship_status).to eq "_shipped"
+
+      subject = described_class.new(config, shipment: { status: "picked" })
+      expect(subject.fulfillment_ship_status).to eq "_picked"
+
+      subject = described_class.new(config, shipment: { status: "packed" })
+      expect(subject.fulfillment_ship_status).to eq "_packed"
+    end
   end
 end
