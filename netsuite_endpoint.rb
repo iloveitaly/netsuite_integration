@@ -45,7 +45,8 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
           role 3
         end
 
-        sandbox      config.fetch('netsuite_sandbox', false)
+        sandbox config['netsuite_sandbox'].to_s == "true" || config['netsuite_sandbox'].to_s == "1"
+
         email        config.fetch('netsuite_email')
         password     config.fetch('netsuite_password')
         account      config.fetch('netsuite_account')
