@@ -51,6 +51,10 @@ module NetsuiteIntegration
           ship_country:   Services::CountryService.by_iso_country(address[:country]),
           ship_phone:     address[:phone].gsub(/([^0-9]*)/, "")
         }
+      else
+        # NOTE Avoid a INSUFFICIENT_PERMISSION error on shipcountry we couldn't
+        # figure out the reason
+        fulfillment.transaction_ship_address = nil
       end
 
       # NetSuite will through an error when you dont return all items back
