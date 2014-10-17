@@ -150,7 +150,7 @@ module NetsuiteIntegration
       end
 
       it "builds both tax and discount line" do
-        NetsuiteIntegration::Services::Customer.any_instance.stub has_changed_address?: false
+        NetsuiteIntegration::Services::Customer.any_instance.stub address_exists?: true
 
         VCR.use_cassette('order/taxes_and_discounts') do
           expect(subject.create).to be

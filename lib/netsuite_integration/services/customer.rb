@@ -77,36 +77,17 @@ module NetsuiteIntegration
         end
       end
 
-      def has_changed_address?(customer, payload)
-        if payload.is_a? Hash
-          current = {
-            addr1: payload[:address1],
-            addr2: payload[:address2],
-            zip: payload[:zipcode],
-            city: payload[:city],
-            state: StateService.by_state_name(payload[:state]),
-            country: CountryService.by_iso_country(payload[:country]),
-            phone: payload[:phone].to_s.gsub(/([^0-9]*)/, "")
-          }
+      def address_exists?(customer, payload)
+        current = address_hash(payload)
 
-          existing_addresses(customer).none? do |address|
-            address.delete :default_shipping
-            address == current
-          end
+        existing_addresses(customer).any? do |address|
+          address.delete :default_shipping
+          address == current
         end
       end
 
       def set_or_create_default_address(customer, payload)
-        attrs = [{
-          default_shipping: true,
-          addr1: payload[:address1],
-          addr2: payload[:address2],
-          zip: payload[:zipcode],
-          city: payload[:city],
-          state: StateService.by_state_name(payload[:state]),
-          country: CountryService.by_iso_country(payload[:country]),
-          phone: payload[:phone].to_s.gsub(/([^0-9]*)/, "")
-        }]
+        attrs = [ address_hash(payload).update({ default_shipping: true }) ]
 
         existing = existing_addresses(customer).map do |a|
           a[:default_shipping] = false
@@ -114,6 +95,14 @@ module NetsuiteIntegration
         end
 
         customer.update addressbook_list: { addressbook: attrs.push(existing).flatten }
+      end
+
+      def add_address(customer, payload)
+        return if address_exists?(customer, payload)
+
+        customer.update addressbook_list: {
+          addressbook: existing_addresses(customer).push(address_hash(payload))
+        }
       end
 
       private
@@ -135,18 +124,21 @@ module NetsuiteIntegration
         def fill_address(customer, payload)
           if payload[:address1].present?
             customer.addressbook_list = {
-              addressbook: {
-                default_shipping: true,
-                addr1: payload[:address1],
-                addr2: payload[:address2],
-                zip: payload[:zipcode],
-                city: payload[:city],
-                state: StateService.by_state_name(payload[:state]),
-                country: CountryService.by_iso_country(payload[:country]),
-                phone: payload[:phone].to_s.gsub(/([^0-9]*)/, "")
-              }
+              addressbook: address_hash(payload).update({ default_shipping: true })
             }
           end
+        end
+
+        def address_hash(payload)
+          {
+            addr1: payload[:address1],
+            addr2: payload[:address2],
+            zip: payload[:zipcode],
+            city: payload[:city],
+            state: StateService.by_state_name(payload[:state]),
+            country: CountryService.by_iso_country(payload[:country]),
+            phone: payload[:phone].to_s.gsub(/([^0-9]*)/, "")
+          }
         end
     end
   end
