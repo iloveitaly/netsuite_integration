@@ -4,19 +4,15 @@ require "endpoint_base"
 require File.expand_path(File.dirname(__FILE__) + '/lib/netsuite_integration')
 
 class NetsuiteEndpoint < EndpointBase::Sinatra::Base
-  endpoint_key ENV["ENDPOINT_KEY"]
-
   Honeybadger.configure do |config|
     config.api_key = ENV['HONEYBADGER_KEY']
     config.environment_name = ENV['RACK_ENV']
   end if ENV['HONEYBADGER_KEY'].present?
 
   set :logging, true
+  set :show_exceptions, false
 
-  # Make sure sinatra error handlers run
-  set :show_exceptions, :after_handler
-
-  error Errno::ENOENT do
+  error Errno::ENOENT, NetSuite::RecordNotFound, NetsuiteIntegration::NonInventoryItemException do
     result 500, env['sinatra.error'].message
   end
 
@@ -76,34 +72,16 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
   post '/add_order' do
     begin
       create_or_update_order
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
-    rescue NetSuite::RecordNotFound => e
-      result 500, e.message
     rescue NetsuiteIntegration::CreationFailCustomerException => e
       result 500, "Could not save customer #{@payload[:order][:email]}: #{e.message}"
-    rescue NetsuiteIntegration::NonInventoryItemException => e
-      result 500, e.message
-    rescue => e
-      log_exception(e)
-      result 500, e.message
     end
   end
 
   post '/update_order' do
     begin
       create_or_update_order
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
-    rescue NetSuite::RecordNotFound => e
-      result 500, e.message
     rescue NetsuiteIntegration::CreationFailCustomerException => e
       result 500, "Could not save customer with id #{@payload[:order][:email]}"
-    rescue NetsuiteIntegration::NonInventoryItemException => e
-      result 500, e.message
-    rescue => e
-      log_exception(e)
-      result 500, e.message
     end
   end
 
@@ -146,53 +124,35 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
       end
 
       result 200, summary
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
     rescue NetSuite::RecordNotFound
       result 200
-    rescue => e
-      log_exception(e)
-      result 500, e.message
     end
   end
 
   post '/get_shipments' do
-    begin
-      shipment = NetsuiteIntegration::Shipment.new(@config, @payload)
+    shipment = NetsuiteIntegration::Shipment.new(@config, @payload)
 
-      if !shipment.latest_fulfillments.empty?
+    if !shipment.latest_fulfillments.empty?
 
-        count = shipment.latest_fulfillments.count
-        summary = "#{count} #{"shipment".pluralize count} found in NetSuite"
+      count = shipment.latest_fulfillments.count
+      summary = "#{count} #{"shipment".pluralize count} found in NetSuite"
 
-        add_parameter 'netsuite_poll_fulfillment_timestamp', shipment.last_modified_date
-        shipment.messages.each { |s| add_object :shipment, s }
+      add_parameter 'netsuite_poll_fulfillment_timestamp', shipment.last_modified_date
+      shipment.messages.each { |s| add_object :shipment, s }
 
-        result 200, summary
-      else
-        result 200
-      end
-    rescue Savon::SOAPFault => e
-      result 500, e.to_s
-    rescue NetSuite::RecordNotFound => e
-      result 500, e.message
-    rescue => e
-      log_exception(e)
-      result 500, e.message
+      result 200, summary
+    else
+      result 200
     end
   end
 
   post '/add_shipment' do
-    begin
-      order = NetsuiteIntegration::Shipment.new(@config, @payload).import
-      result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
-    rescue => e
-      log_exception(e)
-      result 500, e.message
-    end
+    order = NetsuiteIntegration::Shipment.new(@config, @payload).import
+    result 200, "Order #{order.external_id} fulfilled in NetSuite # #{order.tran_id}"
   end
 
   private
+  # NOTE move this somewhere else ..
   def create_or_update_order
     order = NetsuiteIntegration::Order.new(@config, @payload)
 
