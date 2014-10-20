@@ -126,7 +126,7 @@ module NetsuiteIntegration
         raise CreationFailCustomerException, message
       end
 
-      NetSuite::Records::RecordRef.new(external_id: customer.external_id)
+      NetSuite::Records::RecordRef.new(internal_id: customer.internal_id)
     end
 
     def internal_id_for(type)
