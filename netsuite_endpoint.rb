@@ -69,19 +69,13 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     result 200, @summary
   end
 
-  post '/add_order' do
-    begin
-      create_or_update_order
-    rescue NetsuiteIntegration::CreationFailCustomerException => e
-      result 500, "Could not save customer #{@payload[:order][:email]}: #{e.message}"
-    end
-  end
-
-  post '/update_order' do
-    begin
-      create_or_update_order
-    rescue NetsuiteIntegration::CreationFailCustomerException => e
-      result 500, "Could not save customer with id #{@payload[:order][:email]}"
+  ['/add_order', '/update_order'].each do |path|
+    post path do
+      begin
+        create_or_update_order
+      rescue NetsuiteIntegration::CreationFailCustomerException => e
+        result 500, "Could not save customer #{@payload[:order][:email]}: #{e.message}"
+      end
     end
   end
 
