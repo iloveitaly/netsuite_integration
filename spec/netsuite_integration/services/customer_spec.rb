@@ -80,10 +80,10 @@ module NetsuiteIntegration
       it "compares them" do
         VCR.use_cassette('customer/compare_addresses') do
           customer = subject.find_by_external_id("spree@example.com")
-          expect(subject).not_to have_changed_address customer, address
+          expect(subject.address_exists? customer, address).to eq true
 
           address[:city] = "Teresina"
-          expect(subject).to have_changed_address customer, address
+          expect(subject.address_exists? customer, address).to eq false
         end
       end
 
