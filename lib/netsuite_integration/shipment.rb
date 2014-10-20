@@ -168,7 +168,9 @@ module NetsuiteIntegration
       end
 
       def build_item_list(items)
-        items.map do |item|
+        # Items that have an orderLine element are directly associated with a SO line item
+        # Fulfilling a kitItem will include the components in the itemList; this excludes those component items
+        items.select { |i| i.order_line.present? }.map do |item|
           {
             name: item.item.name,
             product_id: item.item.name,
