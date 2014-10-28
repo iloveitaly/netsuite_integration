@@ -83,6 +83,7 @@ module NetsuiteIntegration
         {
           id: shipment.internal_id,
           order_id: sales_orders_for_shipment(shipment.created_from.internal_id).external_id,
+          email: customer_email(shipment.entity),
           cost: shipment.shipping_cost,
           status: shipment.ship_status.to_s[1..-1] || 'shipped',
           shipping_method: try_shipping_method(shipment),
@@ -139,6 +140,17 @@ module NetsuiteIntegration
 
       def sales_order_list
         @sales_order_list ||= {}
+      end
+
+      def customer_email(customer)
+        if customer && internal_id = customer.internal_id
+          customer_list[internal_id] ||= NetSuite::Records::Customer.get(internal_id)
+          customer_list[internal_id].email
+        end
+      end
+
+      def customer_list
+        @customer_list ||= {}
       end
 
       def order_pending_fulfillment?

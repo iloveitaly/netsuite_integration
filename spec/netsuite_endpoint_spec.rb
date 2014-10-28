@@ -312,22 +312,19 @@ describe NetsuiteEndpoint do
       context "shipments found" do
         include_examples 'connect to netsuite'
 
-        let(:items) do
-          VCR.use_cassette("item_fulfillment/latest") do
-            NetsuiteIntegration::Services::ItemFulfillment.new(parameters).latest
-          end
-        end
-
         before do
-          parameters["netsuite_poll_fulfillment_timestamp"] = '2014-04-27T18:48:56.001Z'
-          NetsuiteIntegration::Services::ItemFulfillment.any_instance.stub latest: items
-          NetSuite::Records::SalesOrder.stub get: double("Sales Order", external_id: 123)
+          parameters["netsuite_poll_fulfillment_timestamp"] = '2014-10-01T18:48:56.001Z'
         end
 
         it 'gives back summary with number of shipments' do
-          post '/get_shipments', { parameters: parameters} .to_json, auth
-          expect(last_response).to be_ok
-          expect(json_response[:summary]).to match("#{items.count} shipments found in NetSuite")
+          VCR.use_cassette("item_fulfillment/3234324435") do
+            post '/get_shipments', { parameters: parameters} .to_json, auth
+            expect(json_response[:summary]).to match("shipments found in NetSuite")
+            expect(last_response).to be_ok
+
+            expect(json_response[:shipments]).to be_a Array
+            expect(json_response[:parameters]).to have_key :netsuite_poll_fulfillment_timestamp
+          end
         end
       end
 
