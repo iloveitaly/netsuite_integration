@@ -53,6 +53,10 @@ module NetsuiteIntegration
         deposit.payment = payment[:amount]
         deposit.tran_date = sales_order.tran_date || payload[:order][:placed_on]
 
+        if department_id(payment).present?
+          deposit.department = NetSuite::Records::RecordRef.new(internal_id: department_id(payment))
+        end
+
         deposit
       end
 
@@ -73,6 +77,10 @@ module NetsuiteIntegration
       end
 
       private
+        def department_id(payment)
+          payment['netsuite_department_id'] || config['netsuite_department_id']
+        end
+
         def build_id(sales_order, payment)
           "#{prefix}-#{sales_order.external_id}-#{payment[:number]}"
         end
