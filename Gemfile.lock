@@ -25,6 +25,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.5)
+    airbrake (4.1.0)
+      builder
+      multi_json
     akami (1.2.2)
       gyoku (>= 0.4.0)
       nokogiri
@@ -117,6 +120,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake
   endpoint_base!
   foreman
   honeybadger
