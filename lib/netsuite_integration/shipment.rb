@@ -154,7 +154,12 @@ module NetsuiteIntegration
       end
 
       def order_pending_fulfillment?
-        order.status == 'Pending Fulfillment' || !!(order.status =~ /Partially Fulfilled/)
+        # https://system.netsuite.com/help/helpcenter/en_US/srbrowser/Browser2014_1/schema/enum/salesorderorderstatus.html?mode=package
+        [
+          '_pendingFulfillment',
+          '_partiallyFulfilled',
+          '_pendingBillingPartFulfilled'
+        ].include?(order.order_status)
       end
 
       def order_id
