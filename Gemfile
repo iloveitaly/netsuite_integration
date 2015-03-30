@@ -11,8 +11,9 @@ gem 'netsuite', github: 'huoxito/netsuite', branch: 'fix-customer-field-refs'
 gem 'honeybadger'
 
 group :development do
-  gem "rake"
-  gem "pry"
+  gem 'rake'
+  gem 'pry'
+  gem 'shotgun'
 end
 
 group :test do

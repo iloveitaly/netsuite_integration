@@ -87,6 +87,8 @@ GEM
       nokogiri (>= 1.4.0)
       nori (~> 2.3.0)
       wasabi (~> 3.2.2)
+    shotgun (0.9)
+      rack (>= 1.0)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -126,6 +128,7 @@ DEPENDENCIES
   rack-test
   rake
   rspec (~> 2.14)
+  shotgun
   sinatra
   tilt (~> 1.4.1)
   tilt-jbuilder
