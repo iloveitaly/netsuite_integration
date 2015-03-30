@@ -193,7 +193,12 @@ module NetsuiteIntegration
 
       def build_shipping_address(address)
         if address && address.ship_addressee
-          firstname, lastname = address.ship_addressee.split(" ")
+          # in some NS configurations ship_attention is not set
+          firstname, lastname = if address.ship_attention.present?
+            address.ship_attention
+          else
+            address.ship_addressee
+          end.split(" ")
 
           {
             firstname: firstname,
