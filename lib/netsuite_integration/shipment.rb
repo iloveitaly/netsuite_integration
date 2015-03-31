@@ -198,7 +198,7 @@ module NetsuiteIntegration
             address.ship_attention
           else
             address.ship_addressee
-          end.split(" ")
+          end.split(" ", 2)
 
           {
             firstname: firstname,
