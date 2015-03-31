@@ -23,6 +23,10 @@ group :test do
   gem 'webmock'
 end
 
+group :test, :development do
+  gem 'pry-byebug'
+end
+
 group :production do
   gem 'foreman'
   gem 'unicorn'
