@@ -193,18 +193,23 @@ module NetsuiteIntegration
 
       def build_shipping_address(address)
         if address && address.ship_addressee
-          # in some NS configurations ship_attention is not set
-          firstname, lastname = if address.ship_attention.present?
+          # if ship_attention is set, the addressee is most likely an organization
+          # and the attenion field is the person the package is being sent to
+          
+          best_name_guess = if address.ship_attention.present?
             address.ship_attention
           else
             address.ship_addressee
-          end.split(" ", 2)
+          end
+          
+          firstname, lastname = best_name_guess.split(" ", 2)
 
           {
             firstname: firstname,
             lastname: lastname,
+            company: address.ship_addressee,
             address1: address.ship_addr1,
-            address2: address.ship_addressee,
+            address2: address.ship_addr2,
             zipcode: address.ship_zip,
             city: address.ship_city,
             state: Services::StateService.by_state_name(address.ship_state),
