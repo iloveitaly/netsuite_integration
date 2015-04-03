@@ -192,7 +192,7 @@ module NetsuiteIntegration
       end
 
       def build_shipping_address(address)
-        if address && address.ship_addressee
+        if address
           # if ship_attention is set, the addressee is most likely an organization
           # and the attenion field is the person the package is being sent to
           
