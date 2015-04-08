@@ -199,7 +199,7 @@ module NetsuiteIntegration
           best_name_guess = if address.ship_attention.present?
             address.ship_attention
           else
-            address.ship_addressee
+            address.ship_addressee || ''
           end
           
           firstname, lastname = best_name_guess.split(" ", 2)
