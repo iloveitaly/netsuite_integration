@@ -1,5 +1,5 @@
 # worker_processes 1 # NetSuite does not accept concurrency :(
-worker_processes ENV.fetch('WORKER_PROCESSES', 2).to_i
+worker_processes ENV.fetch('WORKER_PROCESSES', 1).to_i
 
 timeout 240
 
