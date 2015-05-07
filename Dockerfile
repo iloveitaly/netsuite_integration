@@ -1,4 +1,4 @@
-FROM rlister/ruby:2.2.2
+FROM rlister/ruby:2.0.0
 MAINTAINER Ric Lister <ric@spreecommerce.com>
 
 RUN apt-get update && \
