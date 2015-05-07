@@ -9,6 +9,13 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
     config.environment_name = ENV['RACK_ENV']
   end if ENV['HONEYBADGER_KEY'].present?
 
+  Airbrake.configure do |config|
+    config.api_key = ENV['AIRBRAKE_API']
+    config.host    = ENV['AIRBRAKE_HOST'] if ENV['AIRBRAKE_HOST'].present?
+    config.port    = ENV['AIRBRAKE_PORT'] if ENV['AIRBRAKE_PORT'].present?
+    config.secure  = config.port == 443
+  end if ENV['AIRBRAKE_API'].present?
+
   set :logging, true
   set :show_exceptions, false
 

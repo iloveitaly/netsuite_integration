@@ -9,6 +9,7 @@ gem 'endpoint_base', github: 'spree/endpoint_base'
 
 gem 'netsuite', github: 'wombat/netsuite', branch: 'fix-customer-field-refs'
 gem 'honeybadger'
+gem 'airbrake'
 
 group :development do
   gem 'rake'
