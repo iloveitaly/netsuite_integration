@@ -29,6 +29,15 @@ class NetsuiteEndpoint < EndpointBase::Sinatra::Base
 
   before do
     if config = @config
+      config['netsuite_email'] ||= ENV['NETSUITE_EMAIL'] if ENV['NETSUITE_EMAIL'].present?
+      config['netsuite_password'] ||= ENV['NETSUITE_PASSWORD'] if ENV['NETSUITE_PASSWORD'].present?
+      config['netsuite_account'] ||= ENV['NETSUITE_ACCOUNT'] if ENV['NETSUITE_ACCOUNT'].present?
+      config['netsuite_role'] ||= ENV['NETSUITE_ROLE'] if ENV['NETSUITE_ROLE'].present?
+
+      config['netsuite_sandbox'] ||= ENV['NETSUITE_SANDBOX'] if ENV['NETSUITE_SANDBOX'].present?
+      config['netsuite_api_version'] ||= ENV['NETSUITE_API_VERSION'] if ENV['NETSUITE_API_VERSION'].present?
+      config['netsuite_wsdl_url'] ||= ENV['NETSUITE_WSDL_URL'] if ENV['NETSUITE_WSDL_URL'].present?
+
       @netsuite_client ||= NetSuite.configure do
         reset!
 
