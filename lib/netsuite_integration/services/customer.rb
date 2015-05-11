@@ -3,6 +3,16 @@ module NetsuiteIntegration
     class Customer < Base
 
       def find_by_external_id(email)
+        begin
+          return NetSuite::Records::Customer.get({:external_id => email})
+        rescue NetSuite::RecordNotFound
+          # Silence the error
+          # We don't care that the record was not found
+        end
+
+        # if no customer by externalId can be found, search by email to limit
+        # duplicate custom record creation https://github.com/wombat/netsuite_integration/pull/2
+
         search = NetSuite::Records::Customer.search({
           basic: [
             {
@@ -18,9 +28,6 @@ module NetsuiteIntegration
         })
 
         search.results.first
-      # Silence the error
-      # We don't care that the record was not found
-      rescue NetSuite::RecordNotFound
       end
 
       # entity_id -> Customer name
